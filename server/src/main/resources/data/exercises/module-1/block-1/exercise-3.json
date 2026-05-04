@@ -1,0 +1,49 @@
+{
+  "id": "module-1-block-1-task-3",
+  "title": "Поиск по class",
+  "description": "Найдите кнопку 'Отправить сообщение' в форме обратной связи по её классу.",
+  "hint": "Атрибут @class позволяет найти элемент по его CSS-классу",
+  "trainingComponent": "SimpleElementTrainer",
+  "componentConfig": {
+    "element": {
+      "tag": "button",
+      "className": "submit-btn",
+      "type": "submit",
+      "text": "Отправить сообщение",
+      "data-target": "true"
+    },
+    "formTitle": "Свяжитесь с нами",
+    "additionalFields": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Ваше имя",
+        "id": "contact-name"
+      },
+      {
+        "tag": "input",
+        "type": "email",
+        "placeholder": "Ваш email",
+        "id": "contact-email"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Тема сообщения",
+        "id": "subject"
+      }
+    ],
+    "targetSelector": ".submit-btn"
+  },
+  "initialCode": "// Введите XPath для поиска button с class=\"submit-btn\"",
+  "order": 3,
+  "difficulty": "easy",
+  "expectedSyntax": {
+    "requiredPatterns": ["@class"],
+    "forbiddenPatterns": ["@id","text()","[1]","[2]"],
+    "maxComplexity": 1,
+    "exactOnly": {
+      "attributes": ["class"]
+    }
+  }
+}

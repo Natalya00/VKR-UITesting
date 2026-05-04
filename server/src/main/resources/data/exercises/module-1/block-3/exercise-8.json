@@ -1,0 +1,52 @@
+{
+  "id" : "module-1-block-3-task-8",
+  "title" : "Поиск ID по статусу",
+  "description" : "Найдите ID сотрудника (первая колонка) для строки, где значение в колонке 'Статус' равно 'Неактивен'.",
+  "hint" : "Комбинируйте поиск строки по условию с выбором ячейки по индексу",
+  "trainingComponent" : "TableTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Список сотрудников",
+    "columns" : [ "ID", "Имя", "Должность", "Статус" ],
+    "rows" : [ {
+      "cells" : [ {
+        "text" : "101"
+      }, {
+        "text" : "Иван Петров"
+      }, {
+        "text" : "Менеджер"
+      }, {
+        "text" : "Активен"
+      } ]
+    }, {
+      "cells" : [ {
+        "text" : "102",
+        "data-target": true
+      }, {
+        "text" : "Анна Сидорова"
+      }, {
+        "text" : "Бухгалтер"
+      }, {
+        "text" : "Неактивен"
+      } ]
+    }, {
+      "cells" : [ {
+        "text" : "103"
+      }, {
+        "text" : "Петр Иванов"
+      }, {
+        "text" : "Директор"
+      }, {
+        "text" : "Активен"
+      } ]
+    } ],
+    "targetSelector" : "//tr[.//td[text()='Неактивен']]//td[1]"
+  },
+  "initialCode" : "// Введите XPath для поиска ID сотрудника со статусом \"Неактивен\"",
+  "order" : 8,
+  "difficulty" : "hard",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "//tr", ".//" ],
+    "forbiddenPatterns" : [ ],
+    "maxComplexity" : 3
+  }
+}

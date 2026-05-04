@@ -1,0 +1,129 @@
+{
+  "id": "module-3-block-4-exercise-10",
+  "title": "Вложенные компоненты: боковая панель",
+  "description": "Создайте компонент SidebarWidget, который содержит два внутренних компонента: FilterPanel и SortPanel. Реализуйте методы делегирования: applyFilter(String) и sortBy(String).",
+  "hint": "Создайте три компонента: FilterPanel, SortPanel и SidebarWidget, все наследующие BaseComponent. В FilterPanel реализуйте метод selectFilter(String filterName), который находит элемент фильтра по тексту через $x() и кликает по нему. В SortPanel реализуйте аналогичный метод sortBy(String sortOption). Компонент SidebarWidget содержит два приватных поля — filterPanel и sortPanel, которые инициализируются в конструкторе путём поиска внутри baseElement. Методы делегирования applyFilter(String filterName) и sortBy(String sortOption) просто передают вызовы внутренним компонентам: filterPanel.selectFilter() и sortPanel.sortBy() соответственно.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент панели фильтров.\n */\npublic class FilterPanel extends BaseComponent {\n\n    public FilterPanel(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод selectFilter(String filterName)\n\n}\n\n---\n\npackage com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент панели сортировки.\n */\npublic class SortPanel extends BaseComponent {\n\n    public SortPanel(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод sortBy(String sortOption)\n\n}\n\n---\n\npackage com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент боковой панели с виджетами.\n * Содержит FilterPanel и SortPanel.\n */\npublic class SidebarWidget extends BaseComponent {\n\n    private FilterPanel filterPanel;\n    private SortPanel sortPanel;\n\n    public SidebarWidget(SelenideElement baseElement) {\n        super(baseElement);\n        // Инициализируйте filterPanel и sortPanel, найдя их внутри baseElement\n    }\n\n    // Реализуйте метод applyFilter(String filterName) — делегирование\n\n    // Реализуйте метод sortBy(String sortOption) — делегирование\n\n}\n",
+  "order": 141,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "FilterPanel",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс FilterPanel должен наследоваться от BaseComponent"
+        },
+        {
+          "className": "SortPanel",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс SortPanel должен наследоваться от BaseComponent"
+        },
+        {
+          "className": "SidebarWidget",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс SidebarWidget должен наследоваться от BaseComponent"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "SidebarWidget",
+          "fieldName": "filterPanel",
+          "fieldType": "FilterPanel",
+          "modifiers": ["private"],
+          "required": true,
+          "errorMessage": "Поле private filterPanel типа FilterPanel не найдено"
+        },
+        {
+          "className": "SidebarWidget",
+          "fieldName": "sortPanel",
+          "fieldType": "SortPanel",
+          "modifiers": ["private"],
+          "required": true,
+          "errorMessage": "Поле private sortPanel типа SortPanel не найдено"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "FilterPanel",
+          "methodName": "selectFilter",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод selectFilter(String) не найден в FilterPanel"
+        },
+        {
+          "className": "SortPanel",
+          "methodName": "sortBy",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод sortBy(String) не найден в SortPanel"
+        },
+        {
+          "className": "SidebarWidget",
+          "methodName": "applyFilter",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод applyFilter(String) не найден в SidebarWidget"
+        },
+        {
+          "className": "SidebarWidget",
+          "methodName": "sortBy",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод sortBy(String) не найден в SidebarWidget"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "FilterPanel",
+          "methodName": "selectFilter",
+          "requiredMethodCalls": ["$x", "click"],
+          "errorMessage": "selectFilter() должен искать элемент по тексту и кликать"
+        },
+        {
+          "className": "SortPanel",
+          "methodName": "sortBy",
+          "requiredMethodCalls": ["$x", "click"],
+          "errorMessage": "sortBy() должен искать элемент по тексту и кликать"
+        },
+        {
+          "className": "SidebarWidget",
+          "methodName": "applyFilter",
+          "requiredMethodCalls": ["filterPanel.selectFilter"],
+          "errorMessage": "applyFilter() должен делегировать вызов filterPanel.selectFilter()"
+        },
+        {
+          "className": "SidebarWidget",
+          "methodName": "sortBy",
+          "requiredMethodCalls": ["sortPanel.sortBy"],
+          "errorMessage": "sortBy() должен делегировать вызов sortPanel.sortBy()"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["FilterPanel", "SortPanel", "SidebarWidget"],
+      "extendsRules": ["FilterPanel:BaseComponent", "SortPanel:BaseComponent", "SidebarWidget:BaseComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.SidebarWidgetHarnessTest",
+      "testMethods": ["testApplyFilter", "testSortBy", "testSidebarWidgetDelegatesFilter", "testSidebarWidgetDelegatesSort"]
+    },
+    "errorMessage": "SidebarWidget содержит private FilterPanel и SortPanel, делегирует вызовы через applyFilter() и sortBy()"
+  }
+}

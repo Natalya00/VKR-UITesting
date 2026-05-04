@@ -1,0 +1,89 @@
+{
+  "id": "module-2-block-7-exercise-15",
+  "title": "Каскадные модальные окна",
+  "description": "Откройте первое модальное окно, проверьте текст «Первое окно» через shouldHave(text(...)). Затем из него откройте второе, проверьте текст «Второе окно». Закройте оба окна в правильном порядке.",
+  "hint": "Откройте первое окно, проверьте текст через shouldHave(text(...)). Откройте второе, проверьте текст. Закройте в обратном порядке: сначала второе, затем первое.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; window.__uiState.cascadeModalClosed = false; document.getElementById('open-cascade-btn')?.addEventListener('click', function() { window.__uiState.firstModalOpened = true; const modal = document.getElementById('first-modal'); if(modal) modal.classList.add('modal-visible'); }, { once: true }); document.getElementById('open-second-btn')?.addEventListener('click', function() { window.__uiState.secondModalOpened = true; const modal = document.getElementById('second-modal'); if(modal) modal.classList.add('modal-visible'); }); document.querySelectorAll('.close-second').forEach(btn => btn.addEventListener('click', function() { const modal = document.getElementById('second-modal'); if(modal) modal.classList.remove('modal-visible'); window.__uiState.secondModalClosed = true; })); document.querySelectorAll('.close-first').forEach(btn => btn.addEventListener('click', function() { const modal = document.getElementById('first-modal'); if(modal) modal.classList.remove('modal-visible'); window.__uiState.cascadeModalClosed = true; const resultEl = document.getElementById('cascade-closed-result'); if(resultEl) { resultEl.textContent = 'Оба модальных окна закрыты'; resultEl.style.display = 'block'; } }, { once: true })); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "cascade-modal-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Каскадные модальные окна",
+            "style": "color: #1a202c; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Откройте первое окно, из него второе, затем закройте оба в правильном порядке",
+            "style": "color: #718096; margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "open-cascade-btn",
+            "text": "Открыть первое окно",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "first-modal",
+            "className": "modal",
+            "style": "display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;",
+            "children": [
+              {
+                "tag": "div",
+                "style": "background: white; padding: 50px; border-radius: 16px; box-shadow: 0 25px 80px rgba(0,0,0,0.3); max-width: 500px; text-align: center; position: relative;",
+                "children": [
+                  {"tag": "h3", "text": "Первое окно", "style": "color: #1a202c; margin-bottom: 20px; font-size: 26px; font-weight: 600;"},
+                  {"tag": "p", "text": "Из этого окна можно открыть второе", "style": "color: #718096; font-size: 17px; line-height: 1.6; margin-bottom: 30px;"},
+                  {"tag": "button", "id": "open-second-btn", "text": "Открыть второе окно", "style": "display: block; margin: 0 auto 20px; padding: 14px 40px; background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 15px; transition: all 0.3s ease;"},
+                  {"tag": "button", "className": "close-first", "text": "Закрыть", "style": "padding: 14px 40px; background: #e2e8f0; color: #4a5568; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 15px; transition: all 0.3s ease;"}
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "id": "second-modal",
+            "className": "modal",
+            "style": "display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 1001; align-items: center; justify-content: center;",
+            "children": [
+              {
+                "tag": "div",
+                "style": "background: white; padding: 50px; border-radius: 16px; box-shadow: 0 25px 80px rgba(0,0,0,0.3); max-width: 450px; text-align: center;",
+                "children": [
+                  {"tag": "h3", "text": "Второе окно", "style": "color: #1a202c; margin-bottom: 20px; font-size: 26px; font-weight: 600;"},
+                  {"tag": "p", "text": "Закройте это окно, затем закройте первое", "style": "color: #718096; font-size: 17px; line-height: 1.6; margin-bottom: 30px;"},
+                  {"tag": "button", "className": "close-second", "text": "Закрыть", "style": "padding: 16px 50px; background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 16px; transition: all 0.3s ease;"}
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "id": "cascade-closed-result",
+            "text": "Оба модальных окна закрыты",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#open-cascade-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Откройте каскад окон, проверьте текст и закройте их в правильном порядке\n\n    }\n}",
+  "order": 74,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["click", "shouldHave", "text"],
+    "requiredSelectors": ["#open-cascade-btn", "#open-second-btn", ".close-second", ".close-first", "#first-modal", "#second-modal"],
+    "expectedAction": "close_cascade_modals",
+    "requiredFinder": "$",
+    "errorMessage": "Закройте каскадные модальные окна"
+  }
+}

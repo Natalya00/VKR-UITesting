@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+runner:
+  default-base-url: ${RUNNER_DEFAULT_BASE_URL:http://localhost:5173}
+  timeout:
+    process: ${RUNNER_PROCESS_TIMEOUT:180}
+    page-load: ${RUNNER_PAGE_LOAD_TIMEOUT:20}
+    element-wait: ${RUNNER_ELEMENT_WAIT_TIMEOUT:10}
+
+selenide:
+  headless: ${SELENIDE_HEADLESS:true}
+  browser-size: ${SELENIDE_BROWSER_SIZE:1280x720}
+  timeout: ${SELENIDE_TIMEOUT:10000}
+  page-load-timeout: ${SELENIDE_PAGE_LOAD_TIMEOUT:20000}
+  reopen-browser-on-fail: true
+
+jwt:
+  secret: ${JWT_SECRET:YourSecretKeyForJWTTokenGenerationMustBeLongEnough2024}
+  access-token-expiration-minutes: ${JWT_ACCESS_TOKEN_EXPIRATION_MINUTES:15}
+  refresh-token-expiration-days: ${JWT_REFRESH_TOKEN_EXPIRATION_DAYS:7}
+  reset-token-expiration-minutes: ${JWT_RESET_TOKEN_EXPIRATION_MINUTES:5}
+
+spring:
+  main:
+    banner-mode: "off"
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/ui_trainer}
+    username: ${SPRING_DATASOURCE_USERNAME:trainer}
+    password: ${SPRING_DATASOURCE_PASSWORD:trainer123}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+

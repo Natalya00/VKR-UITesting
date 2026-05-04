@@ -1,0 +1,46 @@
+{
+  "id": "module-2-block-6-exercise-8",
+  "title": "Изменение размера элемента (resize)",
+  "description": "Нажмите на элемент с ID resizable, удерживайте кнопку мыши, переместите курсор на 30 пикселей вниз и отпустите.",
+  "hint": "Используйте цепочку actions(): кликните и удерживайте (clickAndHold), переместите на нужное смещение (moveByOffset) и отпустите (release).",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "resize-container",
+        "style": "max-width: 600px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Изменение размера",
+            "style": "color: #2d3748; margin-bottom: 30px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Перетащите за нижний край для изменения размера",
+            "style": "color: #718096; margin-bottom: 25px; font-size: 14px;"
+          },
+          {
+            "tag": "div",
+            "id": "resizable",
+            "style": "width: 200px; height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; cursor: ns-resize; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#resizable"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\nimport org.openqa.selenium.interactions.Actions;\n\npublic class UserScript {\n    public static void run() {\n        // Измените размер элемента, потянув его вниз\n\n    }\n}",
+  "order": 59,
+  "difficulty": "hard",
+  "validationRules": {
+    "requiredMethods": ["clickAndHold", "moveByOffset", "release"],
+    "requiredSelectors": ["#resizable"],
+    "expectedAction": "resize_element",
+    "requiredFinder": "$",
+    "errorMessage": "Измените размер элемента"
+  }
+}

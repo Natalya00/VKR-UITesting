@@ -1,0 +1,70 @@
+{
+  "id": "module-2-block-7-exercise-11",
+  "title": "Закрытие модального окна через ESC",
+  "description": "Откройте модальное окно кнопкой, затем закройте его, отправив клавишу ESCAPE через actions(). Убедитесь, что окно исчезло.",
+  "hint": "Откройте окно, затем используйте actions().sendKeys(Keys.ESCAPE).perform() для закрытия. Проверьте исчезновение через shouldNotBe(visible).",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; window.__uiState.modalClosedByEsc = false; document.getElementById('open-esc-btn')?.addEventListener('click', function() { window.__uiState.modalOpened = true; const modal = document.getElementById('esc-modal'); if(modal) modal.classList.add('modal-visible'); }, { once: true }); document.addEventListener('keydown', function(e) { if(e.key === 'Escape') { const modal = document.getElementById('esc-modal'); if(modal && modal.classList.contains('modal-visible')) { modal.classList.remove('modal-visible'); window.__uiState.modalClosedByEsc = true; const resultEl = document.getElementById('modal-closed-esc-result'); if(resultEl) { resultEl.textContent = 'Модальное окно закрыто через ESC'; resultEl.style.display = 'block'; } } } }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "modal-esc-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Закрытие через ESC",
+            "style": "color: #1a202c; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Откройте окно, затем закройте его нажатием клавиши ESCAPE",
+            "style": "color: #718096; margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "open-esc-btn",
+            "text": "Открыть окно",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(237, 137, 54, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "esc-modal",
+            "className": "modal",
+            "style": "display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;",
+            "children": [
+              {
+                "tag": "div",
+                "style": "background: white; padding: 50px; border-radius: 16px; box-shadow: 0 25px 80px rgba(0,0,0,0.3); max-width: 500px; text-align: center;",
+                "children": [
+                  {"tag": "h3", "text": "Нажмите ESC", "style": "color: #1a202c; margin-bottom: 20px; font-size: 26px; font-weight: 600;"},
+                  {"tag": "p", "text": "Это модальное окно закрывается нажатием клавиши ESCAPE", "style": "color: #718096; font-size: 17px; line-height: 1.6;"}
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "id": "modal-closed-esc-result",
+            "text": "Модальное окно закрыто через ESC",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#open-esc-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\nimport org.openqa.selenium.Keys;\n\npublic class UserScript {\n    public static void run() {\n        // Откройте модальное окно и закройте его через клавишу ESC\n\n    }\n}",
+  "order": 70,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click", "actions", "sendKeys", "perform", "shouldNotBe"],
+    "requiredSelectors": ["#open-esc-btn"],
+    "expectedAction": "close_modal_by_esc",
+    "requiredFinder": "$",
+    "errorMessage": "Закройте модальное окно через ESCAPE"
+  }
+}

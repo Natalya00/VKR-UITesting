@@ -1,0 +1,46 @@
+{
+  "id": "module-2-block-4-exercise-1",
+  "title": "Проверка количества элементов в списке",
+  "description": "Проверьте, что в списке .items li ровно 3 элемента.",
+  "hint": "Используйте $$() для коллекции и shouldHave(size(...)) для проверки количества.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "shopping-list-container",
+        "style": "max-width: 600px; margin: 40px auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 30px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Список покупок",
+            "style": "color: #2c3e50; margin-bottom: 20px; font-size: 24px; border-bottom: 3px solid #3498db; padding-bottom: 10px;"
+          },
+          {
+            "tag": "ul",
+            "className": "items",
+            "style": "list-style: none; padding: 0; margin: 0;",
+            "children": [
+              {"tag": "li", "text": "Хлеб", "style": "padding: 15px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin: 10px 0; border-radius: 8px; font-size: 16px;"},
+              {"tag": "li", "text": "Молоко", "style": "padding: 15px 20px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; margin: 10px 0; border-radius: 8px; font-size: 16px;"},
+              {"tag": "li", "text": "Масло", "style": "padding: 15px 20px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; margin: 10px 0; border-radius: 8px; font-size: 16px;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".items"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.CollectionCondition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте, что в списке ровно 3 элемента\n\n    }\n}",
+  "order": 22,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["shouldHave", "size"],
+    "requiredSelectors": [".items li"],
+    "expectedAction": "check_collection_size",
+    "requiredFinder": "$$",
+    "errorMessage": "Проверьте количество элементов в коллекции"
+  }
+}

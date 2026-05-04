@@ -1,0 +1,46 @@
+{
+  "id": "module-2-block-6-exercise-3",
+  "title": "Клик правой кнопкой мыши (контекстное меню)",
+  "description": "Вызовите контекстное меню, нажав правой кнопкой мыши на элемент с ID area.",
+  "hint": "Используйте метод contextClick() для вызова контекстного меню правой кнопкой мыши.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "context-menu-container",
+        "style": "max-width: 600px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(229, 62, 62, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Правый клик",
+            "style": "color: #2d3748; margin-bottom: 30px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Нажмите правой кнопкой мыши на область ниже",
+            "style": "color: #718096; margin-bottom: 25px; font-size: 14px;"
+          },
+          {
+            "tag": "div",
+            "id": "area",
+            "style": "padding: 40px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 12px; text-align: center; color: white; font-size: 18px; font-weight: 600; cursor: context-menu;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#area"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Вызовите контекстное меню (правый клик) на элементе\n\n    }\n}",
+  "order": 54,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["contextClick"],
+    "requiredSelectors": ["#area"],
+    "expectedAction": "context_click",
+    "requiredFinder": "$",
+    "errorMessage": "Вызовите контекстное меню"
+  }
+}

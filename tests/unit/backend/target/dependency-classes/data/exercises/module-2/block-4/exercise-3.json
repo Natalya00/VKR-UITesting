@@ -1,0 +1,93 @@
+{
+  "id": "module-2-block-4-exercise-3",
+  "title": "Выбор строки из таблицы по индексу",
+  "description": "Выберите вторую строку (<tr>) из таблицы с ID users и проверьте, что в ней есть текст \"User 2\".",
+  "hint": "Используйте .get(...) для получения элемента по индексу: $$(\"...\").get(...).shouldHave(text(\"...\"));",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "users-container",
+        "style": "max-width: 800px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 30px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Пользователи системы",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 24px;"
+          },
+          {
+            "tag": "table",
+            "id": "users",
+            "style": "width: 100%; border-collapse: separate; border-spacing: 0; overflow: hidden; border-radius: 12px;",
+            "children": [
+              {
+                "tag": "thead",
+                "style": "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);",
+                "children": [
+                  {
+                    "tag": "tr",
+                    "children": [
+                      {"tag": "th", "text": "#", "style": "padding: 16px; text-align: left; color: white; font-weight: 600; font-size: 14px;"},
+                      {"tag": "th", "text": "Имя пользователя", "style": "padding: 16px; text-align: left; color: white; font-weight: 600; font-size: 14px;"},
+                      {"tag": "th", "text": "Email", "style": "padding: 16px; text-align: left; color: white; font-weight: 600; font-size: 14px;"},
+                      {"tag": "th", "text": "Статус", "style": "padding: 16px; text-align: left; color: white; font-weight: 600; font-size: 14px;"}
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "tbody",
+                "children": [
+                  {
+                    "tag": "tr",
+                    "style": "background: #f8fafc; border-bottom: 1px solid #e2e8f0;",
+                    "children": [
+                      {"tag": "td", "text": "1", "style": "padding: 16px; color: #4a5568;"},
+                      {"tag": "td", "text": "User 1", "style": "padding: 16px; color: #2d3748; font-weight: 500;"},
+                      {"tag": "td", "text": "user1@example.com", "style": "padding: 16px; color: #718096;"},
+                      {"tag": "td", "text": "Active", "style": "padding: 16px; color: #38a169;"}
+                    ]
+                  },
+                  {
+                    "tag": "tr",
+                    "style": "background: #edf2f7; border-bottom: 1px solid #e2e8f0;",
+                    "children": [
+                      {"tag": "td", "text": "2", "style": "padding: 16px; color: #4a5568;"},
+                      {"tag": "td", "text": "User 2", "style": "padding: 16px; color: #2d3748; font-weight: 500;"},
+                      {"tag": "td", "text": "user2@example.com", "style": "padding: 16px; color: #718096;"},
+                      {"tag": "td", "text": "Pending", "style": "padding: 16px; color: #d69e2e;"}
+                    ]
+                  },
+                  {
+                    "tag": "tr",
+                    "style": "background: #f8fafc;",
+                    "children": [
+                      {"tag": "td", "text": "3", "style": "padding: 16px; color: #4a5568;"},
+                      {"tag": "td", "text": "User 3", "style": "padding: 16px; color: #2d3748; font-weight: 500;"},
+                      {"tag": "td", "text": "user3@example.com", "style": "padding: 16px; color: #718096;"},
+                      {"tag": "td", "text": "Inactive", "style": "padding: 16px; color: #e53e3e;"}
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#users"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Выберите вторую строку таблицы и проверьте, что она содержит текст \"User 2\"\n\n    }\n}",
+  "order": 24,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["get", "shouldHave", "text"],
+    "requiredSelectors": ["#users", "User 2"],
+    "expectedAction": "check_row_text",
+    "requiredFinder": "$$",
+    "errorMessage": "Проверьте текст второй строки таблицы"
+  }
+}

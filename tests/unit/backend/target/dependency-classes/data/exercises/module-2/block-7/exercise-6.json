@@ -1,0 +1,54 @@
+{
+  "id": "module-2-block-7-exercise-6",
+  "title": "Проверка текста Prompt и отмена",
+  "description": "Нажмите кнопку, прочитайте текст подсказки из появившегося Prompt и отмените окно через dismiss(). Ожидаемый текст: \"Введите ваш возраст для продолжения:\". Используйте WebDriverWait и ExpectedConditions.alertIsPresent() перед чтением текста, так как prompt появляется с небольшой задержкой и может быть не готов мгновенно после клика.",
+  "hint": "Нажмите кнопку, дождитесь появления prompt через WebDriverWait и ExpectedConditions.alertIsPresent(), прочитайте текст через switchTo().alert().getText(), проверьте его через .equals() и отмените через dismiss().",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; document.getElementById('prompt-dismiss-btn')?.addEventListener('click', function() { window.__uiState.promptDismissBtnClicked = true; window.__uiState.promptDismissed = false; setTimeout(function() { const val = prompt('Введите ваш возраст для продолжения:'); if(val === null) { window.__uiState.promptDismissed = true; const resultEl = document.getElementById('prompt-dismiss-result'); if(resultEl) { resultEl.textContent = 'Prompt отменён после проверки текста'; resultEl.style.display = 'block'; } } }, 100); }, { once: true }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "prompt-dismiss-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%); border-radius: 20px; box-shadow: 0 20px 60px rgba(229, 62, 62, 0.3); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Проверка и отмена Prompt",
+            "style": "color: white; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Нажмите кнопку, проверьте текст и отмените Prompt",
+            "style": "color: rgba(255,255,255,0.9); margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "prompt-dismiss-btn",
+            "text": "Показать Prompt",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(229, 62, 62, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "prompt-dismiss-result",
+            "text": "Prompt отменён после проверки текста",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#prompt-dismiss-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport com.codeborne.selenide.WebDriverRunner;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\nimport org.openqa.selenium.support.ui.WebDriverWait;\nimport java.time.Duration;\n\npublic class UserScript {\n    public static void run() {\n        // Нажмите кнопку, прочитайте текст prompt и отмените его\n\n    }\n}",
+  "order": 65,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["click", "until", "getText", "switchTo", "alert", "dismiss", "getWebDriver", "ofSeconds", "alertIsPresent", "equals"],
+    "requiredSelectors": ["#prompt-dismiss-btn"],
+    "expectedAction": "verify_prompt_and_dismiss",
+    "requiredFinder": "$",
+    "errorMessage": "Проверьте текст prompt и отмените его"
+  }
+}

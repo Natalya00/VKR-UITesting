@@ -1,0 +1,46 @@
+{
+  "id": "module-2-block-6-exercise-2",
+  "title": "Двойной клик по элементу",
+  "description": "Выполните двойной клик по элементу с ID editable-text.",
+  "hint": "Используйте метод doubleClick() для выполнения двойного клика по элементу.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "editable-container",
+        "style": "max-width: 600px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Двойной клик для редактирования",
+            "style": "color: #2d3748; margin-bottom: 30px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Сделайте двойной клик по тексту ниже",
+            "style": "color: #718096; margin-bottom: 25px; font-size: 14px;"
+          },
+          {
+            "tag": "div",
+            "id": "editable-text",
+            "style": "padding: 20px; background: #f8f9fa; border: 2px dashed #667eea; border-radius: 10px; text-align: center; font-size: 18px; color: #2d3748; cursor: pointer;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#editable-text"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Выполните двойной клик по редактируемому тексту\n\n    }\n}",
+  "order": 53,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["doubleClick"],
+    "requiredSelectors": ["#editable-text"],
+    "expectedAction": "double_click",
+    "requiredFinder": "$",
+    "errorMessage": "Выполните двойной клик по элементу"
+  }
+}

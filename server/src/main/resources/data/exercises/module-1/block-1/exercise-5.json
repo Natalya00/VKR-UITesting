@@ -1,0 +1,95 @@
+{
+  "id": "module-1-block-1-task-5",
+  "title": "Поиск по data-атрибуту",
+  "description": "Найдите карточку пользователя 'Иван Петров' по её data-атрибуту.",
+  "hint": "Data-атрибуты начинаются с префикса @data- и часто используются для хранения метаданных",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "pageTitle": "Список пользователей",
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "user-card",
+        "data-id": "user-123",
+        "data-target": "true",
+        "children": [
+          {
+            "tag": "h3",
+            "text": "Иван Петров"
+          },
+          {
+            "tag": "p",
+            "text": "Email: ivan.petrov@company.com"
+          },
+          {
+            "tag": "p",
+            "text": "Должность: Менеджер"
+          },
+          {
+            "tag": "span",
+            "text": "ID: 123"
+          }
+        ]
+      },
+      {
+        "tag": "div",
+        "className": "user-card",
+        "data-id": "user-456",
+        "children": [
+          {
+            "tag": "h3",
+            "text": "Анна Сидорова"
+          },
+          {
+            "tag": "p",
+            "text": "Email: anna.sidorova@company.com"
+          },
+          {
+            "tag": "p",
+            "text": "Должность: Разработчик"
+          },
+          {
+            "tag": "span",
+            "text": "ID: 456"
+          }
+        ]
+      },
+      {
+        "tag": "div",
+        "className": "user-card",
+        "data-id": "user-789",
+        "children": [
+          {
+            "tag": "h3",
+            "text": "Петр Иванов"
+          },
+          {
+            "tag": "p",
+            "text": "Email: petr.ivanov@company.com"
+          },
+          {
+            "tag": "p",
+            "text": "Должность: Дизайнер"
+          },
+          {
+            "tag": "span",
+            "text": "ID: 789"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "[data-id='user-123']"
+  },
+  "initialCode": "// Введите XPath для поиска элемента с data-id=\"user-123\"",
+  "order": 5,
+  "difficulty": "easy",
+  "expectedSyntax": {
+    "requiredPatterns": ["@data-id"],
+    "forbiddenPatterns": ["text()","[1]","[2]"],
+    "maxComplexity": 1,
+    "exactOnly": {
+      "attributes": ["data-id"]
+    }
+  }
+}

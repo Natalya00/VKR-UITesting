@@ -1,0 +1,54 @@
+{
+  "id" : "module-1-block-3-task-1",
+  "title" : "Поиск элемента в навигации",
+  "description" : "Найдите элемент с текстом 'Консалтинг' внутри навигационного меню, используя поиск по всей глубине вложенности.",
+  "hint" : "Двойной слэш // ищет элементы на любой глубине вложенности",
+  "trainingComponent" : "NavigationTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Сайт компании",
+    "menuId" : "main-menu",
+    "items" : [ {
+      "text" : "Главная",
+      "href" : "/"
+    }, {
+      "text" : "О компании",
+      "href" : "/about",
+      "children" : [ {
+        "text" : "Команда",
+        "href" : "/about/team"
+      }, {
+        "text" : "История",
+        "href" : "/about/history"
+      }, {
+        "text" : "Партнёры",
+        "href" : "/about/partners"
+      } ]
+    }, {
+      "text" : "Услуги",
+      "href" : "/services",
+      "children" : [ {
+        "text" : "Консалтинг",
+        "href" : "/services/consulting",
+        "data-target": true
+      }, {
+        "text" : "Разработка",
+        "href" : "/services/development"
+      }, {
+        "text" : "Поддержка",
+        "href" : "/services/support"
+      } ]
+    }, {
+      "text" : "Контакты",
+      "href" : "/contact"
+    } ],
+    "targetSelector" : "//nav[@id='main-menu']//a[text()='Консалтинг']"
+  },
+  "initialCode" : "// Введите XPath для поиска ссылки \"Консалтинг\" внутри nav#main-menu",
+  "order" : 1,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "//nav", "//a" ],
+    "forbiddenPatterns" : [ "[1]", "[2]", "position()" ],
+    "maxComplexity" : 2
+  }
+}

@@ -1,0 +1,54 @@
+{
+    "id": "module-2-block-8-exercise-4",
+    "title": "Проверка заголовка внутри фрейма",
+    "description": "На странице размещен фрейм с приветствием. Переключитесь в него и убедитесь, что заголовок первого уровня содержит ожидаемый текст.",
+    "hint": "Переключитесь в фрейм через switchTo().frame() и проверьте текст заголовка h1 через shouldHave(text(...)).",
+    "trainingComponent": "PageTrainer",
+    "componentConfig": {
+      "disableDynamicAttrs": true,
+      "layout": "default",
+      "containerStyle": {
+        "maxWidth": "960px",
+        "width": "100%",
+        "margin": "40px auto",
+        "padding": "40px"
+      },
+      "elements": [
+        {
+          "tag": "div",
+          "style": "width: 100%; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); padding: 40px; box-sizing: border-box;",
+          "children": [
+            {
+              "tag": "h1",
+              "text": "Проверка содержимого фрейма",
+              "style": "color: #1a202c; margin: 0 0 12px; font-size: 28px; font-weight: 700; text-align: center;"
+            },
+            {
+              "tag": "iframe",
+              "id": "main-frame",
+              "name": "main-frame",
+              "style": "width: 100%; height: 400px; border: 2px solid #d6bcfa; border-radius: 12px; display: block;",
+              "srcDoc": "<!DOCTYPE html><html><head><style>*{box-sizing:border-box;}body{font-family:Inter,sans-serif;margin:0;padding:50px;text-align:center;background:#faf5ff;}h1{color:#553c9a;font-size:42px;font-weight:700;margin:0 0 16px;}p{color:#805ad5;font-size:17px;margin:0;}</style><script>window.__uiState={};</script></head><body><h1>Welcome</h1><p>Добро пожаловать в систему</p></body></html>",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Переключитесь во фрейм и проверьте заголовок\n\n    }\n}",
+    "order": 78,
+    "difficulty": "easy",
+    "validationRules": {
+      "requiredMethods": [
+        "switchTo",
+        "frame",
+        "shouldHave",
+        "text"
+      ],
+      "requiredSelectors": [
+        "main-frame"
+      ],
+      "requiredFinder": "$",
+      "errorMessage": "Переключитесь во фрейм и проверьте заголовок"
+    }
+  }

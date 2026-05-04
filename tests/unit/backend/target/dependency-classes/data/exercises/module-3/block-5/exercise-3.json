@@ -1,0 +1,61 @@
+{
+  "id": "module-3-block-5-exercise-3",
+  "title": "Метод инициализации перед каждым тестом",
+  "description": "В BaseTest добавьте метод с аннотацией @BeforeEach, который открывает главную страницу приложения перед каждым тестом.",
+  "hint": "Добавьте в BaseTest метод с @BeforeEach, который вызывает Selenide.open(\"/\").",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": []
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.codeborne.selenide.Configuration;\nimport com.codeborne.selenide.Selenide;\nimport org.junit.jupiter.api.BeforeAll;\nimport org.junit.jupiter.api.BeforeEach;\n\n/**\n * Базовый класс для всех тестов.\n */\npublic class BaseTest {\n    \n    @BeforeAll\n    public static void setUp() {\n        // Перенесите настройки из предыдущего упражнения\n    }\n    \n    // Добавьте метод с аннотацией @BeforeEach\n    // Метод должен открывать главную страницу перед каждым тестом\n    \n}\n",
+  "order": 146,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "methodRules": [
+        {
+          "className": "BaseTest",
+          "methodName": "setUp",
+          "modifiers": ["public", "static"],
+          "annotations": ["BeforeAll"],
+          "required": true,
+          "errorMessage": "Метод setUp() с аннотацией @BeforeAll не найден"
+        },
+        {
+          "className": "BaseTest",
+          "methodName": "openHomePage",
+          "annotations": ["BeforeEach"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод с аннотацией @BeforeEach не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "BaseTest",
+          "methodName": "openHomePage",
+          "requiredMethodCalls": ["open"],
+          "errorMessage": "Метод с @BeforeEach должен вызывать Selenide.open() для открытия главной страницы"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "BaseTest",
+          "methodName": "openHomePage",
+          "requiredAnnotations": ["BeforeEach"],
+          "errorMessage": "Метод инициализации должен иметь аннотацию @BeforeEach"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": [],
+      "compileOnly": true
+    },
+    "errorMessage": "BaseTest должен содержать метод с аннотацией @BeforeEach для открытия главной страницы"
+  }
+}

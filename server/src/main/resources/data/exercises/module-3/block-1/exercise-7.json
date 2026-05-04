@@ -1,0 +1,88 @@
+﻿{
+  "id": "module-3-block-1-exercise-7",
+  "title": "Реализация контейнера для повторяющихся элементов",
+  "description": "Создайте класс ItemsContainer, наследующийся от BaseElement. Реализуйте методы: getItems() — возвращает список ItemComponent внутри baseElement, getItemByTitle(String title) — возвращает первый элемент с заголовком, hasItem(String title) — возвращает true если элемент присутствует. Поиск строго внутри baseElement.",
+  "hint": "Используйте $$x() на baseElement для поиска коллекции. Для поиска по заголовку перебирайте элементы в цикле и проверяйте текст — getText() поможет сравнить.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement", "ItemComponent"]
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\nimport com.codeborne.selenide.SelenideElement;\nimport java.util.List;\n\n/**\n * Контейнер для списка карточек товаров.\n */\npublic class ItemsContainer extends BaseElement {\n\n    // XPath для поиска элементов внутри контейнера\n    // private static final String ITEM_XPATH = \"...\";\n\n    // XPath для поиска заголовка элемента\n    // private static final String TITLE_XPATH = \"...\";\n\n    public ItemsContainer(String xpath, String attributeValue) {\n        super(xpath, attributeValue);\n    }\n\n    // Реализуйте getItems() — возвращает List<ItemComponent>\n\n    // Реализуйте getItemByTitle(String title) — возвращает ItemComponent или null\n\n    // Реализуйте hasItem(String title) — возвращает boolean\n\n}\n",
+  "order": 107,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "ItemsContainer",
+          "extendsClass": "BaseElement",
+          "required": true,
+          "errorMessage": "Класс ItemsContainer должен наследоваться от BaseElement"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "ItemsContainer",
+          "fieldName": "ITEM_XPATH",
+          "modifiers": ["private", "static", "final"],
+          "required": true,
+          "errorMessage": "Константа ITEM_XPATH должна быть private static final"
+        },
+        {
+          "className": "ItemsContainer",
+          "fieldName": "TITLE_XPATH",
+          "modifiers": ["private", "static", "final"],
+          "required": true,
+          "errorMessage": "Константа TITLE_XPATH должна быть private static final"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "ItemsContainer",
+          "methodName": "getItems",
+          "returnType": "List",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public List getItems() не найден"
+        },
+        {
+          "className": "ItemsContainer",
+          "methodName": "getItemByTitle",
+          "parameters": ["String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getItemByTitle(String) не найден"
+        },
+        {
+          "className": "ItemsContainer",
+          "methodName": "hasItem",
+          "returnType": "boolean",
+          "parameters": ["String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public boolean hasItem(String) не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "ItemsContainer",
+          "methodName": "getItems",
+          "requiredMethodCalls": ["baseElement.$$x"],
+          "errorMessage": "Метод getItems() должен использовать baseElement.$$x() для поиска коллекции элементов"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["ItemsContainer"],
+      "extendsRules": ["ItemsContainer:BaseElement"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "ItemComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block1.ItemsContainerHarnessTest",
+      "testMethods": ["testGetItems", "testGetItemByTitle", "testHasItemTrue", "testHasItemFalse"]
+    }
+  }
+}

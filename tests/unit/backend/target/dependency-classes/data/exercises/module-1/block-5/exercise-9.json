@@ -1,0 +1,65 @@
+{
+  "id" : "module-1-block-5-task-9",
+  "title" : "Кнопки без указанного текста",
+  "description" : "Найдите все кнопки в диалоговом окне подтверждения удаления, которые не содержат текст «Отмена».",
+  "hint" : "Функция not() в комбинации с contains() исключает элементы с определенным текстом",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Подтверждение удаления файла",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "dialog-overlay",
+      "children" : [ {
+        "tag" : "div",
+        "className" : "dialog-header",
+        "children" : [ {
+          "tag" : "h3",
+          "text" : "Подтверждение удаления"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "dialog-body",
+        "children" : [ {
+          "tag" : "p",
+          "text" : "Вы уверены, что хотите удалить файл «Отчет_2024.xlsx»?"
+        }, {
+          "tag" : "p",
+          "className" : "warning-text",
+          "text" : "Это действие нельзя отменить. Файл будет удален безвозвратно."
+        }, {
+          "tag" : "p",
+          "text" : "Файл содержится в папке: /Документы/Финансы/"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "dialog-actions",
+        "children" : [ {
+          "tag" : "button",
+          "className" : "btn btn-secondary",
+          "text" : "Отмена"
+        }, {
+          "tag" : "button",
+          "className" : "btn btn-danger",
+          "data-target" : "true",
+          "text" : "Удалить"
+        }, {
+          "tag" : "button",
+          "className" : "btn btn-info",
+          "data-target" : "true",
+          "text" : "Подробнее"
+        } ]
+      } ]
+    } ],
+    "targetSelector" : "//button[not(contains(text(), 'Отмена'))]"
+  },
+  "initialCode" : "// Введите XPath для поиска кнопок, которые не содержат текст \"Отмена\"",
+  "order" : 9,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "not(", "contains(", "text()" ],
+    "forbiddenPatterns" : [ "[1]", "[2]" ],
+    "maxComplexity" : 1,
+    "requireAllTargets" : true
+  }
+}

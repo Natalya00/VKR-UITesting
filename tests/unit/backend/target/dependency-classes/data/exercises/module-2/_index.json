@@ -1,0 +1,70 @@
+{
+  "moduleId": "module-2",
+  "title": "Взаимодействие с элементами страницы",
+  "blocks": [
+    {
+      "blockId": "block-1",
+      "title": "Кнопки и кликабельные элементы",
+      "difficulty": "easy",
+      "description": "Базовые операции: клик, наведение, проверка состояния",
+      "exerciseCount": 5
+    },
+    {
+      "blockId": "block-2",
+      "title": "Поля ввода (input/textarea)",
+      "difficulty": "easy",
+      "description": "Работа с текстовыми полями: ввод, очистка, добавление текста",
+      "exerciseCount": 6
+    },
+    {
+      "blockId": "block-3",
+      "title": "Состояния и ожидания",
+      "difficulty": "medium",
+      "description": "Проверка видимости, текста, атрибутов и ожидание элементов",
+      "exerciseCount": 10
+    },
+    {
+      "blockId": "block-4",
+      "title": "Работа со списками элементов",
+      "difficulty": "medium",
+      "description": "Коллекции и выпадающие списки: подсчёт, фильтрация, сортировка, выбор опций",
+      "exerciseCount": 18
+    },
+    {
+      "blockId": "block-5",
+      "title": "Работа с чекбоксами и радиокнопками",
+      "difficulty": "medium",
+      "description": "Управление чекбоксами и радиокнопками: выбор, проверка состояния, групповые операции",
+      "exerciseCount": 12
+    },
+    {
+      "blockId": "block-6",
+      "title": "Сложные клики и Actions",
+      "difficulty": "hard",
+      "description": "Двойной клик, клик правой кнопкой мыши, наведение курсора, Drag-and-Drop",
+      "exerciseCount": 8
+    },
+    {
+      "blockId": "block-7",
+      "title": "Всплывающие окна",
+      "difficulty": "hard",
+      "description": "Работа с alert, confirm, prompt и модальными окнами",
+      "exerciseCount": 15
+    },
+    {
+      "blockId": "block-8",
+      "title": "Работа с IFrame",
+      "difficulty": "hard",
+      "description": "Переключение между фреймами, работа с вложенными фреймами",
+      "exerciseCount": 6
+    },
+    {
+      "blockId": "block-9",
+      "title": "Работа с браузером",
+      "difficulty": "medium",
+      "description": "Навигация, управление вкладками, работа с URL и историей браузера",
+      "exerciseCount": 10
+    }
+  ]
+}
+

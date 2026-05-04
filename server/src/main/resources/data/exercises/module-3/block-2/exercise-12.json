@@ -1,0 +1,98 @@
+﻿{
+    "id": "module-3-block-2-exercise-12",
+    "title": "Создание базовой страницы с общими элементами",
+    "description": "Создайте абстрактный класс BaseListPage — базовую страницу для работы со списками. Он должен содержать поле поиска (protected SelenideElement searchInput), поле списка элементов (protected SelenideElement itemsList) и метод search(String query), который очищает поиск, вводит запрос и возвращает this. Унаследуйте CatCharacterPage от BaseListPage и добавьте метод getTitle(), возвращающий текст заголовка страницы.",
+    "hint": "Создайте абстрактный класс BaseListPage, наследующий BasePage. Объявите два защищённых поля: searchInput и itemsList типа SelenideElement. Реализуйте метод search(String query), который сначала очищает поле поиска через clear(), затем вводит запрос через sendKeys() и возвращает this для поддержки цепочки вызовов. Создайте класс CatCharacterPage, наследующий BaseListPage, и реализуйте в нём метод getTitle(), который находит заголовок страницы через $x() и возвращает его текст через getText().",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer"],
+      "multiFile": true
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Selenide.$;\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Базовая страница для списков элементов.\n */\npublic abstract class BaseListPage extends BasePage {\n\n    // Объявите поля: searchInput, itemsList\n\n    public BaseListPage(String xpath) {\n        super(xpath);\n    }\n\n    // Реализуйте метод search(String query) — очищает поиск, вводит запрос, возвращает this\n\n}\n---\npackage com.example.runner.pom.pages;\n\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Страница персонажей котов.\n */\npublic class CatCharacterPage extends BaseListPage {\n\n    public CatCharacterPage() {\n        super(\"//div[@id='cat-character-page']\");\n    }\n\n    // Реализуйте метод public String getTitle()\n\n}\n",
+    "order": 123,
+    "difficulty": "medium",
+    "validationRules": {
+      "astRules": {
+        "classRules": [
+          {
+            "className": "BaseListPage",
+            "extendsClass": "BasePage",
+            "modifiers": ["abstract"],
+            "required": true,
+            "errorMessage": "Абстрактный класс BaseListPage extends BasePage не найден"
+          },
+          {
+            "className": "CatCharacterPage",
+            "extendsClass": "BaseListPage",
+            "required": true,
+            "errorMessage": "CatCharacterPage должен наследоваться от BaseListPage"
+          }
+        ],
+        "fieldRules": [
+          {
+            "className": "BaseListPage",
+            "fieldName": "searchInput",
+            "fieldType": "SelenideElement",
+            "modifiers": ["protected"],
+            "required": true,
+            "errorMessage": "Поле protected searchInput типа SelenideElement не найдено"
+          },
+          {
+            "className": "BaseListPage",
+            "fieldName": "itemsList",
+            "fieldType": "SelenideElement",
+            "modifiers": ["protected"],
+            "required": true,
+            "errorMessage": "Поле protected itemsList типа SelenideElement не найдено"
+          }
+        ],
+        "methodRules": [
+          {
+            "className": "BaseListPage",
+            "methodName": "search",
+            "parameters": ["String"],
+            "returnType": "BaseListPage",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public search(String query) не найден в BaseListPage"
+          },
+          {
+            "className": "CatCharacterPage",
+            "methodName": "getTitle",
+            "returnType": "String",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public String getTitle() не найден в CatCharacterPage"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "BaseListPage",
+            "methodName": "search",
+            "requiredMethodCalls": ["clear", "sendKeys"],
+            "mustReturnThis": true,
+            "errorMessage": "Метод search() должен вызывать clear() и sendKeys() и возвращать this"
+          },
+          {
+            "className": "CatCharacterPage",
+            "methodName": "getTitle",
+            "requiredMethodCalls": ["getText"],
+            "errorMessage": "Метод getTitle() должен вызывать getText() для получения заголовка"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["BaseListPage", "CatCharacterPage"],
+        "extendsRules": ["BaseListPage:BasePage", "CatCharacterPage:BaseListPage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer"],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.BaseListPageHarnessTest",
+        "testMethods": ["testCatCharacterPageExtendsBaseListPage", "testGetTitle", "testSearchReturnsThis"]
+      },
+      "errorMessage": "BaseListPage: abstract, searchInput, itemsList, search()→this. CatCharacterPage: getTitle()→String"
+    }
+  }

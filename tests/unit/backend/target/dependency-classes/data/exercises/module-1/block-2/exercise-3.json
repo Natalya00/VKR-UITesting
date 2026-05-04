@@ -1,0 +1,79 @@
+{
+  "id" : "module-1-block-2-task-3",
+  "title" : "Поиск span с лишними пробелами",
+  "description" : "Найдите бейдж 'Новинка' в карточке товара 'Смартфон Phone X', игнорируя лишние пробелы.",
+  "hint" : "Функция normalize-space() удаляет лишние пробелы в начале и конце текста",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Интернет-магазин электроники",
+    "layout" : "cards",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "product-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Смартфон Phone X"
+      }, {
+        "tag" : "p",
+        "text" : "Мощный процессор, отличная камера"
+      }, {
+        "tag" : "span",
+        "className" : "price",
+        "text" : "79 990 ₽"
+      }, {
+        "tag" : "span",
+        "className" : "badge new",
+        "data-target" : "true",
+        "text" : "  Новинка  "
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "product-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Ноутбук Pro 15"
+      }, {
+        "tag" : "p",
+        "text" : "Для работы и развлечений"
+      }, {
+        "tag" : "span",
+        "className" : "price",
+        "text" : "149 990 ₽"
+      }, {
+        "tag" : "span",
+        "className" : "badge hit",
+        "text" : "  Хит продаж  "
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "product-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Наушники Wireless"
+      }, {
+        "tag" : "p",
+        "text" : "Беспроводные, шумоподавление"
+      }, {
+        "tag" : "span",
+        "className" : "price",
+        "text" : "24 990 ₽"
+      }, {
+        "tag" : "span",
+        "className" : "badge sale",
+        "text" : "  Скидка 20%  "
+      } ]
+    } ],
+    "targetSelector" : "//span[normalize-space()='Новинка']"
+  },
+  "initialCode" : "// Введите XPath для поиска span с текстом \"Новинка\" (без учёта пробелов)",
+  "order" : 3,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "normalize-space(" ],
+    "forbiddenPatterns" : [ "[1]", "[2]" ],
+    "maxComplexity" : 1,
+              "exactOnly" : {
+                "functions" : [ "normalize-space" ]
+              }
+  }
+}

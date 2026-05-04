@@ -1,0 +1,64 @@
+{
+  "id": "module-2-block-5-exercise-11",
+  "title": "Переключение в группе радиокнопок",
+  "description": "Снимите выделение с одного чекбокса при выборе другого в группе.",
+  "hint": "Найдите другую радиокнопку в группе по ID и кликните по ней — выбор в группе радиокнопок взаимоисключающий.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "radio-group-container",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Выберите один вариант",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "При выборе одного варианта, другой автоматически снимается",
+            "style": "color: #718096; margin-bottom: 25px; font-size: 14px;"
+          },
+          {
+            "tag": "div",
+            "className": "radio-group",
+            "style": "display: flex; flex-direction: column; gap: 15px;",
+            "children": [
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 15px; padding: 18px; background: #f8f9fa; border-radius: 12px; border: 2px solid #e2e8f0; cursor: pointer;",
+                "children": [
+                  {"tag": "input", "type": "radio", "name": "option", "id": "option-a", "checked": true, "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+                  {"tag": "span", "text": "Вариант A (выбран по умолчанию)", "style": "color: #2d3748; font-size: 16px;"}
+                ]
+              },
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 15px; padding: 18px; background: #f8f9fa; border-radius: 12px; border: 2px solid #e2e8f0; cursor: pointer;",
+                "children": [
+                  {"tag": "input", "type": "radio", "name": "option", "id": "option-b", "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+                  {"tag": "span", "text": "Вариант B", "style": "color: #2d3748; font-size: 16px;"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#option-b"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Выберите другой вариант в группе радиокнопок\n\n    }\n}",
+  "order": 50,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click"],
+    "requiredSelectors": ["#option-b"],
+    "expectedAction": "switch_radio_in_group",
+    "requiredFinder": "$",
+    "errorMessage": "Переключите выбор в группе радиокнопок"
+  }
+}

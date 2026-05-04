@@ -1,0 +1,88 @@
+﻿{
+  "id": "module-3-block-3-exercise-3",
+  "title": "Делегирование компонентам из дочернего класса",
+  "description": "В классе HomePage объявите поле profileLink типа Button. Реализуйте метод goToProfile(), который проверяет видимость кнопки через profileLink.isDisplayed(), кликает по ней и возвращает новый ProfilePage. Также реализуйте метод checkPageLoaded(), который проверяет видимость заголовка страницы и возвращает boolean.",
+  "hint": "В классе HomePage объявите приватное поле profileLink типа Button и инициализируйте его в конструкторе через new Button(xpath, \"\"). Реализуйте метод goToProfile(), который сначала проверяет видимость кнопки через profileLink.isDisplayed(). Если кнопка не видна, выбрасывается IllegalStateException, иначе выполняется клик и возвращается новый объект ProfilePage. Также реализуйте метод checkPageLoaded(), который просто возвращает результат profileLink.isDisplayed() для проверки загрузки страницы.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BasePage", "Header", "Footer", "Button", "AbstractClickableElement", "Clickable"]
+  },
+  "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.Button;\n\n/**\n * Главная страница.\n */\npublic class HomePage extends BasePage {\n\n    // Объявите поле profileLink типа Button\n\n    public HomePage() {\n        super(\"//div[@id='home-page']\");\n    }\n\n    // Реализуйте метод goToProfile() — проверьте видимость, кликните, верните ProfilePage\n\n    // Реализуйте метод checkPageLoaded() — проверьте видимость profileLink и верните boolean\n\n}\n\n---\n\npackage com.example.runner.pom.pages;\n\n/**\n * Страница профиля.\n */\npublic class ProfilePage extends BasePage {\n\n    public ProfilePage() {\n        super(\"//div[@id='profile-page']\");\n    }\n\n}\n",
+  "order": 127,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "HomePage",
+          "extendsClass": "BasePage",
+          "required": true,
+          "errorMessage": "Класс HomePage должен наследоваться от BasePage"
+        },
+        {
+          "className": "ProfilePage",
+          "extendsClass": "BasePage",
+          "required": true,
+          "errorMessage": "Класс ProfilePage должен наследоваться от BasePage"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "HomePage",
+          "fieldName": "profileLink",
+          "fieldType": "Button",
+          "modifiers": ["private"],
+          "required": true,
+          "errorMessage": "Поле private profileLink типа Button не найдено"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "HomePage",
+          "methodName": "goToProfile",
+          "returnType": "ProfilePage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public ProfilePage goToProfile() не найден"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "checkPageLoaded",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public boolean checkPageLoaded() не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "HomePage",
+          "methodName": "goToProfile",
+          "requiredMethodCalls": ["isDisplayed", "click"],
+          "requiredStatements": ["new ProfilePage"],
+          "errorMessage": "goToProfile() должен проверять isDisplayed(), кликать и возвращать new ProfilePage()"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "checkPageLoaded",
+          "requiredMethodCalls": ["isDisplayed"],
+          "requiredStatements": ["return"],
+          "errorMessage": "checkPageLoaded() должен вызывать isDisplayed() и возвращать boolean"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["HomePage", "ProfilePage"],
+      "extendsRules": ["HomePage:BasePage", "ProfilePage:BasePage"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "Button", "AbstractClickableElement", "Clickable", "Input"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block3.HomePageNavigationHarnessTest",
+      "testMethods": ["testGoToProfile", "testCheckPageLoaded"]
+    },
+    "errorMessage": "HomePage: profileLink, goToProfile()→ProfilePage, checkPageLoaded()→boolean"
+  }
+}

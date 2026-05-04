@@ -1,0 +1,70 @@
+{
+  "id" : "module-1-block-5-task-1",
+  "title" : "Поиск по началу id (starts-with)",
+  "description" : "Найдите карточку товара «Ноутбук Pro», опираясь на стабильную начальную часть его атрибута id, игнорируя динамическую цифру.",
+  "hint" : "Функция starts-with() проверяет начало строки атрибута",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Каталог электроники",
+    "layout" : "cards",
+    "elements" : [ {
+      "tag" : "div",
+      "id" : "phone_1234",
+      "className" : "product-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Смартфон X"
+      }, {
+        "tag" : "p",
+        "className" : "price",
+        "text" : "59 990 ₽"
+      }, {
+        "tag" : "button",
+        "className" : "btn btn-primary",
+        "text" : "В корзину"
+      } ]
+    }, {
+      "tag" : "div",
+      "id" : "laptop_5678",
+      "className" : "product-card",
+      "data-target" : "true",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Ноутбук Pro"
+      }, {
+        "tag" : "p",
+        "className" : "price",
+        "text" : "149 990 ₽"
+      }, {
+        "tag" : "button",
+        "className" : "btn btn-primary",
+        "text" : "В корзину"
+      } ]
+    }, {
+      "tag" : "div",
+      "id" : "tablet_9012",
+      "className" : "product-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Планшет Mini"
+      }, {
+        "tag" : "p",
+        "className" : "price",
+        "text" : "39 990 ₽"
+      }, {
+        "tag" : "button",
+        "className" : "btn btn-primary",
+        "text" : "В корзину"
+      } ]
+    } ],
+    "targetSelector" : "//div[starts-with(@id, 'laptop_')]"
+  },
+  "initialCode" : "// Введите XPath для поиска div, id которого начинается с \"laptop_\"",
+  "order" : 1,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "starts-with(", "@id" ],
+    "forbiddenPatterns" : [ "contains(", "text()", "[1]", "[2]" ],
+    "maxComplexity" : 1
+  }
+}

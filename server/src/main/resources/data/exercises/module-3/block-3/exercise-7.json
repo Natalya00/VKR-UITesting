@@ -1,0 +1,89 @@
+﻿{
+  "id": "module-3-block-3-exercise-7",
+  "title": "Доступ к общим компонентам из дочерних страниц",
+  "description": "Используйте компоненты Header и Footer, доступные через наследование от BasePage. Реализуйте в HomePage методы: clickLogoInHeader() — вызывает header.clickLogo(), clickSocialLinkInFooter(String) — вызывает footer.clickSocialLink(), navigateToProfile() — вызывает header.clickProfile().",
+  "hint": "В классе HomePage, который наследует BasePage, реализуйте три метода делегирования. Метод clickLogoInHeader() вызывает header.clickLogo() и возвращает this. Метод navigateToProfile() вызывает header.clickProfile() и также возвращает this. Метод clickSocialLinkInFooter(String network) делегирует вызов компоненту footer через footer.clickSocialLink(network) и возвращает this. Все три метода обеспечивают доступ к общим компонентам Header и Footer, унаследованным от BasePage.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BasePage", "Header", "Footer"],
+    "multiFile": false
+  },
+  "initialCode": "package com.example.runner.pom.pages;\n\n/**\n * Главная страница.\n */\npublic class HomePage extends BasePage {\n\n    public HomePage() {\n        super(\"//div[@id='home-page']\");\n    }\n\n    // Реализуйте метод clickLogoInHeader() — вызывает header.clickLogo()\n\n    // Реализуйте метод navigateToProfile() — вызывает header.clickProfile()\n\n    // Реализуйте метод clickSocialLinkInFooter(String network) — вызывает footer.clickSocialLink()\n\n}\n",
+  "order": 131,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "HomePage",
+          "extendsClass": "BasePage",
+          "required": true,
+          "errorMessage": "Класс HomePage должен наследоваться от BasePage"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "HomePage",
+          "methodName": "clickLogoInHeader",
+          "returnType": "HomePage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public HomePage clickLogoInHeader() не найден"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "navigateToProfile",
+          "returnType": "HomePage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public HomePage navigateToProfile() не найден"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "clickSocialLinkInFooter",
+          "parameters": ["java.lang.String"],
+          "returnType": "HomePage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public HomePage clickSocialLinkInFooter(String) не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "HomePage",
+          "methodName": "clickLogoInHeader",
+          "requiredMethodCalls": ["clickLogo"],
+          "mustReturnThis": true,
+          "errorMessage": "clickLogoInHeader() должен вызывать header.clickLogo() и возвращать this"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "navigateToProfile",
+          "requiredMethodCalls": ["clickProfile"],
+          "mustReturnThis": true,
+          "errorMessage": "navigateToProfile() должен вызывать header.clickProfile() и возвращать this"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "clickSocialLinkInFooter",
+          "requiredMethodCalls": ["clickSocialLink"],
+          "mustReturnThis": true,
+          "errorMessage": "clickSocialLinkInFooter() должен вызывать footer.clickSocialLink() и возвращать this"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["HomePage"],
+      "extendsRules": ["HomePage:BasePage"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "AbstractClickableElement", "Clickable", "Button", "Input"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block3.ComponentsHarnessTest",
+      "testMethods": ["testClickLogoInHeader", "testNavigateToProfile", "testClickSocialLinkInFooter"]
+    },
+    "errorMessage": "HomePage: clickLogoInHeader()→header.clickLogo()+this, navigateToProfile()→header.clickProfile()+this, clickSocialLinkInFooter()→footer.clickSocialLink()+this"
+  }
+}

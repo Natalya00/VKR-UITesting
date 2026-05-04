@@ -1,0 +1,60 @@
+{
+  "id": "module-2-block-1-exercise-3",
+  "title": "Наведение на элемент меню",
+  "description": "Наведите курсор на пункт меню и убедитесь что появилось подменю.",
+  "hint": "Используйте метод hover() для наведения курсора: $(\"#...\").hover();",
+  "trainingComponent": "NavigationTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "horizontal",
+    "menuId": "main-menu",
+    "items": [
+      {
+        "text": "Главная",
+        "href": "#home",
+        "dataPage": "home",
+        "className": "nav-item"
+      },
+      {
+        "text": "О проекте",
+        "href": "#about",
+        "className": "nav-link"
+      },
+      {
+        "text": "Контакты",
+        "href": "#contact",
+        "dataPage": "contact",
+        "className": "nav-item"
+      },
+      {
+        "text": "Меню",
+        "href": "#menu",
+        "id": "menu-item",
+        "className": "menu-item",
+        "hasSubmenu": true,
+        "submenu": [
+          {
+            "text": "Подпункт 1",
+            "href": "#sub1"
+          },
+          {
+            "text": "Подпункт 2",
+            "href": "#sub2"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#menu-item"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\n\npublic class UserScript {\n    public static void run() {\n        // Наведите курсор на элемент меню\n\n    }\n}",
+  "order": 3,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["hover"],
+    "requiredSelectors": ["#menu-item"],
+    "expectedAction": "hover",
+    "expectedElementType": "a",
+    "requiredFinder": "$",
+    "errorMessage": "Наведите курсор на элемент menu-item"
+  }
+}

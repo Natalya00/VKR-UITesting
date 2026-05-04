@@ -1,0 +1,73 @@
+{
+  "id": "module-2-block-5-exercise-12",
+  "title": "Проверка хотя бы одного выбранного чекбокса",
+  "description": "Проверьте, что в коллекции хотя бы один чекбокс выбран.",
+  "hint": "Используйте $$(\"...\").filter(checked) для фильтрации выбранных и shouldHave(size(1)) для проверки количества.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "preferences-container",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(72, 187, 120, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Ваши предпочтения",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Выберите хотя бы одну опцию",
+            "style": "color: #718096; margin-bottom: 25px; font-size: 14px;"
+          },
+          {
+            "tag": "div",
+            "className": "preferences-list",
+            "style": "display: flex; flex-direction: column; gap: 12px;",
+            "children": [
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 10px;",
+                "children": [
+                  {"tag": "input", "type": "checkbox", "className": "preference", "style": "width: 20px; height: 20px; accent-color: #38a169;"},
+                  {"tag": "span", "text": "Предпочтение 1", "style": "color: #2d3748; font-size: 15px;"}
+                ]
+              },
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #d4edda; border-radius: 10px;",
+                "children": [
+                  {"tag": "input", "type": "checkbox", "className": "preference", "checked": true, "style": "width: 20px; height: 20px; accent-color: #38a169;"},
+                  {"tag": "span", "text": "Предпочтение 2 (выбрано)", "style": "color: #2d3748; font-size: 15px; font-weight: 600;"}
+                ]
+              },
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 10px;",
+                "children": [
+                  {"tag": "input", "type": "checkbox", "className": "preference", "style": "width: 20px; height: 20px; accent-color: #38a169;"},
+                  {"tag": "span", "text": "Предпочтение 3", "style": "color: #2d3748; font-size: 15px;"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".preference"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\nimport static com.codeborne.selenide.CollectionCondition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте, что ровно один чекбокс с классом .preference выбран\n\n    }\n}",
+  "order": 51,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["filter", "shouldHave", "size"],
+    "requiredConditions": ["checked"],
+    "requiredSelectors": [".preference"],
+    "expectedAction": "verify_at_least_one_checked",
+    "requiredFinder": "$$",
+    "errorMessage": "Проверьте, что хотя бы один чекбокс выбран"
+  }
+}

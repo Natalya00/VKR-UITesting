@@ -1,0 +1,94 @@
+﻿{
+  "id": "module-3-block-5-exercise-10",
+  "title": "Написание теста добавления элемента",
+  "description": "Создайте класс Product с полями name и category, конструктором и геттерами. Создайте тест-класс AddItemTest. Тест должен авторизоваться, открыть страницу товаров, создать объект Product и добавить его через метод addProduct(Product product). Проверьте, что товар появился в списке. В ProductPage реализуйте методы addProduct(Product) и getProductNames().",
+  "hint": "Создайте класс Product с полями name и category, конструктором и геттерами. В тесте авторизуйтесь с тестовыми учётными данными, откройте страницу товаров, создайте объект Product и добавьте его через метод addProduct(Product). Проверьте, что имя товара появилось в списке через getProductNames().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "AuthService", "LoginPage", "HomePage", "User", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "Header", "Footer", "ProfilePage"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.services.AuthService;\nimport com.example.runner.pom.pages.ProductPage;\nimport com.example.runner.tests.Product;\nimport org.junit.jupiter.api.Test;\n\nimport java.util.List;\n\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\n/**\n * Тесты для добавления товаров.\n */\npublic class AddItemTest extends BaseTest {\n    \n    private AuthService authService = new AuthService();\n    \n    // Напишите тест addProductSuccessful() с аннотацией @Test\n    // Авторизуйтесь, откройте страницу товаров, создайте Product и добавьте его\n    \n}\n\n---\n\npackage com.example.runner.pom.pages;\n\nimport com.example.runner.tests.Product;\nimport java.util.List;\n\n/**\n * Страница товаров.\n */\npublic class ProductPage extends BasePage {\n    \n    public ProductPage() {\n        super(\"//div[@id='products-page']\");\n    }\n    \n    // Реализуйте метод addProduct(Product product)\n    // Откройте форму добавления, заполните поля и кликните «Добавить»\n    \n    // Реализуйте метод getProductNames() → List<String>\n    // Соберите имена всех отображаемых товаров\n    \n}\n\n---\n\npackage com.example.runner.tests;\n\n/**\n * Модель товара.\n * Реализуйте: поля name и category, конструктор, геттеры getName() и getCategory().\n */\npublic class Product {\n    \n    // Объявите поля name и category\n    \n    // Реализуйте конструктор Product(String name, String category)\n    \n    // Реализуйте getName() и getCategory()\n    \n}\n",
+  "order": 153,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "AddItemTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "AddItemTest должен наследоваться от BaseTest"
+        },
+        {
+          "className": "Product",
+          "required": true,
+          "errorMessage": "Класс Product не найден"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "AddItemTest",
+          "methodName": "addProductSuccessful",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод addProductSuccessful() с @Test не найден"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "addProduct",
+          "parameters": ["com.example.runner.tests.Product"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод addProduct(Product) не найден в ProductPage"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "getProductNames",
+          "returnType": "List",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getProductNames() не найден в ProductPage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "AddItemTest",
+          "methodName": "addProductSuccessful",
+          "requiredMethodCalls": ["authService.login", "addProduct", "getProductNames"],
+          "requiredStatements": ["assertTrue"],
+          "errorMessage": "Тест должен использовать login(), addProduct() и getProductNames()"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "addProduct",
+          "requiredMethodCalls": ["click"],
+          "errorMessage": "Метод addProduct() должен заполнять поля и кликать по кнопке добавления"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "AddItemTest",
+          "methodName": "addProductSuccessful",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "Тест должен иметь аннотацию @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["AddItemTest", "Product", "ProductPage"],
+      "extendsRules": ["AddItemTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "LoginPage", "HomePage", "AuthService", "User", "Header", "Footer", "ProfilePage"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.AddItemHarnessTest",
+      "testMethods": ["testAddProductExists", "testGetProductNamesReturnsList", "testAddButtonExists", "testAddProductRealBehavior", "testGetProductNamesRealBehavior"]
+    },
+    "errorMessage": "AddItemTest должен содержать addProductSuccessful() с @Test. ProductPage должен содержать addProduct(Product) и getProductNames()."
+  }
+}

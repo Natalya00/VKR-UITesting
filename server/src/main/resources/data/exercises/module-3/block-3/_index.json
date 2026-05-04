@@ -1,0 +1,6 @@
+{
+  "blockId": "block-3",
+  "title": "Наследование и Base Page",
+  "difficulty": "medium",
+  "description": "Наследование страниц, общие компоненты Header/Footer, переопределение методов"
+}

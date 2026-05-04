@@ -1,0 +1,67 @@
+{
+  "id": "module-2-block-5-exercise-5",
+  "title": "Выбор варианта оплаты через ID",
+  "description": "Выберите вариант оплаты «Картой» через ID радиокнопки.",
+  "hint": "Используйте click() для выбора радиокнопки.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "payment-form",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Способ оплаты",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "className": "payment-options",
+            "style": "display: flex; flex-direction: column; gap: 15px;",
+            "children": [
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 15px; padding: 18px; background: #f8f9fa; border-radius: 12px; border: 2px solid #e2e8f0; cursor: pointer; transition: all 0.2s;",
+                "children": [
+                  {"tag": "input", "type": "radio", "name": "payment", "id": "payment-card", "value": "card", "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+                  {"tag": "span", "text": "Банковской картой", "style": "color: #2d3748; font-size: 16px; font-weight: 500;"}
+                ]
+              },
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 15px; padding: 18px; background: #f8f9fa; border-radius: 12px; border: 2px solid #e2e8f0; cursor: pointer; transition: all 0.2s;",
+                "children": [
+                  {"tag": "input", "type": "radio", "name": "payment", "id": "payment-cash", "value": "cash", "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+                  {"tag": "span", "text": "Наличными при получении", "style": "color: #2d3748; font-size: 16px; font-weight: 500;"}
+                ]
+              },
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 15px; padding: 18px; background: #f8f9fa; border-radius: 12px; border: 2px solid #e2e8f0; cursor: pointer; transition: all 0.2s;",
+                "children": [
+                  {"tag": "input", "type": "radio", "name": "payment", "id": "payment-crypto", "value": "crypto", "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+                  {"tag": "span", "text": "Криптовалютой", "style": "color: #2d3748; font-size: 16px; font-weight: 500;"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#payment-card"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Выберите вариант оплаты «Картой» через ID радиокнопки\n\n    }\n}",
+  "order": 44,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click"],
+    "requiredSelectors": ["#payment-card"],
+    "expectedAction": "select_radio_by_id",
+    "requiredFinder": "$",
+    "errorMessage": "Выберите вариант оплаты «Картой» через ID радиокнопки"
+  }
+}

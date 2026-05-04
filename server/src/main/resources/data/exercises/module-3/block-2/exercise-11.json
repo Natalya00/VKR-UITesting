@@ -1,0 +1,132 @@
+﻿ {
+    "id": "module-3-block-2-exercise-11",
+    "title": "Создание страницы модального окна",
+    "description": "Реализуйте класс ModalPage, наследующий BasePage. Добавьте поля кнопки закрытия и поля ввода (SelenideElement). Реализуйте методы: openModal() — открывает модалку, fillModal(String value) — вводит текст, submitModal() — нажимает OK и возвращает this, close() — закрывает модалку, isModalVisible() — возвращает boolean.",
+    "hint": "Создайте класс ModalPage, наследующий BasePage. Объявите три поля: closeButton, inputField и submitButton типа SelenideElement, инициализированные через $x(). Метод openModal() находит кнопку открытия модального окна и кликает по ней. Метод fillModal(String value) вводит текст в поле ввода через sendKeys(). Метод submitModal() кликает по кнопке подтверждения и возвращает this для цепочки вызовов. Метод close() кликает по кнопке закрытия и также возвращает this. Метод isModalVisible() проверяет видимость модального окна через isDisplayed() и возвращает boolean.",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer"],
+      "multiFile": false
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Страница модального окна.\n */\npublic class ModalPage extends BasePage {\n\n    // Объявите поля:\n    // private SelenideElement closeButton\n    // private SelenideElement inputField\n    // private SelenideElement submitButton\n\n    public ModalPage(String xpath) {\n        super(xpath);\n    }\n\n    // Реализуйте метод openModal() — кликает по кнопке открытия модалки\n\n    // Реализуйте метод fillModal(String value) — вводит текст в поле\n\n    // Реализуйте метод submitModal() — нажимает OK и возвращает this\n\n    // Реализуйте метод close() — кликает по кнопке закрытия и возвращает this\n\n    // Реализуйте метод isModalVisible() — возвращает true если модальное окно видно\n\n}\n",
+    "order": 122,
+    "difficulty": "easy",
+    "validationRules": {
+      "astRules": {
+        "classRules": [
+          {
+            "className": "ModalPage",
+            "extendsClass": "BasePage",
+            "required": true,
+            "errorMessage": "Класс ModalPage должен наследоваться от BasePage"
+          }
+        ],
+        "constructorRules": [
+          {
+            "className": "ModalPage",
+            "parameters": ["String"],
+            "required": true,
+            "errorMessage": "Конструктор ModalPage(String xpath) не найден"
+          }
+        ],
+        "fieldRules": [
+          {
+            "className": "ModalPage",
+            "fieldName": "closeButton",
+            "fieldType": "SelenideElement",
+            "required": true,
+            "errorMessage": "Поле closeButton типа SelenideElement не найдено"
+          }
+        ],
+        "methodRules": [
+          {
+            "className": "ModalPage",
+            "methodName": "openModal",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод openModal() не найден в ModalPage"
+          },
+          {
+            "className": "ModalPage",
+            "methodName": "fillModal",
+            "parameters": ["String"],
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод fillModal(String) не найден в ModalPage"
+          },
+          {
+            "className": "ModalPage",
+            "methodName": "submitModal",
+            "returnType": "ModalPage",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод submitModal() не найден в ModalPage"
+          },
+          {
+            "className": "ModalPage",
+            "methodName": "close",
+            "returnType": "ModalPage",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод close() не найден в ModalPage"
+          },
+          {
+            "className": "ModalPage",
+            "methodName": "isModalVisible",
+            "returnType": "boolean",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод isModalVisible() не найден в ModalPage"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "ModalPage",
+            "methodName": "openModal",
+            "requiredMethodCalls": ["click"],
+            "errorMessage": "Метод openModal() должен кликать по кнопке открытия"
+          },
+          {
+            "className": "ModalPage",
+            "methodName": "fillModal",
+            "requiredMethodCalls": ["sendKeys"],
+            "errorMessage": "Метод fillModal() должен вызывать sendKeys() для ввода текста"
+          },
+          {
+            "className": "ModalPage",
+            "methodName": "submitModal",
+            "requiredMethodCalls": ["click"],
+            "mustReturnThis": true,
+            "errorMessage": "Метод submitModal() должен кликать по кнопке OK и возвращать this"
+          },
+          {
+            "className": "ModalPage",
+            "methodName": "close",
+            "requiredMethodCalls": ["click"],
+            "mustReturnThis": true,
+            "errorMessage": "Метод close() должен кликать по кнопке закрытия и возвращать this"
+          },
+          {
+            "className": "ModalPage",
+            "methodName": "isModalVisible",
+            "requiredMethodCalls": ["isDisplayed"],
+            "requiredStatements": ["return"],
+            "errorMessage": "Метод isModalVisible() должен проверять isDisplayed() и возвращать boolean"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["ModalPage"],
+        "extendsRules": ["ModalPage:BasePage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer"],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.ModalHarnessTest",
+        "testMethods": ["testOpenModal", "testFillModal", "testSubmitModal", "testModalClose", "testModalCloseReturnsThis", "testIsModalVisibleClosed", "testIsModalVisibleOpen", "testModalPageExtendsBasePage"]
+      },
+      "errorMessage": "ModalPage: openModal, fillModal, submitModal→this, close→this, isModalVisible→boolean"
+    }
+  }

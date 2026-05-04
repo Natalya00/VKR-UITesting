@@ -1,0 +1,109 @@
+﻿{
+  "id": "module-3-block-5-exercise-13",
+  "title": "Написание теста работы с модальным окном",
+  "description": "Создайте тест-класс ModalTest. Тест должен открыть модальное окно, заполнить поле и отправить форму. В ModalPage реализуйте методы openModal(), fillField(String), submit() и isClosed().",
+  "hint": "В тесте создайте объект ModalPage и выполните цепочку действий: откройте модальное окно через openModal(), заполните поле через fillField(String), отправьте форму через submit() и проверьте закрытие окна через isClosed(). Метод isClosed() должен возвращать boolean.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "Header", "Footer"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.pom.pages.ModalPage;\nimport org.junit.jupiter.api.Test;\n\nimport static org.junit.jupiter.api.Assertions.assertFalse;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\n/**\n * Тесты для работы с модальными окнами.\n */\npublic class ModalTest extends BaseTest {\n    \n    // Напишите тест modalInteractionSuccessful() с аннотацией @Test\n    // Откройте модалку, заполните поле, отправьте форму и проверьте закрытие\n    \n}\n\n---\n\npackage com.example.runner.pom.pages;\n\n/**\n * Страница модального окна.\n */\npublic class ModalPage extends BasePage {\n    \n    public ModalPage() {\n        super(\"//div[@id='modal-window']\");\n    }\n    \n    // Реализуйте метод openModal()\n    \n    // Реализуйте метод fillField(String value)\n    \n    // Реализуйте метод submit()\n    \n    // Реализуйте метод isClosed() → boolean\n    \n}\n",
+  "order": 156,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "ModalTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "ModalTest должен наследоваться от BaseTest"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "ModalTest",
+          "methodName": "modalInteractionSuccessful",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод modalInteractionSuccessful() с @Test не найден"
+        },
+        {
+          "className": "ModalPage",
+          "methodName": "openModal",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод openModal() не найден в ModalPage"
+        },
+        {
+          "className": "ModalPage",
+          "methodName": "fillField",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод fillField(String) не найден в ModalPage"
+        },
+        {
+          "className": "ModalPage",
+          "methodName": "submit",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод submit() не найден в ModalPage"
+        },
+        {
+          "className": "ModalPage",
+          "methodName": "isClosed",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isClosed() не найден в ModalPage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "ModalTest",
+          "methodName": "modalInteractionSuccessful",
+          "requiredMethodCalls": ["openModal", "fillField", "submit", "isClosed"],
+          "requiredStatements": ["assertTrue"],
+          "errorMessage": "Тест должен использовать openModal() → fillField() → submit() → isClosed() и assertTrue()"
+        },
+        {
+          "className": "ModalPage",
+          "methodName": "fillField",
+          "requiredMethodCalls": ["setValue|sendKeys"],
+          "errorMessage": "Метод fillField() должен заполнять поле ввода"
+        },
+        {
+          "className": "ModalPage",
+          "methodName": "submit",
+          "requiredMethodCalls": ["click"],
+          "errorMessage": "Метод submit() должен кликать по кнопке отправки"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "ModalTest",
+          "methodName": "modalInteractionSuccessful",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "Тест должен иметь аннотацию @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["ModalTest", "ModalPage"],
+      "extendsRules": ["ModalTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "Header", "Footer"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.ModalHarnessTest",
+      "testMethods": ["testOpenModalExists", "testFillFieldExists", "testSubmitExists", "testIsClosedReturnsBoolean", "testOpenModalButtonExists", "testModalOpens", "testFillAndSubmitRealBehavior", "testOpenModalRealBehavior", "testIsClosedRealBehavior"]
+    },
+    "errorMessage": "ModalTest должен содержать modalInteractionSuccessful(). ModalPage должен содержать openModal(), fillField(String), submit(), isClosed()."
+  }
+}

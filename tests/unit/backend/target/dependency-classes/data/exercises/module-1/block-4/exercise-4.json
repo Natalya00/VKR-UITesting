@@ -1,0 +1,41 @@
+{
+  "id" : "module-1-block-4-task-4",
+  "title" : "Предпоследний элемент li",
+  "description" : "Найдите предпоследний элемент <li> внутри списка <ol>.",
+  "hint" : "Арифметические операции можно использовать с функцией last()",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Рейтинг игроков",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "ol",
+      "className" : "leaderboard",
+      "children" : [ {
+        "tag" : "li",
+        "text" : "Алексей - 1500 очков"
+      }, {
+        "tag" : "li",
+        "text" : "Мария - 1350 очков"
+      }, {
+        "tag" : "li",
+        "text" : "Дмитрий - 1200 очков"
+      }, {
+        "tag" : "li",
+        "data-target" : "true",
+        "text" : "4. Екатерина - 1100 очков"
+      }, {
+        "tag" : "li",
+        "text" : "5. Игорь - 950 очков"
+      } ]
+    } ],
+    "targetSelector" : "//ol[@class='leaderboard']/li[last()-1]"
+  },
+  "initialCode" : "// Введите XPath для поиска предпоследнего элемента списка",
+  "order" : 4,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "last(" ],
+    "forbiddenPatterns" : [ ],
+    "maxComplexity" : 1
+  }
+}

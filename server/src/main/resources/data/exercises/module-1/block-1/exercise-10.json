@@ -1,0 +1,53 @@
+{
+  "id" : "module-1-block-1-task-10",
+  "title" : "Поиск по атрибуту с универсальным селектором",
+  "description" : "Найдите все выделенные элементы в новостной статье по их data-атрибуту (используйте универсальный селектор *).",
+  "hint" : "Символ * означает любой тег элемента",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Технологические новости",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "h3",
+      "text" : "Искусственный интеллект в медицине"
+    }, {
+      "tag" : "p",
+      "text" : "Современные технологии машинного обучения открывают новые возможности для диагностики заболеваний."
+    }, {
+      "tag" : "span",
+      "data-role" : "highlight",
+      "text" : "Точность диагностики выросла до 95%",
+      "data-target" : "true"
+    }, {
+      "tag" : "p",
+      "text" : "Врачи используют нейросети для анализа медицинских снимков и выявления патологий на ранних стадиях."
+    }, {
+      "tag" : "div",
+      "data-role" : "content",
+      "text" : "Исследования проводились в 50 клиниках по всему миру"
+    }, {
+      "tag" : "p",
+      "data-role" : "highlight",
+      "text" : "Время постановки диагноза сократилось в 3 раза",
+      "data-target" : "true"
+    }, {
+      "tag" : "a",
+      "href" : "#more",
+      "data-role" : "link",
+      "text" : "Читать полное исследование →"
+    } ],
+    "targetSelector" : "*[data-role='highlight']"
+  },
+  "initialCode" : "// Введите XPath для поиска всех элементов с data-role=\"highlight\"",
+  "order" : 10,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "@data-role" ],
+    "forbiddenPatterns" : [ "text()", "[1]", "[2]" ],
+    "maxComplexity" : 1,
+    "requireAllTargets" : true,
+    "exactOnly" : {
+      "attributes" : [ "data-role" ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id" : "module-1-block-4-task-2",
+  "title" : "Первый span по XPath-индексу",
+  "description" : "Найдите первый элемент <span> внутри контейнера div, используя XPath с индексом.",
+  "hint" : "В XPath индексы начинаются с 1",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Статистика пользователей",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "stats-container",
+      "children" : [ {
+        "tag" : "span",
+        "className" : "stat-item",
+        "data-target" : "true",
+        "text" : "Пользователей: 150"
+      }, {
+        "tag" : "span",
+        "className" : "stat-item",
+        "text" : "Активных: 120"
+      }, {
+        "tag" : "span",
+        "className" : "stat-item",
+        "text" : "Новых за неделю: 15"
+      } ]
+    } ],
+    "targetSelector" : "//div[@class='stats-container']/span[1]"
+  },
+  "initialCode" : "// Введите XPath для поиска первого span",
+  "order" : 2,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "[1]" ],
+    "forbiddenPatterns" : [ "last()", "position()", "text()" ],
+    "maxComplexity" : 1
+  }
+}

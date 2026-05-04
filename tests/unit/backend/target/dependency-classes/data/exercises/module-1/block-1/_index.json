@@ -1,0 +1,7 @@
+{
+  "blockId" : "block-1",
+  "title" : "Прямые пути и атрибуты. id, name, class + and/or",
+  "difficulty" : "easy",
+  "description" : "Базовые селекторы: поиск по id, name, class, атрибутам и операторам",
+  "exerciseCount" : 10
+}

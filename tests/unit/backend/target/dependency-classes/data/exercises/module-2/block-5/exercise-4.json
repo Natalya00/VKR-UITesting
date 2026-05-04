@@ -1,0 +1,50 @@
+{
+  "id": "module-2-block-5-exercise-4",
+  "title": "Проверка, что чекбокс не выбран",
+  "description": "Убедитесь, что чекбокс по умолчанию не выбран.",
+  "hint": "Используйте shouldNotBe(checked) для проверки.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "optional-settings",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Дополнительные опции",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Опции не выбраны по умолчанию",
+            "style": "color: #718096; margin-bottom: 20px; font-size: 14px;"
+          },
+          {
+            "tag": "label",
+            "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 10px;",
+            "children": [
+              {"tag": "input", "type": "checkbox", "id": "optional-checkbox", "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+              {"tag": "span", "text": "Получать уведомления о скидках (необязательно)", "style": "color: #2d3748; font-size: 15px;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#optional-checkbox"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Убедитесь, что чекбокс не выбран\n\n    }\n}",
+  "order": 43,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["shouldNotBe"],
+    "requiredConditions": ["checked"],
+    "requiredSelectors": ["#optional-checkbox"],
+    "expectedAction": "verify_checkbox_not_checked",
+    "requiredFinder": "$",
+    "errorMessage": "Убедитесь, что чекбокс по умолчанию не выбран"
+  }
+}

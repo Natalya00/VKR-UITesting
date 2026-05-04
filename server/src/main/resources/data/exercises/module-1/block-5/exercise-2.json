@@ -1,0 +1,88 @@
+{
+  "id" : "module-1-block-5-task-2",
+  "title" : "Поиск по части id",
+  "description" : "Найдите поле ввода, зная, что его id содержит суффикс _email.",
+  "hint" : "Функция contains() может использоваться для поиска по части атрибута",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Регистрация",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "page-header",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Создание нового аккаунта"
+      }, {
+        "tag" : "p",
+        "text" : "Заполните форму для регистрации в системе"
+      } ]
+    }, {
+      "tag" : "form",
+      "className" : "registration-form",
+      "children" : [ {
+        "tag" : "div",
+        "className" : "form-group",
+        "children" : [ {
+          "tag" : "label",
+          "text" : "Имя"
+        }, {
+          "tag" : "input",
+          "type" : "text",
+          "id" : "user_123_name",
+          "placeholder" : "Ваше имя"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "form-group",
+        "children" : [ {
+          "tag" : "label",
+          "text" : "Email"
+        }, {
+          "tag" : "input",
+          "type" : "email",
+          "id" : "user_456_email",
+          "data-target" : "true",
+          "placeholder" : "Email"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "form-group",
+        "children" : [ {
+          "tag" : "label",
+          "text" : "Пароль"
+        }, {
+          "tag" : "input",
+          "type" : "password",
+          "id" : "user_789_password",
+          "placeholder" : "Пароль"
+        } ]
+      }, {
+        "tag" : "button",
+        "type" : "submit",
+        "className" : "btn-primary",
+        "text" : "Зарегистрироваться"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "page-footer",
+      "children" : [ {
+        "tag" : "p",
+        "text" : "Уже есть аккаунт?"
+      }, {
+        "tag" : "a",
+        "href" : "/login",
+        "text" : "Войти"
+      } ]
+    } ],
+    "targetSelector" : "//input[contains(@id, '_email')]"
+  },
+  "initialCode" : "// Введите XPath для поиска input, id которого заканчивается на \"_email\"",
+  "order" : 2,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "contains(", "@id" ],
+    "forbiddenPatterns" : [ "starts-with(", "text()", "[1]", "[2]" ],
+    "maxComplexity" : 1
+  }
+}

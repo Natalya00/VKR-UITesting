@@ -1,0 +1,47 @@
+﻿{
+    "id": "module-3-block-2-exercise-10",
+    "title": "Получение коллекции компонентов",
+    "description": "Создайте метод getAllProductCards() в классе ProductPage. Метод должен возвращать список объектов ItemComponent найденных на странице.",
+    "hint": "Используйте $$x() для поиска всех карточек. Преобразуйте каждый SelenideElement в ItemComponent через цикл for-each, добавляя результаты в ArrayList.",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "ItemComponent"]
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.ItemComponent;\nimport java.util.List;\n\npublic class ProductPage extends BasePage {\n\n    public ProductPage() { super(\"//div[@id='product-page']\"); }\n\n    // Реализуйте: public List<ItemComponent> getAllProductCards()\n\n}\n",
+    "order": 121,
+    "difficulty": "medium",
+    "validationRules": {
+      "astRules": {
+        "methodRules": [
+          {
+            "className": "ProductPage",
+            "methodName": "getAllProductCards",
+            "returnType": "List",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public List getAllProductCards() не найден"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "ProductPage",
+            "methodName": "getAllProductCards",
+            "requiredMethodCalls": ["$$x"],
+            "errorMessage": "Метод getAllProductCards() должен использовать $$x() для поиска всех карточек"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["ProductPage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "ItemComponent"],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.ProductPageHarnessTest",
+        "testMethods": ["testGetAllProductCards"]
+      },
+      "errorMessage": "ProductPage должен содержать метод getAllProductCards(), возвращающий List<ItemComponent>"
+    }
+  }

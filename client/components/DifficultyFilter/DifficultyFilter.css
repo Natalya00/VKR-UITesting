@@ -1,0 +1,43 @@
+.difficulty-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.difficulty-btn {
+  padding: 6px 14px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.difficulty-btn:hover {
+  border-color: #999;
+  transform: translateY(-1px);
+}
+
+.difficulty-btn.active {
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}

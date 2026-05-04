@@ -1,0 +1,128 @@
+{
+  "id" : "module-1-block-2-task-10",
+  "title" : "Поиск button с вложенным span",
+  "description" : "Найдите кнопку 'Скачать' в файловом менеджере по тексту во вложенном span.",
+  "hint" : "Для поиска элемента по содержимому вложенного элемента используйте предикат с .//",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Файловый менеджер",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "file-header",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Мои документы"
+      }, {
+        "tag" : "p",
+        "text" : "Всего файлов: 24 | Занято: 156 МБ | Свободно: 844 МБ"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "file-list",
+      "children" : [ {
+        "tag" : "div",
+        "className" : "file-item",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "file-icon",
+          "text" : "📄"
+        }, {
+          "tag" : "span",
+          "className" : "file-name",
+          "text" : "Документ.pdf"
+        }, {
+          "tag" : "span",
+          "className" : "file-size",
+          "text" : "2.5 MB"
+        }, {
+          "tag" : "span",
+          "className" : "file-date",
+          "text" : "20.01.2025"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "file-item",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "file-icon",
+          "text" : "📊"
+        }, {
+          "tag" : "span",
+          "className" : "file-name",
+          "text" : "Отчет.xlsx"
+        }, {
+          "tag" : "span",
+          "className" : "file-size",
+          "text" : "1.2 MB"
+        }, {
+          "tag" : "span",
+          "className" : "file-date",
+          "text" : "19.01.2025"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "file-item",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "file-icon",
+          "text" : "📊"
+        }, {
+          "tag" : "span",
+          "className" : "file-name",
+          "text" : "Презентация.pptx"
+        }, {
+          "tag" : "span",
+          "className" : "file-size",
+          "text" : "5.8 MB"
+        }, {
+          "tag" : "span",
+          "className" : "file-date",
+          "text" : "18.01.2025"
+        } ]
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "file-toolbar",
+      "children" : [ {
+        "tag" : "button",
+        "className" : "toolbar-btn btn-primary",
+        "data-target" : "true",
+        "children" : [ {
+          "tag" : "span",
+          "text" : "Скачать"
+        } ]
+      }, {
+        "tag" : "button",
+        "className" : "toolbar-btn btn-success",
+        "children" : [ {
+          "tag" : "span",
+          "text" : "Загрузить"
+        } ]
+      }, {
+        "tag" : "button",
+        "className" : "toolbar-btn btn-info",
+        "children" : [ {
+          "tag" : "span",
+          "text" : "Создать папку"
+        } ]
+      }, {
+        "tag" : "button",
+        "className" : "toolbar-btn btn-danger",
+        "children" : [ {
+          "tag" : "span",
+          "text" : "Удалить"
+        } ]
+      } ]
+    } ],
+    "targetSelector" : "//button[.//span[text()='Скачать']]"
+  },
+  "initialCode" : "// Введите XPath для поиска button, содержащего span с текстом \"Скача��ь\"",
+  "order" : 10,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ ".//span" ],
+    "forbiddenPatterns" : [ "[1]", "[2]" ],
+    "maxComplexity" : 2
+  }
+}

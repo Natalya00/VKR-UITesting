@@ -1,0 +1,46 @@
+{
+  "id": "module-2-block-4-exercise-11",
+  "title": "Проверка сортировки коллекции",
+  "description": "Убедитесь, что коллекция .items li отсортирована по тексту в алфавитном порядке.",
+  "hint": "Получите тексты элементов через .texts(), отсортируйте копию и сравните с оригиналом.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "sorted-list-container",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(72, 187, 120, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Список по алфавиту",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "ul",
+            "className": "items",
+            "style": "list-style: none; padding: 0; margin: 0;",
+            "children": [
+              {"tag": "li", "text": "Apple", "style": "padding: 15px 20px; background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%); color: #22543d; margin: 8px 0; border-radius: 8px; font-size: 16px; font-weight: 500;"},
+              {"tag": "li", "text": "Banana", "style": "padding: 15px 20px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #92400e; margin: 8px 0; border-radius: 8px; font-size: 16px; font-weight: 500;"},
+              {"tag": "li", "text": "Cherry", "style": "padding: 15px 20px; background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%); color: #9b2c2c; margin: 8px 0; border-radius: 8px; font-size: 16px; font-weight: 500;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".items li"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport java.util.*;\n\npublic class UserScript {\n    public static void run() {\n        // Получите тексты элементов .items li, отсортируйте и убедитесь, что порядок совпадает\n\n    }\n}",
+  "order": 32,
+  "difficulty": "hard",
+  "validationRules": {
+    "requiredMethods": ["texts", "sort", "equals"],
+    "requiredSelectors": [".items li"],
+    "expectedAction": "check_sorted",
+    "requiredFinder": "$$",
+    "errorMessage": "Проверьте, что коллекция отсортирована по тексту"
+  }
+}

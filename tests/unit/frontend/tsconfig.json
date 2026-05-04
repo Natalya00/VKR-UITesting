@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "lib": ["ES6", "DOM"],
+    "jsx": "react-jsx",
+    "strict": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "types": ["jest", "node", "@testing-library/jest-dom"]
+  }
+}

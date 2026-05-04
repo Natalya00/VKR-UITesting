@@ -1,0 +1,6 @@
+{
+  "blockId": "block-5",
+  "title": "Base Test и написание тестов",
+  "difficulty": "hard",
+  "description": "Написание тестов с BaseTest, AuthService, сценарии: логин, выход, изменение профиля, CRUD"
+}

@@ -1,0 +1,103 @@
+{
+  "id": "module-3-block-4-exercise-7",
+  "title": "Компонент пагинации с состоянием",
+  "description": "Создайте компонент Pagination для работы с постраничной навигацией. Реализуйте методы: goToPage(int) — переход на указанную страницу, getCurrentPage() → int — получение текущей страницы, isLastPage() → boolean и isFirstPage() → boolean — проверка граничных условий.",
+  "hint": "В компоненте Pagination реализуйте четыре метода. Метод goToPage(int pageNumber) находит кнопку нужной страницы внутри baseElement через $x() с относительным XPath (начинайте с .//) по номеру страницы, кликает по ней и возвращает this. Метод getCurrentPage() извлекает номер текущей страницы из текста элемента с ID pagination-info: получает текст через getText(), разделяет строку через split() и преобразует в число через Integer.parseInt(). Методы isLastPage() и isFirstPage() проверяют атрибут disabled у кнопок перехода на следующую и предыдущую страницы соответственно через getAttribute(\"disabled\") и возвращают boolean.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent"]
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент постраничной навигации.\n */\npublic class Pagination extends BaseComponent {\n\n    public Pagination(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод goToPage(int pageNumber)\n    // Переход на указанную страницу по номеру.\n\n    // Реализуйте метод getCurrentPage()\n    // Верните номер текущей страницы (извлеките из текста элемента #pagination-info).\n\n    // Реализуйте метод isLastPage()\n    // Проверьте, является ли текущая страница последней\n\n    // Реализуйте метод isFirstPage()\n    // Проверьте, является ли текущая страница первой\n\n}\n",
+  "order": 138,
+  "difficulty": "hard",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "Pagination",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс Pagination должен наследоваться от BaseComponent"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Pagination",
+          "methodName": "goToPage",
+          "returnType": "Pagination",
+          "parameters": ["int"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод goToPage(int) не найден в классе Pagination"
+        },
+        {
+          "className": "Pagination",
+          "methodName": "getCurrentPage",
+          "returnType": "int",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getCurrentPage() не найден в классе Pagination"
+        },
+        {
+          "className": "Pagination",
+          "methodName": "isLastPage",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isLastPage() не найден в классе Pagination"
+        },
+        {
+          "className": "Pagination",
+          "methodName": "isFirstPage",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isFirstPage() не найден в классе Pagination"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Pagination",
+          "methodName": "goToPage",
+          "requiredMethodCalls": ["$x", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод goToPage() должен находить кнопку страницы по номеру и кликать"
+        },
+        {
+          "className": "Pagination",
+          "methodName": "getCurrentPage",
+          "requiredMethodCalls": ["$x", "getText"],
+          "requiredStatements": ["return", "Integer.parseInt"],
+          "errorMessage": "Метод getCurrentPage() должен извлечь номер из #pagination-info и вернуть int"
+        },
+        {
+          "className": "Pagination",
+          "methodName": "isLastPage",
+          "requiredMethodCalls": ["$x", "getAttribute"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод isLastPage() должен проверять disabled у кнопки #pagination-next"
+        },
+        {
+          "className": "Pagination",
+          "methodName": "isFirstPage",
+          "requiredMethodCalls": ["$x", "getAttribute"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод isFirstPage() должен проверять disabled у кнопки #pagination-prev"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Pagination"],
+      "extendsRules": ["Pagination:BaseComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.PaginationHarnessTest",
+      "testMethods": ["testGoToPage", "testGetCurrentPage", "testIsLastPage", "testIsFirstPage", "testGoToPageReturnsThis"]
+    },
+    "errorMessage": "Pagination должен наследоваться от BaseComponent и содержать goToPage(int), getCurrentPage() → int, isLastPage() → boolean, isFirstPage() → boolean"
+  }
+}

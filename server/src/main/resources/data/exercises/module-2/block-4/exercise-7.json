@@ -1,0 +1,73 @@
+{
+  "id": "module-2-block-4-exercise-7",
+  "title": "Проверка атрибута checked у всех элементов",
+  "description": "Проверьте, что все элементы коллекции имеют атрибут checked.",
+  "hint": "Используйте shouldBe(checked) для проверки коллекции чекбоксов.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "notification-settings",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Настройки уведомлений",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Все уведомления включены",
+            "style": "color: #28a745; background: #d4edda; padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px;"
+          },
+          {
+            "tag": "div",
+            "className": "checkbox-group",
+            "style": "display: flex; flex-direction: column; gap: 15px;",
+            "children": [
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; cursor: pointer; transition: background 0.2s;",
+                "children": [
+                  {"tag": "input", "type": "checkbox", "className": "check", "checked": true, "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+                  {"tag": "span", "text": "Email уведомления", "style": "color: #2d3748; font-size: 16px;"}
+                ]
+              },
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; cursor: pointer; transition: background 0.2s;",
+                "children": [
+                  {"tag": "input", "type": "checkbox", "className": "check", "checked": true, "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+                  {"tag": "span", "text": "Push уведомления", "style": "color: #2d3748; font-size: 16px;"}
+                ]
+              },
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; cursor: pointer; transition: background 0.2s;",
+                "children": [
+                  {"tag": "input", "type": "checkbox", "className": "check", "checked": true, "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+                  {"tag": "span", "text": "Еженедельные отчёты", "style": "color: #2d3748; font-size: 16px;"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "input[type='checkbox']"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте, что все чекбоксы на странице отмечены\n\n    }\n}",
+  "order": 28,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["shouldBe"],
+    "requiredConditions": ["checked"],
+    "requiredSelectors": ["input[type='checkbox']"],
+    "expectedAction": "check_all_checked",
+    "requiredFinder": "$$",
+    "errorMessage": "Проверьте, что все чекбоксы имеют атрибут checked"
+  }
+}

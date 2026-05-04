@@ -1,0 +1,7 @@
+{
+  "blockId" : "block-4",
+  "title" : "Списки и Индексы. Группировка и CSS-псевдоклассы",
+  "difficulty" : "medium",
+  "description" : "Индексы, позиции, CSS-псевдоклассы: nth-child, last, position, only-child",
+  "exerciseCount" : 10
+}

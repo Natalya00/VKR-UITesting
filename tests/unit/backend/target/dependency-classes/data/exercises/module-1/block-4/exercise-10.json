@@ -1,0 +1,42 @@
+{
+  "id" : "module-1-block-4-task-10",
+  "title" : "Второй span по индексу",
+  "description" : "Найдите второй элемент <span> внутри div, используя индекс в XPath.",
+  "hint" : "Индекс выбирает элемент среди соседних элементов с тем же тегом",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Команда проекта",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "team-list",
+      "children" : [ {
+        "tag" : "span",
+        "className" : "user",
+        "text" : "Алексей Петров"
+      }, {
+        "tag" : "span",
+        "className" : "user",
+        "data-target" : "true",
+        "text" : "Мария Ивано��а"
+      }, {
+        "tag" : "span",
+        "className" : "user",
+        "text" : "Дмитрий Сидоров"
+      }, {
+        "tag" : "span",
+        "className" : "user",
+        "text" : "Екатерина Кузнецова"
+      } ]
+    } ],
+    "targetSelector" : "//div[@class='team-list']/span[2]"
+  },
+  "initialCode" : "// Введите XPath для поиска второго span в team-list",
+  "order" : 10,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "[2]" ],
+    "forbiddenPatterns" : [ "last()", "position()", "text()" ],
+    "maxComplexity" : 1
+  }
+}

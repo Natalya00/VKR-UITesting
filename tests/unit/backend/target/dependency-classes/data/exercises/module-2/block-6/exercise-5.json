@@ -1,0 +1,51 @@
+{
+  "id": "module-2-block-6-exercise-5",
+  "title": "Клик с удержанием клавиши Ctrl",
+  "description": "Выполните клик по элементу с классом file, удерживая клавишу Ctrl, чтобы выделить его.",
+  "hint": "Используйте цепочку actions(): keyDown(Keys.CONTROL), затем click(), затем keyUp(Keys.CONTROL) и perform().",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "file-manager",
+        "style": "max-width: 600px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Файловый менеджер",
+            "style": "color: #2d3748; margin-bottom: 30px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Выделите файл, удерживая Ctrl",
+            "style": "color: #718096; margin-bottom: 25px; font-size: 14px;"
+          },
+          {
+            "tag": "div",
+            "className": "file-list",
+            "style": "display: flex; flex-direction: column; gap: 10px;",
+            "children": [
+              {"tag": "div", "className": "file", "style": "padding: 15px 20px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; gap: 12px; cursor: pointer;"},
+              {"tag": "div", "className": "file", "style": "padding: 15px 20px; background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-radius: 8px; display: flex; align-items: center; gap: 12px; cursor: pointer; border: 2px solid #28a745;"},
+              {"tag": "div", "className": "file", "style": "padding: 15px 20px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; gap: 12px; cursor: pointer;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".file"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\nimport org.openqa.selenium.interactions.Actions;\nimport org.openqa.selenium.Keys;\n\npublic class UserScript {\n    public static void run() {\n        // Кликните по элементу, удерживая клавишу Ctrl\n\n    }\n}",
+  "order": 56,
+  "difficulty": "hard",
+  "validationRules": {
+    "requiredMethods": ["keyDown", "click", "keyUp"],
+    "requiredSelectors": [".file"],
+    "expectedAction": "ctrl_click",
+    "requiredFinder": "$",
+    "errorMessage": "Выполните клик с удержанием Ctrl"
+  }
+}

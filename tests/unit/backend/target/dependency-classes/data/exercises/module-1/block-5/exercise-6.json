@@ -1,0 +1,71 @@
+{
+  "id" : "module-1-block-5-task-6",
+  "title" : "Кнопка с data-атрибутом и текстом",
+  "description" : "Найдите кнопку с data-role='primary' И текстом, содержащим 'Сохранить'.",
+  "hint" : "Комбинируйте проверку атрибута и текста с помощью оператора 'and'",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Редактор документа",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "editor-header",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Редактирование статьи"
+      }, {
+        "tag" : "p",
+        "text" : "Последнее изменение: 20.01.2025 15:30"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "editor-content",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Современные технологии разработки"
+      }, {
+        "tag" : "p",
+        "text" : "Современная разработка программного обеспечения требует использования передовых инструментов и подходов."
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "toolbar",
+      "children" : [ {
+        "tag" : "button",
+        "className" : "btn",
+        "data-role" : "primary",
+        "data-target" : "true",
+        "text" : "Сохранить изменения"
+      }, {
+        "tag" : "button",
+        "className" : "btn",
+        "data-role" : "primary",
+        "text" : "Опубликовать"
+      }, {
+        "tag" : "button",
+        "className" : "btn",
+        "data-role" : "secondary",
+        "text" : "Предпросмотр"
+      }, {
+        "tag" : "button",
+        "className" : "btn",
+        "data-role" : "primary",
+        "text" : "Экспорт"
+      }, {
+        "tag" : "button",
+        "className" : "btn",
+        "data-role" : "secondary",
+        "text" : "Отмена"
+      } ]
+    } ],
+    "targetSelector" : "//button[@data-role='primary' and contains(text(), 'Сохранить')]"
+  },
+  "initialCode" : "// Введите XPath для поиска кнопки с data-role='primary' и текстом 'Сохранить'",
+  "order" : 6,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "@data-role", " and ", "contains(", "text()" ],
+    "forbiddenPatterns" : [ "[1]", "[2]", " or " ],
+    "maxComplexity" : 2
+  }
+}

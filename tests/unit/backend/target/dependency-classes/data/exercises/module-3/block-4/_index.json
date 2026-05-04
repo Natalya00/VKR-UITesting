@@ -1,0 +1,6 @@
+{
+  "blockId": "block-4",
+  "title": "Компоненты (Page Components)",
+  "difficulty": "hard",
+  "description": "Создание компонентов: NavigationMenu, TableComponent, TabPanel, DatePicker, вложенные компоненты"
+}

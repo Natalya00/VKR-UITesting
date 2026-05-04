@@ -1,0 +1,38 @@
+{
+  "id" : "module-1-block-4-task-1",
+  "title" : "Второй элемент списка по индексу",
+  "description" : "Найдите второй элемент <li> внутри списка ul, используя индекс в XPath.",
+  "hint" : "Индексы в XPath записываются в квадратных скобках",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Список задач",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "ul",
+      "className" : "task-list",
+      "children" : [ {
+        "tag" : "li",
+        "text" : "Изучить основы XPath"
+      }, {
+        "tag" : "li",
+        "data-target" : "true",
+        "text" : "Практиковать селекторы"
+      }, {
+        "tag" : "li",
+        "text" : "Пройти тестирование"
+      }, {
+        "tag" : "li",
+        "text" : "Завершить проект"
+      } ]
+    } ],
+    "targetSelector" : "//ul[@class='task-list']/li[2]"
+  },
+  "initialCode" : "// Введите XPath для поиска второго элемента списка",
+  "order" : 1,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "[2]" ],
+    "forbiddenPatterns" : [ "last()", "position()", "text()" ],
+    "maxComplexity" : 1
+  }
+}

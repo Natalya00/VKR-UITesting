@@ -1,0 +1,88 @@
+{
+  "id": "module-3-block-4-exercise-8",
+  "title": "Компонент-аккордеон с состоянием раскрытия",
+  "description": "Создайте компонент Accordion для работы с раскрывающимися секциями. Реализуйте методы: expandSection(int index) — раскрытие секции по индексу, collapseSection(int Index) — сворачивание, isSectionExpanded(int index) → boolean — проверка состояния.",
+  "hint": "В компоненте Accordion используйте относительный XPath (начинайте с .//) для поиска внутри baseElement. Метод expandSection(int index) находит элемент-переключатель (toggle) по указанному индексу — по ID или data-attribute — и кликает по нему, возвращая this. Метод collapseSection(int index) работает аналогично, сворачивая указанную секцию. Метод isSectionExpanded(int index) проверяет, существует ли элемент контента с соответствующим индексом через $x() и exists(), и возвращает boolean.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent"]
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент-аккордеон с раскрывающимися секциями.\n */\npublic class Accordion extends BaseComponent {\n\n    public Accordion(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод expandSection(int index)\n    // Раскройте указанную секцию по индексу.\n    // Если секция уже раскрыта — ничего не делайте.\n\n    // Реализуйте метод collapseSection(int index)\n    // Сверните указанную секцию.\n    // Если секция уже свёрнута — ничего не делайте.\n\n    // Реализуйте метод isSectionExpanded(int index)\n    // Проверьте, раскрыта ли указанная секция.\n\n}\n",
+  "order": 139,
+  "difficulty": "hard",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "Accordion",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс Accordion должен наследоваться от BaseComponent"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Accordion",
+          "methodName": "expandSection",
+          "parameters": ["int"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод expandSection(int) не найден в классе Accordion"
+        },
+        {
+          "className": "Accordion",
+          "methodName": "collapseSection",
+          "parameters": ["int"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод collapseSection(int) не найден в классе Accordion"
+        },
+        {
+          "className": "Accordion",
+          "methodName": "isSectionExpanded",
+          "returnType": "boolean",
+          "parameters": ["int"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isSectionExpanded(int) не найден в классе Accordion"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Accordion",
+          "methodName": "expandSection",
+          "requiredMethodCalls": ["$x", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод expandSection() должен находить toggle по индексу и кликать"
+        },
+        {
+          "className": "Accordion",
+          "methodName": "collapseSection",
+          "requiredMethodCalls": ["$x", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод collapseSection() должен находить toggle по индексу и кликать"
+        },
+        {
+          "className": "Accordion",
+          "methodName": "isSectionExpanded",
+          "requiredMethodCalls": ["$x", "exists"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод isSectionExpanded() должен проверять существование элемента контента"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Accordion"],
+      "extendsRules": ["Accordion:BaseComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.AccordionHarnessTest",
+      "testMethods": ["testExpandSection", "testCollapseSection", "testIsSectionExpandedTrue", "testIsSectionExpandedFalse", "testExpandReturnsThis", "testCollapseReturnsThis"]
+    },
+    "errorMessage": "Accordion должен наследоваться от BaseComponent и содержать expandSection(int), collapseSection(int), isSectionExpanded(int) → boolean"
+  }
+}

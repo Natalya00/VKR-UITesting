@@ -1,0 +1,49 @@
+{
+  "id": "module-2-block-5-exercise-7",
+  "title": "Клик по label для установки чекбокса",
+  "description": "Найдите label по тексту «Кликни меня» и нажмите на него, чтобы установить скрытый чекбокс.",
+  "hint": "Используйте $$(\"label\").findBy(text(\"...\")) для поиска label по тексту, затем кликните.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "hidden-checkbox-container",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Работа с label",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Нажмите на текст, чтобы активировать скрытый чекбокс",
+            "style": "color: #718096; margin-bottom: 25px; font-size: 14px;"
+          },
+          {
+            "tag": "label",
+            "style": "display: flex; align-items: center; gap: 15px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; cursor: pointer; color: white;",
+            "children": [
+              {"tag": "input", "type": "checkbox", "id": "hidden-checkbox", "style": "width: 20px; height: 20px; accent-color: white;"},
+              {"tag": "span", "text": "Кликни меня", "style": "font-size: 16px; font-weight: 600;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "label"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Найдите label, содержащий текст \"Кликни меня\", и кликните по нему\n\n    }\n}",
+  "order": 46,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["findBy", "text", "click"],
+    "requiredSelectors": ["label", "Кликни меня"],
+    "expectedAction": "click_label",
+    "requiredFinder": "$",
+    "errorMessage": "Найдите label по тексту и нажмите на него"
+  }
+}

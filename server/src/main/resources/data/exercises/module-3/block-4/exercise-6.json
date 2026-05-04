@@ -1,0 +1,138 @@
+{
+  "id": "module-3-block-4-exercise-6",
+  "title": "Компонент выбора даты (DatePicker)",
+  "description": "Создайте компонент DatePicker с методами selectDay(String), selectMonth(String), selectYear(String) и объединяющим методом selectDate(String day, String month, String year). Каждый метод находит соответствующий select внутри baseElement и выбирает значение. Также создайте RegisterPage, использующий этот компонент.",
+  "hint": "Каждый select имеет CSS-класс с указанием типа (day, month, year). Найдите нужный select и кликните по option с указанным текстом. RegisterPage должен содержать DatePicker как поле и делегировать ему выбор даты.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent", "BasePage", "Header", "Footer"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент выбора даты.\n */\npublic class DatePicker extends BaseComponent {\n\n    public DatePicker(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте методы selectDay(String), selectMonth(String), selectYear(String)\n    // Каждый должен найти соответствующий select и выбрать нужное значение.\n\n    // Реализуйте метод selectDate(String day, String month, String year)\n    // Объединяющий метод: вызывает все три и возвращает this.\n\n}\n\n---\n\npackage com.example.runner.pom.pages;\n\nimport com.example.runner.pom.components.DatePicker;\n\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Страница регистрации.\n */\npublic class RegisterPage extends BasePage {\n\n    // Объявите поле birthDatePicker\n\n    public RegisterPage() {\n        super(\"//form[@id='register-form']\");\n        // Инициализируйте DatePicker в конструкторе\n    }\n\n    // Реализуйте метод selectBirthDate(String day, String month, String year)\n    // Делегируйте вызов компоненту birthDatePicker.\n\n}\n",
+  "order": 137,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "DatePicker",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс DatePicker должен наследоваться от BaseComponent"
+        },
+        {
+          "className": "RegisterPage",
+          "extendsClass": "BasePage",
+          "required": true,
+          "errorMessage": "Класс RegisterPage должен наследоваться от BasePage"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "RegisterPage",
+          "fieldName": "birthDatePicker",
+          "fieldType": "DatePicker",
+          "modifiers": ["private"],
+          "required": true,
+          "errorMessage": "Поле private DatePicker birthDatePicker не найдено в RegisterPage"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "DatePicker",
+          "methodName": "selectDay",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод selectDay(String) не найден в классе DatePicker"
+        },
+        {
+          "className": "DatePicker",
+          "methodName": "selectMonth",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод selectMonth(String) не найден в классе DatePicker"
+        },
+        {
+          "className": "DatePicker",
+          "methodName": "selectYear",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод selectYear(String) не найден в классе DatePicker"
+        },
+        {
+          "className": "DatePicker",
+          "methodName": "selectDate",
+          "returnType": "DatePicker",
+          "parameters": ["java.lang.String", "java.lang.String", "java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод selectDate(String, String, String) не найден в классе DatePicker"
+        },
+        {
+          "className": "RegisterPage",
+          "methodName": "selectBirthDate",
+          "returnType": "RegisterPage",
+          "parameters": ["java.lang.String", "java.lang.String", "java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод selectBirthDate(String, String, String) не найден в классе RegisterPage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "DatePicker",
+          "methodName": "selectDay",
+          "requiredMethodCalls": ["$x", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод selectDay() должен использовать baseElement.$x() для поиска option и click() для выбора"
+        },
+        {
+          "className": "DatePicker",
+          "methodName": "selectMonth",
+          "requiredMethodCalls": ["$x", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод selectMonth() должен использовать baseElement.$x() для поиска option и click() для выбора"
+        },
+        {
+          "className": "DatePicker",
+          "methodName": "selectYear",
+          "requiredMethodCalls": ["$x", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод selectYear() должен использовать baseElement.$x() для поиска option и click() для выбора"
+        },
+        {
+          "className": "DatePicker",
+          "methodName": "selectDate",
+          "requiredMethodCalls": ["selectDay", "selectMonth", "selectYear"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод selectDate() должен вызывать selectDay(), selectMonth(), selectYear() и возвращать this"
+        },
+        {
+          "className": "RegisterPage",
+          "methodName": "selectBirthDate",
+          "requiredMethodCalls": ["birthDatePicker.selectDate"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод selectBirthDate() должен вызывать birthDatePicker.selectDate() и возвращать this"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["DatePicker", "RegisterPage"],
+      "extendsRules": ["DatePicker:BaseComponent", "RegisterPage:BasePage"],
+      "privateFields": ["RegisterPage.birthDatePicker"],
+      "publicMethods": ["DatePicker.selectDay", "DatePicker.selectMonth", "DatePicker.selectYear", "DatePicker.selectDate", "RegisterPage.selectBirthDate"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent", "BasePage", "Header", "Footer"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.DatePickerHarnessTest",
+      "testMethods": ["testSelectDay", "testSelectMonth", "testSelectYear", "testSelectDate", "testSelectDateReturnsThis"]
+    },
+    "errorMessage": "DatePicker должен наследоваться от BaseComponent и содержать selectDay/Month/Year + selectDate(String,String,String) → DatePicker. RegisterPage должен содержать selectBirthDate() → RegisterPage."
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "id" : "module-1-block-3-task-6",
+  "title" : "Поиск значения статуса",
+  "description" : "Найдите значение статуса «Активен», привязавшись к названию поля «Статус:».",
+  "hint" : "Используйте ось following-sibling:: для навигации между соседними элементами",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Информация о заказе",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "order-info",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Заказ №12345"
+      }, {
+        "tag" : "div",
+        "className" : "info-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "label",
+          "text" : "Дата:"
+        }, {
+          "tag" : "span",
+          "className" : "value",
+          "text" : "20.01.2025"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "info-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "label",
+          "text" : "Статус:"
+        }, {
+          "tag" : "span",
+          "className" : "value status-active",
+          "data-target" : "true",
+          "text" : "Активен"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "info-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "label",
+          "text" : "Сумма:"
+        }, {
+          "tag" : "span",
+          "className" : "value",
+          "text" : "15 000 ₽"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "info-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "label",
+          "text" : "Менеджер:"
+        }, {
+          "tag" : "span",
+          "className" : "value",
+          "text" : "Иван Петров"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "info-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "label",
+          "text" : "Адрес:"
+        }, {
+          "tag" : "span",
+          "className" : "value",
+          "text" : "г. Москва, ул. Ленина, д. 10"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "info-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "label",
+          "text" : "Телефон:"
+        }, {
+          "tag" : "span",
+          "className" : "value",
+          "text" : "+7 (999) 123-45-67"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "info-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "label",
+          "text" : "Email:"
+        }, {
+          "tag" : "span",
+          "className" : "value",
+          "text" : "client@example.com"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "info-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "label",
+          "text" : "Доставка:"
+        }, {
+          "tag" : "span",
+          "className" : "value",
+          "text" : "Курьером, 22.01.2025"
+        } ]
+      } ]
+    } ],
+    "targetSelector" : "//span[@class='label' and text()='Статус:']/following-sibling::span"
+  },
+  "initialCode" : "// Введите XPath для поиска значения статуса после метки \"Статус:\"",
+  "order" : 6,
+  "difficulty" : "hard",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "following-sibling::" ],
+    "forbiddenPatterns" : [ "[1]", "[2]", "parent::" ],
+    "maxComplexity" : 3,
+    "exactOnly" : {
+      "axes" : [ "following-sibling" ]
+    }
+  }
+}

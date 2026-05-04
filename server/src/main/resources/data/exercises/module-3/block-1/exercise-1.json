@@ -1,0 +1,53 @@
+﻿{
+  "id": "module-3-block-1-exercise-1",
+  "title": "Создание базового класса BaseElement",
+  "description": "Напишите основу класса BaseElement. Класс должен содержать поле baseElement типа SelenideElement, иметь конструктор, принимающий String xpath и String attributeValue, инициализировать элемент через $x(String.format(xpath, attributeValue)). Сделайте конструктор protected.",
+  "hint": "Поле baseElement должно быть доступно для наследников (protected). Конструктор принимает xpath-шаблон и значение, формирует итоговый XPath через String.format и инициализирует элемент через $x().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": []
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Базовый класс для всех POM-элементов.\n */\npublic class BaseElement {\n\n    // Добавьте поле baseElement типа SelenideElement (protected)\n\n    // Добавьте protected конструктор с параметрами xpath и attributeValue\n    // Инициализируйте baseElement через $x(String.format(xpath, attributeValue))\n\n}\n",
+  "order": 101,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "BaseElement",
+          "required": true,
+          "errorMessage": "Класс BaseElement не найден"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "BaseElement",
+          "fieldName": "baseElement",
+          "fieldType": "SelenideElement",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле baseElement типа SelenideElement с модификатором protected не найдено"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "BaseElement",
+          "parameters": ["String", "String"],
+          "modifiers": ["protected"],
+          "required": true,
+          "requiredMethodCalls": ["$x"],
+          "requiredStatements": ["String.format"],
+          "errorMessage": "Конструктор protected BaseElement(String xpath, String attributeValue) не найден. Должен использовать $x(String.format(xpath, attributeValue))"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["BaseElement"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": [],
+      "compileOnly": true
+    }
+  }
+}

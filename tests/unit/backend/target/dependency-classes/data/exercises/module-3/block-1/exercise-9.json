@@ -1,0 +1,97 @@
+﻿{
+  "id": "module-3-block-1-exercise-9",
+  "title": "Кликабельные элементы",
+  "description": "Создайте интерфейс Clickable с методом click(). Разработайте классы Button и Tab — оба должны наследоваться от BaseElement, реализовывать интерфейс Clickable и содержать собственную реализацию метода click().",
+  "hint": "Интерфейс Clickable с методом void click(). Каждый класс наследуется от BaseElement, реализует Clickable и делегирует клик через baseElement.click().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\npublic interface Clickable {\n    void click();\n}\n---\npackage com.example.runner.pom.elements;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Кнопка - кликабельный элемент.\n */\npublic class Button extends BaseElement implements Clickable {\n\n    // Реализуйте конструктор\n\n    @Override\n    public void click() {\n        // Реализуйте клик по кнопке\n    }\n}\n---\npackage com.example.runner.pom.elements;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Вкладка - кликабельный элемент.\n */\npublic class Tab extends BaseElement implements Clickable {\n\n    // Реализуйте конструктор\n\n    @Override\n    public void click() {\n        // Реализуйте клик по вкладке\n    }\n}\n",
+  "order": 109,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "interfaceRules": [
+        {
+          "interfaceName": "Clickable",
+          "requiredMethods": ["click"],
+          "required": true,
+          "errorMessage": "Интерфейс Clickable с методом click() не найден"
+        }
+      ],
+      "classRules": [
+        {
+          "className": "Button",
+          "extendsClass": "BaseElement",
+          "implementsInterfaces": ["Clickable"],
+          "required": true,
+          "errorMessage": "Класс Button должен наследоваться от BaseElement и реализовывать Clickable"
+        },
+        {
+          "className": "Tab",
+          "extendsClass": "BaseElement",
+          "implementsInterfaces": ["Clickable"],
+          "required": true,
+          "errorMessage": "Класс Tab должен наследоваться от BaseElement и реализовывать Clickable"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "Button",
+          "parameters": ["String", "String"],
+          "required": true,
+          "errorMessage": "Класс Button должен иметь конструктор с параметрами (String xpath, String attributeValue)"
+        },
+        {
+          "className": "Tab",
+          "parameters": ["String", "String"],
+          "required": true,
+          "errorMessage": "Класс Tab должен иметь конструктор с параметрами (String xpath, String attributeValue)"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Button",
+          "methodName": "click",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Класс Button должен реализовывать метод click()"
+        },
+        {
+          "className": "Tab",
+          "methodName": "click",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Класс Tab должен реализовывать метод click()"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Button",
+          "methodName": "click",
+          "requiredMethodCalls": ["click"],
+          "errorMessage": "Метод click() в Button должен вызывать baseElement.click()"
+        },
+        {
+          "className": "Tab",
+          "methodName": "click",
+          "requiredMethodCalls": ["click"],
+          "errorMessage": "Метод click() в Tab должен вызывать baseElement.click()"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Button", "Tab"],
+      "requiredInterfaces": ["Clickable"],
+      "implementsRules": ["Button:Clickable", "Tab:Clickable"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement"],
+      "compileOnly": true
+    },
+    "errorMessage": "Создайте интерфейс Clickable с методом click(). Классы Button и Tab должны наследоваться от BaseElement, реализовывать Clickable и содержать реализацию click()"
+  }
+}

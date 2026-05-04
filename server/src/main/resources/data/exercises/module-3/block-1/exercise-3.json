@@ -1,0 +1,65 @@
+﻿{
+  "id": "module-3-block-1-exercise-3",
+  "title": "Добавление поиска внутри элемента",
+  "description": "В классе BaseElement реализуйте защищённый метод findInside(String relativeXpath), который ищет элемент внутри baseElement через относительный XPath и возвращает найденный SelenideElement.",
+  "hint": "Вызовите $x(relativeXpath) на экземпляре SelenideElement — поиск на экземпляре элемента ограничен только его дочерними узлами.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": []
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Selenide.$x;\n\npublic class BaseElement {\n\n    protected SelenideElement baseElement;\n\n    // Реализуйте конструктор\n    protected BaseElement(String xpath, String attributeValue) {\n        // Инициализируйте baseElement\n    }\n\n    // Добавьте метод: protected SelenideElement findInside(String relativeXpath)\n    // Поиск должен выполняться внутри baseElement\n\n}\n",
+  "order": 103,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "fieldRules": [
+        {
+          "className": "BaseElement",
+          "fieldName": "baseElement",
+          "fieldType": "SelenideElement",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected SelenideElement baseElement не найдено"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "BaseElement",
+          "parameters": ["String", "String"],
+          "modifiers": ["protected"],
+          "required": true,
+          "requiredMethodCalls": ["$x"],
+          "requiredStatements": ["String.format"],
+          "errorMessage": "Конструктор должен инициализировать baseElement через $x(String.format(xpath, attributeValue))"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "BaseElement",
+          "methodName": "findInside",
+          "returnType": "SelenideElement",
+          "parameters": ["String"],
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Метод protected SelenideElement findInside(String) не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "BaseElement",
+          "methodName": "findInside",
+          "requiredMethodCalls": ["$x"],
+          "errorMessage": "Метод findInside() должен использовать $x для поиска внутри baseElement"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["BaseElement"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": [],
+      "compileOnly": true
+    }
+  }
+}

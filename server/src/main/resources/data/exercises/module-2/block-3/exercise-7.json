@@ -1,0 +1,43 @@
+{
+  "id": "module-2-block-3-exercise-7",
+  "title": "Проверка класса уведомления",
+  "description": "Проверьте, что уведомление имеет css-класс success-theme.",
+  "hint": "Используйте shouldHave(cssClass(\"...\")) для проверки CSS-класса.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "notification success-theme",
+        "id": "success-notification",
+        "style": "background: #d4edda; color: #155724; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto;",
+        "children": [
+          {
+            "tag": "h3",
+            "text": "Успешно!",
+            "style": "margin-bottom: 10px;"
+          },
+          {
+            "tag": "p",
+            "text": "Операция выполнена успешно",
+            "style": "margin: 0;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".notification"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте, что уведомление имеет css-класс success-theme\n\n    }\n}",
+  "order": 18,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["shouldHave", "cssClass"],
+    "requiredSelectors": [".notification"],
+    "expectedAction": "check_class",
+    "expectedElementType": "div",
+    "requiredFinder": "$",
+    "errorMessage": "Проверьте, что уведомление имеет класс 'success-theme'"
+  }
+}

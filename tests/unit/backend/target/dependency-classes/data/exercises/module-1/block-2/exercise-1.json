@@ -1,0 +1,58 @@
+{
+  "id" : "module-1-block-2-task-1",
+  "title" : "Поиск кнопки по полному тексту",
+  "description" : "Найдите кнопку с текстом 'Отправить заявку' в форме обратной связи.",
+  "hint" : "Функция text() возвращает текстовое содержимое элемента",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Форма обратной связи",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "contact-form",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Свяжитесь с нами"
+      }, {
+        "tag" : "label",
+        "text" : "Ваше имя"
+      }, {
+        "tag" : "input",
+        "type" : "text",
+        "placeholder" : "Иван Петров"
+      }, {
+        "tag" : "label",
+        "text" : "Email"
+      }, {
+        "tag" : "input",
+        "type" : "email",
+        "placeholder" : "email@example.com"
+      }, {
+        "tag" : "button",
+        "className" : "btn-submit",
+        "data-target" : "true",
+        "text" : "Отправить заявку"
+      }, {
+        "tag" : "button",
+        "className" : "btn-save",
+        "text" : "Сохранить черновик"
+      }, {
+        "tag" : "button",
+        "className" : "btn-cancel",
+        "text" : "Отмена"
+      } ]
+    } ],
+    "targetSelector" : "button[text()='Отправить заявку']"
+  },
+  "initialCode" : "// Введите XPath для поиска кнопки с текстом \"Отправить заявку\"",
+  "order" : 1,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "text()=" ],
+    "forbiddenPatterns" : [ "contains(", "[1]", "[2]", "@" ],
+    "maxComplexity" : 1,
+    "exactOnly" : {
+      "functions" : [ "text" ]
+    }
+  }
+}

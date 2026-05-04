@@ -1,0 +1,56 @@
+{
+  "id": "module-2-block-3-exercise-8",
+  "title": "Проверка значения в поле ввода",
+  "description": "Проверьте, что в поле ввода возраста установлено значение \"25\".",
+  "hint": "Используйте shouldHave(value(\"...\")) для проверки значения поля.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "profile-form",
+        "style": "background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Личные данные",
+            "style": "margin-bottom: 20px; color: #333;"
+          },
+          {
+            "tag": "div",
+            "className": "form-row",
+            "style": "margin-bottom: 20px;",
+            "children": [
+              {
+                "tag": "label",
+                "text": "Возраст",
+                "style": "display: block; margin-bottom: 8px;"
+              },
+              {
+                "tag": "input",
+                "id": "age",
+                "type": "number",
+                "value": "25",
+                "style": "width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px;"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#age"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте, что в поле ввода возраста установлено значение \"25\"\n\n    }\n}",
+  "order": 19,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["shouldHave", "value"],
+    "requiredSelectors": ["#age"],
+    "expectedAction": "check_value",
+    "expectedElementType": "input",
+    "requiredFinder": "$",
+    "errorMessage": "Проверьте, что значение поля равно '25'"
+  }
+}

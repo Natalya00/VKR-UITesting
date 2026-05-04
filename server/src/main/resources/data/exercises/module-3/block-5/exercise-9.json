@@ -1,0 +1,110 @@
+﻿{
+  "id": "module-3-block-5-exercise-9",
+  "title": "Написание теста изменения профиля",
+  "description": "Создайте тест-класс ProfileTest. Напишите тест, который выполняет вход, открывает страницу профиля, меняет имя пользователя через метод editName() и сохраняет изменения. Проверьте, что новое имя отображается на странице.",
+  "hint": "В ProfilePage реализуйте методы для работы с именем: editName(String) для изменения имени, saveChanges() для сохранения и getDisplayName() для получения текущего отображаемого имени. В тесте авторизуйтесь, перейдите в профиль, измените имя, сохраните и проверьте через assertEquals(), что новое имя отображается.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "AuthService", "HomePage", "Header", "Footer", "User", "LoginPage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button"]
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.services.AuthService;\nimport com.example.runner.pom.pages.ProfilePage;\nimport org.junit.jupiter.api.Test;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\n\n/**\n * Тесты для страницы профиля.\n */\npublic class ProfileTest extends BaseTest {\n    \n    private AuthService authService = new AuthService();\n    \n    // Напишите тест changeNameSuccessful()\n    // Используйте: new User(\"testuser\", \"testpass\")\n    \n}\n\n---\n\npackage com.example.runner.pom.pages;\n\n/**\n * Страница профиля.\n */\npublic class ProfilePage extends BasePage {\n    \n    public ProfilePage() {\n        super(\"//div[@id='profile-page']\");\n    }\n    \n    // Реализуйте метод editName(String newName)\n    \n    // Реализуйте метод saveChanges()\n    \n    // Реализуйте метод getDisplayName()\n    \n}\n",
+  "order": 152,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "ProfileTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "Класс ProfileTest должен наследоваться от BaseTest"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "ProfileTest",
+          "methodName": "changeNameSuccessful",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод changeNameSuccessful() с аннотацией @Test не найден"
+        },
+        {
+          "className": "ProfilePage",
+          "methodName": "editName",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод editName(String) не найден в классе ProfilePage"
+        },
+        {
+          "className": "ProfilePage",
+          "methodName": "saveChanges",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод saveChanges() не найден в классе ProfilePage"
+        },
+        {
+          "className": "ProfilePage",
+          "methodName": "getDisplayName",
+          "returnType": "String",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getDisplayName() не найден в классе ProfilePage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "ProfileTest",
+          "methodName": "changeNameSuccessful",
+          "requiredMethodCalls": ["authService.login", "goToProfile", "editName", "saveChanges", "getDisplayName"],
+          "requiredStatements": ["assertEquals"],
+          "errorMessage": "Тест должен использовать цепочку: login() → goToProfile() → editName() → saveChanges() → getDisplayName()"
+        },
+        {
+          "className": "ProfilePage",
+          "methodName": "editName",
+          "requiredMethodCalls": ["clear"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод editName() должен очищать поле, заполнять новое имя и возвращать this"
+        },
+        {
+          "className": "ProfilePage",
+          "methodName": "saveChanges",
+          "requiredMethodCalls": ["click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод saveChanges() должен кликать по кнопке сохранения и возвращать this"
+        },
+        {
+          "className": "ProfilePage",
+          "methodName": "getDisplayName",
+          "requiredMethodCalls": ["getText"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод getDisplayName() должен получать текст и возвращать его"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "ProfileTest",
+          "methodName": "changeNameSuccessful",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "Тест должен иметь аннотацию @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["ProfileTest", "ProfilePage"],
+      "extendsRules": ["ProfileTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "AuthService", "HomePage", "Header", "Footer", "User", "LoginPage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.ProfileNameHarnessTest",
+      "testMethods": ["testEditNameExists", "testSaveChangesExists", "testGetDisplayNameReturnsString", "testEditAndSaveRealBehavior", "testGetDisplayNameRealBehavior"]
+    },
+    "errorMessage": "ProfileTest должен содержать тест changeNameSuccessful() с @Test. ProfilePage должен содержать методы editName(String), saveChanges(), getDisplayName()"
+  }
+}

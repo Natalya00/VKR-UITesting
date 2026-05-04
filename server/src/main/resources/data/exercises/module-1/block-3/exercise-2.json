@@ -1,0 +1,66 @@
+{
+  "id" : "module-1-block-3-task-2",
+  "title" : "Поиск кнопки в footer",
+  "description" : "Найдите кнопку с текстом 'Подписаться' внутри блока footer, игнорируя количество промежуточных уровней вложенности.",
+  "hint" : "Комбинируйте поиск родительского контейнера с поиском вложенного элемента",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Главная страница",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "header",
+      "className" : "site-header",
+      "children" : [ {
+        "tag" : "h1",
+        "text" : "Добро пожаловать на наш сайт"
+      }, {
+        "tag" : "p",
+        "text" : "Лучшие решения для вашего бизнеса"
+      } ]
+    }, {
+      "tag" : "main",
+      "className" : "site-main",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Наши услуги"
+      }, {
+        "tag" : "p",
+        "text" : "Мы предлагаем широкий спектр услуг для развития вашего бизнеса."
+      } ]
+    }, {
+      "tag" : "footer",
+      "className" : "site-footer",
+      "children" : [ {
+        "tag" : "div",
+        "className" : "footer-content",
+        "children" : [ {
+          "tag" : "h4",
+          "text" : "Подписка на новости"
+        }, {
+          "tag" : "div",
+          "className" : "footer-section",
+          "children" : [ {
+            "tag" : "button",
+            "text" : "Подписаться",
+            "data-target": true
+          }, {
+            "tag" : "button",
+            "text" : "Отписаться"
+          } ]
+        } ]
+      }, {
+        "tag" : "button",
+        "text" : "Написать нам"
+      } ]
+    } ],
+    "targetSelector" : "//footer[@class='site-footer']//button[text()='Подписаться']"
+  },
+  "initialCode" : "// Введите XPath для поиска кнопки \"Подписаться\" внутри footer",
+  "order" : 2,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "//footer", "//button" ],
+    "forbiddenPatterns" : [ "[1]", "[2]", "position()" ],
+    "maxComplexity" : 2
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "module-2-block-9-exercise-8",
+  "title": "Ошибка при переключении на несуществующую вкладку",
+  "description": "Что происходит при переключении на несуществующую вкладку?",
+  "hint": "Правильный ответ: SelenideException",
+  "trainingComponent": "QuizTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "disableIDE": true,
+    "layout": "quiz",
+    "question": "Что происходит при переключении на несуществующую вкладку?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Тихо игнорируется"
+      },
+      {
+        "label": "B",
+        "text": "SelenideException"
+      },
+      {
+        "label": "C",
+        "text": "NullPointerException"
+      },
+      {
+        "label": "D",
+        "text": "WebDriverException"
+      }
+    ],
+    "correctAnswer": "B"
+  },
+  "initialCode": "// Выберите правильный ответ: A, B, C или D\n// Правильный ответ: B\n\npublic class UserScript {\n    public static void run() {\n        // try { switchTo().window(999); } catch (Exception e) { ... }\n    }\n}",
+  "order": 88,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": [],
+    "requiredSelectors": [],
+    "expectedAction": "quiz_answer_b",
+    "requiredFinder": "$",
+    "errorMessage": "Правильный ответ: B - SelenideException"
+  }
+}

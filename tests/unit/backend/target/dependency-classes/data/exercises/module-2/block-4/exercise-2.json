@@ -1,0 +1,40 @@
+{
+  "id": "module-2-block-4-exercise-2",
+  "title": "Поиск элемента по тексту и клик",
+  "description": "В коллекции всех ссылок с классом .nav найдите элемент с текстом \"Prices\" и кликните по нему.",
+  "hint": "Используйте findBy() с condition для поиска элемента в коллекции: $$(\"...\").findBy(text(\"...\")).click();",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "header",
+        "style": "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px 0; box-shadow: 0 2px 20px rgba(0,0,0,0.15);",
+        "children": [
+          {
+            "tag": "nav",
+            "style": "max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; gap: 30px;",
+            "children": [
+              {"tag": "a", "className": "nav", "href": "#home", "text": "Home", "style": "color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; transition: all 0.3s; font-weight: 500; font-size: 16px;"},
+              {"tag": "a", "className": "nav", "href": "#prices", "text": "Prices", "style": "color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; transition: all 0.3s; font-weight: 500; font-size: 16px;"},
+              {"tag": "a", "className": "nav", "href": "#about", "text": "About", "style": "color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; transition: all 0.3s; font-weight: 500; font-size: 16px;"},
+              {"tag": "a", "className": "nav", "href": "#contact", "text": "Contact", "style": "color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; transition: all 0.3s; font-weight: 500; font-size: 16px;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".nav"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Найдите ссылку с текстом \"Prices\" и кликните по ней\n\n    }\n}",
+  "order": 23,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["findBy", "text", "click"],
+    "requiredSelectors": [".nav", "Prices"],
+    "expectedAction": "click_by_text",
+    "requiredFinder": "$$",
+    "errorMessage": "Найдите элемент по тексту и кликните по нему"
+  }
+}

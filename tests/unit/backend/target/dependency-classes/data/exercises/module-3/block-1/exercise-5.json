@@ -1,0 +1,116 @@
+﻿{
+  "id": "module-3-block-1-exercise-5",
+  "title": "Реализация статических методов создания Input",
+  "description": "В классе Input реализуйте статические методы: byId(String id), byName(String name), byPlaceholder(String placeholder). Каждый метод должен проверять параметр на null и пустую строку, выбрасывать IllegalArgumentException при некорректных данных, использовать соответствующий XPath-шаблон и вызывать приватный конструктор.",
+  "hint": "Каждый метод (byId, byName, byPlaceholder) проверяет параметр: if (param == null || param.isEmpty()) — выбрасывает IllegalArgumentException. При валидном параметре создаёт экземпляр через new Input(XPATH_TEMPLATE, param).",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement"]
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\nimport com.codeborne.selenide.SelenideElement;\n\npublic class Input extends BaseElement {\n\n    // Константы из упражнения 104 (должны быть реализованы)\n    // private static final String ID_XPATH = ...\n    // private static final String NAME_XPATH = ...\n    // private static final String PLACEHOLDER_XPATH = ...\n\n    private Input(String xpath, String value) {\n        super(xpath, value);\n    }\n\n    // Метод fill() из упражнения 104\n    public Input fill(String value) {\n        // Реализуйте: clear(), setValue(), return this\n    }\n\n    // Реализуйте статические методы:\n    // public static Input byId(String id)\n    // public static Input byName(String name)\n    // public static Input byPlaceholder(String placeholder)\n    // Каждый должен валидировать параметр и выбрасывать IllegalArgumentException\n\n}\n",
+  "order": 105,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "fieldRules": [
+        {
+          "className": "Input",
+          "fieldName": "ID_XPATH",
+          "modifiers": ["private", "static", "final"],
+          "required": true,
+          "errorMessage": "Константа ID_XPATH из упражнения 104 должна быть private static final"
+        },
+        {
+          "className": "Input",
+          "fieldName": "NAME_XPATH",
+          "modifiers": ["private", "static", "final"],
+          "required": true,
+          "errorMessage": "Константа NAME_XPATH из упражнения 104 должна быть private static final"
+        },
+        {
+          "className": "Input",
+          "fieldName": "PLACEHOLDER_XPATH",
+          "modifiers": ["private", "static", "final"],
+          "required": true,
+          "errorMessage": "Константа PLACEHOLDER_XPATH из упражнения 104 должна быть private static final"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Input",
+          "methodName": "fill",
+          "returnType": "Input",
+          "parameters": ["String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод fill(String) из упражнения 104 должен быть public и возвращать Input"
+        },
+        {
+          "className": "Input",
+          "methodName": "byId",
+          "returnType": "Input",
+          "parameters": ["String"],
+          "modifiers": ["public", "static"],
+          "required": true,
+          "errorMessage": "Метод public static Input byId(String) не найден"
+        },
+        {
+          "className": "Input",
+          "methodName": "byName",
+          "returnType": "Input",
+          "parameters": ["String"],
+          "modifiers": ["public", "static"],
+          "required": true,
+          "errorMessage": "Метод public static Input byName(String) не найден"
+        },
+        {
+          "className": "Input",
+          "methodName": "byPlaceholder",
+          "returnType": "Input",
+          "parameters": ["String"],
+          "modifiers": ["public", "static"],
+          "required": true,
+          "errorMessage": "Метод public static Input byPlaceholder(String) не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Input",
+          "methodName": "fill",
+          "requiredMethodCalls": ["clear", "setValue"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод fill() из упражнения 104 должен вызывать clear(), setValue() и возвращать this"
+        },
+        {
+          "className": "Input",
+          "methodName": "byId",
+          "requiredStatements": ["IllegalArgumentException"],
+          "errorMessage": "Метод byId() должен выбрасывать IllegalArgumentException при null или пустой строке"
+        },
+        {
+          "className": "Input",
+          "methodName": "byName",
+          "requiredStatements": ["IllegalArgumentException"],
+          "errorMessage": "Метод byName() должен выбрасывать IllegalArgumentException при null или пустой строке"
+        },
+        {
+          "className": "Input",
+          "methodName": "byPlaceholder",
+          "requiredStatements": ["IllegalArgumentException"],
+          "errorMessage": "Метод byPlaceholder() должен выбрасывать IllegalArgumentException при null или пустой строке"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Input"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block1.InputHarnessTest",
+      "testMethods": ["testByIdNullThrows", "testByIdEmptyThrows", "testByName", "testByPlaceholder"]
+    }
+  }
+}

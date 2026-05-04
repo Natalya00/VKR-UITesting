@@ -1,0 +1,48 @@
+{
+  "id": "module-2-block-6-exercise-6",
+  "title": "Наведение курсора и проверка атрибута title",
+  "description": "Наведите курсор на элемент с ID tooltip и проверьте, что у него появился атрибут title.",
+  "hint": "Используйте hover() для наведения курсора, затем shouldHave(attribute(\"title\")) для проверки наличия атрибута.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "tooltip-container",
+        "style": "max-width: 600px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 184, 148, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Всплывающая подсказка",
+            "style": "color: #2d3748; margin-bottom: 30px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Наведите курсор, чтобы увидеть подсказку",
+            "style": "color: #718096; margin-bottom: 25px; font-size: 14px;"
+          },
+          {
+            "tag": "button",
+            "id": "tooltip",
+            "title": "Это всплывающая подсказка!",
+            "style": "padding: 15px 30px; background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#tooltip"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Наведите курсор на #tooltip и проверьте наличие атрибута title\n\n    }\n}",
+  "order": 57,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["hover", "shouldHave"],
+    "requiredConditions": ["attribute"],
+    "requiredSelectors": ["#tooltip", "title"],
+    "expectedAction": "hover_check_title",
+    "requiredFinder": "$",
+    "errorMessage": "Наведите курсор и проверьте атрибут title"
+  }
+}

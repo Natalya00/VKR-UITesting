@@ -1,0 +1,99 @@
+﻿{
+    "id": "module-3-block-2-exercise-5",
+    "title": "Реализация метода навигации",
+    "description": "Завершите класс LoginPage: инициализируйте элементы в конструкторе и напишите метод clickLoginButton(). Метод должен нажать кнопку входа и вернуть новый объект класса HomePage.",
+    "hint": "Инициализируйте элементы в конструкторе через Input.byId() и new Button(). Метод clickLoginButton() кликает по кнопке через click() и возвращает new HomePage().",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "Input", "Button", "AbstractClickableElement", "Clickable", "HomePage", "ProfilePage"]
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.Input;\nimport com.example.runner.pom.elements.Button;\n\npublic class LoginPage extends BasePage {\n\n    private Input loginInput;\n    private Input passwordInput;\n    private Button submitButton;\n\n    public LoginPage() {\n        super(\"//div[@id='login-page']\");\n    }\n\n    // Реализуйте: public HomePage clickLoginButton()\n    // Кликните кнопку и верните объект HomePage\n\n}\n",
+    "order": 116,
+    "difficulty": "easy",
+    "validationRules": {
+      "astRules": {
+        "classRules": [
+          {
+            "className": "LoginPage",
+            "extendsClass": "BasePage",
+            "required": true,
+            "errorMessage": "Класс LoginPage должен наследоваться от BasePage"
+          }
+        ],
+        "fieldRules": [
+          {
+            "className": "LoginPage",
+            "fieldName": "loginInput",
+            "fieldType": "Input",
+            "required": true,
+            "errorMessage": "Поле loginInput типа Input не найдено"
+          },
+          {
+            "className": "LoginPage",
+            "fieldName": "passwordInput",
+            "fieldType": "Input",
+            "required": true,
+            "errorMessage": "Поле passwordInput типа Input не найдено"
+          },
+          {
+            "className": "LoginPage",
+            "fieldName": "submitButton",
+            "fieldType": "Button",
+            "required": true,
+            "errorMessage": "Поле submitButton типа Button не найдено"
+          }
+        ],
+        "constructorRules": [
+          {
+            "className": "LoginPage",
+            "parameters": [],
+            "required": true,
+            "requiredStatements": ["Input.", "Button"],
+            "errorMessage": "Конструктор должен инициализировать элементы (Input.byId, new Button)"
+          }
+        ],
+        "methodRules": [
+          {
+            "className": "LoginPage",
+            "methodName": "clickLoginButton",
+            "returnType": "HomePage",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public HomePage clickLoginButton() не найден"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "LoginPage",
+            "methodName": "clickLoginButton",
+            "requiredMethodCalls": ["click"],
+            "errorMessage": "Метод clickLoginButton() должен нажимать на кнопку"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["LoginPage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": [
+          "BaseElement",
+          "BasePage",
+          "Input",
+          "Button",
+          "Header", 
+          "Footer",
+          "AbstractClickableElement",
+          "Clickable",
+          "HomePage",
+          "ProfilePage"
+        ],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.LoginPageHarnessTest",
+        "testMethods": [
+          "testClickLoginButtonReturnsHomePage"
+        ]
+      }
+    }
+  }

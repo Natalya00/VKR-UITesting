@@ -1,0 +1,47 @@
+﻿{
+    "id": "module-3-block-2-exercise-8",
+    "title": "Взаимодействие с динамическими списками",
+    "description": "Создайте метод selectFirstAvailableProduct() в классе ProductPage. Метод должен найти первый доступный товар в списке и кликнуть по нему, возвращая объект ItemComponent.",
+    "hint": "Используйте $$x() для поиска всех карточек, отфильтруйте доступные (не disabled), возьмите первый и оберните в ItemComponent.",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer"]
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.ItemComponent;\nimport static com.codeborne.selenide.Selenide.$$x;\n\npublic class ProductPage extends BasePage {\n\n    public ProductPage() { super(\"//div[@id='product-page']\"); }\n\n    // Реализуйте: public ItemComponent selectFirstAvailableProduct()\n\n}\n",
+    "order": 119,
+    "difficulty": "medium",
+    "validationRules": {
+      "astRules": {
+        "methodRules": [
+          {
+            "className": "ProductPage",
+            "methodName": "selectFirstAvailableProduct",
+            "returnType": "ItemComponent",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public ItemComponent selectFirstAvailableProduct() не найден"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "ProductPage",
+            "methodName": "selectFirstAvailableProduct",
+            "requiredMethodCalls": ["$$x", "click"],
+            "errorMessage": "Метод selectFirstAvailableProduct() должен использовать $$x() для поиска коллекции и click() для выбора товара"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["ProductPage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "ItemComponent"],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.ProductPageHarnessTest",
+        "testMethods": ["testSelectFirstAvailableProduct"]
+      },
+      "errorMessage": "ProductPage должен содержать метод selectFirstAvailableProduct(), возвращающий ItemComponent"
+    }
+  }

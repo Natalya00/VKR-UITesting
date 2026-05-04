@@ -1,0 +1,66 @@
+{
+  "id" : "module-1-block-5-task-3",
+  "title" : "Кнопка не disabled",
+  "description" : "Найдите активную кнопку с классом btn в редакторе документа, которая не является disabled.",
+  "hint" : "Функция not() инвертирует условие проверки",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Редактор документа",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "editor-header",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Отчет за 2024 год"
+      }, {
+        "tag" : "p",
+        "text" : "Последнее изменение: 20.01.2025 14:30 | Автор: Иван Петров"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "editor-content",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Финансовые показатели компании"
+      }, {
+        "tag" : "p",
+        "text" : "Финансовые показатели компании за прошедший год демонстрируют стабильный рост. Выручка увеличилась на 15% по сравнению с предыдущим периодом."
+      }, {
+        "tag" : "p",
+        "text" : "Чистая прибыль составила 120 млн рублей, что на 8% выше показателей 2023 года. Рентабельность продаж достигла 22%."
+      }, {
+        "tag" : "p",
+        "text" : "В 2025 году планируется дальнейшее развитие и расширение доли рынка за счет запуска новых продуктовых линеек."
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "button-group",
+      "children" : [ {
+        "tag" : "button",
+        "className" : "btn btn-primary",
+        "data-target" : "true",
+        "text" : "Сохранить"
+      }, {
+        "tag" : "button",
+        "className" : "btn btn-success",
+        "disabled" : "disabled",
+        "text" : "Применить"
+      }, {
+        "tag" : "button",
+        "className" : "btn btn-secondary",
+        "disabled" : "disabled",
+        "text" : "Отмена"
+      } ]
+    } ],
+    "targetSelector" : "//button[@class='btn' and not(@disabled)]"
+  },
+  "initialCode" : "// Введите XPath для поиска кнопки btn, которая не disabled",
+  "order" : 3,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "not(", "@disabled" ],
+    "forbiddenPatterns" : [ "text()", "[1]", "[2]" ],
+    "maxComplexity" : 1
+  }
+}

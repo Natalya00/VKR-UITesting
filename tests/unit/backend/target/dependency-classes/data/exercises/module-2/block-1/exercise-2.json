@@ -1,0 +1,60 @@
+{
+  "id": "module-2-block-1-exercise-2",
+  "title": "Клик по ссылке с текстом",
+  "description": "Нажмите на ссылку с текстом \"О проекте\" в навигационном меню сайта.",
+  "hint": "Используйте селектор по тексту: $(byText(\"...\")).click();",
+  "trainingComponent": "NavigationTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "horizontal",
+    "menuId": "main-menu",
+    "items": [
+      {
+        "text": "Главная",
+        "href": "#home",
+        "dataPage": "home",
+        "className": "nav-item"
+      },
+      {
+        "text": "О проекте",
+        "href": "#about",
+        "className": "nav-link"
+      },
+      {
+        "text": "Контакты",
+        "href": "#contact",
+        "dataPage": "contact",
+        "className": "nav-item"
+      },
+      {
+        "text": "Меню",
+        "href": "#menu",
+        "id": "menu-item",
+        "className": "menu-item",
+        "hasSubmenu": true,
+        "submenu": [
+          {
+            "text": "Подпункт 1",
+            "href": "#sub1"
+          },
+          {
+            "text": "Подпункт 2",
+            "href": "#sub2"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "a[href='#about']"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Selectors.*;\n\npublic class UserScript {\n    public static void run() {\n        // Кликните по ссылке \"О проекте\"\n\n    }\n}",
+  "order": 2,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click"],
+    "requiredSelectors": ["byText"],
+    "expectedAction": "click",
+    "expectedElementType": "a",
+    "requiredFinder": "$",
+    "errorMessage": "Нажмите на ссылку с текстом \"О проекте\""
+  }
+}

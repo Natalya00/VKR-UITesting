@@ -1,0 +1,58 @@
+{
+  "id": "module-2-block-4-exercise-18",
+  "title": "Проверка количества опций в списке",
+  "description": "Проверьте, что в выпадающем списке всего 3 доступных варианта.",
+  "hint": "Для проверки количества опций в выпадающем списке используйте метод shouldHave(size()), применённый к коллекции $$(\"option\"), полученной от элемента списка.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "tariff-form",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(237, 137, 54, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Выбор тарифного плана",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "className": "form-group",
+            "style": "margin: 20px 0;",
+            "children": [
+              {
+                "tag": "label",
+                "text": "Выберите тариф:",
+                "style": "display: block; margin-bottom: 10px; color: #4a5568; font-weight: 600; font-size: 15px;"
+              },
+              {
+                "tag": "select",
+                "id": "dropdown",
+                "style": "width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 16px; background: white; cursor: pointer; transition: border-color 0.2s;",
+                "children": [
+                  {"tag": "option", "text": "Starter - Базовый план"},
+                  {"tag": "option", "text": "Professional - Для команд"},
+                  {"tag": "option", "text": "Enterprise - Для бизнеса"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#dropdown"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.CollectionCondition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте, что в выпадающем списке ровно 3 опции\n\n    }\n}",
+  "order": 39,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["shouldHave", "size"],
+    "requiredSelectors": ["#dropdown"],
+    "expectedAction": "check_options_size",
+    "requiredFinder": "$",
+    "errorMessage": "Проверьте количество опций в выпадающем списке"
+  }
+}

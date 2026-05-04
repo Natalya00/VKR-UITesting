@@ -1,0 +1,58 @@
+{
+  "id": "module-2-block-4-exercise-14",
+  "title": "Выбор опции по индексу",
+  "description": "В выпадающем списке выберите вариант с индексом 2 (последний в списке).",
+  "hint": "Используйте $(\"...\").selectOption(индекс) для выбора опции по индексу.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "subscription-form",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Уровень подписки",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "className": "form-group",
+            "style": "margin: 20px 0;",
+            "children": [
+              {
+                "tag": "label",
+                "text": "Выберите уровень подписки:",
+                "style": "display: block; margin-bottom: 10px; color: #4a5568; font-weight: 600; font-size: 15px;"
+              },
+              {
+                "tag": "select",
+                "id": "dropdown",
+                "style": "width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 16px; background: white; cursor: pointer; transition: border-color 0.2s;",
+                "children": [
+                  {"tag": "option", "text": "Basic", "selected": true},
+                  {"tag": "option", "text": "Premium"},
+                  {"tag": "option", "text": "Enterprise"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#dropdown"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\n\npublic class UserScript {\n    public static void run() {\n        // Выберите опцию с индексом 2\n\n    }\n}",
+  "order": 35,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["selectOption"],
+    "requiredSelectors": ["#dropdown"],
+    "expectedAction": "select_option_by_index",
+    "requiredFinder": "$",
+    "errorMessage": "Выберите опцию по индексу"
+  }
+}

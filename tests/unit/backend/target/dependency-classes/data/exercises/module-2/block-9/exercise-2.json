@@ -1,0 +1,42 @@
+{
+  "id": "module-2-block-9-exercise-2",
+  "title": "Получение текущего URL",
+  "description": "Как получить текущий URL страницы в Selenide?",
+  "hint": "Правильный ответ: WebDriverRunner.url()",
+  "trainingComponent": "QuizTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "disableIDE": true,
+    "layout": "quiz",
+    "question": "Как получить текущий URL страницы в Selenide?",
+    "options": [
+      {
+        "label": "A",
+        "text": "getUrl()"
+      },
+      {
+        "label": "B",
+        "text": "driver.getCurrent()"
+      },
+      {
+        "label": "C",
+        "text": "WebDriverRunner.url()"
+      },
+      {
+        "label": "D",
+        "text": "currentUrl()"
+      }
+    ],
+    "correctAnswer": "C"
+  },
+  "initialCode": "// Выберите правильный ответ: A, B, C или D\n// Правильный ответ: C\n\npublic class UserScript {\n    public static void run() {\n        // String url = WebDriverRunner.url();\n    }\n}",
+  "order": 82,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": [],
+    "requiredSelectors": [],
+    "expectedAction": "quiz_answer_c",
+    "requiredFinder": "$",
+    "errorMessage": "Правильный ответ: C - WebDriverRunner.url()"
+  }
+}

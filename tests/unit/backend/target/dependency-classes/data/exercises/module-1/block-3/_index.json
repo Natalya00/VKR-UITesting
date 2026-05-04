@@ -1,0 +1,7 @@
+{
+  "blockId" : "block-3",
+  "title" : "Иерархия. Предки, потомки и «соседи»",
+  "difficulty" : "hard",
+  "description" : "Оси XPath: parent, child, following-sibling, ancestor, following",
+  "exerciseCount" : 9
+}

@@ -1,0 +1,48 @@
+{
+  "id": "module-2-block-4-exercise-10",
+  "title": "Фильтрация коллекции по тексту",
+  "description": "В коллекции задач .task выберите элементы с текстом, содержащим \"Urgent\", и проверьте их количество.",
+  "hint": "Используйте filter() с text() для фильтрации по тексту и shouldHave(size(...)) для проверки количества.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "urgent-tasks-container",
+        "style": "max-width: 700px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(229, 62, 62, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Срочные задачи",
+            "style": "color: #c53030; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "ul",
+            "className": "tasks",
+            "style": "list-style: none; padding: 0; margin: 0;",
+            "children": [
+              {"tag": "li", "className": "task", "text": "Обычная задача: Обновить документацию", "style": "padding: 18px 24px; background: #f8f9fa; border-left: 4px solid #6c757d; margin: 12px 0; border-radius: 8px; color: #495057; font-size: 15px;"},
+              {"tag": "li", "className": "task", "text": "Urgent: Исправить критический баг", "style": "padding: 18px 24px; background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%); border-left: 4px solid #e53e3e; margin: 12px 0; border-radius: 8px; color: #c53030; font-size: 15px; font-weight: 600;"},
+              {"tag": "li", "className": "task", "text": "Обычная задача: Провести код-ревью", "style": "padding: 18px 24px; background: #f8f9fa; border-left: 4px solid #6c757d; margin: 12px 0; border-radius: 8px; color: #495057; font-size: 15px;"},
+              {"tag": "li", "className": "task", "text": "Urgent: Обновить сертификаты безопасности", "style": "padding: 18px 24px; background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%); border-left: 4px solid #e53e3e; margin: 12px 0; border-radius: 8px; color: #c53030; font-size: 15px; font-weight: 600;"},
+              {"tag": "li", "className": "task", "text": "Обычная задача: Написать тесты", "style": "padding: 18px 24px; background: #f8f9fa; border-left: 4px solid #6c757d; margin: 12px 0; border-radius: 8px; color: #495057; font-size: 15px;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".task"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\nimport static com.codeborne.selenide.CollectionCondition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Отфильтруйте .task по тексту \"Urgent\" и проверьте, что их ровно 2\n\n    }\n}",
+  "order": 31,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["filter", "text", "shouldHave", "size"],
+    "requiredSelectors": [".task", "Urgent"],
+    "expectedAction": "filter_by_text_and_check_size",
+    "requiredFinder": "$$",
+    "errorMessage": "Отфильтруйте элементы по тексту и проверьте количество"
+  }
+}

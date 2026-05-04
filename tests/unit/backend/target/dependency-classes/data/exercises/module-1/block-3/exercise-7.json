@@ -1,0 +1,55 @@
+{
+  "id" : "module-1-block-3-task-7",
+  "title" : "Поиск цены в строке таблицы",
+  "description" : "Найдите цену товара 'Продукт A' в третьей колонке таблицы.",
+  "hint" : "Индексы в XPath начинаются с 1, а не с 0",
+  "trainingComponent" : "TableTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Каталог товаров",
+    "columns" : [ "Название", "Категория", "Цена", "Наличие" ],
+    "rows" : [ {
+      "cells" : [ {
+        "text" : "Продукт A"
+      }, {
+        "text" : "Электроника"
+      }, {
+        "text" : "15 990 ₽",
+        "className" : "price",
+        "data-target": true
+      }, {
+        "text" : "В наличии"
+      } ]
+    }, {
+      "cells" : [ {
+        "text" : "Продукт B"
+      }, {
+        "text" : "Одежда"
+      }, {
+        "text" : "3 500 ₽",
+        "className" : "price"
+      }, {
+        "text" : "Нет в наличии"
+      } ]
+    }, {
+      "cells" : [ {
+        "text" : "Продукт C"
+      }, {
+        "text" : "Книги"
+      }, {
+        "text" : "890 ₽",
+        "className" : "price"
+      }, {
+        "text" : "В наличии"
+      } ]
+    } ],
+    "targetSelector" : "//tr[.//td[text()='Продукт A']]//td[3]"
+  },
+  "initialCode" : "// Введите XPath для поиска цены товара \"Продукт A\"",
+  "order" : 7,
+  "difficulty" : "hard",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "//tr", ".//" ],
+    "forbiddenPatterns" : [ ],
+    "maxComplexity" : 3
+  }
+}

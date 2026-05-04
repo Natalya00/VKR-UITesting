@@ -1,0 +1,20 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+COPY public ./public
+COPY client ./src
+COPY tsconfig.json ./
+
+RUN --mount=type=cache,target=/root/.npm npm ci
+
+ENV HOST=0.0.0.0 \
+    PORT=5173 \
+    CI=false \
+    BROWSER=none \
+    REACT_APP_API_BASE_URL=http://localhost:8080
+
+EXPOSE 5173
+
+CMD ["npm", "start"]

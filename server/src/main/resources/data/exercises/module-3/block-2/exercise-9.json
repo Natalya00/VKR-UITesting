@@ -1,0 +1,47 @@
+﻿{
+    "id": "module-3-block-2-exercise-9",
+    "title": "Поиск элементов по параметрам",
+    "description": "В классе ProductPage реализуйте метод getProductCardByName(String name), который возвращает компонент карточки по названию или null если не найден.",
+    "hint": "Используйте $$x() для поиска всех карточек, фильтруйте по тексту заголовка. Верните Optional или null для безопасной работы.",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "ItemComponent"]
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.ItemComponent;\nimport java.util.Optional;\n\npublic class ProductPage extends BasePage {\n\n    public ProductPage() { super(\"//div[@id='product-page']\"); }\n\n    // Реализуйте: public Optional<ItemComponent> getProductCardByName(String name)\n    // Верните Optional.empty() если не найдено\n\n}\n",
+    "order": 120,
+    "difficulty": "medium",
+    "validationRules": {
+      "astRules": {
+        "methodRules": [
+          {
+            "className": "ProductPage",
+            "methodName": "getProductCardByName",
+            "parameters": ["String"],
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод getProductCardByName(String) не найден"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "ProductPage",
+            "methodName": "getProductCardByName",
+            "requiredMethodCalls": ["$$x", "getText"],
+            "errorMessage": "Метод getProductCardByName() должен использовать $$x() для поиска и getText() для проверки названия"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["ProductPage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "ItemComponent"],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.ProductPageHarnessTest",
+        "testMethods": ["testGetProductCardByName", "testGetProductCardByNameNotFound"]
+      },
+      "errorMessage": "ProductPage должен содержать метод getProductCardByName(String), возвращающий Optional<ItemComponent>"
+    }
+  }

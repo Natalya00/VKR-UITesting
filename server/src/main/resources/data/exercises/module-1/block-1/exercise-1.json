@@ -1,0 +1,48 @@
+{
+  "id": "module-1-block-1-task-1",
+  "title": "Поиск по id",
+  "description": "Найдите поле ввода email в форме регистрации по его уникальному атрибуту id.",
+  "hint": "Для поиска по уникальному идентификатору используйте атрибут @id",
+  "trainingComponent": "SimpleElementTrainer",
+  "componentConfig": {
+    "element": {
+      "tag": "input",
+      "id": "email",
+      "type": "email",
+      "placeholder": "example@mail.com",
+      "data-target": "true"
+    },
+    "formTitle": "Регистрация на сайте",
+    "additionalFields": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Имя",
+        "id": "name"
+      },
+      {
+        "tag": "input",
+        "type": "password",
+        "placeholder": "Пароль",
+        "id": "password"
+      },
+      {
+        "tag": "button",
+        "type": "submit",
+        "text": "Зарегистрироваться"
+      }
+    ],
+    "targetSelector": "#email"
+  },
+  "initialCode": "// Введите XPath для поиска input с id=\\\"email\\\"",
+  "order": 1,
+  "difficulty": "easy",
+  "expectedSyntax": {
+    "requiredPatterns": ["@id"],
+    "forbiddenPatterns": ["text()", "[1]", "[2]", "position()"],
+    "maxComplexity": 1,
+    "exactOnly": {
+      "attributes": ["id"]
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id" : "module-1-block-2-task-9",
+  "title" : "Поиск кнопки без учёта регистра",
+  "description" : "Найдите все кнопки 'Сохранить' в панели администратора независимо от регистра букв.",
+  "hint" : "Функция translate() заменяет символы в строке для сравнения без учета регистра",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Панель администратора",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "admin-header",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Настройки системы"
+      }, {
+        "tag" : "p",
+        "text" : "Управление конфигурацией и параметрами приложения"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "settings-section",
+      "children" : [ {
+        "tag" : "h4",
+        "text" : "Общие настройки"
+      }, {
+        "tag" : "p",
+        "text" : "Язык интерфейса: Русский"
+      }, {
+        "tag" : "p",
+        "text" : "Часовой пояс: UTC+3"
+      }, {
+        "tag" : "button",
+        "className" : "btn",
+        "text" : "СОХРАНИТЬ",
+        "data-target" : "true"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "settings-section",
+      "children" : [ {
+        "tag" : "h4",
+        "text" : "Уведомления"
+      }, {
+        "tag" : "p",
+        "text" : "Email-уведомления: Да"
+      }, {
+        "tag" : "p",
+        "text" : "Звуковые: Нет"
+      }, {
+        "tag" : "button",
+        "className" : "btn",
+        "text" : "Сохранить",
+        "data-target" : "true"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "settings-section",
+      "children" : [ {
+        "tag" : "h4",
+        "text" : "Безопасность"
+      }, {
+        "tag" : "p",
+        "text" : "2FA: Включена"
+      }, {
+        "tag" : "button",
+        "className" : "btn",
+        "text" : "сохранить",
+        "data-target" : "true"
+      } ]
+    } ],
+    "targetSelector" : "//button[translate(text(), 'А-ЯЁ', 'а-яё')='сохранить']"
+  },
+  "initialCode" : "// Введите XPath для поиска button с текстом \"сохранить\" (без учёта регистра)",
+  "order" : 9,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "translate(" ],
+    "forbiddenPatterns" : [ "[1]", "[2]" ],
+    "maxComplexity" : 1,
+    "requireAllTargets" : true
+  }
+}

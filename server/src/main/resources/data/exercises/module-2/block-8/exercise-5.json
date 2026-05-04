@@ -1,0 +1,57 @@
+{
+    "id": "module-2-block-8-exercise-5",
+    "title": "Изменение данных во вложенном фрейме",
+    "description": "На странице размён внешний фрейм, внутри которого — вложенный фрейм с полем. Переключитесь в каждый фрейм последовательно, измените значение поля. Затем вернитесь на уровень вверх через parentFrame() и проверьте заголовок родительского фрейма.",
+    "hint": "Последовательно переключитесь в каждый фрейм, измените значение поля через setValue(), вернитесь в родительский фрейм через switchTo().parentFrame() и проверьте текст заголовка.",
+    "trainingComponent": "PageTrainer",
+    "componentConfig": {
+      "disableDynamicAttrs": true,
+      "layout": "default",
+      "containerStyle": {
+        "maxWidth": "960px",
+        "width": "100%",
+        "margin": "40px auto",
+        "padding": "40px"
+      },
+      "elements": [
+        {
+          "tag": "div",
+          "style": "width: 100%; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); padding: 40px; box-sizing: border-box;",
+          "children": [
+            {
+              "tag": "h1",
+              "text": "Редактирование во вложенном фрейме",
+              "style": "color: #1a202c; margin: 0 0 12px; font-size: 28px; font-weight: 700; text-align: center;"
+            },
+            {
+              "tag": "iframe",
+              "id": "outer-frame",
+              "name": "outer-frame",
+              "style": "width: 100%; height: 500px; border: 2px solid #fbd38d; border-radius: 12px; display: block;",
+              "srcDoc": "<!DOCTYPE html><html><head><style>*{box-sizing:border-box;}body{font-family:Inter,sans-serif;margin:0;padding:24px;background:#fffaf0;}h3{color:#7b341e;font-size:18px;margin:0 0 16px;font-weight:600;}iframe{width:100%;height:320px;border:2px solid #fbd38d;border-radius:10px;display:block;}</style><script>window.__uiState={};</script></head><body><h3 id=\"parent-title\">Родительский фрейм (outer-frame)</h3><iframe id=\"inner-frame\" name=\"inner-frame\" srcdoc=\"&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;style&gt;*{box-sizing:border-box;}body{font-family:Inter,sans-serif;margin:0;padding:24px;background:#fff;}h4{color:#7b341e;font-size:16px;margin:0 0 14px;font-weight:600;}label{display:block;color:#4a5568;margin-bottom:8px;font-weight:500;font-size:14px;}input{width:100%;padding:12px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;}input:focus{border-color:#fbd38d;}&lt;/style&gt;&lt;script&gt;window.__uiState={inputFilled:false};&lt;/script&gt;&lt;/head&gt;&lt;body&gt;&lt;h4&gt;Внутренний фрейм (inner-frame)&lt;/h4&gt;&lt;label&gt;Измените значение:&lt;/label&gt;&lt;input id='input-inside' type='text' value='Исходное значение' /&gt;&lt;script&gt;document.getElementById('input-inside').addEventListener('input',function(){window.__uiState.inputFilled=this.value!=='Исходное значение';});&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;\"></iframe></body></html>",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Переключитесь во вложенный фрейм, измените значение и проверьте заголовок в родительском\n\n    }\n}",
+    "order": 79,
+    "difficulty": "medium",
+    "validationRules": {
+      "requiredMethods": [
+        "switchTo",
+        "frame",
+        "setValue",
+        "parentFrame",
+        "shouldHave",
+        "text"
+      ],
+      "requiredSelectors": [
+        "outer-frame",
+        "inner-frame"
+      ],
+      "requiredFinder": "$",
+      "errorMessage": "Переключитесь во вложенный фрейм, измените значение и вернитесь в родительский"
+    }
+  }

@@ -1,0 +1,132 @@
+﻿{
+  "id": "module-3-block-3-exercise-4",
+  "title": "Наследование специфичных страниц",
+  "description": "Создайте промежуточный класс AdminBasePage, наследующий BasePage. Добавьте protected поля sidebarMenu и userManagementButton. Реализуйте методы: openSidebar() — кликает по sidebarMenu и возвращает this, goToUserManagement() — кликает по userManagementButton и возвращает this, getPageTitle() — возвращает заголовок страницы. Создайте AdminUsersPage, наследующий AdminBasePage, и переопределите getPageTitle() для возврата специфичного заголовка.",
+  "hint": "Создайте класс AdminBasePage, наследующий BasePage. Объявите два защищённых поля — sidebarMenu и userManagementButton типа Button, инициализированные через Button.byId(). Реализуйте метод openSidebar(), который кликает по sidebarMenu и возвращает this, метод goToUserManagement(), кликающий по userManagementButton и возвращающий this, и метод getPageTitle(), возвращающий строку с заголовком страницы. Затем создайте класс AdminUsersPage, наследующий AdminBasePage, и переопределите метод getPageTitle() с аннотацией @Override, чтобы вернуть специфичный заголовок страницы управления пользователями.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BasePage", "Header", "Footer", "Button"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.Button;\n\n/**\n * Базовая страница для панели администратора.\n */\npublic class AdminBasePage extends BasePage {\n\n    // Объявите поля sidebarMenu, userManagementButton типа Button\n\n    public AdminBasePage(String xpath) {\n        super(xpath);\n    }\n\n    // Реализуйте метод openSidebar() — кликните по sidebarMenu и верните this\n\n    // Реализуйте метод goToUserManagement() — кликните по userManagementButton и верните this\n\n    // Реализуйте метод getPageTitle() — верните заголовок страницы\n\n}\n\n---\n\npackage com.example.runner.pom.pages;\n\n/**\n * Страница управления пользователями.\n */\npublic class AdminUsersPage extends AdminBasePage {\n\n    public AdminUsersPage() {\n        super(\"//div[@id='admin-users-page']\");\n    }\n\n    // Переопределите getPageTitle() — верните \"Управление пользователями\"\n\n}\n",
+  "order": 128,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "AdminBasePage",
+          "extendsClass": "BasePage",
+          "required": true,
+          "errorMessage": "Класс AdminBasePage должен наследоваться от BasePage"
+        },
+        {
+          "className": "AdminUsersPage",
+          "extendsClass": "AdminBasePage",
+          "required": true,
+          "errorMessage": "Класс AdminUsersPage должен наследоваться от AdminBasePage"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "AdminBasePage",
+          "fieldName": "sidebarMenu",
+          "fieldType": "Button",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected sidebarMenu типа Button не найдено"
+        },
+        {
+          "className": "AdminBasePage",
+          "fieldName": "userManagementButton",
+          "fieldType": "Button",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected userManagementButton типа Button не найдено"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "AdminBasePage",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Конструктор AdminBasePage(String xpath) не найден"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "AdminBasePage",
+          "methodName": "openSidebar",
+          "returnType": "AdminBasePage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод openSidebar() не найден"
+        },
+        {
+          "className": "AdminBasePage",
+          "methodName": "goToUserManagement",
+          "returnType": "AdminBasePage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод goToUserManagement() не найден"
+        },
+        {
+          "className": "AdminBasePage",
+          "methodName": "getPageTitle",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getPageTitle() не найден"
+        },
+        {
+          "className": "AdminUsersPage",
+          "methodName": "getPageTitle",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getPageTitle() в AdminUsersPage не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "AdminBasePage",
+          "methodName": "openSidebar",
+          "requiredMethodCalls": ["click"],
+          "mustReturnThis": true,
+          "errorMessage": "openSidebar() должен кликать и возвращать this"
+        },
+        {
+          "className": "AdminBasePage",
+          "methodName": "goToUserManagement",
+          "requiredMethodCalls": ["click"],
+          "mustReturnThis": true,
+          "errorMessage": "goToUserManagement() должен кликать и возвращать this"
+        },
+        {
+          "className": "AdminBasePage",
+          "methodName": "getPageTitle",
+          "requiredStatements": ["return"],
+          "errorMessage": "getPageTitle() должен возвращать значение"
+        },
+        {
+          "className": "AdminUsersPage",
+          "methodName": "getPageTitle",
+          "requiredStatements": ["return"],
+          "errorMessage": "AdminUsersPage.getPageTitle() должен содержать оператор return"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["AdminBasePage", "AdminUsersPage"],
+      "extendsRules": ["AdminBasePage:BasePage", "AdminUsersPage:AdminBasePage"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "Button", "AbstractClickableElement", "Clickable", "Input"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block3.AdminPageHarnessTest",
+      "testMethods": ["testAdminBasePageExtendsBasePage", "testAdminUsersPageExtendsAdminBasePage", "testOpenSidebar", "testGoToUserManagement", "testGetPageTitle"]
+    },
+    "errorMessage": "AdminBasePage: extends BasePage, sidebarMenu, userManagementButton, openSidebar→this, goToUserManagement→this, getPageTitle→String. AdminUsersPage: extends AdminBasePage, @Override getPageTitle."
+  }
+}

@@ -1,0 +1,77 @@
+﻿{
+    "id": "module-3-block-2-exercise-1",
+    "title": "Создание базового класса BasePage",
+    "description": "Напишите класс BasePage — родитель для всех страниц. Реализуйте поле basePage типа SelenideElement через XPath и защищённый конструктор. Добавьте метод refresh(), который обновляет страницу и возвращает объект текущего класса.",
+    "hint": "Для refresh() используйте Selenide.refresh(). Чтобы вернуть текущий класс используйте (T) this с @SuppressWarnings.",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": []
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Selenide.$x;\nimport static com.codeborne.selenide.Selenide.refresh;\n\npublic class BasePage {\n\n    // Добавьте поле basePage типа SelenideElement\n\n    // Добавьте protected конструктор принимающий String xpath\n\n    // Реализуйте метод refresh() — обновляет страницу и возвращает this\n\n}\n",
+    "order": 112,
+    "difficulty": "easy",
+    "validationRules": {
+      "astRules": {
+        "classRules": [
+          {
+            "className": "BasePage",
+            "required": true,
+            "errorMessage": "Класс BasePage не найден"
+          }
+        ],
+        "fieldRules": [
+          {
+            "className": "BasePage",
+            "fieldName": "basePage",
+            "fieldType": "SelenideElement",
+            "modifiers": [
+              "protected"
+            ],
+            "required": true,
+            "errorMessage": "Поле protected SelenideElement basePage не найдено"
+          }
+        ],
+        "constructorRules": [
+          {
+            "className": "BasePage",
+            "parameters": [
+              "String"
+            ],
+            "modifiers": [
+              "protected"
+            ],
+            "required": true,
+            "errorMessage": "Конструктор protected BasePage(String xpath) не найден"
+          }
+        ],
+        "methodRules": [
+          {
+            "className": "BasePage",
+            "methodName": "refresh",
+            "required": true,
+            "errorMessage": "Метод refresh() не найден"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "BasePage",
+            "methodName": "refresh",
+            "requiredMethodCalls": [
+              "refresh"
+            ],
+            "requiredStatements": ["Selenide.refresh"],
+            "mustReturnThis": true,
+            "errorMessage": "Метод refresh() должен вызывать Selenide.refresh() и возвращать this"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["BasePage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": [],
+        "compileOnly": true
+      }
+    }
+  }

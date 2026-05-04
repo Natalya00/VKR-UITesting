@@ -1,0 +1,58 @@
+{
+  "id": "module-2-block-4-exercise-15",
+  "title": "Проверка выбранной опции",
+  "description": "Проверьте, что в выпадающем списке сейчас выбран текст \"Русский\".",
+  "hint": "Используйте getSelectedOption().shouldHave(text(\"...\")) для проверки выбранной опции.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "language-form",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(72, 187, 120, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Выбор языка интерфейса",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "className": "form-group",
+            "style": "margin: 20px 0;",
+            "children": [
+              {
+                "tag": "label",
+                "text": "Язык интерфейса:",
+                "style": "display: block; margin-bottom: 10px; color: #4a5568; font-weight: 600; font-size: 15px;"
+              },
+              {
+                "tag": "select",
+                "id": "dropdown-lang",
+                "style": "width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 16px; background: white; cursor: pointer; transition: border-color 0.2s;",
+                "children": [
+                  {"tag": "option", "value": "ru", "text": "Русский", "selected": true},
+                  {"tag": "option", "value": "en", "text": "English"},
+                  {"tag": "option", "value": "es", "text": "Español"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#dropdown-lang"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте, что в выпадающем списке выбран текст \"Русский\"\n\n    }\n}",
+  "order": 36,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["getSelectedOption", "shouldHave", "text"],
+    "requiredSelectors": ["#dropdown-lang", "Русский"],
+    "expectedAction": "check_selected_option",
+    "requiredFinder": "$",
+    "errorMessage": "Проверьте, что выбрана опция \"Русский\""
+  }
+}

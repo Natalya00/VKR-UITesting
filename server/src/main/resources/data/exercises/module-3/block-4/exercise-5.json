@@ -1,0 +1,124 @@
+{
+  "id": "module-3-block-4-exercise-5",
+  "title": "Компонент уведомлений с ожиданием исчезновения",
+  "description": "Создайте компонент AlertBanner для работы с всплывающими уведомлениями. Реализуйте методы: getMessage() → String, dismiss() → AlertBanner, isDisplayed() → boolean и waitForDismiss(long timeoutMs) — ожидание полного исчезновения баннера. Также создайте компонент NotificationList, который находит все видимые уведомления на странице и закрывает их по очереди.",
+  "hint": "Создайте компонент AlertBanner, наследующий BaseComponent. Реализуйте метод getMessage(), который находит текст уведомления через $x() и возвращает его. Метод dismiss() находит кнопку закрытия через $x(), кликает по ней и возвращает this. Метод isDisplayed() проверяет видимость baseElement и возвращает boolean. Метод waitForDismiss(long timeoutMs) ожидает исчезновения баннера через shouldNotBe(Condition.visible, Duration) с таймаутом, переведённым в миллисекунды. Также создайте компонент NotificationList, который принимает SelenideElement-контейнер, а его метод dismissAll() находит все видимые элементы через $$, создаёт для каждого AlertBanner и вызывает dismiss().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент всплывающего уведомления.\n */\npublic class AlertBanner extends BaseComponent {\n\n    public AlertBanner(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод getMessage()\n    // Верните текст уведомления.\n\n    // Реализуйте метод dismiss()\n    // Закройте уведомление через клик по кнопке.\n\n    // Реализуйте метод isDisplayed()\n    // Проверьте, отображается ли баннер.\n\n    // Реализуйте метод waitForDismiss(long timeoutMs)\n    // Ожидает, что баннер исчезнет в течение указанного таймаута.\n\n}\n\n---\n\npackage com.example.runner.pom.components;\n\nimport com.codeborne.selenide.ElementsCollection;\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент списка уведомлений.\n * Управляет несколькими AlertBanner.\n */\npublic class NotificationList extends BaseComponent {\n\n    public NotificationList(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод dismissAll()\n    // Закройте все уведомления на странице.\n\n}\n",
+  "order": 136,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "AlertBanner",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс AlertBanner должен наследоваться от BaseComponent"
+        },
+        {
+          "className": "NotificationList",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс NotificationList должен наследоваться от BaseComponent"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "AlertBanner",
+          "methodName": "getMessage",
+          "returnType": "String",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getMessage() не найден в классе AlertBanner"
+        },
+        {
+          "className": "AlertBanner",
+          "methodName": "dismiss",
+          "returnType": "AlertBanner",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод dismiss() не найден в классе AlertBanner"
+        },
+        {
+          "className": "AlertBanner",
+          "methodName": "isDisplayed",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isDisplayed() не найден в классе AlertBanner"
+        },
+        {
+          "className": "AlertBanner",
+          "methodName": "waitForDismiss",
+          "parameters": ["long"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод waitForDismiss(long) не найден в классе AlertBanner"
+        },
+        {
+          "className": "NotificationList",
+          "methodName": "dismissAll",
+          "returnType": "NotificationList",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод dismissAll() не найден в классе NotificationList"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "AlertBanner",
+          "methodName": "getMessage",
+          "requiredMethodCalls": ["$x", "getText"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод getMessage() должен находить текст уведомления и возвращать его"
+        },
+        {
+          "className": "AlertBanner",
+          "methodName": "dismiss",
+          "requiredMethodCalls": ["$x", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод dismiss() должен находить кнопку закрытия, кликать и возвращать this"
+        },
+        {
+          "className": "AlertBanner",
+          "methodName": "isDisplayed",
+          "requiredMethodCalls": ["isDisplayed"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод isDisplayed() должен проверять видимость baseElement"
+        },
+        {
+          "className": "AlertBanner",
+          "methodName": "waitForDismiss",
+          "requiredMethodCalls": ["shouldNotBe"],
+          "requiredStatements": ["Duration"],
+          "errorMessage": "Метод waitForDismiss() должен использовать shouldNotBe(Condition.visible, Duration) для ожидания"
+        },
+        {
+          "className": "NotificationList",
+          "methodName": "dismissAll",
+          "requiredMethodCalls": ["$$"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод dismissAll() должен находить все баннеры через $$ и закрыть каждый"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["AlertBanner", "NotificationList"],
+      "extendsRules": ["AlertBanner:BaseComponent", "NotificationList:BaseComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.AlertBannerHarnessTest",
+      "testMethods": ["testGetMessage", "testDismiss", "testWaitForDismiss", "testIsDisplayedReturnsTrue", "testDismissReturnsThis", "testNotificationListDismissAll"]
+    },
+    "errorMessage": "AlertBanner должен содержать getMessage(), dismiss(), isDisplayed(), waitForDismiss(). NotificationList должен содержать dismissAll()."
+  }
+}

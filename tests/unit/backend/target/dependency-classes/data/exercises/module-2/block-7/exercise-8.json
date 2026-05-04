@@ -1,0 +1,54 @@
+{
+  "id": "module-2-block-7-exercise-8",
+  "title": "Проверка текста и отмена Alert",
+  "description": "Нажмите кнопку, проверьте текст появившегося окна подтверждения и отмените его. Используйте WebDriverWait и ExpectedConditions.alertIsPresent() перед проверкой текста, так как alert появляется с небольшой задержкой и может быть не готов мгновенно после клика. Ожидаемый текст: \"Внимание! Проверьте это сообщение перед продолжением\". Текст проверяйте через assert text.equals(\"...\").",
+  "hint": "Нажмите кнопку, дождитесь alert через WebDriverWait и ExpectedConditions.alertIsPresent(), прочитайте текст через switchTo().alert().getText(), проверьте через assert text.equals(\"...\"), затем отмените через dismiss().",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; document.getElementById('alert-dismiss-btn')?.addEventListener('click', function() { window.__uiState.alertDismissBtnClicked = true; window.__uiState.alertDismissed = false; setTimeout(function() { const result = confirm('Внимание! Проверьте это сообщение перед продолжением'); if(!result) { window.__uiState.alertDismissed = true; const resultEl = document.getElementById('alert-dismissed-result'); if(resultEl) { resultEl.textContent = 'Alert отменён после проверки текста'; resultEl.style.display = 'block'; } } }, 100); }, { once: true }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "alert-dismiss-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%); border-radius: 20px; box-shadow: 0 20px 60px rgba(229, 62, 62, 0.3); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Проверка и отмена",
+            "style": "color: white; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Проверьте текст сообщения и отмените окно",
+            "style": "color: rgba(255,255,255,0.9); margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "alert-dismiss-btn",
+            "text": "Показать Alert",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(229, 62, 62, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "alert-dismissed-result",
+            "text": "Alert отменён после проверки текста",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#alert-dismiss-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport com.codeborne.selenide.WebDriverRunner;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\nimport org.openqa.selenium.support.ui.WebDriverWait;\nimport java.time.Duration;\n\npublic class UserScript {\n    public static void run() {\n        // Нажмите кнопку, дождитесь alert, проверьте текст и отмените окно\n\n    }\n}",
+  "order": 67,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["click", "until", "getText", "switchTo", "alert", "dismiss", "getWebDriver", "ofSeconds", "alertIsPresent", "equals"],
+    "requiredSelectors": ["#alert-dismiss-btn"],
+    "expectedAction": "verify_and_dismiss",
+    "requiredFinder": "$",
+    "errorMessage": "Проверьте текст и отмените окно"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "ui-testing-trainer-tests",
+  "version": "1.0.0",
+  "description": "Тесты для системы обучения UI-тестированию",
+  "scripts": {
+    "test": "npm run test:unit && npm run test:integration && npm run test:ui",
+    "test:unit": "npm run test:unit:frontend && npm run test:unit:backend",
+    "test:unit:frontend": "cd unit/frontend && npm test",
+    "test:unit:backend": "cd unit/backend && mvn test",
+    "test:integration": "cd integration && npm test",
+    "test:ui": "cd ui && npm test",
+    "install:all": "npm run install:unit && npm run install:integration && npm run install:ui",
+    "install:unit": "cd unit/frontend && npm install",
+    "install:integration": "cd integration && npm install", 
+    "install:ui": "cd ui && npm install"
+  },
+  "keywords": ["testing", "ui-testing", "selenide", "react", "spring-boot"],
+  "author": "Diploma Project",
+  "license": "MIT"
+}

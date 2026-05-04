@@ -1,0 +1,79 @@
+﻿{
+  "id": "module-3-block-1-exercise-2",
+  "title": "Реализация логики ожидания",
+  "description": "Добавьте в класс BaseElement константу WAIT_SECONDS (5 секунд) и метод isDisplayed(), который использует shouldBe(visible) с таймаутом. Метод должен возвращать true если элемент стал видимым, и false при перехвате исключения ElementNotFound.",
+  "hint": "Используйте статическую константу для времени ожидания (int). В методе isDisplayed() вызовите shouldBe(visible, Duration.ofSeconds(...)) и перехватывайте ElementNotFound — возвращайте true/false.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": []
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Selenide.$x;\nimport static com.codeborne.selenide.Condition.visible;\nimport java.time.Duration;\n\npublic class BaseElement {\n\n    protected SelenideElement baseElement;\n\n    // Конструктор из упражнения 101 (уже написан)\n    protected BaseElement(String xpath, String attributeValue) {\n        // Инициализируйте baseElement\n    }\n\n    // Добавьте константу WAIT_SECONDS = 5\n\n    // Реализуйте метод isDisplayed()\n    // - возвращает true если элемент видим\n    // - возвращает false при ElementNotFound\n\n}\n",
+  "order": 102,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "BaseElement",
+          "required": true,
+          "errorMessage": "Класс BaseElement не найден"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "BaseElement",
+          "fieldName": "baseElement",
+          "fieldType": "SelenideElement",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected SelenideElement baseElement не найдено"
+        },
+        {
+          "className": "BaseElement",
+          "fieldName": "WAIT_SECONDS",
+          "modifiers": ["static", "final"],
+          "required": true,
+          "errorMessage": "Константа WAIT_SECONDS (static final) не найдена"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "BaseElement",
+          "parameters": ["String", "String"],
+          "modifiers": ["protected"],
+          "required": true,
+          "requiredMethodCalls": ["$x"],
+          "requiredStatements": ["String.format"],
+          "errorMessage": "Конструктор должен инициализировать baseElement через $x(String.format(xpath, attributeValue))"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "BaseElement",
+          "methodName": "isDisplayed",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public boolean isDisplayed() не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "BaseElement",
+          "methodName": "isDisplayed",
+          "requiredMethodCalls": ["shouldBe"],
+          "requiredStatements": ["return true", "return false", "Duration", "visible"],
+          "errorMessage": "Метод isDisplayed() должен вызывать shouldBe(visible, Duration) и возвращать true/false"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["BaseElement"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": [],
+      "compileOnly": true
+    }
+  }
+}

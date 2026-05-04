@@ -1,0 +1,39 @@
+.results-card {
+  width: 100%;
+  border-left: 4px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.results-card.success {
+  border-color: #38b000;
+}
+
+.results-card.error {
+  border-color: #ef233c;
+}
+
+.result-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  font-weight: 500;
+  white-space: pre-line;
+}
+
+.stability-text {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0 0 0;
+  font-weight: 400;
+}
+
+.info-badge {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #e3f2fd;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1976d2;
+}

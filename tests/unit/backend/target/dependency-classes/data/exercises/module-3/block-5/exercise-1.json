@@ -1,0 +1,60 @@
+{
+  "id": "module-3-block-5-exercise-1",
+  "title": "Создание базового класса BaseTest",
+  "description": "Напишите класс BaseTest, который будет содержать глобальные настройки для тестов. Используйте аннотацию @BeforeAll, чтобы задать таймаут Selenide 10 секунд, размер окна 1920x1080 и базовый URL приложения.",
+  "hint": "Используйте аннотацию @BeforeAll для статического метода настройки. В нём задайте таймаут Selenide через Configuration.timeout, размер окна браузера через Configuration.browserSize и базовый URL через Configuration.baseUrl.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": []
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.codeborne.selenide.Configuration;\nimport org.junit.jupiter.api.BeforeAll;\n\n/**\n * Базовый класс для всех тестов.\n * Содержит глобальные настройки Selenide.\n */\npublic class BaseTest {\n    \n    // Добавьте статический метод с аннотацией @BeforeAll для настройки Selenide\n    \n}\n",
+  "order": 144,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "BaseTest",
+          "required": true,
+          "errorMessage": "Класс BaseTest не найден"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "BaseTest",
+          "methodName": "setUp",
+          "modifiers": ["public", "static"],
+          "annotations": ["BeforeAll"],
+          "required": true,
+          "errorMessage": "Метод setUp() с аннотацией @BeforeAll не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "BaseTest",
+          "methodName": "setUp",
+          "requiredStatements": ["Configuration.timeout", "Configuration.browserSize", "Configuration.baseUrl"],
+          "errorMessage": "Метод setUp() должен настраивать Configuration.timeout, Configuration.browserSize и Configuration.baseUrl"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "BaseTest",
+          "methodName": "setUp",
+          "requiredAnnotations": ["BeforeAll"],
+          "errorMessage": "Метод setUp() должен иметь аннотацию @BeforeAll"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": [],
+      "compileOnly": true
+    },
+    "errorMessage": "BaseTest должен содержать статический метод setUp() с аннотацией @BeforeAll, настраивающий Selenide"
+  }
+}

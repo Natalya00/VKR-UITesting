@@ -1,0 +1,51 @@
+{
+  "id" : "module-1-block-3-task-4",
+  "title" : "Поиск чекбокса в строке таблицы",
+  "description" : "Найдите чекбокс, который находится в той же строке таблицы с пользователем 'Анна Сидорова', используя подъем к предку <tr>.",
+  "hint" : "Сначала найдите строку таблицы по содержимому, затем ищите в ней нужный элемент",
+  "trainingComponent" : "TableTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Управление пользователями",
+    "columns" : [ "✓", "Имя", "Email", "Статус" ],
+    "rows" : [ {
+      "checkbox" : true,
+      "cells" : [ {
+        "text" : "Иван Петров"
+      }, {
+        "text" : "ivan@example.com"
+      }, {
+        "text" : "Активен",
+        "className" : "status-active"
+      } ]
+    }, {
+      "checkbox" : true, "data-target": true,
+      "cells" : [ {
+        "text" : "Анна Сидорова"
+      }, {
+        "text" : "anna@example.com"
+      }, {
+        "text" : "Неактивен",
+        "className" : "status-inactive"
+      } ]
+    }, {
+      "checkbox" : true,
+      "cells" : [ {
+        "text" : "Петр Иванов"
+      }, {
+        "text" : "petr@example.com"
+      }, {
+        "text" : "Активен",
+        "className" : "status-active"
+      } ]
+    } ],
+    "targetSelector" : "//tr[.//td[text()='Анна Сидорова']]//input[@type='checkbox']"
+  },
+  "initialCode" : "// Введите XPath для поиска чекбокса в строке с Анной Сидоровой",
+  "order" : 4,
+  "difficulty" : "hard",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "tr", ".//td" ],
+    "forbiddenPatterns" : [ ],
+    "maxComplexity" : 3
+  }
+}

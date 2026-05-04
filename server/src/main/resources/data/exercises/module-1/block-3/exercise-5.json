@@ -1,0 +1,72 @@
+{
+  "id" : "module-1-block-3-task-5",
+  "title" : "Поиск input после label",
+  "description" : "Найдите элемент <input>, который расположен сразу после <label> с текстом 'Email'.",
+  "hint" : "Ось following-sibling:: находит соседние элементы на том же уровне",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Форма регистрации",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "form",
+      "className" : "registration-form",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Регистрация"
+      }, {
+        "tag" : "div",
+        "className" : "form-group",
+        "children" : [ {
+          "tag" : "label",
+          "text" : "Имя"
+        }, {
+          "tag" : "input",
+          "type" : "text",
+          "inputName" : "name",
+          "placeholder" : "Введите имя"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "form-group",
+        "children" : [ {
+          "tag" : "label",
+          "text" : "Email"
+        }, {
+          "tag" : "input",
+          "type" : "email",
+          "inputName" : "email",
+          "data-target" : "true",
+          "placeholder" : "Введите email"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "form-group",
+        "children" : [ {
+          "tag" : "label",
+          "text" : "Телефон"
+        }, {
+          "tag" : "input",
+          "type" : "tel",
+          "inputName" : "phone",
+          "placeholder" : "+7 (___) ___-__-__"
+        } ]
+      }, {
+        "tag" : "button",
+        "type" : "submit",
+        "text" : "Зарегистрироваться"
+      } ]
+    } ],
+    "targetSelector" : "//label[text()='Email']/following-sibling::input"
+  },
+  "initialCode" : "// Введите XPath для поиска input, который идёт после label с текстом \"Email\"",
+  "order" : 5,
+  "difficulty" : "hard",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "following-sibling::" ],
+    "forbiddenPatterns" : [ "[1]", "[2]", "parent::" ],
+    "maxComplexity" : 3,
+    "exactOnly" : {
+      "axes" : [ "following-sibling" ]
+    }
+  }
+}

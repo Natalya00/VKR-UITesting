@@ -1,0 +1,76 @@
+{
+  "id" : "module-1-block-3-task-3",
+  "title" : "Поиск кнопки через родителя",
+  "description" : "Найдите кнопку 'Удалить' в карточке пользователя 'Иван Петров', поднявшись к её родительскому контейнеру <div>.",
+  "hint" : "Ось parent:: позволяет подняться к родительскому элементу",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Профили пользователей",
+    "layout" : "cards",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "user-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Иван Петров"
+      }, {
+        "tag" : "p",
+        "text" : "ivan@example.com"
+      }, {
+        "tag" : "button",
+        "className" : "btn-edit",
+        "text" : "Редактировать"
+      }, {
+        "tag" : "button",
+        "className" : "btn-delete",
+        "data-target" : "true",
+        "text" : "Удалить"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "user-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Анна Сидорова"
+      }, {
+        "tag" : "p",
+        "text" : "anna@example.com"
+      }, {
+        "tag" : "button",
+        "className" : "btn-edit",
+        "text" : "Редактировать"
+      }, {
+        "tag" : "button",
+        "className" : "btn-delete",
+        "text" : "Удалить"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "user-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Петр Иванов"
+      }, {
+        "tag" : "p",
+        "text" : "petr@example.com"
+      }, {
+        "tag" : "button",
+        "className" : "btn-edit",
+        "text" : "Редактировать"
+      }, {
+        "tag" : "button",
+        "className" : "btn-delete",
+        "text" : "Удалить"
+      } ]
+    } ],
+    "targetSelector" : "//button[@class='btn-delete'][parent::div[@class='user-card' and .//h3[text()='Иван Петров']]]"
+  },
+  "initialCode" : "// Введите XPath для поиска кнопки \"Удалить\" в карточке Ивана Петрова",
+  "order" : 3,
+  "difficulty" : "hard",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "parent::" ],
+    "forbiddenPatterns" : [ "[1]", "[2]" ],
+    "maxComplexity" : 2
+  }
+}

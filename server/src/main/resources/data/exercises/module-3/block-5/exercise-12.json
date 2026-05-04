@@ -1,0 +1,89 @@
+﻿{
+  "id": "module-3-block-5-exercise-12",
+  "title": "Написание теста удаления элемента",
+  "description": "Создайте тест-класс DeleteItemTest. Тест должен вызвать метод удаления deleteProduct() и проверить, что элемент больше не отображается. В ProductPage реализуйте методы deleteProduct(String) и getProductNames().",
+  "hint": "В тесте авторизуйтесь с тестовыми учётными данными, откройте страницу товаров, вызовите deleteProduct() для удаления конкретного товара и проверьте через getProductNames(), что он больше не отображается в списке.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "AuthService", "LoginPage", "HomePage", "User", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "Header", "Footer", "ProfilePage"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.pom.pages.ProductPage;\nimport org.junit.jupiter.api.Test;\n\nimport java.util.List;\n\nimport static org.junit.jupiter.api.Assertions.assertFalse;\n\n/**\n * Тесты для удаления товаров.\n */\npublic class DeleteItemTest extends BaseTest {\n    \n    // Напишите тест deleteProductSuccessful() с аннотацией @Test\n    // Удалите товар и проверьте что он исчез из списка\n    \n}\n\n---\n\npackage com.example.runner.pom.pages;\n\n/**\n * Страница товаров.\n */\npublic class ProductPage extends BasePage {\n    \n    public ProductPage() {\n        super(\"//div[@id='products-page']\");\n    }\n    \n    // Реализуйте метод deleteProduct(String productName)\n    \n    // Реализуйте метод getProductNames()\n    // Возвращает List<String> с именами всех товаров\n    \n}\n",
+  "order": 155,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "DeleteItemTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "DeleteItemTest должен наследоваться от BaseTest"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "DeleteItemTest",
+          "methodName": "deleteProductSuccessful",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод deleteProductSuccessful() с @Test не найден"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "deleteProduct",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод deleteProduct(String) не найден в ProductPage"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "getProductNames",
+          "returnType": "List",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getProductNames() не найден в ProductPage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "DeleteItemTest",
+          "methodName": "deleteProductSuccessful",
+          "requiredMethodCalls": ["deleteProduct", "getProductNames"],
+          "requiredStatements": ["assertFalse"],
+          "errorMessage": "Тест должен использовать deleteProduct() и getProductNames()"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "deleteProduct",
+          "requiredMethodCalls": ["click"],
+          "errorMessage": "Метод deleteProduct() должен находить товар и кликать по кнопке удаления"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "DeleteItemTest",
+          "methodName": "deleteProductSuccessful",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "Тест должен иметь аннотацию @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["DeleteItemTest", "ProductPage"],
+      "extendsRules": ["DeleteItemTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "AuthService", "LoginPage", "HomePage", "User", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "Header", "Footer", "ProfilePage"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.DeleteItemHarnessTest",
+      "testMethods": ["testDeleteProductExists", "testGetProductNamesReturnsList", "testDeleteButtonsExist", "testGetProductNamesRealBehavior", "testDeleteProductRealBehavior"]
+    },
+    "errorMessage": "DeleteItemTest должен содержать deleteProductSuccessful(). ProductPage должен содержать deleteProduct(String) и getProductNames()."
+  }
+}

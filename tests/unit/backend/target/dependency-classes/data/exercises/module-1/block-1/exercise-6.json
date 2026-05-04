@@ -1,0 +1,45 @@
+{
+  "id" : "module-1-block-1-task-6",
+  "title" : "Поиск ссылки по href",
+  "description" : "Найдите ссылку 'Контакты' в меню навигации по атрибуту href.",
+  "hint" : "Комбинируйте тег элемента с атрибутом через квадратные скобки",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Меню сайта",
+    "layout" : "navigation",
+    "elements" : [ {
+      "tag" : "a",
+      "href" : "/",
+      "text" : "Главная"
+    }, {
+      "tag" : "a",
+      "href" : "/catalog",
+      "text" : "Каталог"
+    }, {
+      "tag" : "a",
+      "href" : "/about",
+      "text" : "О компании"
+    }, {
+      "tag" : "a",
+      "href" : "/contact",
+      "text" : "Контакты",
+      "data-target" : "true"
+    }, {
+      "tag" : "a",
+      "href" : "/delivery",
+      "text" : "Доставка"
+    } ],
+    "targetSelector" : "a[href='/contact']"
+  },
+  "initialCode" : "// Введите XPath для поиска ссылки a с href=\"/contact\"",
+  "order" : 6,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "@href" ],
+    "forbiddenPatterns" : [ "text()", "[1]", "[2]" ],
+    "maxComplexity" : 1,
+    "exactOnly" : {
+      "attributes" : [ "href" ]
+    }
+  }
+}

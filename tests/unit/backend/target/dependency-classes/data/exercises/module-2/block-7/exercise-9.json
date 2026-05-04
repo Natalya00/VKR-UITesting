@@ -1,0 +1,61 @@
+{
+  "id": "module-2-block-7-exercise-9",
+  "title": "Сохранение данных при отмене ошибки",
+  "description": "Введите email 'invalid-email' в поле, нажмите 'Отправить'. В появившемся диалоге прочитайте текст ошибки и отмените его. Убедитесь, что введенный email остался в поле.",
+  "hint": "Введите текст в поле, кликните Отправить. Прочитайте текст диалога через switchTo().alert().getText(), затем отмените его через dismiss(). Проверьте значение поля через shouldHave(value()).",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; document.getElementById('submit-btn')?.addEventListener('click', function() { var email = document.getElementById('email-input').value; if (email && !email.includes('@')) { var result = confirm('Ошибка: Неверный формат email. Отменить отправку?'); if (!result) { window.__uiState.validationDismissed = true; var resEl = document.getElementById('validation-result'); if(resEl) { resEl.textContent = 'Отмена: данные сохранены'; resEl.style.display = 'block'; } } else { document.getElementById('email-input').value = ''; } } }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "email-form",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 20px; box-shadow: 0 20px 60px rgba(79, 172, 254, 0.3); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Валидация Email",
+            "style": "color: white; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Введите email без символа '@', чтобы вызвать ошибку, и отмените отправку.",
+            "style": "color: rgba(255,255,255,0.9); margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "input",
+            "id": "email-input",
+            "type": "text",
+            "placeholder": "Введите email...",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px; width: 60%; border-radius: 12px; border: none; font-size: 18px;"
+          },
+          {
+            "tag": "button",
+            "id": "submit-btn",
+            "text": "Отправить",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: white; color: #4facfe; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "validation-result",
+            "text": "",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#submit-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\nimport com.codeborne.selenide.WebDriverRunner;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\nimport org.openqa.selenium.support.ui.WebDriverWait;\nimport java.time.Duration;\n\npublic class UserScript {\n    public static void run() {\n        // Введите 'invalid-email', отправьте форму, прочитайте текст ошибки и отмените действие\n\n    }\n}",
+  "order": 68,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["setValue", "click", "getText", "dismiss", "shouldHave"],
+    "requiredSelectors": ["#email-input", "#submit-btn"],
+    "expectedAction": "validate_and_dismiss",
+    "requiredFinder": "$",
+    "errorMessage": "Проверьте валидацию и отмену действия"
+  }
+}

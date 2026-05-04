@@ -1,0 +1,45 @@
+﻿{
+    "id": "module-3-block-2-exercise-2",
+    "title": "Метод page() для создания объектов страниц",
+    "description": "В классе BasePage реализуйте вспомогательный метод page(Class<T> pageClass), который принимает класс страницы и возвращает её объект. Это позволит наследникам создавать страницы без оператора new.",
+    "hint": "Используйте Selenide.page(pageClass) — стандартный метод Selenide для создания Page Object.",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": []
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Selenide.$x;\nimport static com.codeborne.selenide.Selenide.refresh;\n\npublic class BasePage {\n\n    protected SelenideElement basePage;\n\n    // Конструктор из предыдущего упражнения\n    protected BasePage(String xpath) {\n        // Инициализируйте basePage\n    }\n\n    // Метод refresh() из предыдущего упражнения \n    // public BasePage refresh() { ... }\n\n    // Реализуйте метод: public <T> T page(Class<T> pageClass)\n    // Используйте Selenide.page(pageClass)\n\n}\n",
+    "order": 113,
+    "difficulty": "easy",
+    "validationRules": {
+      "astRules": {
+        "methodRules": [
+          {
+            "className": "BasePage",
+            "methodName": "page",
+            "parameters": ["java.lang.Class"],
+            "modifiers": ["protected"],
+            "required": true,
+            "errorMessage": "Метод protected page(Class) не найден в BasePage"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "BasePage",
+            "methodName": "page",
+            "requiredMethodCalls": ["page"],
+            "requiredStatements": ["page"],
+            "errorMessage": "Метод page() должен использовать Selenide.page(pageClass) для создания объекта страницы"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["BasePage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": [],
+        "compileOnly": true
+      },
+      "errorMessage": "BasePage должен содержать метод page(Class<T>), который использует Selenide.page() для создания объектов страниц"
+    }
+  }

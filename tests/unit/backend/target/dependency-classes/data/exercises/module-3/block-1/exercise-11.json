@@ -1,0 +1,66 @@
+﻿{
+  "id": "module-3-block-1-exercise-11",
+  "title": "Переопределение поведения клика в Button",
+  "description": "Переопределите метод click() в классе Button. Метод должен перед кликом вызывать isDisplayed() — если элемент не отображается, выбрасывать IllegalStateException, если отображается — вызывать базовую реализацию через super.click().",
+  "hint": "Переопределите click() через @Override. Проверьте isDisplayed() — если false, выбросите IllegalStateException, иначе вызовите super.click().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement", "Clickable", "AbstractClickableElement"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\n/**\n * Кнопка с проверкой видимости перед кликом.\n */\npublic class Button extends AbstractClickableElement {\n\n    public Button(String xpath, String attributeValue) {\n        super(xpath, attributeValue);\n    }\n\n    @Override\n    public void click() {\n        // 1. Вызовите isDisplayed()\n        // 2. Если false — выбросите IllegalStateException\n        // 3. Если true — вызовите super.click()\n    }\n}\n",
+  "order": 111,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "Button",
+          "extendsClass": "AbstractClickableElement",
+          "required": true,
+          "errorMessage": "Button должен наследоваться от AbstractClickableElement"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "Button",
+          "parameters": ["String", "String"],
+          "required": true,
+          "errorMessage": "Button должен иметь конструктор с параметрами (String xpath, String attributeValue)"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Button",
+          "methodName": "click",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод click() не найден в классе Button"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Button",
+          "methodName": "click",
+          "requiredMethodCalls": ["isDisplayed"],
+          "requiredStatements": ["IllegalStateException"],
+          "mustCallSuper": "click",
+          "errorMessage": "Метод click() должен вызывать isDisplayed(), выбрасывать IllegalStateException и вызывать super.click()"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Button"],
+      "extendsRules": ["Button:AbstractClickableElement"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "AbstractClickableElement", "Clickable"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block1.ButtonHarnessTest",
+      "testMethods": ["testButtonExtendsAbstractClickableElement", "testButtonImplementsClickable", "testClickOnVisibleButton", "testClickOnHiddenButtonThrows"]
+    },
+    "errorMessage": "Button должен наследоваться от AbstractClickableElement, реализовывать Clickable и переопределять click() с проверкой isDisplayed()"
+  }
+}

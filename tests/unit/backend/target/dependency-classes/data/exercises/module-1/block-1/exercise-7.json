@@ -1,0 +1,42 @@
+{
+  "id" : "module-1-block-1-task-7",
+  "title" : "Поиск radio по name и value (оператор and)",
+  "description" : "Найдите radio-кнопку 'Зелёный' в опросе о цветах по двум атрибутам: name и value.",
+  "hint" : "Для проверки нескольких атрибутов используйте последовательность предикатов",
+  "trainingComponent" : "RadioGroupTrainer",
+  "componentConfig" : {
+    "formTitle" : "Опрос: Ваш любимый цвет",
+    "formDescription" : "Помогите нам улучшить дизайн сайта. Какой цвет вам нравится больше всего?",
+    "groupName" : "color",
+    "options" : [ {
+      "value" : "red",
+      "label" : "Красный",
+      "id" : "color-red"
+    }, {
+      "value" : "green",
+      "label" : "Зелёный",
+      "id" : "color-green"
+    }, {
+      "value" : "blue",
+      "label" : "Синий",
+      "id" : "color-blue"
+    }, {
+      "value" : "yellow",
+      "label" : "Жёлтый",
+      "id" : "color-yellow"
+    } ],
+    "submitButton" : true,
+    "targetSelector" : "input[name='color'][value='green']"
+  },
+  "initialCode" : "// Введите XPath для поиска radio с name=\"color\" и value=\"green\"",
+  "order" : 7,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "@name", "@value" ],
+    "forbiddenPatterns" : [ "text()", "[1]", "[2]", " or " ],
+    "maxComplexity" : 2,
+    "exactOnly" : {
+      "attributes" : [ "name", "value" ]
+    }
+  }
+}

@@ -1,0 +1,58 @@
+﻿{
+  "id": "module-3-block-1-exercise-6",
+  "title": "Работа с select",
+  "description": "Создайте класс SelectorInput, наследующийся от Input. Реализуйте метод select(String value), который имитирует реальное пользовательское поведение при выборе значения из выпадающего списка: клик по полю, выбор значения.",
+  "hint": "Сначала кликните через click() для открытия списка, затем используйте selectOption(value) для выбора нужного option по видимому тексту.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement", "Input"]
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\n/**\n * Элемент для работы с выпадающими списками.\n */\npublic class SelectorInput extends Input {\n\n    private SelectorInput(String xpath, String value) {\n        super(xpath, value);\n    }\n\n    // Реализуйте метод select(String value)\n    // Метод должен имитировать реальное поведение пользователя:\n    // - кликнуть по полю\n    // - выбрать нужное значение из списка\n\n}\n",
+  "order": 106,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "SelectorInput",
+          "extendsClass": "Input",
+          "required": true,
+          "errorMessage": "Класс SelectorInput должен наследоваться от Input"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "SelectorInput",
+          "methodName": "select",
+          "parameters": ["String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public select(String value) не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "SelectorInput",
+          "methodName": "select",
+          "requiredMethodCalls": ["click"],
+          "requiredStatements": ["selectOption"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод select() должен выполнять клик для открытия списка, выбирать значение (через selectOption() или $x().click()) и возвращать this"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["SelectorInput"],
+      "extendsRules": ["SelectorInput:Input"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "Input"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block1.SelectorInputHarnessTest",
+      "testMethods": ["testSelectByVisibleText", "testSelectReturnsThis", "testSelectorInputExtendsInput", "testSelectCity"]
+    },
+    "errorMessage": "Класс SelectorInput должен наследоваться от Input и содержать метод select(String), который кликает и выбирает значение"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id" : "module-1-block-1-task-8",
+  "title" : "Поиск кнопки по class (оператор or)",
+  "description" : "Найдите любую из кнопок 'Сохранить' или 'Обновить' в редакторе документов по их классам (используйте оператор OR).",
+  "hint" : "Оператор 'or' в XPath записывается как ' or ' (с пробелами)",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Текстовый редактор",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "editor-header",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Облачные технологии в современном бизнесе"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "editor-content",
+      "children" : [ {
+        "tag" : "p",
+        "text" : "Облачные вычисления стали неотъемлемой частью цифровой трансформации компаний. Они позволяют масштабировать инфраструктуру, снижать затраты и повышать гибкость бизнес-процессов."
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "toolbar",
+      "children" : [ {
+        "tag" : "button",
+        "className" : "btn-save",
+        "text" : "Сохранить",
+        "data-target" : "true"
+      }, {
+        "tag" : "button",
+        "className" : "btn-update",
+        "text" : "Обновить",
+        "data-target" : "true"
+      }, {
+        "tag" : "button",
+        "className" : "btn-delete",
+        "text" : "Удалить"
+      } ]
+    } ],
+    "targetSelector" : ".btn-save, .btn-update"
+  },
+  "initialCode" : "// Введите XPath для поиска кнопки с class=\"btn-save\" или class=\"btn-update\"",
+  "order" : 8,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "@class", " or " ],
+    "forbiddenPatterns" : [ "text()", "[1]", "[2]", " and " ],
+    "maxComplexity" : 2,
+    "requireAllTargets" : true,
+    "exactOnly" : {
+      "attributes" : [ "class" ]
+    }
+  }
+}

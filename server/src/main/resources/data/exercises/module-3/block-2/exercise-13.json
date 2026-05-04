@@ -1,0 +1,103 @@
+﻿{
+    "id": "module-3-block-2-exercise-13",
+    "title": "Обработка цепочек страниц",
+    "description": "Реализуйте два класса: HomePage и ProfilePage. HomePage должен содержать метод goToProfile(), который кликает по ссылке профиля и возвращает ProfilePage. ProfilePage должен содержать методы getUserName() — возвращает текст имени пользователя, и editName(String newName) — очищает поле имени, вводит новое имя и возвращает this.",
+    "hint": "Создайте два класса: HomePage и ProfilePage, оба наследуют BasePage. В HomePage реализуйте метод goToProfile(), который находит ссылку профиля через $x(), кликает по ней и возвращает новый объект ProfilePage. В ProfilePage объявите защищённое поле userName типа SelenideElement и инициализируйте его в конструкторе. Метод getUserName() находит элемент имени пользователя и возвращает его текст через getText(). Метод editName(String newName) очищает поле через clear(), вводит новое имя через sendKeys() и возвращает this для цепочки вызовов.",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer"],
+      "multiFile": true
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Главная страница.\n */\npublic class HomePage extends BasePage {\n\n    public HomePage() {\n        super(\"//div[@id='home-page']\");\n    }\n\n    // Реализуйте метод goToProfile() — кликает по ссылке и возвращает ProfilePage\n\n}\n---\npackage com.example.runner.pom.pages;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Страница профиля.\n */\npublic class ProfilePage extends BasePage {\n\n    // Объявите поле: protected SelenideElement userName\n\n    public ProfilePage() {\n        super(\"//div[@id='profile-page']\");\n        // Инициализируйте userName\n    }\n\n    // Реализуйте метод getUserName() — возвращает String\n\n    // Реализуйте метод editName(String newName) — очищает поле, вводит новое имя, возвращает this\n\n}\n",
+    "order": 124,
+    "difficulty": "medium",
+    "validationRules": {
+      "astRules": {
+        "classRules": [
+          {
+            "className": "HomePage",
+            "extendsClass": "BasePage",
+            "required": true,
+            "errorMessage": "Класс HomePage extends BasePage не найден"
+          },
+          {
+            "className": "ProfilePage",
+            "extendsClass": "BasePage",
+            "required": true,
+            "errorMessage": "Класс ProfilePage extends BasePage не найден"
+          }
+        ],
+        "fieldRules": [
+          {
+            "className": "ProfilePage",
+            "fieldName": "userName",
+            "fieldType": "SelenideElement",
+            "modifiers": ["protected"],
+            "required": true,
+            "errorMessage": "Поле protected userName типа SelenideElement не найдено в ProfilePage"
+          }
+        ],
+        "methodRules": [
+          {
+            "className": "HomePage",
+            "methodName": "goToProfile",
+            "returnType": "ProfilePage",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public ProfilePage goToProfile() не найден в HomePage"
+          },
+          {
+            "className": "ProfilePage",
+            "methodName": "getUserName",
+            "returnType": "String",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public String getUserName() не найден в ProfilePage"
+          },
+          {
+            "className": "ProfilePage",
+            "methodName": "editName",
+            "returnType": "ProfilePage",
+            "parameters": ["String"],
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public editName(String newName) не найден в ProfilePage"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "HomePage",
+            "methodName": "goToProfile",
+            "requiredMethodCalls": ["click"],
+            "errorMessage": "Метод goToProfile() должен кликать по ссылке профиля"
+          },
+          {
+            "className": "ProfilePage",
+            "methodName": "getUserName",
+            "requiredMethodCalls": ["getText"],
+            "errorMessage": "Метод getUserName() должен вызывать getText()"
+          },
+          {
+            "className": "ProfilePage",
+            "methodName": "editName",
+            "requiredMethodCalls": ["clear", "sendKeys"],
+            "mustReturnThis": true,
+            "errorMessage": "Метод editName() должен вызывать clear(), sendKeys() и возвращать this"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["HomePage", "ProfilePage"],
+        "extendsRules": ["HomePage:BasePage", "ProfilePage:BasePage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "LoginPage", "Input", "Button", "AbstractClickableElement", "Clickable"],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.HomePageHarnessTest",
+        "testMethods": ["testGoToProfileReturnsProfilePage", "testGetUserName", "testEditName", "testHomePageExtendsBasePage"]
+      },
+      "errorMessage": "HomePage: goToProfile()→ProfilePage. ProfilePage: userName, getUserName()→String, editName()→this"
+    }
+  }

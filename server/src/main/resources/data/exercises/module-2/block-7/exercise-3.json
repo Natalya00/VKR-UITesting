@@ -1,0 +1,54 @@
+{
+  "id": "module-2-block-7-exercise-3",
+  "title": "Отмена Confirm (Dismiss)",
+  "description": "Нажмите кнопку удаления, но в появившемся окне Confirm выберите \"Отмена\".",
+  "hint": "Нажмите кнопку удаления, затем используйте dismiss() для отмены confirm.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; document.getElementById('delete-btn')?.addEventListener('click', function() { window.__uiState.deleteBtnClicked = true; window.__uiState.deleteCancelled = false; setTimeout(function() { const result = confirm('Вы уверены, что хотите удалить этот элемент?'); if(!result) { window.__uiState.deleteCancelled = true; const resultEl = document.getElementById('delete-cancelled'); if(resultEl) { resultEl.textContent = 'Удаление отменено'; resultEl.style.display = 'block'; } } }, 100); }, { once: true }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "delete-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 20px; box-shadow: 0 20px 60px rgba(245, 87, 108, 0.3); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Удаление элемента",
+            "style": "color: white; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Нажмите кнопку удаления и отмените действие",
+            "style": "color: rgba(255,255,255,0.9); margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "delete-btn",
+            "text": "Удалить элемент",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "delete-cancelled",
+            "text": "Удаление отменено",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#delete-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\n\npublic class UserScript {\n    public static void run() {\n        // Нажмите кнопку удаления и отмените действие через dismiss()\n\n    }\n}",
+  "order": 62,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click", "dismiss"],
+    "requiredSelectors": ["#delete-btn"],
+    "expectedAction": "dismiss_confirm",
+    "requiredFinder": "$",
+    "errorMessage": "Отмените всплывающее окно"
+  }
+}

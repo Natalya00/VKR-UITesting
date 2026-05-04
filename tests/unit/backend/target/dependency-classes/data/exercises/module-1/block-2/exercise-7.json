@@ -1,0 +1,70 @@
+{
+  "id" : "module-1-block-2-task-7",
+  "title" : "Поиск img по атрибуту title",
+  "description" : "Найдите все изображения в галерее путешествий по частичному совпадению в атрибуте title.",
+  "hint" : "Функция contains() может применяться к любому атрибуту, не только к тексту",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Галерея путешествий",
+    "layout" : "cards",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "gallery-card",
+      "children" : [ {
+        "tag" : "img",
+        "src" : "/images/mountains.jpg",
+        "title" : "Горный закат в Альпах",
+        "data-target" : "true"
+      }, {
+        "tag" : "p",
+        "text" : "Альпы, Франция"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "gallery-card",
+      "children" : [ {
+        "tag" : "img",
+        "src" : "/images/ocean.jpg",
+        "title" : "Океанский пляж на Мальдивах",
+        "data-target" : "true"
+      }, {
+        "tag" : "p",
+        "text" : "Мальдивы"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "gallery-card",
+      "children" : [ {
+        "tag" : "img",
+        "src" : "/images/forest.jpg",
+        "title" : "Лесной закат в Сибири",
+        "data-target" : "true"
+      }, {
+        "tag" : "p",
+        "text" : "Сибирь, Россия"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "gallery-card",
+      "children" : [ {
+        "tag" : "img",
+        "src" : "/images/desert.jpg",
+        "title" : "Закат в пустыне Сахара",
+        "data-target" : "true"
+      }, {
+        "tag" : "p",
+        "text" : "Сахара, Африка"
+      } ]
+    } ],
+    "targetSelector" : "//img[contains(@title, 'закат')]"
+  },
+  "initialCode" : "// Введите XPath для поиска img, содержащего \"закат\" в title",
+  "order" : 7,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "contains(", "@title" ],
+    "forbiddenPatterns" : [ "text()", "[1]", "[2]" ],
+    "maxComplexity" : 1,
+    "requireAllTargets" : true
+  }
+}

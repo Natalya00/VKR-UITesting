@@ -1,0 +1,78 @@
+﻿{
+  "id": "module-3-block-3-exercise-2",
+  "title": "Использование защищенных методов для повторного кода",
+  "description": "В BasePage создайте защищенный метод waitAndClick(BaseElement element), который проверяет element.isDisplayed() и выполняет клик. Если элемент не виден — выбросите IllegalStateException. Продемонстрируйте использование в HomePage через метод logout().",
+  "hint": "В классе BasePage реализуйте защищённый метод waitAndClick(BaseElement element), который сначала проверяет видимость элемента через element.isDisplayed(). Если элемент не виден, метод выбрасывает IllegalStateException, иначе выполняет клик через element.baseElement.click(). В классе HomePage продемонстрируйте использование этого метода: реализуйте публичный метод logout(), который вызывает super.waitAndClick(logoutButton) и возвращает this для поддержки цепочки вызовов.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement", "Button"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.BaseElement;\n\n/**\n * Базовый класс для всех страниц.\n */\npublic class BasePage {\n\n    // Реализуйте метод waitAndClick(BaseElement element)\n    // Проверьте isDisplayed(), кликните или выбросите IllegalStateException\n\n}\n\n---\n\npackage com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.Button;\n\n/**\n * Главная страница.\n */\npublic class HomePage extends BasePage {\n\n    private Button logoutButton;\n\n    public HomePage() {\n        super(\"//div[@id='home-page']\");\n    }\n\n    // Реализуйте метод logout() — вызовите waitAndClick(logoutButton) и верните this\n\n}\n",
+  "order": 126,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "BasePage",
+          "required": true,
+          "errorMessage": "Класс BasePage не найден"
+        },
+        {
+          "className": "HomePage",
+          "extendsClass": "BasePage",
+          "required": true,
+          "errorMessage": "Класс HomePage должен наследоваться от BasePage"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "BasePage",
+          "methodName": "waitAndClick",
+          "parameters": ["com.example.runner.pom.elements.BaseElement"],
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Метод protected waitAndClick(BaseElement) не найден"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "logout",
+          "returnType": "HomePage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public HomePage logout() не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "BasePage",
+          "methodName": "waitAndClick",
+          "requiredMethodCalls": ["isDisplayed", "click"],
+          "requiredStatements": ["IllegalStateException"],
+          "errorMessage": "waitAndClick() должен проверять isDisplayed(), кликать и выбрасывать IllegalStateException"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "logout",
+          "requiredMethodCalls": ["waitAndClick"],
+          "mustReturnThis": true,
+          "errorMessage": "logout() должен вызывать waitAndClick() и возвращать this"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["BasePage", "HomePage"],
+      "extendsRules": ["HomePage:BasePage"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "Button", "AbstractClickableElement", "Clickable", "Input"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block3.BasePageHarnessTest",
+      "testMethods": ["testWaitAndClick", "testLogoutUsesWaitAndClick"]
+    },
+    "errorMessage": "BasePage: waitAndClick(BaseElement) protected. HomePage: logout() → waitAndClick() + this"
+  }
+}

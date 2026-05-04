@@ -1,0 +1,58 @@
+{
+  "id": "module-2-block-4-exercise-13",
+  "title": "Выбор опции по значению атрибута value",
+  "description": "В выпадающем списке выберите \"Россия\", используя значение атрибута value (\"ru\").",
+  "hint": "Используйте selectOptionByValue(\"...\") для выбора опции по значению атрибута value.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "country-form",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(229, 62, 62, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Выбор страны",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "className": "form-group",
+            "style": "margin: 20px 0;",
+            "children": [
+              {
+                "tag": "label",
+                "text": "Выберите страну из списка:",
+                "style": "display: block; margin-bottom: 10px; color: #4a5568; font-weight: 600; font-size: 15px;"
+              },
+              {
+                "tag": "select",
+                "id": "dropdown-country",
+                "style": "width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 16px; background: white; cursor: pointer; transition: border-color 0.2s;",
+                "children": [
+                  {"tag": "option", "value": "us", "text": "USA", "selected": true},
+                  {"tag": "option", "value": "ru", "text": "Россия"},
+                  {"tag": "option", "value": "de", "text": "Deutschland"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#dropdown-country"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\n\npublic class UserScript {\n    public static void run() {\n        // Выберите опцию \"Россия\", используя значение атрибута value (\"ru\")\n\n    }\n}",
+  "order": 34,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["selectOptionByValue"],
+    "requiredSelectors": ["#dropdown-country", "ru"],
+    "expectedAction": "select_option_by_value",
+    "requiredFinder": "$",
+    "errorMessage": "Выберите опцию по значению атрибута value"
+  }
+}

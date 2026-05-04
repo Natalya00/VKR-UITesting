@@ -1,0 +1,106 @@
+﻿{
+  "id": "module-3-block-1-exercise-8",
+  "title": "Реализация компонента карточки",
+  "description": "Создайте класс ItemComponent, который принимает SelenideElement в конструкторе и инкапсулирует работу с одной карточкой. Реализуйте методы: getTitle(), click(), isDisplayed(), clickActionButton(String buttonText). Метод clickActionButton должен находить кнопку внутри карточки по тексту и кликать.",
+  "hint": "Сохраняйте SelenideElement в поле. В clickActionButton() используйте $x() для поиска кнопки внутри карточки по XPath с текстом кнопки, затем кликните.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement"]
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Condition.visible;\n\n/**\n * Компонент одной карточки товара.\n */\npublic class ItemComponent {\n\n    // Добавьте поле для хранения SelenideElement\n\n    // Добавьте конструктор, принимающий SelenideElement\n\n    // Реализуйте getTitle() — возвращает String\n\n    // Реализуйте click()\n\n    // Реализуйте isDisplayed() — возвращает boolean\n\n    // Реализуйте clickActionButton(String buttonText)\n    // Найдите кнопку внутри карточки по тексту и кликните\n\n}\n",
+  "order": 108,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "ItemComponent",
+          "required": true,
+          "errorMessage": "Класс ItemComponent не найден"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "ItemComponent",
+          "fieldName": "baseElement",
+          "fieldType": "SelenideElement",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected SelenideElement baseElement не найдено"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "ItemComponent",
+          "methodName": "getTitle",
+          "returnType": "String",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public String getTitle() не найден"
+        },
+        {
+          "className": "ItemComponent",
+          "methodName": "click",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public click() не найден"
+        },
+        {
+          "className": "ItemComponent",
+          "methodName": "isDisplayed",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public boolean isDisplayed() не найден"
+        },
+        {
+          "className": "ItemComponent",
+          "methodName": "clickActionButton",
+          "parameters": ["String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public clickActionButton(String) не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "ItemComponent",
+          "methodName": "getTitle",
+          "requiredMethodCalls": ["getText"],
+          "errorMessage": "Метод getTitle() должен получать текст элемента"
+        },
+        {
+          "className": "ItemComponent",
+          "methodName": "click",
+          "requiredMethodCalls": ["click"],
+          "errorMessage": "Метод click() должен выполнять клик по карточке"
+        },
+        {
+          "className": "ItemComponent",
+          "methodName": "isDisplayed",
+          "requiredMethodCalls": ["isDisplayed"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод isDisplayed() должен проверять видимость и возвращать boolean"
+        },
+        {
+          "className": "ItemComponent",
+          "methodName": "clickActionButton",
+          "requiredMethodCalls": ["$x", "click"],
+          "errorMessage": "Метод clickActionButton() должен находить кнопку через $x() по тексту и кликать по ней"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["ItemComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "ItemsContainer"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block1.ItemsContainerHarnessTest",
+      "testMethods": ["testItemComponentGetTitle", "testClickActionButton"]
+    },
+    "errorMessage": "ItemComponent должен содержать поле baseElement и методы getTitle(), click(), isDisplayed(), clickActionButton(String)"
+  }
+}

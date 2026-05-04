@@ -1,0 +1,104 @@
+.top-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 8px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(39, 76, 119, 0.08);
+  box-sizing: border-box;
+}
+
+.left-column .difficulty-filter {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.block-tabs-wrapper {
+  margin-top: auto;
+}
+
+.block-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.block-tab {
+  padding: 4px 4px;
+  width: 50px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  background: #e3e8ef;
+  color: #4b5563;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.block-tab:hover {
+  background: #d1d8e0;
+}
+
+.block-tab.active {
+  background: #4E7392;
+  color: white;
+}
+
+.block-tab.active {
+  background: #4E7392;
+  color: white;
+}
+
+.block-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2b2d42;
+  margin-bottom: 16px;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(39, 76, 119, 0.08);
+  box-sizing: border-box;
+}
+
+.exercise-navigation,
+.task-description,
+.action-buttons {
+  transition: all 0.2s ease-in-out;
+}
+
+.exercise-info,
+.task-description > p {
+  min-height: 1.2em;
+}
+
+@media (max-width: 1200px) {
+  .top-section {
+    grid-template-columns: 1fr;
+  }
+}

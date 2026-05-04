@@ -1,0 +1,44 @@
+{
+  "id": "module-1-block-1-task-2",
+  "title": "Поиск по name",
+  "description": "Найдите поле ввода логина в форме авторизации по атрибуту name.",
+  "hint": "Для поиска input-полей часто используется атрибут @name",
+  "trainingComponent": "SimpleElementTrainer",
+  "componentConfig": {
+    "element": {
+      "tag": "input",
+      "name": "username",
+      "type": "text",
+      "placeholder": "Введите логин",
+      "id": "username",
+      "data-target": "true"
+    },
+    "formTitle": "Авторизация",
+    "additionalFields": [
+      {
+        "tag": "input",
+        "type": "password",
+        "placeholder": "Введите пароль",
+        "name": "password",
+        "id": "password"
+      },
+      {
+        "tag": "button",
+        "type": "submit",
+        "text": "Войти"
+      }
+    ],
+    "targetSelector": "[name='username']"
+  },
+  "initialCode": "// Введите XPath для поиска input с name=\"username\"",
+  "order": 2,
+  "difficulty": "easy",
+  "expectedSyntax": {
+    "requiredPatterns": ["@name"],
+    "forbiddenPatterns": ["@id","text()","[1]","[2]"],
+    "maxComplexity": 1,
+    "exactOnly": {
+      "attributes": ["name"]
+    }
+  }
+}

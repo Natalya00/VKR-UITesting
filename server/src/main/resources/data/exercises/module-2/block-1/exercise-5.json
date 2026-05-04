@@ -1,0 +1,66 @@
+{
+  "id": "module-2-block-1-exercise-5",
+  "title": "Клик по элементу навигации с data-атрибутом",
+  "description": "Кликните по элементу навигации с атрибутом data-page=\"home\".",
+  "hint": "Используйте селектор по классу и data-атрибуту: $(\".class[data-page='...']\").click();",
+  "trainingComponent": "NavigationTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "horizontal",
+    "menuId": "main-menu",
+    "items": [
+      {
+        "text": "Главная",
+        "href": "#home",
+        "dataPage": "home",
+        "className": "nav-item"
+      },
+      {
+        "text": "О проекте",
+        "href": "#about",
+        "className": "nav-link"
+      },
+      {
+        "text": "Услуги",
+        "href": "#services",
+        "dataPage": "services",
+        "className": "nav-item"
+      },
+      {
+        "text": "Контакты",
+        "href": "#contact",
+        "dataPage": "contact",
+        "className": "nav-item"
+      },
+      {
+        "text": "Меню",
+        "href": "#menu",
+        "id": "menu-item",
+        "className": "menu-item",
+        "hasSubmenu": true,
+        "submenu": [
+          {
+            "text": "Подпункт 1",
+            "href": "#sub1"
+          },
+          {
+            "text": "Подпункт 2",
+            "href": "#sub2"
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".nav-item[data-page='home']"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\n\npublic class UserScript {\n    public static void run() {\n        // Кликните по элементу навигации с атрибутом data-page=\"home\"\n\n    }\n}",
+  "order": 5,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click"],
+    "requiredSelectors": ["[data-page='home']"],
+    "expectedAction": "click",
+    "expectedElementType": "a",
+    "requiredFinder": "$",
+    "errorMessage": "Нажмите на элемент навигации с data-page=\"home\""
+  }
+}

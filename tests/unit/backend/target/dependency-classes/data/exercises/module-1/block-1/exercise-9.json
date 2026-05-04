@@ -1,0 +1,64 @@
+{
+  "id" : "module-1-block-1-task-9",
+  "title" : "Поиск div с точным порядком классов",
+  "description" : "Найдите карточку товара 'Смартфон Ultra X' (с меткой 'Новинка') в каталоге по двум классам одновременно.",
+  "hint" : "Для поиска элемента с несколькими классами используйте функцию contains() дважды",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Каталог товаров",
+    "layout" : "cards",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "product-card featured bestseller",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Ноутбук Gaming Pro"
+      }, {
+        "tag" : "p",
+        "text" : "Цена: 89 990 ₽"
+      }, {
+        "tag" : "span",
+        "text" : "★ Хит продаж"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "product-card new",
+      "data-target" : "true",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Смартфон Ultra X"
+      }, {
+        "tag" : "p",
+        "text" : "Цена: 54 990 ₽"
+      }, {
+        "tag" : "span",
+        "text" : "Новинка"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "product-card sale",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Наушники Pro Sound"
+      }, {
+        "tag" : "p",
+        "text" : "Цена: 12 990 ₽"
+      }, {
+        "tag" : "span",
+        "text" : "Скидка -30%"
+      } ]
+    } ],
+    "targetSelector" : "div.product-card.new"
+  },
+  "initialCode" : "// Введите XPath для поиска div с классами product-card и new\"",
+  "order" : 9,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "@class", " and " ],
+    "forbiddenPatterns" : [ "text()", "[1]", "[2]", " or " ],
+    "maxComplexity" : 1,
+    "exactOnly" : {
+      "attributes" : [ "class" ]
+    }
+  }
+}

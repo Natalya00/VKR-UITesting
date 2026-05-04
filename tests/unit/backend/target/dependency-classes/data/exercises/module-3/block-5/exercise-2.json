@@ -1,0 +1,76 @@
+{
+  "id": "module-3-block-5-exercise-2",
+  "title": "Создание сервиса авторизации",
+  "description": "Реализуйте класс AuthService с методом login(User user), который выполняет вход в систему и возвращает объект HomePage. Сервис должен использовать Page Object для взаимодействия со страницей логина.",
+  "hint": "AuthService создаёт LoginPage, заполняет поля через методы страницы и нажимает кнопку входа. User — модель с полями login/password и геттерами.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "BasePage", "LoginPage", "HomePage", "Header", "Footer", "ProfilePage"]
+  },
+  "initialCode": "package com.example.runner.tests;\n\n/**\n * Модель пользователя.\n */\npublic class User {\n\n    // Объявите private поля login и password типа String\n\n    // Реализуйте конструктор с параметрами login и password\n    // Реализуйте методы getLogin() и getPassword()\n\n}\n\n---\n\npackage com.example.runner.services;\n\nimport com.example.runner.tests.User;\nimport com.example.runner.pom.pages.LoginPage;\nimport com.example.runner.pom.pages.HomePage;\n\n/**\n * Сервис авторизации.\n */\npublic class AuthService {\n    \n    // Реализуйте метод login(User user), возвращающий HomePage\n    // Метод должен выполнить вход через LoginPage и вернуть HomePage\n    \n}\n",
+  "order": 145,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "AuthService",
+          "required": true,
+          "errorMessage": "Класс AuthService не найден"
+        },
+        {
+          "className": "User",
+          "required": true,
+          "errorMessage": "Класс User не найден"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "AuthService",
+          "methodName": "login",
+          "returnType": "HomePage",
+          "parameters": ["com.example.runner.tests.User"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод login(User) не найден в классе AuthService"
+        },
+        {
+          "className": "User",
+          "methodName": "getLogin",
+          "returnType": "String",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getLogin() не найден в классе User"
+        },
+        {
+          "className": "User",
+          "methodName": "getPassword",
+          "returnType": "String",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getPassword() не найден в классе User"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "AuthService",
+          "methodName": "login",
+          "requiredMethodCalls": ["fillLogin", "fillPassword", "clickLoginButton"],
+          "errorMessage": "Метод login() должен использовать LoginPage для входа: fillLogin(), fillPassword(), clickLoginButton()"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["AuthService", "User"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "BasePage", "LoginPage", "HomePage", "Header", "Footer", "ProfilePage"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.AuthServiceHarnessTest",
+      "testMethods": ["testLoginReturnsHomePage", "testLoginFillsForm", "testLoginSequence"]
+    },
+    "errorMessage": "AuthService должен содержать метод login(User), возвращающий HomePage. User должен содержать методы getLogin() и getPassword()"
+  }
+}

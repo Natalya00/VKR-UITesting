@@ -1,0 +1,53 @@
+{
+  "id": "module-2-block-5-exercise-3",
+  "title": "Проверка, что чекбокс выбран",
+  "description": "Проверьте, что чекбокс выбран.",
+  "hint": "Используйте shouldBe(checked) для проверки выбора чекбокса.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "registration-confirm",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(72, 187, 120, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Регистрация завершена",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "className": "confirmation-box",
+            "style": "background: #d4edda; padding: 20px; border-radius: 10px; margin-bottom: 25px; border-left: 4px solid #28a745;",
+            "children": [
+              {"tag": "p", "text": "Вы успешно приняли условия соглашения", "style": "color: #155724; margin: 0; font-size: 15px;"}
+            ]
+          },
+          {
+            "tag": "label",
+            "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #f0f4ff; border-radius: 10px;",
+            "children": [
+              {"tag": "input", "type": "checkbox", "id": "terms-checkbox", "checked": true, "style": "width: 20px; height: 20px; accent-color: #28a745;"},
+              {"tag": "span", "text": "Принято: Условия использования", "style": "color: #2d3748; font-size: 15px; font-weight: 500;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#terms-checkbox"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте, что чекбокс выбран\n\n    }\n}",
+  "order": 42,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["shouldBe"],
+    "requiredConditions": ["checked"],
+    "requiredSelectors": ["#terms-checkbox"],
+    "expectedAction": "verify_checkbox_checked",
+    "requiredFinder": "$",
+    "errorMessage": "Проверьте, что чекбокс выбран"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "id": "module-2-block-7-exercise-5",
+  "title": "Цепочка диалогов",
+  "description": "Нажмите кнопку «Начать». Последовательно появятся три диалога: сначала alert — примите его, затем confirm — тоже примите, затем prompt — введите любое имя.",
+  "hint": "Нажмите кнопку и обрабатывайте диалоги в порядке появления: сначала alert (confirm()), затем confirm (confirm()), затем prompt с вводом текста.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; window.__uiState.alertAccepted = false; window.__uiState.confirmAccepted = false; window.__uiState.promptFilled = false; document.getElementById('start-btn')?.addEventListener('click', function() { window.__uiState.startBtnClicked = true; setTimeout(function() { alert('Добро пожаловать! Нажмите ОК для продолжения.'); window.__uiState.alertAccepted = true; setTimeout(function() { const confirmResult = confirm('Вы хотите продолжить регистрацию?'); if(confirmResult) { window.__uiState.confirmAccepted = true; setTimeout(function() { const name = prompt('Введите ваше имя:'); if(name) { window.__uiState.promptFilled = true; window.__uiState.promptValue = name; const resultEl = document.getElementById('chain-result'); if(resultEl) { resultEl.textContent = 'Готово! Имя: ' + name; resultEl.style.display = 'block'; } } }, 100); } }, 100); }, 100); }, { once: true }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "chain-dialog-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Цепочка диалогов",
+            "style": "color: white; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Нажмите кнопку и последовательно обработайте три диалога: Alert → Confirm → Prompt",
+            "style": "color: rgba(255,255,255,0.9); margin-bottom: 20px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "div",
+            "style": "display: flex; justify-content: center; gap: 16px; margin-bottom: 40px;",
+            "children": [
+              {
+                "tag": "div",
+                "style": "background: rgba(255,255,255,0.15); border-radius: 10px; padding: 14px 24px; text-align: center; color: white;",
+                "children": [
+                  {"tag": "div", "text": "1", "style": "font-size: 24px; font-weight: 700; margin-bottom: 4px;"},
+                  {"tag": "div", "text": "Alert", "style": "font-size: 14px; opacity: 0.85;"}
+                ]
+              },
+              {
+                "tag": "div",
+                "style": "display: flex; align-items: center; color: rgba(255,255,255,0.5); font-size: 20px;",
+                "text": "→"
+              },
+              {
+                "tag": "div",
+                "style": "background: rgba(255,255,255,0.15); border-radius: 10px; padding: 14px 24px; text-align: center; color: white;",
+                "children": [
+                  {"tag": "div", "text": "2", "style": "font-size: 24px; font-weight: 700; margin-bottom: 4px;"},
+                  {"tag": "div", "text": "Confirm", "style": "font-size: 14px; opacity: 0.85;"}
+                ]
+              },
+              {
+                "tag": "div",
+                "style": "display: flex; align-items: center; color: rgba(255,255,255,0.5); font-size: 20px;",
+                "text": "→"
+              },
+              {
+                "tag": "div",
+                "style": "background: rgba(255,255,255,0.15); border-radius: 10px; padding: 14px 24px; text-align: center; color: white;",
+                "children": [
+                  {"tag": "div", "text": "3", "style": "font-size: 24px; font-weight: 700; margin-bottom: 4px;"},
+                  {"tag": "div", "text": "Prompt", "style": "font-size: 14px; opacity: 0.85;"}
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "button",
+            "id": "start-btn",
+            "text": "Начать",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 60px; background: white; color: #764ba2; border: none; border-radius: 12px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "chain-result",
+            "text": "",
+            "style": "display: none; margin-top: 10px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#start-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\n\npublic class UserScript {\n    public static void run() {\n        // Нажмите кнопку и обработайте три диалога по порядку\n\n    }\n}",
+  "order": 64,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click", "confirm", "prompt"],
+    "requiredSelectors": ["#start-btn"],
+    "expectedAction": "handle_dialog_chain",
+    "requiredFinder": "$",
+    "errorMessage": "Обработайте все три диалога по порядку"
+  }
+}

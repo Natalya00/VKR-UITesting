@@ -1,0 +1,63 @@
+{
+  "id" : "module-1-block-4-task-6",
+  "title" : "Третья кнопка по XPath-индексу",
+  "description" : "Найдите третью кнопку <button> внутри панели div, используя XPath с индексом.",
+  "hint" : "Используйте числовой индекс для выбора элемента по позиции",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Текстовый редактор",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "editor-header",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Облачные технологии в бизнесе"
+      }, {
+        "tag" : "p",
+        "text" : "Последнее изменение: 20 января 2025, 14:30"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "editor-content",
+      "children" : [ {
+        "tag" : "p",
+        "text" : "Облачные вычисления стали неотъемлемой частью цифровой трансформации компаний. Они позволяют масштабировать инфраструктуру, снижать затраты и повышать гибкость бизнес-процессов."
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "toolbar",
+      "children" : [ {
+        "tag" : "button",
+        "className" : "tool-btn",
+        "text" : "Вырезать"
+      }, {
+        "tag" : "button",
+        "className" : "tool-btn",
+        "text" : "Копировать"
+      }, {
+        "tag" : "button",
+        "className" : "tool-btn",
+        "data-target" : "true",
+        "text" : "Вставить"
+      }, {
+        "tag" : "button",
+        "className" : "tool-btn",
+        "text" : "Отменить"
+      }, {
+        "tag" : "button",
+        "className" : "tool-btn",
+        "text" : "Сохранить"
+      } ]
+    } ],
+    "targetSelector" : "//div[@class='toolbar']/button[3]"
+  },
+  "initialCode" : "// Введите XPath для поиска третьей кнопки",
+  "order" : 6,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "[3]" ],
+    "forbiddenPatterns" : [ "last()", "position()", "text()" ],
+    "maxComplexity" : 2
+  }
+}

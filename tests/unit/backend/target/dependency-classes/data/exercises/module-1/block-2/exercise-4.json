@@ -1,0 +1,99 @@
+{
+  "id" : "module-1-block-2-task-4",
+  "title" : "Поиск button по частичному class",
+  "description" : "Найдите кнопку 'Создать' в панели управления по частичному совпадению класса.",
+  "hint" : "Функция contains() работает не только с текстом, но и с атрибутами",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Управление пользователями",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "dashboard-header",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Список пользователей"
+      }, {
+        "tag" : "p",
+        "text" : "Всего пользователей: 156 | Активных: 142 | Заблокированных: 14"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "user-table",
+      "children" : [ {
+        "tag" : "div",
+        "className" : "table-row",
+        "children" : [ {
+          "tag" : "span",
+          "text" : "Иван Петров"
+        }, {
+          "tag" : "span",
+          "text" : "ivan@example.com"
+        }, {
+          "tag" : "span",
+          "text" : "Активен"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "table-row",
+        "children" : [ {
+          "tag" : "span",
+          "text" : "Анна Сидорова"
+        }, {
+          "tag" : "span",
+          "text" : "anna@example.com"
+        }, {
+          "tag" : "span",
+          "text" : "Активен"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "table-row",
+        "children" : [ {
+          "tag" : "span",
+          "text" : "Петр Иванов"
+        }, {
+          "tag" : "span",
+          "text" : "petr@example.com"
+        }, {
+          "tag" : "span",
+          "text" : "Заблокирован"
+        } ]
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "toolbar",
+      "children" : [ {
+        "tag" : "button",
+        "className" : "btn btn-primary",
+        "data-target" : "true",
+        "text" : "Создать"
+      }, {
+        "tag" : "button",
+        "className" : "btn btn-secondary",
+        "text" : "Редактировать"
+      }, {
+        "tag" : "button",
+        "className" : "btn btn-danger",
+        "text" : "Удалить"
+      }, {
+        "tag" : "button",
+        "className" : "btn btn-success",
+        "text" : "Применить"
+      } ]
+    } ],
+    "targetSelector" : "//button[contains(@class, 'btn-primary')]"
+  },
+  "initialCode" : "// Введите XPath для поиска button с class, содержащим \"btn-primary\"",
+  "order" : 4,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "contains(", "@class" ],
+    "forbiddenPatterns" : [ "text()", "[1]", "[2]" ],
+    "maxComplexity" : 1,
+    "exactOnly" : {
+      "attributes" : [ "class" ],
+      "functions" : [ "contains" ]
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "module-3-block-4-exercise-9",
+  "title": "Компонент всплывающей подсказки (Tooltip)",
+  "description": "Создайте компонент Tooltip для работы с всплывающими подсказками, которые появляются при наведении. Реализуйте методы: hoverToShow() — наведение для показа, isDisplayed() → boolean — проверка видимости, getText() → String — получение текста подсказки.",
+  "hint": "В компоненте Tooltip реализуйте три метода для работы с подсказками. Метод hoverToShow() находит элемент-триггер внутри baseElement через $x() и выполняет наведение мыши с помощью actions().moveToElement(). Метод isDisplayed() проверяет существование элемента подсказки по соответствующему CSS-классу или атрибуту и возвращает boolean. Метод getText() находит элемент подсказки и возвращает его текст.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent"]
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент всплывающей подсказки.\n * Появляется при наведении мыши.\n */\npublic class Tooltip extends BaseComponent {\n\n    public Tooltip(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод hoverToShow()\n    // Наведите мышь на элемент-триггер внутри контейнера.\n\n    // Реализуйте метод isDisplayed()\n    // Проверьте, отображается ли подсказка.\n\n    // Реализуйте метод getText()\n    // Верните текст подсказки.\n\n}\n",
+  "order": 140,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "Tooltip",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс Tooltip должен наследоваться от BaseComponent"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Tooltip",
+          "methodName": "hoverToShow",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод hoverToShow() не найден в классе Tooltip"
+        },
+        {
+          "className": "Tooltip",
+          "methodName": "isDisplayed",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isDisplayed() не найден в классе Tooltip"
+        },
+        {
+          "className": "Tooltip",
+          "methodName": "getText",
+          "returnType": "String",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getText() не найден в классе Tooltip"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Tooltip",
+          "methodName": "hoverToShow",
+          "requiredMethodCalls": ["$x"],
+          "errorMessage": "Метод hoverToShow() должен находить триггер и выполнять наведение"
+        },
+        {
+          "className": "Tooltip",
+          "methodName": "isDisplayed",
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод isDisplayed() должен проверять существование .tooltip-content"
+        },
+        {
+          "className": "Tooltip",
+          "methodName": "getText",
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод getText() должен вернуть текст элемента .tooltip-content"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Tooltip"],
+      "extendsRules": ["Tooltip:BaseComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.TooltipHarnessTest",
+      "testMethods": ["testHoverShowsTooltip", "testGetText", "testIsDisplayedReturnsTrue", "testIsDisplayedReturnsFalse"]
+    },
+    "errorMessage": "Tooltip должен наследоваться от BaseComponent и содержать hoverToShow(), isDisplayed() → boolean, getText() → String"
+  }
+}

@@ -1,0 +1,67 @@
+﻿{
+    "id": "module-3-block-2-exercise-3",
+    "title": "Определение элементов LoginPage",
+    "description": "Создайте класс LoginPage и объявите в нём элементы loginInput, passwordInput и submitButton (Инициализацию элементов необходимо выполнить в конструкторе класса, а не при объявлении полей). Используйте Input.byId() и new Button().",
+    "hint": "Объявите поля типа Input и Button без инициализации. В конструкторе инициализируйте их через статические методы Input (byId/byName/byPlaceholder) и конструктор Button.",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "Input", "Button", "AbstractClickableElement", "Clickable"]
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.Input;\nimport com.example.runner.pom.elements.Button;\n\npublic class LoginPage extends BasePage {\n\n    // Объявите элементы (без инициализации):\n    // loginInput (Input)\n    // passwordInput (Input)\n    // submitButton (Button)\n\n    public LoginPage() {\n        super(\"//div[@id='login-page']\");\n        \n        // Инициализируйте элементы здесь:\n        // this.loginInput = Input.byId(\"login-input\");\n        // ...\n    }\n\n}\n",
+    "order": 114,
+    "difficulty": "easy",
+    "validationRules": {
+      "astRules": {
+        "classRules": [
+          {
+            "className": "LoginPage",
+            "extendsClass": "BasePage",
+            "required": true,
+            "errorMessage": "Класс LoginPage должен наследоваться от BasePage"
+          }
+        ],
+        "fieldRules": [
+          {
+            "className": "LoginPage",
+            "fieldName": "loginInput",
+            "fieldType": "Input",
+            "required": true,
+            "errorMessage": "Поле loginInput типа Input не найдено"
+          },
+          {
+            "className": "LoginPage",
+            "fieldName": "passwordInput",
+            "fieldType": "Input",
+            "required": true,
+            "errorMessage": "Поле passwordInput типа Input не найдено"
+          },
+          {
+            "className": "LoginPage",
+            "fieldName": "submitButton",
+            "fieldType": "Button",
+            "required": true,
+            "errorMessage": "Поле submitButton типа Button не найдено"
+          }
+        ],
+        "constructorRules": [
+          {
+            "className": "LoginPage",
+            "parameters": [],
+            "required": true,
+            "requiredStatements": ["Input.", "Button"],
+            "errorMessage": "Конструктор должен инициализировать элементы через статические методы Input (byId/byName/byPlaceholder) и new Button()"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["LoginPage"],
+        "extendsRules": ["LoginPage:BasePage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "Input", "Button", "BasePage", "Header", "Footer", "AbstractClickableElement", "Clickable"],
+        "compileOnly": true
+      },
+      "errorMessage": "LoginPage должен содержать поля loginInput (Input), passwordInput (Input), submitButton (Button), инициализированные в конструкторе"
+    }
+  }

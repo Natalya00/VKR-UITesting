@@ -1,0 +1,53 @@
+{
+  "id": "module-2-block-5-exercise-10",
+  "title": "Проверка заблокированного чекбокса",
+  "description": "Убедитесь, что чекбокс выбран, но заблокирован для изменений (имеет атрибут disabled).",
+  "hint": "Проверьте, что чекбокс выбран через shouldBe(checked), а также заблокирован через shouldBe(disabled).",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "readonly-container",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Заблокированная опция",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "className": "info-box",
+            "style": "background: #edf2f7; padding: 15px; border-radius: 10px; margin-bottom: 25px; border-left: 4px solid #4a5568;",
+            "children": [
+              {"tag": "p", "text": "Эта опция включена по умолчанию и не может быть изменена", "style": "color: #4a5568; margin: 0; font-size: 14px;"}
+            ]
+          },
+          {
+            "tag": "label",
+            "style": "display: flex; align-items: center; gap: 15px; padding: 20px; background: #e2e8f0; border-radius: 12px; opacity: 0.7;",
+            "children": [
+              {"tag": "input", "type": "checkbox", "id": "readonly-checkbox", "checked": true, "disabled": true, "style": "width: 20px; height: 20px; accent-color: #4a5568;"},
+              {"tag": "span", "text": "Обязательная опция (нельзя изменить)", "style": "color: #718096; font-size: 16px;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#readonly-checkbox"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Убедитесь, что чекбокс выбран и заблокирован\n\n    }\n}",
+  "order": 49,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["shouldBe"],
+    "requiredConditions": ["checked", "disabled"],
+    "requiredSelectors": ["#readonly-checkbox"],
+    "expectedAction": "verify_disabled_checkbox",
+    "requiredFinder": "$",
+    "errorMessage": "Проверьте, что чекбокс выбран и заблокирован"
+  }
+}

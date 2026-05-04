@@ -1,0 +1,119 @@
+﻿{
+  "id": "module-3-block-5-exercise-14",
+  "title": "Написание теста проверки доступности элементов",
+  "description": "Создайте тест-класс ElementsStateTest. Тест должен проверять доступность кнопки входа и видимость поля поиска. В LoginPage реализуйте метод isLoginButtonEnabled(), в ProductPage — isSearchBoxVisible().",
+  "hint": "Создайте два теста в классе ElementsStateTest. Первый тест — loginButtonIsEnabled(): откройте страницу входа через new LoginPage(), проверьте доступность кнопки входа через метод isLoginButtonEnabled() и убедитесь через assertTrue(), что кнопка доступна. Второй тест — searchBoxIsVisible(): откройте страницу товаров через new ProductPage(), проверьте видимость поля поиска через метод isSearchBoxVisible() и убедитесь через assertTrue(), что поле отображается. В LoginPage метод isLoginButtonEnabled() должен проверять isDisplayed() у кнопки входа и возвращать boolean. В ProductPage метод isSearchBoxVisible() должен проверять isDisplayed() у поля поиска и возвращать boolean.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "Header", "Footer", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.pom.pages.LoginPage;\nimport com.example.runner.pom.pages.ProductPage;\nimport org.junit.jupiter.api.Test;\n\nimport static org.junit.jupiter.api.Assertions.assertTrue;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\n\n/**\n * Тесты для проверки состояния элементов.\n */\npublic class ElementsStateTest extends BaseTest {\n    \n    // Напишите тест loginButtonIsEnabled() с аннотацией @Test\n    // Откройте страницу входа и проверьте isLoginButtonEnabled()\n    \n    // Напишите тест searchBoxIsVisible() с аннотацией @Test\n    // Откройте страницу товаров и проверьте isSearchBoxVisible()\n    \n}\n\n---\n\npackage com.example.runner.pom.pages;\n\n/**\n * Страница входа.\n */\npublic class LoginPage extends BasePage {\n    \n    public LoginPage() {\n        super(\"//form[@id='login-form']\");\n    }\n    \n    // Реализуйте метод isLoginButtonEnabled() → boolean\n    \n}\n\n---\n\npackage com.example.runner.pom.pages;\n\n/**\n * Страница товаров.\n */\npublic class ProductPage extends BasePage {\n    \n    public ProductPage() {\n        super(\"//div[@id='products-page']\");\n    }\n    \n    // Реализуйте метод isSearchBoxVisible() → boolean\n    \n}\n",
+  "order": 157,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "ElementsStateTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "ElementsStateTest должен наследоваться от BaseTest"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "ElementsStateTest",
+          "methodName": "loginButtonIsEnabled",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод loginButtonIsEnabled() с @Test не найден"
+        },
+        {
+          "className": "ElementsStateTest",
+          "methodName": "searchBoxIsVisible",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод searchBoxIsVisible() с @Test не найден"
+        },
+        {
+          "className": "LoginPage",
+          "methodName": "isLoginButtonEnabled",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isLoginButtonEnabled() не найден в LoginPage"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "isSearchBoxVisible",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isSearchBoxVisible() не найден в ProductPage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "ElementsStateTest",
+          "methodName": "loginButtonIsEnabled",
+          "requiredMethodCalls": ["isLoginButtonEnabled"],
+          "requiredStatements": ["assertTrue"],
+          "errorMessage": "Тест должен вызывать isLoginButtonEnabled() и assertTrue()"
+        },
+        {
+          "className": "ElementsStateTest",
+          "methodName": "searchBoxIsVisible",
+          "requiredMethodCalls": ["isSearchBoxVisible"],
+          "requiredStatements": ["assertTrue"],
+          "errorMessage": "Тест должен вызывать isSearchBoxVisible() и assertTrue()"
+        },
+        {
+          "className": "LoginPage",
+          "methodName": "isLoginButtonEnabled",
+          "requiredMethodCalls": ["isDisplayed"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод должен проверять isDisplayed() кнопки входа"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "isSearchBoxVisible",
+          "requiredMethodCalls": ["isDisplayed"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод должен проверять isDisplayed() поля поиска"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "ElementsStateTest",
+          "methodName": "loginButtonIsEnabled",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "loginButtonIsEnabled() должен иметь @Test"
+        },
+        {
+          "targetType": "method",
+          "className": "ElementsStateTest",
+          "methodName": "searchBoxIsVisible",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "searchBoxIsVisible() должен иметь @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["ElementsStateTest", "LoginPage", "ProductPage"],
+      "extendsRules": ["ElementsStateTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "Header", "Footer", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.ElementsStateHarnessTest",
+      "testMethods": ["testIsLoginButtonEnabledReturnsBoolean", "testIsSearchBoxVisibleReturnsBoolean", "testEnabledButtonExists", "testSearchBoxExists", "testIsLoginButtonEnabledRealBehavior", "testIsSearchBoxVisibleRealBehavior"]
+    },
+    "errorMessage": "ElementsStateTest должен содержать loginButtonIsEnabled() и searchBoxIsVisible(). LoginPage и ProductPage должны содержать методы проверки состояния."
+  }
+}

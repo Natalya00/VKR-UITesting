@@ -1,0 +1,74 @@
+{
+  "id": "module-3-block-4-exercise-2",
+  "title": "Компонент панели вкладок с проверкой состояния",
+  "description": "Создайте компонент TabPanel с методом selectTab(String tabName), который находит вкладку по тексту и кликает по ней, и методом isTabActive(String tabName), проверяющим, является ли указанная вкладка активной. Используйте относительный XPath для поиска внутри baseElement.",
+  "hint": "Используйте относительный XPath от baseElement для поиска кнопки по тексту. Для проверки активности вкладки проверьте атрибут class на наличие \"active\".",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent"]
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент панели вкладок.\n */\npublic class TabPanel extends BaseComponent {\n\n    public TabPanel(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод selectTab(String tabName)\n    // Найдите кнопку вкладки по тексту и выполните переключение.\n \n    // Реализуйте метод isTabActive(String tabName)\n    // Проверьте, является ли указанная вкладка активной. \n\n}\n",
+  "order": 133,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "TabPanel",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс TabPanel должен наследоваться от BaseComponent"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "TabPanel",
+          "methodName": "selectTab",
+          "returnType": "TabPanel",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод selectTab(String) не найден в классе TabPanel"
+        },
+        {
+          "className": "TabPanel",
+          "methodName": "isTabActive",
+          "returnType": "boolean",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isTabActive(String) не найден в классе TabPanel"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "TabPanel",
+          "methodName": "selectTab",
+          "requiredMethodCalls": ["$x", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод selectTab() должен находить вкладку по тексту через $x(), кликать по ней и возвращать this"
+        },
+        {
+          "className": "TabPanel",
+          "methodName": "isTabActive",
+          "requiredMethodCalls": ["$x", "getAttribute"],
+          "requiredStatements": ["contains", "active", "return"],
+          "errorMessage": "Метод isTabActive() должен находить вкладку через $x(), проверять contains(getAttribute('class'), 'active') и возвращать boolean"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["TabPanel"],
+      "extendsRules": ["TabPanel:BaseComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.TabPanelHarnessTest",
+      "testMethods": ["testSelectTab", "testIsTabActiveReturnsTrue", "testIsTabActiveReturnsFalse"]
+    },
+    "errorMessage": "TabPanel должен наследоваться от BaseComponent и содержать selectTab(String) → TabPanel и isTabActive(String) → boolean"
+  }
+}

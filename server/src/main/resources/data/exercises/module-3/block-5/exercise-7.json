@@ -1,0 +1,95 @@
+﻿{
+  "id": "module-3-block-5-exercise-7",
+  "title": "Сценарий с навигацией и действиями",
+  "description": "Напишите тест «Добавление фото в профиль». Тест должен включать: авторизацию через AuthService, переход на страницу профиля, поиск нужного элемента, вызов метода добавления фото и проверку результата.",
+  "hint": "Авторизуйтесь через AuthService с тестовыми учётными данными, перейдите на страницу профиля через метод goToProfile() и загрузите файл через uploadPhoto(), проверьте результат через isPhotoUploaded().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "LoginPage", "HomePage", "ProfilePage", "AuthService", "User", "Header", "Footer"]
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.services.AuthService;\nimport com.example.runner.pom.pages.HomePage;\nimport com.example.runner.pom.pages.ProfilePage;\nimport com.example.runner.tests.User;\nimport org.junit.jupiter.api.Test;\n\nimport java.io.File;\n\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\n/**\n * Тесты для страницы профиля.\n */\npublic class ProfileTest extends BaseTest {\n    \n    private AuthService authService = new AuthService();\n    \n    // Напишите тест addPhotoToProfile()\n    // Логин: \"testuser\", пароль: \"testpass\"\n    // Файл фото: \"/tmp/test-photo.jpg\"\n    \n}\n",
+  "order": 150,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "ProfileTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "Класс ProfileTest должен наследоваться от BaseTest"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "ProfileTest",
+          "methodName": "addPhotoToProfile",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод addPhotoToProfile() с аннотацией @Test не найден"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "goToProfile",
+          "returnType": "ProfilePage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод goToProfile() не найден в классе HomePage"
+        },
+        {
+          "className": "ProfilePage",
+          "methodName": "uploadPhoto",
+          "parameters": ["java.io.File"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод uploadPhoto(File) не найден в классе ProfilePage"
+        },
+        {
+          "className": "ProfilePage",
+          "methodName": "isPhotoUploaded",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isPhotoUploaded() не найден в классе ProfilePage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "ProfileTest",
+          "methodName": "addPhotoToProfile",
+          "requiredMethodCalls": ["authService.login", "goToProfile", "uploadPhoto", "isPhotoUploaded"],
+          "errorMessage": "Тест должен использовать цепочку: authService.login() → goToProfile() → uploadPhoto() → isPhotoUploaded()"
+        },
+        {
+          "className": "ProfilePage",
+          "methodName": "uploadPhoto",
+          "requiredMethodCalls": ["uploadFile"],
+          "errorMessage": "Метод uploadPhoto() должен использовать Selenide uploadFile() для загрузки файла"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "ProfileTest",
+          "methodName": "addPhotoToProfile",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "Тест должен иметь аннотацию @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["ProfileTest", "HomePage", "ProfilePage"],
+      "extendsRules": ["ProfileTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "LoginPage", "HomePage", "ProfilePage", "AuthService", "User", "Header", "Footer"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.ProfilePhotoHarnessTest",
+      "testMethods": ["testUploadPhotoExists", "testIsPhotoUploadedReturnsBoolean", "testPhotoUploadIndicatorExists", "testUploadButtonExists", "testUploadPhotoRealBehavior", "testUploadAndCheckPhoto"]
+    },
+    "errorMessage": "ProfileTest должен содержать тест addPhotoToProfile() с @Test. HomePage должен содержать метод goToProfile(). ProfilePage должен содержать методы uploadPhoto(File) и isPhotoUploaded()"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "id": "module-2-block-6-exercise-4",
+  "title": "Drag-and-Drop",
+  "description": "Перетащите элемент с ID source на элемент с ID target.",
+  "hint": "Используйте actions().dragAndDrop(source, target).perform() для перетаскивания элемента на цель.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "drag-drop-container",
+        "style": "max-width: 700px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(72, 187, 120, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Перетащите элемент",
+            "style": "color: #2d3748; margin-bottom: 30px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "style": "display: flex; gap: 30px; justify-content: center; align-items: center; padding: 30px;",
+            "children": [
+              {
+                "tag": "div",
+                "id": "source",
+                "style": "width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; cursor: grab; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);"
+              },
+              {
+                "tag": "div",
+                "id": "target",
+                "style": "width: 150px; height: 150px; background: #f8f9fa; border: 3px dashed #38a169; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #38a169; font-weight: 600;"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#source"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Перетащите #source на #target с помощью drag-and-drop\n\n    }\n}",
+  "order": 55,
+  "difficulty": "hard",
+  "validationRules": {
+    "requiredMethods": ["actions", "dragAndDrop", "perform"],
+    "requiredSelectors": ["#source", "#target"],
+    "expectedAction": "drag_and_drop",
+    "requiredFinder": "$",
+    "errorMessage": "Перетащите элемент на цель"
+  }
+}

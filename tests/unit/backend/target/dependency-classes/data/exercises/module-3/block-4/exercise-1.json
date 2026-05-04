@@ -1,0 +1,104 @@
+{
+  "id": "module-3-block-4-exercise-1",
+  "title": "Компонент таблицы: проверка пустоты и безопасный поиск строк",
+  "description": "Создайте компонент TableComponent для работы с таблицами. Реализуйте метод isEmpty(), проверяющий отсутствие строк, и метод getOptionalRow(String value), который возвращает строку таблицы через Optional или Optional.empty() если строка не найдена. Также создайте вспомогательный класс TableRow для обёртки строки таблицы.",
+  "hint": "Создайте вспомогательный класс TableRow, который принимает SelenideElement в конструкторе, сохраняет его в приватное поле и предоставляет метод getText() для получения текста строки. В компоненте TableComponent реализуйте метод isEmpty(), который ищет все строки в теле таблицы через baseElement.$$(\"...tr...\") и проверяет, что размер коллекции равен нулю. Метод getOptionalRow(String value) должен найти строку через baseElement.$x() с XPath, содержащим текст через contains(td, ...). Если строка существует (exists()), оберните её в TableRow и верните через Optional.of(), иначе верните Optional.empty().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент строки таблицы.\n */\npublic class TableRow {\n\n    // Объявите поле для хранения SelenideElement строки\n\n    // Реализуйте конструктор\n\n    // Реализуйте метод для получения текста строки\n\n}\n\n---\n\npackage com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\nimport java.util.Optional;\n\n/**\n * Компонент таблицы.\n */\npublic class TableComponent extends BaseComponent {\n\n    public TableComponent(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод isEmpty()\n    // Он должен проверять, есть ли строки в теле таблицы\n\n    // Реализуйте метод getOptionalRow(String value)\n    // Найдите строку по содержащемуся тексту.\n    // Если строка существует — оберните её в TableRow и верните через Optional.of()\n    // Если не найдена — верните Optional.empty()\n\n}\n",
+  "order": 132,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "TableRow",
+          "required": true,
+          "errorMessage": "Класс TableRow не найден"
+        },
+        {
+          "className": "TableComponent",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс TableComponent должен наследоваться от BaseComponent"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "TableRow",
+          "fieldName": "baseElement",
+          "fieldType": "SelenideElement",
+          "modifiers": ["private"],
+          "required": true,
+          "errorMessage": "Поле private baseElement типа SelenideElement не найдено в TableRow"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "TableComponent",
+          "methodName": "isEmpty",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод isEmpty() не найден в классе TableComponent"
+        },
+        {
+          "className": "TableComponent",
+          "methodName": "getOptionalRow",
+          "returnType": "Optional",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getOptionalRow(String) не найден в классе TableComponent"
+        },
+        {
+          "className": "TableRow",
+          "methodName": "getText",
+          "returnType": "String",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getText() не найден в классе TableRow"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "TableComponent",
+          "methodName": "isEmpty",
+          "requiredMethodCalls": ["$$", "size"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод isEmpty() должен использовать baseElement.$$(\"tbody tr\").size() == 0"
+        },
+        {
+          "className": "TableComponent",
+          "methodName": "getOptionalRow",
+          "requiredMethodCalls": ["$x", "Optional.of", "Optional.empty"],
+          "requiredStatements": ["exists"],
+          "errorMessage": "Метод getOptionalRow() должен использовать $x() для поиска, проверить exists() и вернуть Optional.of() или Optional.empty()"
+        },
+        {
+          "className": "TableRow",
+          "methodName": "getText",
+          "requiredMethodCalls": ["getText"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод getText() должен возвращать baseElement.getText()"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["TableComponent", "TableRow"],
+      "extendsRules": ["TableComponent:BaseComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.TableComponentHarnessTest",
+      "testMethods": ["testIsEmptyTrue", "testIsEmptyFalse", "testGetOptionalRowFound", "testGetOptionalRowNotFound"]
+    },
+    "errorMessage": "TableComponent должен наследоваться от BaseComponent и содержать isEmpty() и getOptionalRow(String) → Optional<TableRow>. TableRow должен иметь getText()."
+  }
+}

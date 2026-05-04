@@ -1,0 +1,49 @@
+{
+  "id": "module-2-block-5-exercise-1",
+  "title": "Установка галочки в чекбокс",
+  "description": "Установите галочку в чекбокс.",
+  "hint": "Используйте click() для установки галочки в чекбокс.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "agreement-container",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Соглашение с условиями",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "className": "agreement-text",
+            "style": "background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px; font-size: 14px; color: #4a5568; line-height: 1.6;"
+          },
+          {
+            "tag": "label",
+            "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #f0f4ff; border-radius: 10px; cursor: pointer;",
+            "children": [
+              {"tag": "input", "type": "checkbox", "id": "agree-checkbox", "style": "width: 20px; height: 20px; accent-color: #667eea;"},
+              {"tag": "span", "text": "Я согласен с условиями использования сервиса", "style": "color: #2d3748; font-size: 15px; font-weight: 500;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#agree-checkbox"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Установите галочку в чекбокс\n\n    }\n}",
+  "order": 40,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click"],
+    "requiredSelectors": ["#agree-checkbox"],
+    "expectedAction": "check_checkbox",
+    "requiredFinder": "$",
+    "errorMessage": "Установите галочку в чекбокс"
+  }
+}

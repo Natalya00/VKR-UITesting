@@ -1,0 +1,80 @@
+﻿{
+  "id": "module-3-block-5-exercise-8",
+  "title": "Написание теста выхода из системы",
+  "description": "Создайте тест-класс LogoutTest. Напишите тест, который выполняет вход через AuthService, затем кликает кнопку выхода на HomePage и проверяет, что пользователь вернулся на страницу логина (LoginPage).",
+  "hint": "Используйте цепочку: authService.login(user) → HomePage → logout() → LoginPage. Создайте тестового пользователя через new User() и проверьте, что открылась страница логина через isDisplayed().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "LoginPage", "HomePage", "AuthService", "User", "ProfilePage", "Header", "Footer"]
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.services.AuthService;\nimport com.example.runner.pom.pages.HomePage;\nimport com.example.runner.pom.pages.LoginPage;\nimport com.example.runner.tests.User;\nimport org.junit.jupiter.api.Test;\n\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\n/**\n * Тесты для выхода из системы.\n */\npublic class LogoutTest extends BaseTest {\n    \n    private AuthService authService = new AuthService();\n    \n    // Напишите тест logoutSuccessful()\n    // Используйте: new User(\"testuser\", \"testpass\")\n    \n}\n",
+  "order": 151,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "LogoutTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "Класс LogoutTest должен наследоваться от BaseTest"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "LogoutTest",
+          "methodName": "logoutSuccessful",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод logoutSuccessful() с аннотацией @Test не найден"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "logout",
+          "returnType": "LoginPage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод logout() не найден в классе HomePage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "LogoutTest",
+          "methodName": "logoutSuccessful",
+          "requiredMethodCalls": ["authService.login", "logout"],
+          "requiredStatements": ["assertTrue"],
+          "errorMessage": "Тест должен использовать authService.login() и homePage.logout() для проверки выхода"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "logout",
+          "requiredMethodCalls": ["click"],
+          "errorMessage": "Метод logout() должен кликать по кнопке выхода и возвращать LoginPage"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "LogoutTest",
+          "methodName": "logoutSuccessful",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "Тест должен иметь аннотацию @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["LogoutTest", "HomePage", "LoginPage"],
+      "extendsRules": ["LogoutTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "LoginPage", "HomePage", "AuthService", "User", "ProfilePage", "Header", "Footer"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.LogoutTestHarnessTest",
+      "testMethods": ["testLogoutReturnsLoginPage", "testLogoutButtonExists"]
+    },
+    "errorMessage": "LogoutTest должен содержать тест logoutSuccessful() с @Test. HomePage должен содержать метод logout(), возвращающий LoginPage"
+  }
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="002" author="nat">
+        <createTable tableName="user_progress">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_user_progress_user" references="users(id)" deleteCascade="true"/>
+            </column>
+            <column name="module_id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="exercise_id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_completed" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="completed_at" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+            <column name="attempts_count" type="INTEGER" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint 
+            tableName="user_progress" 
+            columnNames="user_id, module_id, exercise_id" 
+            constraintName="uq_user_module_exercise"/>
+
+        <createIndex tableName="user_progress" indexName="idx_user_progress_user_id">
+            <column name="user_id"/>
+        </createIndex>
+
+        <createIndex tableName="user_progress" indexName="idx_user_progress_module_id">
+            <column name="module_id"/>
+        </createIndex>
+
+        <createIndex tableName="user_progress" indexName="idx_user_progress_exercise_id">
+            <column name="exercise_id"/>
+        </createIndex>
+        
+        <createIndex tableName="user_progress" indexName="idx_user_module_exercise">
+            <column name="user_id"/>
+            <column name="module_id"/>
+            <column name="exercise_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="003" author="nat">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM information_schema.constraint_column_usage 
+                WHERE constraint_name = 'uq_user_exercise' AND table_name = 'user_progress'
+            </sqlCheck>
+        </preConditions>
+        
+        <dropUniqueConstraint tableName="user_progress" constraintName="uq_user_exercise"/>
+        <addUniqueConstraint 
+            tableName="user_progress" 
+            columnNames="user_id, module_id, exercise_id" 
+            constraintName="uq_user_module_exercise"/>
+    </changeSet>
+
+</databaseChangeLog>

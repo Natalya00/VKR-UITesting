@@ -1,0 +1,87 @@
+{
+  "id" : "module-1-block-2-task-6",
+  "title" : "Поиск div с вложенным элементом",
+  "description" : "Найдите карточку товара 'Ноутбук Pro 15' по тексту во вложенном элементе описания.",
+  "hint" : "Используйте .// для поиска вложенных элементов на любой глубине",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Каталог товаров",
+    "layout" : "cards",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "product-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Смартфон Ultra X"
+      }, {
+        "tag" : "p",
+        "text" : "Флагманский смартфон"
+      }, {
+        "tag" : "span",
+        "className" : "price",
+        "text" : "89 990 ₽"
+      }, {
+        "tag" : "div",
+        "className" : "card-footer",
+        "children" : [ {
+          "tag" : "button",
+          "text" : "В корзину"
+        } ]
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "product-card",
+      "data-target" : "true",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Ноутбук Pro 15"
+      }, {
+        "tag" : "p",
+        "text" : "Мощный ноутбук для профессионалов"
+      }, {
+        "tag" : "span",
+        "className" : "price",
+        "text" : "159 990 ₽"
+      }, {
+        "tag" : "div",
+        "className" : "card-footer",
+        "children" : [ {
+          "tag" : "button",
+          "text" : "В корзину"
+        } ]
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "product-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Наушники Wireless Pro"
+      }, {
+        "tag" : "p",
+        "text" : "Наушники с шумоподавлением"
+      }, {
+        "tag" : "span",
+        "className" : "price",
+        "text" : "29 990 ₽"
+      }, {
+        "tag" : "div",
+        "className" : "card-footer",
+        "children" : [ {
+          "tag" : "button",
+          "text" : "В корзину"
+        } ]
+      } ]
+    } ],
+    "targetSelector" : "//div[.//p[text()='Мощный ноутбук для профессионалов']]"
+  },
+  "initialCode" : "// Введите XPath для поиска div, содержащего p с текстом \"Мощный ноутбук для профессионалов\"",
+  "order" : 6,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ ".//" ],
+    "forbiddenPatterns" : [ "[1]", "[2]" ],
+    "maxComplexity" : 3,
+    "exactOnly" : {
+    }
+  }
+}

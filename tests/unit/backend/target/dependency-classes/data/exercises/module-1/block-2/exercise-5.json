@@ -1,0 +1,64 @@
+{
+  "id" : "module-1-block-2-task-5",
+  "title" : "Поиск абзаца по началу текста",
+  "description" : "Найдите абзац в разделе новостей, текст которого начинается со слова 'Компания'.",
+  "hint" : "Функция starts-with() проверяет, начинается ли строка с определенного текста",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Новости компании",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "article",
+      "className" : "news-item",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Открытие нового офиса"
+      }, {
+        "tag" : "p",
+        "data-target" : "true",
+        "text" : "Компания расширяет присутствие в регионе."
+      }, {
+        "tag" : "time",
+        "text" : "20 января 2025"
+      } ]
+    }, {
+      "tag" : "article",
+      "className" : "news-item",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Запуск мобильного приложения"
+      }, {
+        "tag" : "p",
+        "text" : "Теперь наш сервис доступен в вашем смартфоне."
+      }, {
+        "tag" : "time",
+        "text" : "18 января 2025"
+      } ]
+    }, {
+      "tag" : "article",
+      "className" : "news-item",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Партнёрство с лидером рынка"
+      }, {
+        "tag" : "p",
+        "text" : "Новые возможности для наших клиентов."
+      }, {
+        "tag" : "time",
+        "text" : "15 января 2025"
+      } ]
+    } ],
+    "targetSelector" : "//p[starts-with(text(), 'Компания')]"
+  },
+  "initialCode" : "// Введите XPath для поиска p, текст которого начинается с \"Компания\"",
+  "order" : 5,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "starts-with(" ],
+    "forbiddenPatterns" : [ "contains(", "[1]", "[2]" ],
+    "maxComplexity" : 1,
+    "exactOnly" : {
+      "functions" : [ "starts-with", "text", "normalize-space" ]
+    }
+  }
+}

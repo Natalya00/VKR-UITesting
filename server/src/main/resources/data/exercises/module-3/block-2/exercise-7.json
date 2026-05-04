@@ -1,0 +1,49 @@
+﻿{
+    "id": "module-3-block-2-exercise-7",
+    "title": "Работа с фильтрацией элементов",
+    "description": "В классе ProductPage напишите метод filterByCategory(String category). Метод должен выбрать значение фильтра на странице и вернуть новый объект ProductPage для работы с отфильтрованными товарами.",
+    "hint": "Найдите элемент фильтра, выберите нужную категорию, дождитесь обновления списка. Верните new ProductPage() или page(ProductPage.class).",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer"]
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport static com.codeborne.selenide.Selenide.$;\n\npublic class ProductPage extends BasePage {\n\n    public ProductPage() { super(\"//div[@id='product-page']\"); }\n\n    // Реализуйте: public ProductPage filterByCategory(String category)\n    // Выберите фильтр и верните новый объект ProductPage\n\n}\n",
+    "order": 118,
+    "difficulty": "medium",
+    "validationRules": {
+      "astRules": {
+        "classRules": [
+          {
+            "className": "ProductPage",
+            "extendsClass": "BasePage",
+            "required": true,
+            "errorMessage": "Класс ProductPage должен наследоваться от BasePage"
+          }
+        ],
+        "methodRules": [
+          {
+            "className": "ProductPage",
+            "methodName": "filterByCategory",
+            "returnType": "ProductPage",
+            "parameters": ["String"],
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public ProductPage filterByCategory(String) не найден"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["ProductPage"],
+        "extendsRules": ["ProductPage:BasePage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer"],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.ProductPageHarnessTest",
+        "testMethods": ["testFilterByCategory"]
+      },
+      "errorMessage": "ProductPage должен содержать метод filterByCategory(String), который выбирает категорию и возвращает ProductPage"
+    }
+  }

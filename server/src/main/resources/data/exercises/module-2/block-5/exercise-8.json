@@ -1,0 +1,68 @@
+{
+  "id": "module-2-block-5-exercise-8",
+  "title": "Проверка всех чекбоксов с классом",
+  "description": "Проверьте, что все чекбоксы с классом opt выбраны.",
+  "hint": "Соберите коллекцию элементов по классу с помощью $$() и проверьте состояние каждого через shouldBe(checked).",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "multi-select-container",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 184, 148, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Выберите все опции",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "div",
+            "className": "options-list",
+            "style": "display: flex; flex-direction: column; gap: 12px;",
+            "children": [
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #d4edda; border-radius: 10px;",
+                "children": [
+                  {"tag": "input", "type": "checkbox", "className": "opt", "checked": true, "style": "width: 20px; height: 20px; accent-color: #28a745;"},
+                  {"tag": "span", "text": "Опция 1", "style": "color: #2d3748; font-size: 15px;"}
+                ]
+              },
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #d4edda; border-radius: 10px;",
+                "children": [
+                  {"tag": "input", "type": "checkbox", "className": "opt", "checked": true, "style": "width: 20px; height: 20px; accent-color: #28a745;"},
+                  {"tag": "span", "text": "Опция 2", "style": "color: #2d3748; font-size: 15px;"}
+                ]
+              },
+              {
+                "tag": "label",
+                "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #d4edda; border-radius: 10px;",
+                "children": [
+                  {"tag": "input", "type": "checkbox", "className": "opt", "checked": true, "style": "width: 20px; height: 20px; accent-color: #28a745;"},
+                  {"tag": "span", "text": "Опция 3", "style": "color: #2d3748; font-size: 15px;"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".opt"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте, что все элементы с классом .opt выбраны\n\n    }\n}",
+  "order": 47,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["shouldBe"],
+    "requiredConditions": ["checked"],
+    "requiredSelectors": [".opt"],
+    "expectedAction": "verify_all_checkboxes_checked",
+    "requiredFinder": "$$",
+    "errorMessage": "Проверьте, что все чекбоксы с классом opt выбраны"
+  }
+}

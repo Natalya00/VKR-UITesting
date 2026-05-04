@@ -1,0 +1,90 @@
+﻿{
+  "id": "module-3-block-5-exercise-11",
+  "title": "Написание теста фильтрации",
+  "description": "Создайте тест-класс FilterTest. Тест должен применить фильтр по категории через метод filterByCategory() и проверить, что все отображаемые элементы соответствуют выбранной категории. В ProductPage реализуйте методы filterByCategory(String) и getAllProductCategories().",
+  "hint": "В тесте авторизуйтесь с тестовыми учётными данными, откройте страницу товаров и примените фильтр по категории через filterByCategory(). Проверьте, что все отображаемые товары соответствуют выбранной категории, собрав категории через getAllProductCategories().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "AuthService", "LoginPage", "HomePage", "User", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "Header", "Footer", "ProfilePage"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.pom.pages.ProductPage;\nimport org.junit.jupiter.api.Test;\n\nimport java.util.List;\n\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\n/**\n * Тесты для фильтрации товаров.\n */\npublic class FilterTest extends BaseTest {\n    \n    // Напишите тест filterByCategorySuccessful() с аннотацией @Test\n    // Примените фильтр \"electronics\" и проверьте результат\n    \n}\n\n---\n\npackage com.example.runner.pom.pages;\n\nimport java.util.List;\n\n/**\n * Страница товаров.\n */\npublic class ProductPage extends BasePage {\n    \n    public ProductPage() {\n        super(\"//div[@id='products-page']\");\n    }\n    \n    // Реализуйте метод filterByCategory(String category)\n    \n    // Реализуйте метод getAllProductCategories()\n    // Возвращает List<String> с категориями всех отображаемых товаров\n    \n}\n",
+  "order": 154,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "FilterTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "FilterTest должен наследоваться от BaseTest"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "FilterTest",
+          "methodName": "filterByCategorySuccessful",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод filterByCategorySuccessful() с @Test не найден"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "filterByCategory",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод filterByCategory(String) не найден в ProductPage"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "getAllProductCategories",
+          "returnType": "List",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getAllProductCategories() не найден в ProductPage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "FilterTest",
+          "methodName": "filterByCategorySuccessful",
+          "requiredMethodCalls": ["filterByCategory", "getAllProductCategories"],
+          "requiredStatements": ["assertTrue"],
+          "errorMessage": "Тест должен использовать filterByCategory() и getAllProductCategories()"
+        },
+        {
+          "className": "ProductPage",
+          "methodName": "filterByCategory",
+          "requiredMethodCalls": ["click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод filterByCategory() должен выбирать категорию"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "FilterTest",
+          "methodName": "filterByCategorySuccessful",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "Тест должен иметь аннотацию @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["FilterTest", "ProductPage"],
+      "extendsRules": ["FilterTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "AuthService", "LoginPage", "HomePage", "User", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "Header", "Footer", "ProfilePage"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.FilterHarnessTest",
+      "testMethods": ["testFilterByCategoryExists", "testGetAllProductCategoriesReturnsList", "testCategoryFilterExists", "testGetAllCategoriesRealBehavior", "testFilterByCategoryRealBehavior"]
+    },
+    "errorMessage": "FilterTest должен содержать filterByCategorySuccessful(). ProductPage должен содержать filterByCategory(String) и getAllProductCategories()."
+  }
+}

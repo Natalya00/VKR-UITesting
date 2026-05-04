@@ -1,0 +1,42 @@
+{
+  "id": "module-2-block-9-exercise-5",
+  "title": "Переключение на вкладку по индексу",
+  "description": "Как переключиться на вторую вкладку браузера по индексу?",
+  "hint": "Правильный ответ: switchTo().window(1)",
+  "trainingComponent": "QuizTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "disableIDE": true,
+    "layout": "quiz",
+    "question": "Как переключиться на вторую вкладку браузера по индексу?",
+    "options": [
+      {
+        "label": "A",
+        "text": "switchTo().tab(1)"
+      },
+      {
+        "label": "B",
+        "text": "switchTo().window(1)"
+      },
+      {
+        "label": "C",
+        "text": "openWindow(1)"
+      },
+      {
+        "label": "D",
+        "text": "changeWindow(1)"
+      }
+    ],
+    "correctAnswer": "B"
+  },
+  "initialCode": "// Выберите правильный ответ: A, B, C или D\n// Правильный ответ: B\n\npublic class UserScript {\n    public static void run() {\n        // switchTo().window(1);\n    }\n}",
+  "order": 85,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": [],
+    "requiredSelectors": [],
+    "expectedAction": "quiz_answer_b",
+    "requiredFinder": "$",
+    "errorMessage": "Правильный ответ: B - switchTo().window(1)"
+  }
+}

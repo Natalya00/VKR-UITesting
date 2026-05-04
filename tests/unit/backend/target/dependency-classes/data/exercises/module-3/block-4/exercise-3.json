@@ -1,0 +1,88 @@
+{
+  "id": "module-3-block-4-exercise-3",
+  "title": "Компонент строки поиска с автодополнением",
+  "description": "Создайте компонент SearchBar с методами search(String query), clearSearch() и getSuggestions(). Метод search() должен вводить текст в поле поиска и возвращать this. clearSearch() — очищать поле через кнопку очистки. getSuggestions() — возвращать список подсказок (ElementsCollection), отображающихся при вводе.",
+  "hint": "Используйте относительный XPath от baseElement для поиска поля ввода и кнопки очистки. Для подсказок верните коллекцию элементов через $$.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent"]
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.ElementsCollection;\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент строки поиска с автодополнением.\n */\npublic class SearchBar extends BaseComponent {\n\n    public SearchBar(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод search(String query) — ввод текста в поле поиска\n\n    // Реализуйте метод clearSearch() — очистка поля через кнопку\n    // Кнопка очистки находится внутри компонента.\n\n    // Реализуйте метод getSuggestions() — получение списка подсказок\n    // Верните коллекцию элементов, отображающихся при вводе.\n\n}\n",
+  "order": 134,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "SearchBar",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс SearchBar должен наследоваться от BaseComponent"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "SearchBar",
+          "methodName": "search",
+          "returnType": "SearchBar",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод search(String) не найден в классе SearchBar"
+        },
+        {
+          "className": "SearchBar",
+          "methodName": "clearSearch",
+          "returnType": "SearchBar",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод clearSearch() не найден в классе SearchBar"
+        },
+        {
+          "className": "SearchBar",
+          "methodName": "getSuggestions",
+          "returnType": "ElementsCollection",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getSuggestions() не найден в классе SearchBar"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "SearchBar",
+          "methodName": "search",
+          "requiredMethodCalls": ["$x", "sendKeys"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод search() должен находить поле через $x(), вводить текст через sendKeys() и возвращать this"
+        },
+        {
+          "className": "SearchBar",
+          "methodName": "clearSearch",
+          "requiredMethodCalls": ["$x", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод clearSearch() должен находить кнопку через $x() и кликать по ней"
+        },
+        {
+          "className": "SearchBar",
+          "methodName": "getSuggestions",
+          "requiredMethodCalls": ["$$"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод getSuggestions() должен использовать baseElement.$$(\".suggestion-item\") и возвращать ElementsCollection"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["SearchBar"],
+      "extendsRules": ["SearchBar:BaseComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.SearchBarHarnessTest",
+      "testMethods": ["testSearch", "testClearSearch", "testGetSuggestions", "testSearchReturnsThis", "testClearReturnsThis"]
+    },
+    "errorMessage": "SearchBar должен наследоваться от BaseComponent и содержать search(String) → SearchBar, clearSearch() → SearchBar, getSuggestions() → ElementsCollection"
+  }
+}

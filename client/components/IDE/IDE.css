@@ -1,0 +1,229 @@
+.ide-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.file-tabs {
+  display: flex;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 4px 8px;
+  gap: 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.file-tabs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.file-tabs::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.file-tabs::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.file-tabs::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  font-size: 13px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.tab-item:hover {
+  background: #e2e8f0;
+}
+
+.tab-item.active {
+  background: white;
+  color: #1e293b;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tab-name {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rename-input {
+  width: 120px;
+  padding: 4px 8px;
+  border: 1px solid #3b82f6;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+  background: white;
+  color: #1e293b;
+  outline: none;
+}
+
+.tab-rename,
+.tab-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.tab-rename:hover,
+.tab-close:hover {
+  background: #cbd5e1;
+  color: #475569;
+}
+
+.tab-close:hover {
+  background: #fecaca;
+  color: #dc2626;
+}
+
+.add-file-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  border: 1px dashed #94a3b8;
+  background: #f8fafc;
+  color: #64748b;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 32px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-file-btn:hover {
+  background: #e2e8f0;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.ide-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.code-editor {
+  min-height: 350px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px 8px 0 0;
+  padding: 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  resize: vertical;
+  background: #f8fafc;
+  border-bottom: none;
+  color: #2b2d42;
+}
+
+.code-editor:focus {
+  outline: none;
+  border-color: #6096ba;
+  box-shadow: 0 0 0 2px rgba(96, 150, 186, 0.25);
+}
+
+.terminal-output {
+  min-height: 150px;
+  max-height: 300px;
+  margin: 0;
+  padding: 16px;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #cbd5e1;
+  border-top: 3px solid #61afef;
+  background: #212529;
+  color: #f8f9fa;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  box-shadow: none;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.ide-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ide-hint {
+  margin: 12px 0 0 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.ide-hint code {
+  background: #eef2f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.run-button,
+.verify-button {
+  padding: 12px 20px;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.run-button {
+  background: #4e7392;
+  color: white;
+}
+
+.run-button:hover {
+  background: #3c5a73;
+}
+
+.run-button:disabled {
+  background: #9aa5b1;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.verify-button {
+  background: #ffd166;
+  color: #2b2d42;
+}
+
+.verify-button:hover {
+  background: #fcbf49;
+}

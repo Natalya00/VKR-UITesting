@@ -1,0 +1,106 @@
+﻿{
+  "id": "module-3-block-3-exercise-6",
+  "title": "Базовый локатор страницы и конструктор",
+  "description": "Объявите в BasePage поле baseContainer типа SelenideElement и поле title типа String. Реализуйте конструктор, принимающий xpath и title. Инициализируйте baseContainer через $x(xpath) и поле title. Добавьте метод getTitle(), возвращающий заголовок страницы, и метод findElement(String relativeXpath), который ищет элемент внутри baseContainer через relativeXpath.",
+  "hint": "В классе BasePage объявите два защищённых поля: baseContainer типа SelenideElement и title типа String. Реализуйте конструктор, принимающий xpath и title, — в нём инициализируйте baseContainer через $x(xpath) и сохраните title. Добавьте публичный метод getTitle(), который просто возвращает значение поля title. Также реализуйте защищённый метод findElement(String relativeXpath), который ищет элемент внутри baseContainer через baseContainer.$x(relativeXpath) и возвращает найденный SelenideElement.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement", "Input", "Button", "AbstractClickableElement", "Clickable"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.pages;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Базовый класс для всех страниц.\n */\npublic class BasePage {\n\n    // Объявите поля: baseContainer (SelenideElement), title (String)\n\n    // Реализуйте конструктор, принимающий xpath и title\n\n    // Реализуйте метод getTitle()\n\n    // Реализуйте метод findElement(String relativeXpath)\n\n}\n\n---\n\npackage com.example.runner.pom.pages;\n\n/**\n * Страница входа.\n */\npublic class LoginPage extends BasePage {\n\n    public LoginPage() {\n        super(\"//form[@id='login-form']\", \"Страница входа\");\n    }\n\n}\n\n---\n\npackage com.example.runner.pom.pages;\n\n/**\n * Главная страница.\n */\npublic class HomePage extends BasePage {\n\n    public HomePage() {\n        super(\"//div[@id='home-page']\", \"Главная страница\");\n    }\n\n}\n",
+  "order": 130,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "BasePage",
+          "required": true,
+          "errorMessage": "Класс BasePage не найден"
+        },
+        {
+          "className": "LoginPage",
+          "extendsClass": "BasePage",
+          "required": true,
+          "errorMessage": "Класс LoginPage должен наследоваться от BasePage"
+        },
+        {
+          "className": "HomePage",
+          "extendsClass": "BasePage",
+          "required": true,
+          "errorMessage": "Класс HomePage должен наследоваться от BasePage"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "BasePage",
+          "fieldName": "baseContainer",
+          "fieldType": "SelenideElement",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected baseContainer типа SelenideElement не найдено"
+        },
+        {
+          "className": "BasePage",
+          "fieldName": "title",
+          "fieldType": "String",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected title типа String не найдено"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "BasePage",
+          "parameters": ["java.lang.String", "java.lang.String"],
+          "modifiers": ["protected"],
+          "required": true,
+          "requiredMethodCalls": ["$x"],
+          "errorMessage": "Конструктор BasePage(String, String) должен использовать $x(xpath)"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "BasePage",
+          "methodName": "getTitle",
+          "returnType": "java.lang.String",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public String getTitle() не найден"
+        },
+        {
+          "className": "BasePage",
+          "methodName": "findElement",
+          "parameters": ["java.lang.String"],
+          "returnType": "SelenideElement",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Метод protected SelenideElement findElement(String) не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "BasePage",
+          "methodName": "findElement",
+          "requiredMethodCalls": ["$x"],
+          "requiredStatements": ["baseContainer.$x", "return"],
+          "errorMessage": "findElement() должен искать элемент через baseContainer.$x(relativeXpath)"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["BasePage", "LoginPage", "HomePage"],
+      "extendsRules": ["LoginPage:BasePage", "HomePage:BasePage"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "Button", "AbstractClickableElement", "Clickable", "Input"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block3.BasePageStructureHarnessTest",
+      "testMethods": ["testConstructorInitializesFields", "testFindElement"]
+    },
+    "errorMessage": "BasePage: baseContainer, title, конструктор(String, String), getTitle()→String, findElement(String)→SelenideElement"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "module-2-block-7-exercise-4",
+  "title": "Ввод текста в Prompt",
+  "description": "Нажмите кнопку, введите в Prompt текст и подтвердите окно.",
+  "hint": "Нажмите кнопку, затем используйте prompt(\"текст\") для ввода данных в диалог и подтверждения.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; document.getElementById('prompt-btn')?.addEventListener('click', function() { window.__uiState.promptBtnClicked = true; window.__uiState.promptFilled = false; setTimeout(function() { const name = prompt('Введите ваше имя:'); if(name) { window.__uiState.promptFilled = true; window.__uiState.promptValue = name; const resultEl = document.getElementById('prompt-result'); if(resultEl) { resultEl.textContent = 'Введено имя: ' + name; resultEl.style.display = 'block'; } } }, 100); }, { once: true }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "prompt-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); border-radius: 20px; box-shadow: 0 20px 60px rgba(72, 187, 120, 0.3); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Ввод данных",
+            "style": "color: white; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Введите ваше имя в появившемся окне",
+            "style": "color: rgba(255,255,255,0.9); margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "prompt-btn",
+            "text": "Ввести данные",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(72, 187, 120, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "prompt-result",
+            "text": "Введено имя: ",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#prompt-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\n\npublic class UserScript {\n    public static void run() {\n        // Нажмите кнопку и введите текст в появившемся окне Prompt\n\n    }\n}",
+  "order": 63,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click", "prompt"],
+    "requiredSelectors": ["#prompt-btn"],
+    "expectedAction": "enter_prompt_text",
+    "requiredFinder": "$",
+    "errorMessage": "Введите текст в окно Prompt"
+  }
+}

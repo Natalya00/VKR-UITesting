@@ -1,0 +1,42 @@
+{
+  "id": "module-2-block-9-exercise-7",
+  "title": "Переключение на окно по заголовку",
+  "description": "Как переключиться на окно по заголовку?",
+  "hint": "Правильный ответ: switchTo().window(title)",
+  "trainingComponent": "QuizTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "disableIDE": true,
+    "layout": "quiz",
+    "question": "Как переключиться на окно по заголовку?",
+    "options": [
+      {
+        "label": "A",
+        "text": "switchTo().windowByTitle(\"title\")"
+      },
+      {
+        "label": "B",
+        "text": "switchTo().window(\"title\")"
+      },
+      {
+        "label": "C",
+        "text": "window(title)"
+      },
+      {
+        "label": "D",
+        "text": "switchWindow(\"title\")"
+      }
+    ],
+    "correctAnswer": "B"
+  },
+  "initialCode": "// Выберите правильный ответ: A, B, C или D\n// Правильный ответ: B\n\npublic class UserScript {\n    public static void run() {\n        // switchTo().window(\"Заголовок окна\");\n    }\n}",
+  "order": 87,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": [],
+    "requiredSelectors": [],
+    "expectedAction": "quiz_answer_b",
+    "requiredFinder": "$",
+    "errorMessage": "Правильный ответ: B - switchTo().window(title)"
+  }
+}

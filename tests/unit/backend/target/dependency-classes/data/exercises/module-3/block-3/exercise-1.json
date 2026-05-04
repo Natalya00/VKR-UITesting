@@ -1,0 +1,145 @@
+﻿{
+  "id": "module-3-block-3-exercise-1",
+  "title": "Создание базового класса с общими компонентами",
+  "description": "Напишите классы Header и Footer — компоненты для общих элементов интерфейса. Каждый компонент должен принимать SelenideElement в конструкторе и хранить его в поле baseElement. В BasePage добавьте protected поля для этих компонентов. Реализуйте методы clickLogo() и clickProfile() в Header, clickSocialLink(String network) в Footer — каждый метод должен кликать по элементу и возвращать this.",
+  "hint": "Создайте класс Header, в котором конструктор принимает SelenideElement и сохраняет его в поле baseElement. Реализуйте методы clickLogo() и clickProfile(), каждый из которых находит нужный элемент через baseElement.$x(), кликает по нему и возвращает this для поддержки цепочки вызовов. Аналогично создайте класс Footer с методом clickSocialLink(String network), который ищет ссылку по содержимому атрибута href через contains(@href, ...) и кликает по ней. В классе BasePage объявите два защищённых поля — header типа Header и footer типа Footer — и инициализируйте их в конструкторе через new Header($x(xpath)) и new Footer($x(xpath)).",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": [],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент Header.\n */\npublic class Header {\n\n    // Объявите поле baseElement\n\n    // Реализуйте конструктор, принимающий SelenideElement\n\n    // Реализуйте метод clickLogo() → Header\n\n    // Реализуйте метод clickProfile() → Header\n\n}\n\n---\n\npackage com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент Footer.\n */\npublic class Footer {\n\n    // Объявите поле baseElement\n\n    // Реализуйте конструктор, принимающий SelenideElement\n\n    // Реализуйте метод clickSocialLink(String network) → Footer\n\n}\n\n---\n\npackage com.example.runner.pom.pages;\n\nimport com.example.runner.pom.components.Header;\nimport com.example.runner.pom.components.Footer;\n\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Базовый класс для всех страниц.\n */\npublic class BasePage {\n\n    // Объявите поля: header, footer\n\n    protected BasePage(String xpath) {\n        // Инициализируйте header и footer\n    }\n\n}\n",
+  "order": 125,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "Header",
+          "required": true,
+          "errorMessage": "Класс Header не найден"
+        },
+        {
+          "className": "Footer",
+          "required": true,
+          "errorMessage": "Класс Footer не найден"
+        },
+        {
+          "className": "BasePage",
+          "required": true,
+          "errorMessage": "Класс BasePage не найден"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "BasePage",
+          "fieldName": "header",
+          "fieldType": "Header",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected header типа Header не найдено"
+        },
+        {
+          "className": "BasePage",
+          "fieldName": "footer",
+          "fieldType": "Footer",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected footer типа Footer не найдено"
+        },
+        {
+          "className": "Header",
+          "fieldName": "baseElement",
+          "fieldType": "SelenideElement",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected baseElement типа SelenideElement не найдено в Header"
+        },
+        {
+          "className": "Footer",
+          "fieldName": "baseElement",
+          "fieldType": "SelenideElement",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected baseElement типа SelenideElement не найдено в Footer"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "Header",
+          "parameters": ["com.codeborne.selenide.SelenideElement"],
+          "required": true,
+          "errorMessage": "Конструктор Header(SelenideElement) не найден"
+        },
+        {
+          "className": "Footer",
+          "parameters": ["com.codeborne.selenide.SelenideElement"],
+          "required": true,
+          "errorMessage": "Конструктор Footer(SelenideElement) не найден"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Header",
+          "methodName": "clickLogo",
+          "returnType": "Header",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public Header clickLogo() не найден в Header"
+        },
+        {
+          "className": "Header",
+          "methodName": "clickProfile",
+          "returnType": "Header",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public Header clickProfile() не найден в Header"
+        },
+        {
+          "className": "Footer",
+          "methodName": "clickSocialLink",
+          "parameters": ["java.lang.String"],
+          "returnType": "Footer",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public Footer clickSocialLink(String) не найден в Footer"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Header",
+          "methodName": "clickLogo",
+          "requiredMethodCalls": ["click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод clickLogo() должен кликать и возвращать this"
+        },
+        {
+          "className": "Header",
+          "methodName": "clickProfile",
+          "requiredMethodCalls": ["click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод clickProfile() должен кликать и возвращать this"
+        },
+        {
+          "className": "Footer",
+          "methodName": "clickSocialLink",
+          "requiredMethodCalls": ["click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод clickSocialLink() должен кликать и возвращать this"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Header", "Footer", "BasePage"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": [],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block3.ComponentsBlockHarnessTest",
+      "testMethods": ["testClickLogo", "testClickProfile", "testClickSocialLink", "testBasePageHasFields"]
+    },
+    "errorMessage": "Header: baseElement, конструктор, clickLogo→this, clickProfile→this. Footer: baseElement, конструктор, clickSocialLink→this. BasePage: header, footer поля."
+  }
+}

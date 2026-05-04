@@ -1,0 +1,75 @@
+{
+  "id": "module-3-block-4-exercise-12",
+  "title": "Финальный проект блока: комплексный виджет формы",
+  "description": "Создайте компонент FormWidget, который содержит Input, Select и Button как внутренние компоненты. Реализуйте метод fillAndSubmit(String name, String category), который заполняет форму и нажимает кнопку отправки. Также создайте FormPage, использующий FormWidget.",
+  "hint": "Создайте компонент FormWidget, наследующий BaseComponent, который содержит три внутренних компонента: Input, Select и Button. Инициализируйте их в конструкторе, найдя каждый внутри baseElement через $x(). Реализуйте метод fillAndSubmit(String name, String category), который заполняет поле ввода через метод fill() у компонента Input, выбирает нужное значение через метод selectOption() у компонента Select, затем кликает по кнопке отправки и возвращает this. Также создайте страницу FormPage, наследующую BasePage, с приватным полем formWidget. Метод submitForm(String name, String category) делегирует вызов formWidget.fillAndSubmit(name, category) и возвращает this.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent", "BasePage", "Header", "Footer"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Комплексный виджет формы.\n * Содержит поля ввода, выбора и кнопку отправки.\n */\npublic class FormWidget extends BaseComponent {\n\n    // Объявите внутренние компоненты\n\n    public FormWidget(SelenideElement baseElement) {\n        super(baseElement);\n        // Инициализируйте компоненты, найдя их внутри baseElement\n    }\n\n    // Реализуйте метод fillAndSubmit(String name, String category)\n\n}\n\n---\n\npackage com.example.runner.pom.pages;\n\nimport com.example.runner.pom.components.FormWidget;\n\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Страница с формой.\n */\npublic class FormPage extends BasePage {\n\n    private FormWidget formWidget;\n\n    public FormPage() {\n        super(\"//div[@id='form-page']\");\n        // Инициализируйте formWidget\n    }\n\n    // Реализуйте метод submitForm(String name, String category)\n    // Делегируйте вызов formWidget.fillAndSubmit(name, category)\n    // Верните this\n\n}\n",
+  "order": 143,
+  "difficulty": "hard",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "FormWidget",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "FormWidget должен наследоваться от BaseComponent"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "FormWidget",
+          "methodName": "fillAndSubmit",
+          "parameters": ["java.lang.String", "java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод fillAndSubmit(String, String) не найден в FormWidget"
+        },
+        {
+          "className": "FormPage",
+          "methodName": "submitForm",
+          "parameters": ["java.lang.String", "java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод submitForm(String, String) не найден в FormPage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "FormWidget",
+          "methodName": "fillAndSubmit",
+          "requiredMethodCalls": ["selectOption", "click"],
+          "mustReturnThis": true,
+          "errorMessage": "fillAndSubmit() должен заполнять input, выбирать option и кликать submit"
+        },
+        {
+          "className": "FormPage",
+          "methodName": "submitForm",
+          "requiredMethodCalls": ["formWidget.fillAndSubmit"],
+          "mustReturnThis": true,
+          "errorMessage": "submitForm() должен делегировать formWidget.fillAndSubmit()"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["FormWidget", "FormPage"],
+      "extendsRules": ["FormWidget:BaseComponent", "FormPage:BasePage"],
+      "privateFields": ["FormPage.formWidget"],
+      "publicMethods": ["FormWidget.fillAndSubmit", "FormPage.submitForm"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent", "BasePage", "Header", "Footer"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.FormWidgetHarnessTest",
+      "testMethods": ["testFillAndSubmit", "testSubmitForm", "testSubmitFormReturnsThis"]
+    },
+    "errorMessage": "FormWidget содержит fillAndSubmit(name, category) заполняющий форму. FormPage делегирует через submitForm()."
+  }
+}

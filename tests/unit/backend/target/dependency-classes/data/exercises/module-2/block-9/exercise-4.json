@@ -1,0 +1,42 @@
+{
+  "id": "module-2-block-9-exercise-4",
+  "title": "Переход назад в истории",
+  "description": "Как выполнить переход назад в истории браузера?",
+  "hint": "Правильный ответ: back()",
+  "trainingComponent": "QuizTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "disableIDE": true,
+    "layout": "quiz",
+    "question": "Как выполнить переход назад в истории браузера?",
+    "options": [
+      {
+        "label": "A",
+        "text": "goBack()"
+      },
+      {
+        "label": "B",
+        "text": "navigate().back()"
+      },
+      {
+        "label": "C",
+        "text": "history.back()"
+      },
+      {
+        "label": "D",
+        "text": "back()"
+      }
+    ],
+    "correctAnswer": "D"
+  },
+  "initialCode": "// Выберите правильный ответ: A, B, C или D\n// Правильный ответ: D\n\npublic class UserScript {\n    public static void run() {\n        // back();\n    }\n}",
+  "order": 84,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": [],
+    "requiredSelectors": [],
+    "expectedAction": "quiz_answer_d",
+    "requiredFinder": "$",
+    "errorMessage": "Правильный ответ: D - back()"
+  }
+}

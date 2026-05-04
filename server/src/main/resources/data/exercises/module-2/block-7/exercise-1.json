@@ -1,0 +1,54 @@
+{
+  "id": "module-2-block-7-exercise-1",
+  "title": "Принятие всплывающего окна (Alert)",
+  "description": "Нажмите на кнопку и примите всплывающее окно с текстом.",
+  "hint": "Нажмите кнопку, затем используйте метод confirm() для принятия alert.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; document.getElementById('alert-btn')?.addEventListener('click', function() { window.__uiState.alertBtnClicked = true; window.__uiState.alertAccepted = false; setTimeout(function() { alert('Добро пожаловать! Вы успешно запустили тестовое уведомление.'); window.__uiState.alertAccepted = true; const resultEl = document.getElementById('alert-result'); if(resultEl) { resultEl.textContent = 'Alert принят'; resultEl.style.display = 'block'; } }, 100); }, { once: true }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "alert-demo-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Всплывающие уведомления",
+            "style": "color: white; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Нажмите кнопку ниже и примите появившееся уведомление",
+            "style": "color: rgba(255,255,255,0.9); margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "alert-btn",
+            "text": "Показать уведомление",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "alert-result",
+            "text": "Alert принят",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#alert-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\n\npublic class UserScript {\n    public static void run() {\n        // Нажмите кнопку и примите всплывающее окно\n\n    }\n}",
+  "order": 60,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click", "confirm"],
+    "requiredSelectors": ["#alert-btn"],
+    "expectedAction": "accept_alert",
+    "requiredFinder": "$",
+    "errorMessage": "Примите всплывающее окно"
+  }
+}

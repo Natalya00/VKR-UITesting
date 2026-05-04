@@ -1,0 +1,105 @@
+﻿{
+  "id": "module-3-block-3-exercise-5",
+  "title": "Организация общих элементов футера",
+  "description": "В BasePage опишите поле footer типа SelenideElement. Создайте метод scrollToFooter(), который прокручивает страницу до футера через JavaScript с executeJavaScript и scrollIntoView(). Добавьте метод isFooterVisible(), проверяющий видимость футера, и метод getFooterText(), возвращающий текст футера. Каждый метод должен использовать поле footer.",
+  "hint": "В классе BasePage объявите защищённое поле footer типа SelenideElement и инициализируйте его в конструкторе через $x() с соответствующим XPath. Реализуйте защищённый метод scrollToFooter(), который прокручивает страницу до футера с помощью executeJavaScript(\"arguments[0].scrollIntoView()\", footer). Добавьте публичный метод isFooterVisible(), проверяющий видимость футера через footer.isDisplayed() и возвращающий boolean. Также реализуйте публичный метод getFooterText(), возвращающий текст футера через footer.getText().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": [],
+    "multiFile": false
+  },
+  "initialCode": "package com.example.runner.pom.pages;\n\nimport com.codeborne.selenide.SelenideElement;\nimport static com.codeborne.selenide.Selenide.$x;\nimport static com.codeborne.selenide.Selenide.executeJavaScript;\n\n/**\n * Базовый класс для всех страниц.\n */\npublic class BasePage {\n\n    // Объявите поле footer типа SelenideElement\n\n    protected BasePage(String xpath) {\n        // Инициализируйте footer\n    }\n\n    // Реализуйте метод scrollToFooter() — прокрутите страницу до футера\n\n    // Реализуйте метод isFooterVisible() — проверьте видимость футера\n\n    // Реализуйте метод getFooterText() — верните текст футера\n\n}\n",
+  "order": 129,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "BasePage",
+          "required": true,
+          "errorMessage": "Класс BasePage не найден"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "BasePage",
+          "fieldName": "footer",
+          "fieldType": "SelenideElement",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Поле protected footer типа SelenideElement не найдено"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "BasePage",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["protected"],
+          "required": true,
+          "requiredMethodCalls": ["$x"],
+          "errorMessage": "Конструктор BasePage(String) должен использовать $x для инициализации footer"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "BasePage",
+          "methodName": "scrollToFooter",
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "Метод protected scrollToFooter() не найден"
+        },
+        {
+          "className": "BasePage",
+          "methodName": "isFooterVisible",
+          "returnType": "boolean",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public boolean isFooterVisible() не найден"
+        },
+        {
+          "className": "BasePage",
+          "methodName": "getFooterText",
+          "returnType": "java.lang.String",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод public String getFooterText() не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "BasePage",
+          "methodName": "scrollToFooter",
+          "requiredMethodCalls": ["executeJavaScript"],
+          "requiredStatements": ["scrollIntoView", "arguments[0]"],
+          "errorMessage": "scrollToFooter() должен использовать executeJavaScript(\"arguments[0].scrollIntoView()\", footer)"
+        },
+        {
+          "className": "BasePage",
+          "methodName": "isFooterVisible",
+          "requiredMethodCalls": ["isDisplayed"],
+          "requiredStatements": ["return"],
+          "errorMessage": "isFooterVisible() должен вызывать isDisplayed() у footer"
+        },
+        {
+          "className": "BasePage",
+          "methodName": "getFooterText",
+          "requiredMethodCalls": ["getText"],
+          "requiredStatements": ["return"],
+          "errorMessage": "getFooterText() должен вызывать getText() у footer"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["BasePage"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "Button", "AbstractClickableElement", "Clickable", "Input"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block3.FooterHarnessTest",
+      "testMethods": ["testScrollToFooter", "testIsFooterVisible", "testGetFooterText"]
+    },
+    "errorMessage": "BasePage: footer, конструктор, scrollToFooter() с JS, isFooterVisible()→boolean, getFooterText()→String"
+  }
+}

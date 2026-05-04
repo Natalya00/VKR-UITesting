@@ -1,0 +1,66 @@
+{
+  "id" : "module-1-block-4-task-9",
+  "title" : "Единственный дочерний элемент по XPath",
+  "description" : "Найдите кнопку <button> с текстом 'Закрыть', которая является единственным дочерним элементом своего родителя div, используя XPath.",
+  "hint" : "Функция count() подсчитывает количество дочерних элементов",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Диалоговые окна",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "dialog-box",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Подтверждение действия"
+      }, {
+        "tag" : "p",
+        "text" : "Вы уверены, что хотите закрыть это окно? Все несохраненные изменения будут потеряны."
+      }, {
+        "tag" : "div",
+        "className" : "single-action",
+        "children" : [ {
+          "tag" : "button",
+          "className" : "btn btn-secondary close-btn",
+          "data-target" : "true",
+          "text" : "Закрыть"
+        } ]
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "dialog-box",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Сохранение изменений"
+      }, {
+        "tag" : "p",
+        "text" : "Вы внесли изменения в документ. Хотите сохранить их перед выходом?"
+      }, {
+        "tag" : "div",
+        "className" : "multi-action",
+        "children" : [ {
+          "tag" : "button",
+          "className" : "btn btn-danger",
+          "text" : "Отмена"
+        }, {
+          "tag" : "button",
+          "className" : "btn btn-success",
+          "text" : "Сохранить"
+        }, {
+          "tag" : "button",
+          "className" : "btn btn-secondary",
+          "text" : "Закрыть"
+        } ]
+      } ]
+    } ],
+    "targetSelector" : "button.close-btn"
+  },
+  "initialCode" : "// Введите XPath для поиска кнопки, которая является единственным дочерним элементом",
+  "order" : 9,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "count(" ],
+    "forbiddenPatterns" : [ "last()" ],
+    "maxComplexity" : 2
+  }
+}

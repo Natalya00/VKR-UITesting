@@ -1,0 +1,70 @@
+{
+  "id": "module-2-block-7-exercise-10",
+  "title": "Открытие модального окна по клику",
+  "description": "Нажмите кнопку, чтобы открыть модальное окно. Убедитесь, что окно появилось на странице.",
+  "hint": "Кликните по кнопке открытия и проверьте через shouldBe(visible), что модальное окно появилось.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; window.__uiState.modalOpened = false; document.getElementById('open-modal-btn')?.addEventListener('click', function() { window.__uiState.modalOpened = true; const modal = document.getElementById('info-modal'); if(modal) { modal.classList.add('modal-visible'); modal.setAttribute('data-opened', 'true'); } const resultEl = document.getElementById('modal-opened-result'); if(resultEl) { resultEl.textContent = 'Модальное окно открыто'; resultEl.style.display = 'block'; } }, { once: true }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "modal-open-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Открытие модального окна",
+            "style": "color: #1a202c; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Нажмите кнопку ниже, чтобы открыть информационное окно",
+            "style": "color: #718096; margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "open-modal-btn",
+            "text": "Открыть окно",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "info-modal",
+            "className": "modal",
+            "style": "display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;",
+            "children": [
+              {
+                "tag": "div",
+                "style": "background: white; padding: 50px; border-radius: 16px; box-shadow: 0 25px 80px rgba(0,0,0,0.3); max-width: 500px; text-align: center;",
+                "children": [
+                  {"tag": "h3", "text": "Информация", "style": "color: #1a202c; margin-bottom: 20px; font-size: 26px; font-weight: 600;"},
+                  {"tag": "p", "text": "Это модальное окно было успешно открыто по клику на кнопку", "style": "color: #718096; font-size: 17px; line-height: 1.6;"}
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "id": "modal-opened-result",
+            "text": "Модальное окно открыто",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#open-modal-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Откройте модальное окно и убедитесь, что оно появилось\n\n    }\n}",
+  "order": 69,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click", "shouldBe"],
+    "requiredSelectors": ["#open-modal-btn"],
+    "expectedAction": "open_modal",
+    "requiredFinder": "$",
+    "errorMessage": "Откройте модальное окно"
+  }
+}

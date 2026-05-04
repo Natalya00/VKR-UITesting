@@ -1,0 +1,80 @@
+{
+  "id" : "module-1-block-5-task-5",
+  "title" : "Выбранный checkbox",
+  "description" : "Найдите выбранный чекбокс в настройках уведомлений профиля пользователя.",
+  "hint" : "Атрибут checked у checkbox может быть проверен через @checked",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Настройки профиля пользователя",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "profile-header",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Профиль пользователя"
+      }, {
+        "tag" : "p",
+        "text" : "Иван Петров | ivan.petrov@company.com"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "settings-section",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Настройки уведомлений"
+      }, {
+        "tag" : "div",
+        "className" : "checkbox-group",
+        "children" : [ {
+          "tag" : "label",
+          "className" : "checkbox-label",
+          "children" : [ {
+            "tag" : "input",
+            "type" : "checkbox",
+            "name" : "notify",
+            "value" : "email"
+          }, {
+            "tag" : "span",
+            "text" : "Email уведомления"
+          } ]
+        }, {
+          "tag" : "label",
+          "className" : "checkbox-label",
+          "children" : [ {
+            "tag" : "input",
+            "type" : "checkbox",
+            "name" : "notify",
+            "value" : "sms",
+            "checked" : "checked",
+            "data-target" : "true"
+          }, {
+            "tag" : "span",
+            "text" : "SMS уведомления"
+          } ]
+        }, {
+          "tag" : "label",
+          "className" : "checkbox-label",
+          "children" : [ {
+            "tag" : "input",
+            "type" : "checkbox",
+            "name" : "notify",
+            "value" : "push"
+          }, {
+            "tag" : "span",
+            "text" : "Push-уведомления"
+          } ]
+        } ]
+      } ]
+    } ],
+    "targetSelector" : "//input[@type='checkbox' and @checked='checked']"
+  },
+  "initialCode" : "// Введите XPath для поиска checkbox с @checked='checked'",
+  "order" : 5,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "@type", "@checked" ],
+    "forbiddenPatterns" : [ "text()", "[1]", "[2]" ],
+    "maxComplexity" : 1
+  }
+}

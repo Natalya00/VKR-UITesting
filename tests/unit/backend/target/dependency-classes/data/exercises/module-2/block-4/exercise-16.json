@@ -1,0 +1,65 @@
+{
+  "id": "module-2-block-4-exercise-16",
+  "title": "Множественный выбор опций",
+  "description": "В выпадающем списке выберите сразу две опции: \"Red\" и \"Green\".",
+  "hint": "Используйте selectOption(\"...\", \"...\") для множественного выбора опций.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "color-form",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Выбор цветов",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Выберите несколько цветов (Ctrl+Click):",
+            "style": "color: #718096; margin-bottom: 15px; font-size: 14px;"
+          },
+          {
+            "tag": "div",
+            "className": "form-group",
+            "style": "margin: 20px 0;",
+            "children": [
+              {
+                "tag": "label",
+                "text": "Ваши любимые цвета:",
+                "style": "display: block; margin-bottom: 10px; color: #4a5568; font-weight: 600; font-size: 15px;"
+              },
+              {
+                "tag": "select",
+                "id": "dropdown-multi",
+                "multiple": true,
+                "style": "width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 16px; background: white; cursor: pointer; transition: border-color 0.2s; height: 120px;",
+                "children": [
+                  {"tag": "option", "text": "Red"},
+                  {"tag": "option", "text": "Green"},
+                  {"tag": "option", "text": "Blue", "selected": true},
+                  {"tag": "option", "text": "Yellow", "selected": true}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#dropdown-multi"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\n\npublic class UserScript {\n    public static void run() {\n        // Выберите опции Red и Green в выпадающем списке с множественным выбором\n\n    }\n}",
+  "order": 37,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["selectOption"],
+    "requiredSelectors": ["#dropdown-multi", "Red", "Green"],
+    "expectedAction": "select_multiple_options",
+    "requiredFinder": "$",
+    "errorMessage": "Выберите несколько опций"
+  }
+}

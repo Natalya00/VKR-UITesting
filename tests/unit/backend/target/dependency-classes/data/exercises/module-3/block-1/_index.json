@@ -1,0 +1,6 @@
+{
+  "blockId": "block-1",
+  "title": "Page Elements",
+  "difficulty": "easy",
+  "description": "Создание базовых элементов: BaseElement, Input, Button, SelectorInput, ItemsContainer, ItemComponent"
+}

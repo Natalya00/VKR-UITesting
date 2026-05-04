@@ -1,0 +1,35 @@
+{
+  "moduleId" : "module-1",
+  "title" : "XPath",
+  "blocks" : [ {
+    "blockId" : "block-1",
+    "title" : "Прямые пути и атрибуты. id, name, class + and/or",
+    "difficulty" : "easy",
+    "description" : "Базовые селекторы: поиск по id, name, class, атрибутам и операторам",
+    "exerciseCount" : 10
+  }, {
+    "blockId" : "block-2",
+    "title" : "Текст и частичное совпадение",
+    "difficulty" : "medium",
+    "description" : "Работа с текстом: text(), contains(), normalize-space(), starts-with()",
+    "exerciseCount" : 10
+  }, {
+    "blockId" : "block-3",
+    "title" : "Иерархия. Предки, потомки и «соседи»",
+    "difficulty" : "hard",
+    "description" : "Оси XPath: parent, child, following-sibling, ancestor, following",
+    "exerciseCount" : 9
+  }, {
+    "blockId" : "block-4",
+    "title" : "Списки и Индексы. Группировка и CSS-псевдоклассы",
+    "difficulty" : "medium",
+    "description" : "Индексы, позиции, CSS-псевдоклассы: nth-child, last, position, only-child",
+    "exerciseCount" : 10
+  }, {
+    "blockId" : "block-5",
+    "title" : "Динамические атрибуты, not(), SVG и скрытые элементы",
+    "difficulty" : "hard",
+    "description" : "Работа с динамическими атрибутами, отрицание not(), SVG-элементы, скрытые элементы",
+    "exerciseCount" : 10
+  } ]
+}

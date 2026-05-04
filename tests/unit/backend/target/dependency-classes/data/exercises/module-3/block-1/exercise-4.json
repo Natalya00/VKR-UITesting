@@ -1,0 +1,80 @@
+﻿{
+  "id": "module-3-block-1-exercise-4",
+  "title": "Создание базисного элемента Input",
+  "description": "Создайте класс Input, наследующийся от BaseElement. Объявите приватные статические константы: ID_XPATH, NAME_XPATH, PLACEHOLDER_XPATH. Реализуйте метод fill(String value), который очищает поле, вводит значение и возвращает this для поддержки Fluent-вызовов.",
+  "hint": "XPath-шаблоны с плейсхолдером %s для атрибутов id, name, placeholder. Метод fill(): вызовите clear(), затем setValue() и верните this для цепочки вызовов.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement"]
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\n/**\n * Элемент Input для работы с полями ввода.\n */\npublic class Input extends BaseElement {\n\n    // Объявите приватные статические константы:\n    // ID_XPATH, NAME_XPATH, PLACEHOLDER_XPATH\n\n    private Input(String xpath, String value) {\n        super(xpath, value);\n    }\n\n    // Реализуйте метод fill(String value)\n    // Должен: очищать поле, вводить значение, возвращать this\n\n}\n",
+  "order": 104,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "Input",
+          "extendsClass": "BaseElement",
+          "required": true,
+          "errorMessage": "Класс Input должен наследоваться от BaseElement"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "Input",
+          "fieldName": "ID_XPATH",
+          "modifiers": ["private", "static", "final"],
+          "required": true,
+          "errorMessage": "Константа ID_XPATH должна быть private static final"
+        },
+        {
+          "className": "Input",
+          "fieldName": "NAME_XPATH",
+          "modifiers": ["private", "static", "final"],
+          "required": true,
+          "errorMessage": "Константа NAME_XPATH должна быть private static final"
+        },
+        {
+          "className": "Input",
+          "fieldName": "PLACEHOLDER_XPATH",
+          "modifiers": ["private", "static", "final"],
+          "required": true,
+          "errorMessage": "Константа PLACEHOLDER_XPATH должна быть private static final"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Input",
+          "methodName": "fill",
+          "returnType": "Input",
+          "parameters": ["String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод fill(String) должен быть public и возвращать Input"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Input",
+          "methodName": "fill",
+          "requiredMethodCalls": ["clear", "setValue"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод fill() должен вызывать clear(), setValue() и возвращать this"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Input"],
+      "extendsRules": ["Input:BaseElement"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block1.InputHarnessTest",
+      "testMethods": ["testFillClearsAndSetsValue", "testFillReturnsThis"]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "moduleId": "module-3",
+  "title": "Page Object Model (POM)",
+  "blocks": [
+    {
+      "blockId": "block-1",
+      "title": "Page Elements",
+      "difficulty": "easy",
+      "description": "Создание базовых элементов: BaseElement, Input, Button, SelectorInput, ItemsContainer, ItemComponent",
+      "exerciseCount": 11
+    },
+    {
+      "blockId": "block-2",
+      "title": "Page Methods",
+      "difficulty": "medium",
+      "description": "Методы страниц: навигация, проверка состояния, фильтрация, работа с коллекциями",
+      "exerciseCount": 13
+    },
+    {
+      "blockId": "block-3",
+      "title": "Наследование и Base Page",
+      "difficulty": "medium",
+      "description": "Наследование страниц, общие компоненты Header/Footer, переопределение методов",
+      "exerciseCount": 7
+    },
+    {
+      "blockId": "block-4",
+      "title": "Компоненты (Page Components)",
+      "difficulty": "hard",
+      "description": "Создание компонентов: NavigationMenu, TableComponent, TabPanel, DatePicker, вложенные компоненты",
+      "exerciseCount": 12
+    },
+    {
+      "blockId": "block-5",
+      "title": "Base Test и написание тестов",
+      "difficulty": "hard",
+      "description": "Написание тестов с BaseTest, AuthService, сценарии: логин, выход, изменение профиля, CRUD",
+      "exerciseCount": 14
+    }
+  ]
+}

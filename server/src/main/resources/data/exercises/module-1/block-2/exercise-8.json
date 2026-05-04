@@ -1,0 +1,50 @@
+{
+  "id" : "module-1-block-2-task-8",
+  "title" : "Поиск ссылки по href и тексту",
+  "description" : "Найдите ссылку на основную документацию, которая ведёт на /docs И содержит 'PDF' в тексте.",
+  "hint" : "Оператор 'and' позволяет комбинировать несколько условий",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Документация",
+    "layout" : "navigation",
+    "customStyles" : ".docs-nav a { display: inline-block; margin: 0 10px 10px 0; }",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "docs-nav",
+      "children" : [ {
+        "tag" : "h4",
+        "text" : "📚 Руководства"
+      }, {
+        "tag" : "a",
+        "href" : "/docs",
+        "text" : "Основная документация (PDF)",
+        "data-target" : "true"
+      }, {
+        "tag" : "a",
+        "href" : "/docs/api",
+        "text" : "API Reference"
+      }, {
+        "tag" : "a",
+        "href" : "/docs/tutorial",
+        "text" : "Учебное пособие"
+      }, {
+        "tag" : "a",
+        "href" : "/docs/faq",
+        "text" : "Частые вопросы (FAQ)"
+      }, {
+        "tag" : "a",
+        "href" : "/download",
+        "text" : "Скачать PDF версию"
+      } ]
+    } ],
+    "targetSelector" : "//a[@href='/docs' and contains(text(), 'PDF')]"
+  },
+  "initialCode" : "// Введите XPath для поиска a с href=\"/docs\" и текстом, содержащим \"PDF\"",
+  "order" : 8,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "@href", " and ", "contains(", "text()" ],
+    "forbiddenPatterns" : [ "[1]", "[2]", " or " ],
+    "maxComplexity" : 2
+  }
+}

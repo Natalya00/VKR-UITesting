@@ -1,0 +1,47 @@
+{
+  "id": "module-2-block-4-exercise-5",
+  "title": "Фильтрация коллекции по классу",
+  "description": "Отфильтруйте коллекцию .task по классу completed и убедитесь, что таких элементов ровно 2.",
+  "hint": "Используйте filter() с cssClass() для фильтрации и shouldHave(size(...)) для проверки количества.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "tasks-container",
+        "style": "max-width: 700px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); padding: 30px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Мои задачи",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 24px;"
+          },
+          {
+            "tag": "ul",
+            "className": "tasks",
+            "style": "list-style: none; padding: 0; margin: 0;",
+            "children": [
+              {"tag": "li", "className": "task completed", "text": "Купить продукты", "style": "padding: 18px 24px; background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 4px solid #28a745; margin: 12px 0; border-radius: 8px; color: #155724; font-size: 16px;"},
+              {"tag": "li", "className": "task", "text": "Написать отчёт", "style": "padding: 18px 24px; background: #fff; border-left: 4px solid #6c757d; margin: 12px 0; border-radius: 8px; color: #495057; font-size: 16px;"},
+              {"tag": "li", "className": "task completed", "text": "Отправить письмо", "style": "padding: 18px 24px; background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 4px solid #28a745; margin: 12px 0; border-radius: 8px; color: #155724; font-size: 16px;"},
+              {"tag": "li", "className": "task", "text": "Позвонить клиенту", "style": "padding: 18px 24px; background: #fff; border-left: 4px solid #ffc107; margin: 12px 0; border-radius: 8px; color: #495057; font-size: 16px;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".task"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\nimport static com.codeborne.selenide.CollectionCondition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Отфильтруйте .task по классу completed и проверьте, что их ровно 2\n\n    }\n}",
+  "order": 26,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["filter", "cssClass", "shouldHave", "size"],
+    "requiredSelectors": [".task", "completed"],
+    "expectedAction": "filter_by_class_and_check_size",
+    "requiredFinder": "$$",
+    "errorMessage": "Отфильтруйте элементы по классу и проверьте количество"
+  }
+}

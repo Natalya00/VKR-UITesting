@@ -1,0 +1,46 @@
+{
+  "id": "module-2-block-4-exercise-4",
+  "title": "Проверка наличия элемента с определённым текстом",
+  "description": "Проверьте, что в списке ошибок есть хотя бы один элемент, содержащий слово \"Password\".",
+  "hint": "Используйте filter() с text() для отбора, затем shouldHave(sizeGreaterThan(0)) для проверки наличия.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "validation-errors-container",
+        "style": "max-width: 600px; margin: 40px auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(229, 62, 62, 0.15); padding: 30px; border-left: 4px solid #e53e3e;",
+        "children": [
+          {
+            "tag": "h3",
+            "text": "Ошибки валидации",
+            "style": "color: #c53030; margin-bottom: 20px; font-size: 20px;"
+          },
+          {
+            "tag": "ul",
+            "className": "error-list",
+            "style": "list-style: none; padding: 0; margin: 0;",
+            "children": [
+              {"tag": "li", "className": "error", "text": "Password is too weak. Must contain at least 8 characters with numbers and symbols.", "style": "padding: 15px 20px; background: #fff5f5; border-left: 3px solid #e53e3e; margin: 10px 0; color: #742a2a; border-radius: 0 8px 8px 0;"},
+              {"tag": "li", "className": "error", "text": "Email is invalid. Please enter a valid email address.", "style": "padding: 15px 20px; background: #fff5f5; border-left: 3px solid #ed8936; margin: 10px 0; color: #742a2a; border-radius: 0 8px 8px 0;"},
+              {"tag": "li", "className": "error", "text": "Phone number is required for verification.", "style": "padding: 15px 20px; background: #fff5f5; border-left: 3px solid #ecc94b; margin: 10px 0; color: #742a2a; border-radius: 0 8px 8px 0;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".error"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\nimport static com.codeborne.selenide.CollectionCondition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Отфильтруйте элементы с текстом \"Password\" и проверьте, что хотя бы один найден\n\n    }\n}",
+  "order": 25,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["filter", "shouldHave", "text", "sizeGreaterThan"],
+    "requiredSelectors": [".error", "Password"],
+    "expectedAction": "check_collection_contains_text",
+    "requiredFinder": "$$",
+    "errorMessage": "Проверьте наличие элемента с текстом, содержащим \"Password\""
+  }
+}

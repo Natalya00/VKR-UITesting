@@ -1,0 +1,156 @@
+{
+  "id" : "module-1-block-4-task-5",
+  "title" : "Чётные строки таблицы по XPath",
+  "description" : "Найдите все чётные строки <tr>, используя XPath с функцией position().",
+  "hint" : "Функция position() возвращает позицию элемента, оператор mod вычисляет остаток от деления",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Расписание занятий",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "schedule-header",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Учебное расписание"
+      }, {
+        "tag" : "p",
+        "text" : "Семестр: Весна 2025 | Группа: ИТ-401"
+      } ]
+    }, {
+      "tag" : "table",
+      "className" : "schedule-table",
+      "children" : [ {
+        "tag" : "thead",
+        "children" : [ {
+          "tag" : "tr",
+          "children" : [ {
+            "tag" : "th",
+            "text" : "День"
+          }, {
+            "tag" : "th",
+            "text" : "Предмет"
+          }, {
+            "tag" : "th",
+            "text" : "Время"
+          }, {
+            "tag" : "th",
+            "text" : "Аудитория"
+          } ]
+        } ]
+      }, {
+        "tag" : "tbody",
+        "children" : [ {
+          "tag" : "tr",
+          "className" : "odd-row",
+          "children" : [ {
+            "tag" : "td",
+            "text" : "Понедельник"
+          }, {
+            "tag" : "td",
+            "text" : "Математика"
+          }, {
+            "tag" : "td",
+            "text" : "09:00"
+          }, {
+            "tag" : "td",
+            "text" : "101"
+          } ]
+        }, {
+          "tag" : "tr",
+          "className" : "even-row",
+          "data-target" : "true",
+          "children" : [ {
+            "tag" : "td",
+            "text" : "Понедельник"
+          }, {
+            "tag" : "td",
+            "text" : "Физика"
+          }, {
+            "tag" : "td",
+            "text" : "11:00"
+          }, {
+            "tag" : "td",
+            "text" : "205"
+          } ]
+        }, {
+          "tag" : "tr",
+          "className" : "odd-row",
+          "children" : [ {
+            "tag" : "td",
+            "text" : "Вторник"
+          }, {
+            "tag" : "td",
+            "text" : "Химия"
+          }, {
+            "tag" : "td",
+            "text" : "10:00"
+          }, {
+            "tag" : "td",
+            "text" : "301"
+          } ]
+        }, {
+          "tag" : "tr",
+          "className" : "even-row",
+          "data-target" : "true",
+          "children" : [ {
+            "tag" : "td",
+            "text" : "Вторник"
+          }, {
+            "tag" : "td",
+            "text" : "Биология"
+          }, {
+            "tag" : "td",
+            "text" : "14:00"
+          }, {
+            "tag" : "td",
+            "text" : "102"
+          } ]
+        }, {
+          "tag" : "tr",
+          "className" : "odd-row",
+          "children" : [ {
+            "tag" : "td",
+            "text" : "Среда"
+          }, {
+            "tag" : "td",
+            "text" : "История"
+          }, {
+            "tag" : "td",
+            "text" : "13:00"
+          }, {
+            "tag" : "td",
+            "text" : "203"
+          } ]
+        }, {
+          "tag" : "tr",
+          "className" : "even-row",
+          "data-target" : "true",
+          "children" : [ {
+            "tag" : "td",
+            "text" : "Четверг"
+          }, {
+            "tag" : "td",
+            "text" : "Литература"
+          }, {
+            "tag" : "td",
+            "text" : "15:00"
+          }, {
+            "tag" : "td",
+            "text" : "104"
+          } ]
+        } ]
+      } ]
+    } ],
+    "targetSelector" : "//tr[position() mod 2 = 0]"
+  },
+  "initialCode" : "// Введите XPath для поиска чётных строк таблицы",
+  "order" : 5,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "position()", " mod ", "= 0" ],
+    "forbiddenPatterns" : [ "last()" ],
+    "maxComplexity" : 1,
+    "requireAllTargets" : true
+  }
+}

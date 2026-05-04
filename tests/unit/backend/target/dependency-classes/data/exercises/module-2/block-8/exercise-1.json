@@ -1,0 +1,54 @@
+{
+    "id": "module-2-block-8-exercise-1",
+    "title": "Переключение во фрейм и клик",
+    "description": "На странице находится платёжный виджет внутри фрейма. Переключитесь внутрь этого фрейма и нажмите кнопку «Оплатить».",
+    "hint": "Найдите фрейм на странице, переключитесь в него через switchTo().frame(), затем найдите и кликните кнопку оплаты.",
+    "trainingComponent": "PageTrainer",
+    "componentConfig": {
+      "disableDynamicAttrs": true,
+      "layout": "default",
+      "containerStyle": {
+        "maxWidth": "960px",
+        "width": "100%",
+        "margin": "40px auto",
+        "padding": "40px"
+      },
+      "elements": [
+        {
+          "tag": "div",
+          "style": "width: 100%; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); padding: 40px; box-sizing: border-box;",
+          "children": [
+            {
+              "tag": "h1",
+              "text": "Оплата заказа",
+              "style": "color: #1a202c; margin: 0 0 12px; font-size: 28px; font-weight: 700; text-align: center;"
+            },
+            {
+              "tag": "iframe",
+              "id": "payment-frame",
+              "name": "payment-frame",
+              "data-testid": "payment-frame",
+              "style": "width: 100%; height: 400px; border: 2px solid #e2e8f0; border-radius: 12px; display: block;",
+              "srcDoc": "<!DOCTYPE html><html><head><style>*{box-sizing:border-box;}body{font-family:Inter,sans-serif;margin:0;padding:40px;text-align:center;background:#f8fafc;}h3{color:#1a202c;font-size:22px;margin:0 0 12px;}p{color:#718096;font-size:15px;margin:0 0 28px;}#pay-btn{padding:14px 48px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(102,126,234,0.4);transition:all 0.2s;}#pay-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(102,126,234,0.5);}</style><script>window.__uiState={payBtnClicked:false};</script></head><body><h3>Платёжная система</h3><p>Нажмите кнопку для оплаты заказа</p><button id=\"pay-btn\">Оплатить</button><script>document.getElementById('pay-btn').addEventListener('click',function(){window.__uiState.payBtnClicked=true;this.setAttribute('data-clicked','true');});</script></body></html>",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Переключитесь во фрейм и нажмите кнопку оплаты\n\n    }\n}",
+    "order": 75,
+    "difficulty": "easy",
+    "validationRules": {
+      "requiredMethods": [
+        "switchTo",
+        "frame",
+        "click"
+      ],
+      "requiredSelectors": [
+        "payment-frame"
+      ],
+      "requiredFinder": "$",
+      "errorMessage": "Переключитесь во фрейм и нажмите кнопку"
+    }
+  }

@@ -1,0 +1,42 @@
+{
+  "id": "module-2-block-9-exercise-10",
+  "title": "Возврат на первую вкладку",
+  "description": "Как вернуться на первую (нулевую) вкладку?",
+  "hint": "Правильный ответ: switchTo().window(0)",
+  "trainingComponent": "QuizTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "disableIDE": true,
+    "layout": "quiz",
+    "question": "Как вернуться на первую вкладку браузера (индекс 0)?",
+    "options": [
+      {
+        "label": "A",
+        "text": "switchTo().window(-1)"
+      },
+      {
+        "label": "B",
+        "text": "switchTo().window(0)"
+      },
+      {
+        "label": "C",
+        "text": "switchTo().firstWindow()"
+      },
+      {
+        "label": "D",
+        "text": "window(0)"
+      }
+    ],
+    "correctAnswer": "B"
+  },
+  "initialCode": "// Выберите правильный ответ: A, B, C или D\n// Правильный ответ: B\n\npublic class UserScript {\n    public static void run() {\n        // switchTo().window(0);\n    }\n}",
+  "order": 90,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": [],
+    "requiredSelectors": [],
+    "expectedAction": "quiz_answer_b",
+    "requiredFinder": "$",
+    "errorMessage": "Правильный ответ: B - switchTo().window(0)"
+  }
+}

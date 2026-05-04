@@ -1,0 +1,55 @@
+{
+  "id": "module-2-block-4-exercise-8",
+  "title": "Проверка текстов коллекции без учёта порядка",
+  "description": "Проверьте, что коллекция содержит тексты \"user\" и \"admin\", не обращая внимания на порядок и регистр.",
+  "hint": "Используйте shouldHave(textsInAnyOrder(...)) для проверки текстов без учёта порядка.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "roles-container",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Роли в системе",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "ul",
+            "className": "roles",
+            "style": "list-style: none; padding: 0; margin: 0;",
+            "children": [
+              {
+                "tag": "li",
+                "className": "role",
+                "text": "Admin",
+                "style": "padding: 18px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin: 12px 0; border-radius: 10px; font-size: 16px; font-weight: 600;"
+              },
+              {
+                "tag": "li",
+                "className": "role",
+                "text": "User",
+                "style": "padding: 18px 24px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; margin: 12px 0; border-radius: 10px; font-size: 16px; font-weight: 600;"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".role"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\nimport static com.codeborne.selenide.CollectionCondition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте тексты коллекции без учёта порядка\n\n    }\n}",
+  "order": 29,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["shouldHave", "textsInAnyOrder"],
+    "requiredSelectors": [".role", "user", "admin"],
+    "expectedAction": "check_collection_texts_any_order",
+    "requiredFinder": "$$",
+    "errorMessage": "Проверьте, что коллекция содержит тексты \"user\" и \"admin\" в любом порядке"
+  }
+}

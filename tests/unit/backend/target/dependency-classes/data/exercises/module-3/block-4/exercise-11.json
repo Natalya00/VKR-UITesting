@@ -1,0 +1,110 @@
+{
+  "id": "module-3-block-4-exercise-11",
+  "title": "Композиция компонентов: панель управления",
+  "description": "Создайте компонент Toolbar с методами clickRefresh() и clickSettings(), и компонент DashboardWidget, содержащий Toolbar. Реализуйте публичный getToolbar() для прямого доступа. Также создайте DashboardPage, которая использует widget.getToolbar().clickRefresh().",
+  "hint": "Создайте компонент Toolbar, наследующий BaseComponent, с методами clickRefresh() и clickSettings(), каждый из которых находит соответствующую кнопку через $x() внутри baseElement, кликает по ней. Создайте компонент DashboardWidget, который содержит приватное поле toolbar типа Toolbar, инициализируемое в конструкторе поиском внутри baseElement. Реализуйте публичный метод getToolbar(), возвращающий объект Toolbar для прямого доступа. Затем создайте страницу DashboardPage, наследующую BasePage, с приватным полем dashboardWidget. Метод refreshData() использует цепочку вызовов: dashboardWidget.getToolbar().clickRefresh() — и возвращает this для поддержки цепочки вызовов.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent", "BasePage", "Header", "Footer"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент панели инструментов.\n */\npublic class Toolbar extends BaseComponent {\n\n    public Toolbar(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод clickRefresh()\n\n    // Реализуйте метод clickSettings()\n\n}\n\n---\n\npackage com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Компонент виджета панели управления.\n * Содержит Toolbar.\n */\npublic class DashboardWidget extends BaseComponent {\n\n    private Toolbar toolbar;\n\n    public DashboardWidget(SelenideElement baseElement) {\n        super(baseElement);\n        // Инициализируйте toolbar, найдя его внутри baseElement\n    }\n\n    // Реализуйте метод getToolbar() — публичный доступ к внутреннему компоненту\n\n}\n\n---\n\npackage com.example.runner.pom.pages;\n\nimport com.example.runner.pom.components.DashboardWidget;\n\nimport static com.codeborne.selenide.Selenide.$x;\n\n/**\n * Страница панели управления.\n */\npublic class DashboardPage extends BasePage {\n\n    private DashboardWidget dashboardWidget;\n\n    public DashboardPage() {\n        super(\"//div[@id='dashboard-page']\");\n        // Инициализируйте dashboardWidget\n    }\n\n    // Реализуйте метод refreshData()\n    // Используйте цепочку: dashboardWidget.getToolbar().clickRefresh()\n    // Верните this\n\n}\n",
+  "order": 142,
+  "difficulty": "hard",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "Toolbar",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Toolbar должен наследоваться от BaseComponent"
+        },
+        {
+          "className": "DashboardWidget",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "DashboardWidget должен наследоваться от BaseComponent"
+        }
+      ],
+      "fieldRules": [
+        {
+          "className": "DashboardWidget",
+          "fieldName": "toolbar",
+          "fieldType": "Toolbar",
+          "modifiers": ["private"],
+          "required": true,
+          "errorMessage": "Поле private toolbar типа Toolbar не найдено"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Toolbar",
+          "methodName": "clickRefresh",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод clickRefresh() не найден в Toolbar"
+        },
+        {
+          "className": "Toolbar",
+          "methodName": "clickSettings",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод clickSettings() не найден в Toolbar"
+        },
+        {
+          "className": "DashboardWidget",
+          "methodName": "getToolbar",
+          "returnType": "Toolbar",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getToolbar() не найден в DashboardWidget"
+        },
+        {
+          "className": "DashboardPage",
+          "methodName": "refreshData",
+          "returnType": "DashboardPage",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод refreshData() не найден в DashboardPage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Toolbar",
+          "methodName": "clickRefresh",
+          "requiredMethodCalls": ["$x", "click"],
+          "errorMessage": "clickRefresh() должен находить кнопку обновления и кликать"
+        },
+        {
+          "className": "Toolbar",
+          "methodName": "clickSettings",
+          "requiredMethodCalls": ["$x", "click"],
+          "errorMessage": "clickSettings() должен находить кнопку настроек и кликать"
+        },
+        {
+          "className": "DashboardPage",
+          "methodName": "refreshData",
+          "requiredMethodCalls": ["getToolbar", "clickRefresh"],
+          "mustReturnThis": true,
+          "errorMessage": "refreshData() должен использовать dashboardWidget.getToolbar().clickRefresh()"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Toolbar", "DashboardWidget", "DashboardPage"],
+      "extendsRules": ["Toolbar:BaseComponent", "DashboardWidget:BaseComponent", "DashboardPage:BasePage"],
+      "privateFields": ["DashboardWidget.toolbar"],
+      "publicMethods": ["Toolbar.clickRefresh", "Toolbar.clickSettings", "DashboardWidget.getToolbar", "DashboardPage.refreshData"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent", "BasePage", "Header", "Footer"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.DashboardWidgetHarnessTest",
+      "testMethods": ["testClickRefresh", "testGetToolbarReturnsToolbar", "testRefreshData", "testRefreshDataReturnsThis"]
+    },
+    "errorMessage": "Toolbar содержит clickRefresh/clickSettings. DashboardWidget содержит private Toolbar и getToolbar(). DashboardPage делегирует через refreshData()."
+  }
+}

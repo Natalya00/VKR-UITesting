@@ -1,0 +1,86 @@
+{
+  "id" : "module-1-block-5-task-7",
+  "title" : "Скрытый элемент (display: none)",
+  "description" : "Найдите скрытое сообщение в административной панели, которое не отображается на странице (display: none).",
+  "hint" : "Атрибут style содержит inline-стили элемента",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Административная панель",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "admin-header",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Панель администратора"
+      }, {
+        "tag" : "p",
+        "text" : "Управление системными настройками сайта"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "admin-content",
+      "children" : [ {
+        "tag" : "div",
+        "className" : "settings-section",
+        "children" : [ {
+          "tag" : "h3",
+          "text" : "Основные настройки"
+        }, {
+          "tag" : "p",
+          "text" : "Название сайта: Интернет-магазин электроники"
+        }, {
+          "tag" : "p",
+          "text" : "Режим работы: 24/7"
+        }, {
+          "tag" : "p",
+          "text" : "Техническая поддержка: support@example.com"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "debug-section",
+        "children" : [ {
+          "tag" : "h4",
+          "text" : "Отладочная информация"
+        }, {
+          "tag" : "p",
+          "text" : "Версия приложения: 2.5.1"
+        }, {
+          "tag" : "div",
+          "className" : "hidden-message",
+          "style" : "display: none;",
+          "data-target" : "true",
+          "text" : "Секретное сообщение: Ключ активации LICENSE-2025-PRO"
+        }, {
+          "tag" : "p",
+          "text" : "Последний бэкап: 20.01.2025 03:00"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "status-section",
+        "children" : [ {
+          "tag" : "h3",
+          "text" : "Статус системы"
+        }, {
+          "tag" : "p",
+          "text" : "Сервер: Работает"
+        }, {
+          "tag" : "p",
+          "text" : "База данных: Работает"
+        }, {
+          "tag" : "p",
+          "text" : "Кэш: Работает"
+        } ]
+      } ]
+    } ],
+    "targetSelector" : "//*[contains(@style, 'display: none') and text()='Секретное сообщение: Ключ активации LICENSE-2025-PRO']"
+  },
+  "initialCode" : "// Введите XPath для поиска элемента с display: none",
+  "order" : 7,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "contains(", "@style", "display: none" ],
+    "forbiddenPatterns" : [ "[1]", "[2]" ],
+    "maxComplexity" : 2
+  }
+}

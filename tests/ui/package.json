@@ -1,0 +1,19 @@
+{
+  "name": "ui-tests",
+  "version": "1.0.0",
+  "description": "UI тесты (E2E) с Playwright",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "install:browsers": "playwright install"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.40.0",
+    "typescript": "^4.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  }
+}

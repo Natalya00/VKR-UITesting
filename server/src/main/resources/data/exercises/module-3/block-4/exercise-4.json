@@ -1,0 +1,73 @@
+{
+  "id": "module-3-block-4-exercise-4",
+  "title": "Компонент навигационной цепочки (Breadcrumb)",
+  "description": "Создайте компонент Breadcrumb для работы с навигационной цепочкой. Реализуйте метод navigateTo(String stepName), который кликает по нужному шагу в хлебных крошках, и метод getCurrentPath() → List<String>, возвращающий названия всех шагов.",
+  "hint": "Для перехода по шагу используйте поиск элемента по тексту. Для получения полного пути используйте метод texts() коллекции ElementsCollection — он возвращает List<String>.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseComponent"]
+  },
+  "initialCode": "package com.example.runner.pom.components;\n\nimport com.codeborne.selenide.SelenideElement;\nimport java.util.List;\n\n/**\n * Компонент навигационной цепочки (хлебные крошки).\n */\npublic class Breadcrumb extends BaseComponent {\n\n    public Breadcrumb(SelenideElement baseElement) {\n        super(baseElement);\n    }\n\n    // Реализуйте метод navigateTo(String stepName)\n    // Переход к указанному шагу навигации по его названию.\n    // Поддержите цепочку вызовов.\n\n    // Реализуйте метод getCurrentPath()\n    // Верните список названий всех шагов в навигационной цепочке (У коллекции, возвращаемой $$, есть метод texts(), возвращающий List<String>)\n\n}\n",
+  "order": 135,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "Breadcrumb",
+          "extendsClass": "BaseComponent",
+          "required": true,
+          "errorMessage": "Класс Breadcrumb должен наследоваться от BaseComponent"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "Breadcrumb",
+          "methodName": "navigateTo",
+          "returnType": "Breadcrumb",
+          "parameters": ["java.lang.String"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод navigateTo(String) не найден в классе Breadcrumb"
+        },
+        {
+          "className": "Breadcrumb",
+          "methodName": "getCurrentPath",
+          "returnType": "List",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод getCurrentPath() не найден в классе Breadcrumb"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "Breadcrumb",
+          "methodName": "navigateTo",
+          "requiredMethodCalls": ["click"],
+          "mustReturnThis": true,
+          "errorMessage": "Метод navigateTo() должен находить элемент по тексту и кликать, возвращать this"
+        },
+        {
+          "className": "Breadcrumb",
+          "methodName": "getCurrentPath",
+          "requiredMethodCalls": ["$$"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод getCurrentPath() должен использовать baseElement.$$(\".breadcrumb-item\") и возвращать List<String>"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["Breadcrumb"],
+      "extendsRules": ["Breadcrumb:BaseComponent"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseComponent"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block4.BreadcrumbHarnessTest",
+      "testMethods": ["testGetCurrentPathReturnsExactList", "testGetCurrentPathNotEmpty", "testNavigateTo", "testNavigateReturnsThis"]
+    },
+    "errorMessage": "Breadcrumb должен наследоваться от BaseComponent и содержать navigateTo(String) → Breadcrumb и getCurrentPath() → List<String>"
+  }
+}

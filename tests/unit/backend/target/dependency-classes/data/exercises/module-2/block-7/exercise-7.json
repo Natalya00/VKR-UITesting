@@ -1,0 +1,54 @@
+{
+  "id": "module-2-block-7-exercise-7",
+  "title": "Принятие Confirm через switchTo",
+  "description": "Нажмите кнопку и примите появляющееся окно подтверждения. Перед принятием используйте WebDriverWait, так как alert появляется с небольшой задержкой.",
+  "hint": "Нажмите кнопку, дождитесь появления alert через WebDriverWait и ExpectedConditions.alertIsPresent(), затем примите его через switchTo().alert().accept().",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; document.getElementById('confirm-btn')?.addEventListener('click', function() { window.__uiState.confirmBtnClicked = true; window.__uiState.confirmAccepted = false; setTimeout(function() { const result = confirm('Вы уверены, что хотите продолжить это действие?'); if(result) { window.__uiState.confirmAccepted = true; const resultEl = document.getElementById('confirm-accepted'); if(resultEl) { resultEl.textContent = 'Confirm принят через switchTo'; resultEl.style.display = 'block'; } } }, 100); }, { once: true }); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "confirm-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 184, 148, 0.3); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Confirm через switchTo",
+            "style": "color: white; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Примите confirm через switchTo().alert().accept()",
+            "style": "color: rgba(255,255,255,0.9); margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "confirm-btn",
+            "text": "Показать Confirm",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(0, 184, 148, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "confirm-accepted",
+            "text": "Confirm принят через switchTo",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#confirm-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport com.codeborne.selenide.WebDriverRunner;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\nimport org.openqa.selenium.support.ui.WebDriverWait;\nimport java.time.Duration;\n\npublic class UserScript {\n    public static void run() {\n        // Нажмите кнопку, дождитесь появления alert и примите его\n\n    }\n}",
+  "order": 66,
+  "difficulty": "medium",
+  "validationRules": {
+    "requiredMethods": ["click", "until", "switchTo", "alert", "accept"],
+    "requiredSelectors": ["#confirm-btn"],
+    "expectedAction": "accept_confirm_switchto",
+    "requiredFinder": "$",
+    "errorMessage": "Примите Confirm"
+  }
+}

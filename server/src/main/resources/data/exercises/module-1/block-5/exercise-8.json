@@ -1,0 +1,72 @@
+{
+  "id" : "module-1-block-5-task-8",
+  "title" : "Class содержит подстроку",
+  "description" : "Найдите <span> с текстом 'Ячейка 2', у которого атрибут class содержит подстроку 'ui-table-cell-content'.",
+  "hint" : "Функция contains() позволяет найти элемент по части значения атрибута class",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Система управления данными",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "data-header",
+      "children" : [ {
+        "tag" : "h2",
+        "text" : "Таблица данных"
+      }, {
+        "tag" : "p",
+        "text" : "Всего записей: 4 | Обновлено: 20.01.2025"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "ui-table",
+      "children" : [ {
+        "tag" : "div",
+        "className" : "ui-table-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "ui-table-cell-content",
+          "text" : "Ячейка 1"
+        }, {
+          "tag" : "span",
+          "className" : "ui-table-cell-content highlight",
+          "data-target" : "true",
+          "text" : "Ячейка 2"
+        } ]
+      }, {
+        "tag" : "div",
+        "className" : "ui-table-row",
+        "children" : [ {
+          "tag" : "span",
+          "className" : "ui-table-cell-content",
+          "text" : "Ячейка 3"
+        }, {
+          "tag" : "span",
+          "className" : "ui-table-cell-content selected",
+          "text" : "Ячейка 4"
+        } ]
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "table-actions",
+      "children" : [ {
+        "tag" : "button",
+        "className" : "btn btn-primary",
+        "text" : "Добавить запись"
+      }, {
+        "tag" : "button",
+        "className" : "btn btn-secondary",
+        "text" : "Экспорт"
+      } ]
+    } ],
+    "targetSelector" : "//span[contains(@class, 'ui-table-cell-content') and text()='Ячейка 2']"
+  },
+  "initialCode" : "// Введите XPath для поиска span с class, содержащим \"ui-table-cell-content\"",
+  "order" : 8,
+  "difficulty" : "medium",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "contains(", "@class" ],
+    "forbiddenPatterns" : [ "[1]", "[2]" ],
+    "maxComplexity" : 2
+  }
+}

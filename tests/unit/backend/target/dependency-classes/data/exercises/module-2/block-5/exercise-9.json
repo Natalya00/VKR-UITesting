@@ -1,0 +1,50 @@
+{
+  "id": "module-2-block-5-exercise-9",
+  "title": "Переключение чекбокса (toggle)",
+  "description": "Выберите чекбокс только если он еще не выбран (toggle).",
+  "hint": "Проверьте текущее состояние через is(checked) и кликните только если чекбокс не выбран.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "toggle-container",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(229, 62, 62, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Умный переключатель",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Включите опцию, если она выключена",
+            "style": "color: #718096; margin-bottom: 25px; font-size: 14px;"
+          },
+          {
+            "tag": "label",
+            "style": "display: flex; align-items: center; gap: 15px; padding: 20px; background: #f8f9fa; border-radius: 12px; cursor: pointer;",
+            "children": [
+              {"tag": "input", "type": "checkbox", "id": "toggle-checkbox", "style": "width: 20px; height: 20px; accent-color: #e53e3e;"},
+              {"tag": "span", "text": "Включить функцию", "style": "color: #2d3748; font-size: 16px; font-weight: 500;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#toggle-checkbox"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Проверьте состояние чекбокса и кликните только если он не выбран\n\n    }\n}",
+  "order": 48,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click"],
+    "alternativeMethods": [["is", "isSelected"]],
+    "requiredSelectors": ["#toggle-checkbox"],
+    "expectedAction": "toggle_checkbox",
+    "requiredFinder": "$",
+    "errorMessage": "Переключите чекбокс в нужное состояние"
+  }
+}

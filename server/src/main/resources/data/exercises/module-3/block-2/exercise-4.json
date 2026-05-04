@@ -1,0 +1,88 @@
+﻿{
+    "id": "module-3-block-2-exercise-4",
+    "title": "Ограничение видимости элементов",
+    "description": "Сделайте элементы LoginPage приватными (private), оставив публичными только методы действий. Тест должен взаимодействовать со страницей через логические шаги. Добавьте публичные методы fillLogin(String) и fillPassword(String) — они будут использоваться тестами для ввода логина и пароля, вызывая метод fill() у соответствующих полей ввода. Методы должны возвращать this для поддержки цепочки вызовов (Fluent API).",
+    "hint": "Измените модификаторы полей элементов на private. Добавьте публичные методы fillLogin(String) и fillPassword(String), которые вызывают fill() у соответствующих полей и возвращают this для Fluent API.",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "Input", "Button", "AbstractClickableElement", "Clickable"]
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.Input;\nimport com.example.runner.pom.elements.Button;\n\npublic class LoginPage extends BasePage {\n\n    // Сделайте поля private:\n    Input loginInput;\n    Input passwordInput;\n    Button submitButton;\n\n    public LoginPage() {\n        super(\"//div[@id='login-page']\");\n        // Инициализация из предыдущего упражнения \n    }\n\n    // Добавьте публичные методы fillLogin(String) и fillPassword(String)\n    // Они должны вызывать fill() у соответствующих полей и возвращать this\n\n}\n",
+    "order": 115,
+    "difficulty": "easy",
+    "validationRules": {
+      "astRules": {
+        "fieldRules": [
+          {
+            "className": "LoginPage",
+            "fieldName": "loginInput",
+            "modifiers": ["private"],
+            "required": true,
+            "errorMessage": "Поле loginInput должно быть private"
+          },
+          {
+            "className": "LoginPage",
+            "fieldName": "passwordInput",
+            "modifiers": ["private"],
+            "required": true,
+            "errorMessage": "Поле passwordInput должно быть private"
+          },
+          {
+            "className": "LoginPage",
+            "fieldName": "submitButton",
+            "modifiers": ["private"],
+            "required": true,
+            "errorMessage": "Поле submitButton должно быть private"
+          }
+        ],
+        "methodRules": [
+          {
+            "className": "LoginPage",
+            "methodName": "fillLogin",
+            "parameters": ["String"],
+            "returnType": "LoginPage",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public fillLogin(String) не найден"
+          },
+          {
+            "className": "LoginPage",
+            "methodName": "fillPassword",
+            "parameters": ["String"],
+            "returnType": "LoginPage",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public fillPassword(String) не найден"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "LoginPage",
+            "methodName": "fillLogin",
+            "requiredMethodCalls": ["fill"],
+            "mustReturnThis": true,
+            "errorMessage": "Метод fillLogin() должен вызывать fill() у loginInput и возвращать this"
+          },
+          {
+            "className": "LoginPage",
+            "methodName": "fillPassword",
+            "requiredMethodCalls": ["fill"],
+            "mustReturnThis": true,
+            "errorMessage": "Метод fillPassword() должен вызывать fill() у passwordInput и возвращать this"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["LoginPage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "Input", "Button", "BasePage", "Header", "Footer", "AbstractClickableElement", "Clickable"],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.LoginPageHarnessTest",
+        "testMethods": ["testFillLogin", "testFillPassword"]
+      },
+      "errorMessage": "Элементы LoginPage должны быть private. Методы fillLogin() и fillPassword() должны быть public, возвращать this для Fluent API"
+    }
+  }

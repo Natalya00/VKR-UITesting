@@ -1,0 +1,26 @@
+.block-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.block-tab {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #e3e8ef;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.block-tab:hover {
+  background: #d1d8e0;
+}
+
+.block-tab.active {
+  background: #4E7392;
+  color: white;
+}

@@ -1,0 +1,53 @@
+{
+  "id": "module-3-block-5-exercise-4",
+  "title": "Метод очистки после тестов",
+  "description": "В BaseTest добавьте метод с аннотацией @AfterEach, который очищает куки и локальное хранилище браузера (Selenide.clearBrowserCookies()), чтобы тесты не влияли друг на друга.",
+  "hint": "Добавьте в BaseTest метод с @AfterEach, который вызывает Selenide.clearBrowserCookies() и Selenide.clearBrowserLocalStorage().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": []
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.codeborne.selenide.Configuration;\nimport com.codeborne.selenide.Selenide;\nimport org.junit.jupiter.api.AfterEach;\nimport org.junit.jupiter.api.BeforeAll;\nimport org.junit.jupiter.api.BeforeEach;\n\n/**\n * Базовый класс для всех тестов.\n */\npublic class BaseTest {\n    \n    @BeforeAll\n    public static void setUp() {\n        // Перенесите настройки из предыдущих упражнений\n    }\n    \n    @BeforeEach\n    public void openHomePage() {\n        // Перенесите код из предыдущего упражнения\n    }\n    \n    // Реализуйте метод tearDown() с аннотацией @AfterEach\n    // Метод должен очищать cookies и localStorage браузера\n    \n}\n",
+  "order": 147,
+  "difficulty": "easy",
+  "validationRules": {
+    "astRules": {
+      "methodRules": [
+        {
+          "className": "BaseTest",
+          "methodName": "tearDown",
+          "annotations": ["AfterEach"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод с аннотацией @AfterEach не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "BaseTest",
+          "methodName": "tearDown",
+          "requiredMethodCalls": ["Selenide.clearBrowserCookies", "Selenide.clearBrowserLocalStorage"],
+          "errorMessage": "Метод с @AfterEach должен вызывать Selenide.clearBrowserCookies() и Selenide.clearBrowserLocalStorage()"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "BaseTest",
+          "methodName": "tearDown",
+          "requiredAnnotations": ["AfterEach"],
+          "errorMessage": "Метод очистки должен иметь аннотацию @AfterEach"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["com.example.runner.tests.BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": [],
+      "compileOnly": true
+    },
+    "errorMessage": "BaseTest должен содержать метод с аннотацией @AfterEach для очистки cookies и localStorage"
+  }
+}

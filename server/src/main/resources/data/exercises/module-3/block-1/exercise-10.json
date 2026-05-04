@@ -1,0 +1,87 @@
+﻿{
+  "id": "module-3-block-1-exercise-10",
+  "title": "Вынесение общей логики клика в абстрактный класс",
+  "description": "Создайте абстрактный класс AbstractClickableElement, который наследуется от BaseElement и реализует интерфейс Clickable с единой реализацией click(). Измените классы Button и Link так, чтобы они наследовались от AbstractClickableElement и не переопределяли click() если поведение совпадает с базовым.",
+  "hint": "abstract класс наследует BaseElement и реализует Clickable, в click() вызывает baseElement.click(). Подклассы (Button, Link) наследуют его и просто вызывают конструктор родителя.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseElement", "Clickable"],
+    "multiFile": true
+  },
+  "initialCode": "package com.example.runner.pom.elements;\n\n/**\n * Абстрактный класс для кликабельных элементов.\n * Наследуется от BaseElement и реализует Clickable.\n */\npublic abstract class AbstractClickableElement extends BaseElement implements Clickable {\n\n    // Реализуйте конструктор\n\n    @Override\n    public void click() {\n        // Реализуйте базовый клик: baseElement.click()\n    }\n}\n---\npackage com.example.runner.pom.elements;\n\n/**\n * Кнопка, наследующая AbstractClickableElement.\n */\npublic class Button extends AbstractClickableElement {\n\n    // Реализуйте конструктор\n\n    // Метод click() наследуется от AbstractClickableElement\n}\n---\npackage com.example.runner.pom.elements;\n\n/**\n * Ссылка, наследующая AbstractClickableElement.\n */\npublic class Link extends AbstractClickableElement {\n\n    // Реализуйте конструктор\n\n    // Метод click() наследуется от AbstractClickableElement\n}\n",
+  "order": 110,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "AbstractClickableElement",
+          "extendsClass": "BaseElement",
+          "implementsInterfaces": ["Clickable"],
+          "modifiers": ["abstract"],
+          "required": true,
+          "errorMessage": "Абстрактный класс AbstractClickableElement extends BaseElement implements Clickable не найден"
+        },
+        {
+          "className": "Button",
+          "extendsClass": "AbstractClickableElement",
+          "required": true,
+          "errorMessage": "Button должен наследоваться от AbstractClickableElement"
+        },
+        {
+          "className": "Link",
+          "extendsClass": "AbstractClickableElement",
+          "required": true,
+          "errorMessage": "Link должен наследоваться от AbstractClickableElement"
+        }
+      ],
+      "constructorRules": [
+        {
+          "className": "AbstractClickableElement",
+          "parameters": ["String", "String"],
+          "modifiers": ["protected"],
+          "required": true,
+          "errorMessage": "AbstractClickableElement должен иметь protected конструктор с параметрами (String, String)"
+        },
+        {
+          "className": "Button",
+          "parameters": ["String", "String"],
+          "required": true,
+          "errorMessage": "Button должен иметь конструктор с параметрами (String xpath, String attributeValue)"
+        },
+        {
+          "className": "Link",
+          "parameters": ["String", "String"],
+          "required": true,
+          "errorMessage": "Link должен иметь конструктор с параметрами (String xpath, String attributeValue)"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "AbstractClickableElement",
+          "methodName": "click",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод click() должен быть реализован в AbstractClickableElement"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "AbstractClickableElement",
+          "methodName": "click",
+          "requiredMethodCalls": ["click"],
+          "errorMessage": "Метод click() в AbstractClickableElement должен вызывать baseElement.click()"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["AbstractClickableElement", "Button", "Link"],
+      "extendsRules": ["Button:AbstractClickableElement", "Link:AbstractClickableElement"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseElement", "Clickable"],
+      "compileOnly": true
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "blockId": "block-7",
+  "title": "Всплывающие окна",
+  "difficulty": "hard",
+  "description": "Работа с alert, confirm, prompt и модальными окнами",
+  "exerciseCount": 15
+}

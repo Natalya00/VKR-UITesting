@@ -1,0 +1,47 @@
+{
+  "id" : "module-1-block-4-task-7",
+  "title" : "Элементы li с позицией больше 3",
+  "description" : "Найдите все элементы <li> внутри списка <ul>, позиция которых больше 3.",
+  "hint" : "Функция position() позволяет фильтровать элементы по их позиции",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Топ продаж",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "ul",
+      "className" : "sales-list",
+      "children" : [ {
+        "tag" : "li",
+        "text" : "1. Смартфон Ultra X"
+      }, {
+        "tag" : "li",
+        "text" : "2. Ноутбук Pro 15"
+      }, {
+        "tag" : "li",
+        "text" : "3. Наушники Wireless"
+      }, {
+        "tag" : "li",
+        "data-target" : "true",
+        "text" : "4. Планшет Mini"
+      }, {
+        "tag" : "li",
+        "data-target" : "true",
+        "text" : "5. Часы Smart Watch"
+      }, {
+        "tag" : "li",
+        "data-target" : "true",
+        "text" : "6. Камера 4K"
+      } ]
+    } ],
+    "targetSelector" : "//ul[@class='sales-list']/li[position()>3]"
+  },
+  "initialCode" : "// Введите XPath для поиска li с позицией больше 3",
+  "order" : 7,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "position()", ">" ],
+    "forbiddenPatterns" : [ "last()" ],
+    "maxComplexity" : 1,
+    "requireAllTargets" : true
+  }
+}

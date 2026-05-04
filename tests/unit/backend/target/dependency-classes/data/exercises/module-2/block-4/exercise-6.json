@@ -1,0 +1,47 @@
+{
+  "id": "module-2-block-4-exercise-6",
+  "title": "Поиск первой видимой кнопки и клик",
+  "description": "В коллекции кнопок с классом .btn найдите первую видимую кнопку и нажмите её.",
+  "hint": "Используйте .first() для получения первого элемента коллекции: $$(\"...\").first().click();",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "action-panel",
+        "style": "max-width: 600px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 40px 30px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Доступные действия",
+            "style": "color: #2d3748; margin-bottom: 30px; font-size: 22px; text-align: center;"
+          },
+          {
+            "tag": "div",
+            "className": "button-group",
+            "style": "display: flex; flex-direction: column; gap: 15px; align-items: center;",
+            "children": [
+              {"tag": "button", "className": "btn", "text": "Скрытая кнопка", "style": "display: none; padding: 16px 32px; background: #6c757d; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: not-allowed;"},
+              {"tag": "button", "className": "btn", "text": "Главное действие", "style": "padding: 16px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: transform 0.2s;"},
+              {"tag": "button", "className": "btn", "text": "Вторичное действие", "style": "padding: 16px 32px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4); transition: transform 0.2s;"},
+              {"tag": "button", "className": "btn", "text": "Настройки", "style": "padding: 16px 32px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4); transition: transform 0.2s;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": ".btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Найдите первую видимую кнопку и кликните по ней\n\n    }\n}",
+  "order": 27,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["first", "click"],
+    "requiredSelectors": [".btn"],
+    "expectedAction": "click_first_visible",
+    "requiredFinder": "$$",
+    "errorMessage": "Найдите первую видимую кнопку и кликните по ней"
+  }
+}

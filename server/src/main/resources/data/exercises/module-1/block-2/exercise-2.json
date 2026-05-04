@@ -1,0 +1,67 @@
+{
+  "id" : "module-1-block-2-task-2",
+  "title" : "Поиск div по частичному тексту",
+  "description" : "Найдите карточку блога о продажах по частичному совпадению текста в заголовке.",
+  "hint" : "Функция contains() проверяет наличие подстроки в тексте",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Блог компании",
+    "layout" : "cards",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "blog-card",
+      "data-target" : "true",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Как увеличить продажи"
+      }, {
+        "tag" : "p",
+        "text" : "Методы увеличения продаж в 2 раза за 3 месяца."
+      }, {
+        "tag" : "span",
+        "className" : "blog-date",
+        "text" : "15 января 2025"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "blog-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Тренды маркетинга 2025"
+      }, {
+        "tag" : "p",
+        "text" : "Основные маркетинговые тенденции 2025 года."
+      }, {
+        "tag" : "span",
+        "className" : "blog-date",
+        "text" : "10 января 2025"
+      } ]
+    }, {
+      "tag" : "div",
+      "className" : "blog-card",
+      "children" : [ {
+        "tag" : "h3",
+        "text" : "Работа с клиентами"
+      }, {
+        "tag" : "p",
+        "text" : "Советы по работе с клиентами."
+      }, {
+        "tag" : "span",
+        "className" : "blog-date",
+        "text" : "5 января 2025"
+      } ]
+    } ],
+    "targetSelector" : "//div[@class='blog-card'][.//h3[contains(text(), 'продаж')]]"
+  },
+  "initialCode" : "// Введите XPath для поиска div с классом blog-card, содержащего текст \"продаж\"",
+  "order" : 2,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "contains(", "text()" ],
+    "forbiddenPatterns" : [ "text()=", "[1]", "[2]" ],
+    "maxComplexity" : 2,
+    "exactOnly" : {
+      "functions" : [ "contains", "text" ]
+    }
+  }
+}

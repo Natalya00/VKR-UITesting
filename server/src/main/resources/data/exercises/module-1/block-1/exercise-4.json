@@ -1,0 +1,47 @@
+{
+  "id": "module-1-block-1-task-4",
+  "title": "Поиск по placeholder",
+  "description": "Найдите поле ввода ФИО в форме записи к врачу по атрибуту placeholder.",
+  "hint": "Атрибут @placeholder содержит текст-подсказку внутри поля ввода",
+  "trainingComponent": "SimpleElementTrainer",
+  "componentConfig": {
+    "element": {
+      "tag": "input",
+      "type": "text",
+      "placeholder": "Введите ФИО",
+      "id": "fullname",
+      "data-target": "true"
+    },
+    "formTitle": "Запись к врачу",
+    "additionalFields": [
+      {
+        "tag": "input",
+        "type": "tel",
+        "placeholder": "+7 (___) ___-__-__",
+        "id": "phone"
+      },
+      {
+        "tag": "input",
+        "type": "date",
+        "id": "appointment-date"
+      },
+      {
+        "tag": "button",
+        "type": "submit",
+        "text": "Записаться на приём"
+      }
+    ],
+    "targetSelector": "[placeholder='Введите ФИО']"
+  },
+  "initialCode": "// Введите XPath для поиска input с placeholder=\"Введите ФИО\"",
+  "order": 4,
+  "difficulty": "easy",
+  "expectedSyntax": {
+    "requiredPatterns": ["@placeholder"],
+    "forbiddenPatterns": ["@id","text()","[1]","[2]"],
+    "maxComplexity": 1,
+    "exactOnly": {
+      "attributes": ["placeholder"]
+    }
+  }
+}

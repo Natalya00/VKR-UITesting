@@ -1,0 +1,63 @@
+﻿ {
+    "id": "module-3-block-2-exercise-6",
+    "title": "Методы проверки состояния",
+    "description": "Добавьте в LoginPage два метода для проверки состояния страницы: isLoginButtonEnabled() — возвращает true, если кнопка входа доступна для нажатия (не скрыта и не заблокирована). isModalVisible() — возвращает true, если на странице отображается модальное окно. Оба метода должны возвращать boolean и не взаимодействовать с элементами напрямую — только проверять их состояние.",
+    "hint": "isLoginButtonEnabled(): вызовите isDisplayed() на кнопке submitButton — метод наследуется от BaseElement. isModalVisible(): проверьте видимость модального окна через $() и isDisplayed().",
+    "trainingComponent": "CodeTrainer",
+    "componentConfig": {
+      "language": "java",
+      "scaffoldClasses": ["BaseElement", "BasePage", "Header", "Footer", "Input", "Button", "AbstractClickableElement", "Clickable"]
+    },
+    "initialCode": "package com.example.runner.pom.pages;\n\nimport com.example.runner.pom.elements.Input;\nimport com.example.runner.pom.elements.Button;\nimport static com.codeborne.selenide.Selenide.$;\n\npublic class LoginPage extends BasePage {\n\n    private Button submitButton;\n\n    public LoginPage() {\n        super(\"//div[@id='login-page']\");\n        // Инициализация кнопки из предыдущего упражнения \n        this.submitButton = new Button(\"//button[@id='submit-login']\", \"\");\n    }\n\n    // Подсказка: используйте submitButton.isDisplayed() — метод наследуется от BaseElement\n    // НЕ используйте baseElement напрямую — он protected в другом пакете!\n\n    // Реализуйте: public boolean isLoginButtonEnabled()\n\n    // Реализуйте: public boolean isModalVisible()\n    // Подсказка: используйте $(\"#modal-overlay\").isDisplayed()\n\n}\n",
+    "order": 117,
+    "difficulty": "easy",
+    "validationRules": {
+      "astRules": {
+        "methodRules": [
+          {
+            "className": "LoginPage",
+            "methodName": "isLoginButtonEnabled",
+            "returnType": "boolean",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public boolean isLoginButtonEnabled() не найден"
+          },
+          {
+            "className": "LoginPage",
+            "methodName": "isModalVisible",
+            "returnType": "boolean",
+            "modifiers": ["public"],
+            "required": true,
+            "errorMessage": "Метод public boolean isModalVisible() не найден"
+          }
+        ],
+        "methodBodyRules": [
+          {
+            "className": "LoginPage",
+            "methodName": "isLoginButtonEnabled",
+            "requiredMethodCalls": ["isDisplayed"],
+            "requiredStatements": ["return"],
+            "errorMessage": "Метод isLoginButtonEnabled() должен проверять isDisplayed() и возвращать boolean"
+          },
+          {
+            "className": "LoginPage",
+            "methodName": "isModalVisible",
+            "requiredMethodCalls": ["isDisplayed"],
+            "requiredStatements": ["return"],
+            "errorMessage": "Метод isModalVisible() должен проверять видимость модального окна и возвращать boolean"
+          }
+        ]
+      },
+      "reflectionRules": {
+        "requiredClasses": ["LoginPage"]
+      },
+      "harnessRules": {
+        "scaffoldClasses": ["BaseElement", "Input", "Button",  "BasePage", "Header", "Footer", "AbstractClickableElement", "Clickable"],
+        "compileOnly": false,
+        "jUnitTest": true,
+        "testClass": "com.example.runner.harness.module3.block2.LoginPageHarnessTest",
+        "testMethods": ["testIsLoginButtonEnabled", "testIsModalVisibleClosed"]
+      },
+      "errorMessage": "LoginPage должен содержать методы isLoginButtonEnabled() и isModalVisible(), возвращающие boolean"
+    }
+  }

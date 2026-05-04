@@ -1,0 +1,42 @@
+{
+  "id": "module-2-block-9-exercise-9",
+  "title": "Проверка URL на содержание подстроки",
+  "description": "Как проверить, содержит ли URL подстроку?",
+  "hint": "Правильный ответ: WebDriverRunner.url().contains(\"example\")",
+  "trainingComponent": "QuizTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "disableIDE": true,
+    "layout": "quiz",
+    "question": "Как проверить, содержит ли URL подстроку \"example\"?",
+    "options": [
+      {
+        "label": "A",
+        "text": "currentUrl().contains(\"example\")"
+      },
+      {
+        "label": "B",
+        "text": "url().contains(\"example\")"
+      },
+      {
+        "label": "C",
+        "text": "WebDriverRunner.url().contains(\"example\")"
+      },
+      {
+        "label": "D",
+        "text": "driver.currentUrl().contains(\"example\")"
+      }
+    ],
+    "correctAnswer": "C"
+  },
+  "initialCode": "// Выберите правильный ответ: A, B, C или D\n// Правильный ответ: C\n\npublic class UserScript {\n    public static void run() {\n        // assert WebDriverRunner.url().contains(\"example\");\n    }\n}",
+  "order": 89,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": [],
+    "requiredSelectors": [],
+    "expectedAction": "quiz_answer_c",
+    "requiredFinder": "$",
+    "errorMessage": "Правильный ответ: C - WebDriverRunner.url().contains()"
+  }
+}

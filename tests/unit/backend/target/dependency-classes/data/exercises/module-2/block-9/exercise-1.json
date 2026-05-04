@@ -1,0 +1,42 @@
+{
+  "id": "module-2-block-9-exercise-1",
+  "title": "Метод открытия страницы в Selenide",
+  "description": "Какой метод Selenide используется для открытия страницы по URL?",
+  "hint": "Правильный ответ: open(\"https://example.com\")",
+  "trainingComponent": "QuizTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "disableIDE": true,
+    "layout": "quiz",
+    "question": "Какой метод Selenide используется для открытия страницы по URL?",
+    "options": [
+      {
+        "label": "A",
+        "text": "navigateTo(\"https://example.com\")"
+      },
+      {
+        "label": "B",
+        "text": "open(\"https://example.com\")"
+      },
+      {
+        "label": "C",
+        "text": "go(\"https://example.com\")"
+      },
+      {
+        "label": "D",
+        "text": "load(\"https://example.com\")"
+      }
+    ],
+    "correctAnswer": "B"
+  },
+  "initialCode": "// Выберите правильный ответ: A, B, C или D\n// Правильный ответ: B\n\npublic class UserScript {\n    public static void run() {\n        // open(\"https://example.com\");\n    }\n}",
+  "order": 81,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": [],
+    "requiredSelectors": [],
+    "expectedAction": "quiz_answer_b",
+    "requiredFinder": "$",
+    "errorMessage": "Правильный ответ: B - open()"
+  }
+}

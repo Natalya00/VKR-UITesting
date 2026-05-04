@@ -1,0 +1,66 @@
+{
+  "id": "module-3-block-5-exercise-6",
+  "title": "Проверка сообщений об ошибке",
+  "description": "Создайте тест для проверки сообщения об ошибке при неверном пароле. Метод getErrorMessage() уже реализован в LoginPage. В тесте используйте Assertions.assertEquals() для проверки текста ошибки.",
+  "hint": "Создайте LoginPage через new LoginPage(), выполните вход с неверным паролем и проверьте сообщение об ошибке через getErrorMessage() с assertEquals().",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "LoginPage", "HomePage", "AuthService", "User", "Footer", "Header"]
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.pom.pages.LoginPage;\nimport org.junit.jupiter.api.Test;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\n\n/**\n * Тесты для страницы входа.\n */\npublic class LoginTest extends BaseTest {\n    \n    // Напишите тест loginWithWrongPassword() с аннотацией @Test\n    // Логин: \"testuser\", неверный пароль: \"wrongpassword\"\n    // Проверьте сообщение об ошибке через getErrorMessage() с assertEquals()\n    \n}\n",
+  "order": 149,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "LoginTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "Класс LoginTest должен наследоваться от BaseTest"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "LoginTest",
+          "methodName": "loginWithWrongPassword",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод loginWithWrongPassword() с аннотацией @Test не найден"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "LoginTest",
+          "methodName": "loginWithWrongPassword",
+          "requiredMethodCalls": ["fillLogin", "fillPassword", "clickLoginButton", "getErrorMessage"],
+          "requiredStatements": ["new LoginPage", "assertEquals"],
+          "errorMessage": "Тест должен использовать new LoginPage(), fillLogin(), fillPassword(), clickLoginButton() и Assertions.assertEquals() для проверки ошибки"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "LoginTest",
+          "methodName": "loginWithWrongPassword",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "Тест должен иметь аннотацию @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["LoginTest"],
+      "extendsRules": ["LoginTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "LoginPage", "HomePage", "ProfilePage", "AuthService", "User", "Footer", "Header"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.LoginErrorHarnessTest",
+      "testMethods": ["testWrongPasswordShowsError", "testGetErrorMessage", "testLoginWithWrongPasswordUsesAssert", "testStudentLoginWithWrongPassword"]
+    },
+    "errorMessage": "LoginTest должен содержать тест loginWithWrongPassword() с @Test. Тест должен использовать new LoginPage(), fillLogin(), fillPassword(), clickLoginButton() и getErrorMessage()"
+  }
+}

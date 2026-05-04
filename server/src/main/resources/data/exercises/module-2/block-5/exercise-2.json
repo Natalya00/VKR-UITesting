@@ -1,0 +1,49 @@
+{
+  "id": "module-2-block-5-exercise-2",
+  "title": "Снятие выделения с чекбокса",
+  "description": "Снимите выделение с чекбокса.",
+  "hint": "Используйте click() для переключения.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "subscription-settings",
+        "style": "max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(229, 62, 62, 0.15); padding: 35px;",
+        "children": [
+          {
+            "tag": "h2",
+            "text": "Настройки подписки",
+            "style": "color: #2d3748; margin-bottom: 25px; font-size: 22px;"
+          },
+          {
+            "tag": "p",
+            "text": "Отпишитесь от рассылки, сняв галочку:",
+            "style": "color: #718096; margin-bottom: 20px; font-size: 14px;"
+          },
+          {
+            "tag": "label",
+            "style": "display: flex; align-items: center; gap: 12px; padding: 15px; background: #fed7d7; border-radius: 10px; cursor: pointer;",
+            "children": [
+              {"tag": "input", "type": "checkbox", "id": "newsletter-checkbox", "checked": true, "style": "width: 20px; height: 20px; accent-color: #e53e3e;"},
+              {"tag": "span", "text": "Получать еженедельную рассылку", "style": "color: #2d3748; font-size: 15px; font-weight: 500;"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#newsletter-checkbox"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Снимите выделение с чекбокса\n\n    }\n}",
+  "order": 41,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click"],
+    "requiredSelectors": ["#newsletter-checkbox"],
+    "expectedAction": "uncheck_checkbox",
+    "requiredFinder": "$",
+    "errorMessage": "Снимите выделение с чекбокса"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "id": "module-2-block-7-exercise-12",
+  "title": "Закрытие модального окна по кнопке",
+  "description": "Откройте модальное окно, затем закройте его, нажав на кнопку «Закрыть». Убедитесь, что окно исчезло.",
+  "hint": "Откройте окно кнопкой, затем найдите кнопку «Закрыть» внутри окна и кликните. Убедитесь через shouldNotBe(visible), что окно скрыто.",
+  "trainingComponent": "PageTrainer",
+  "componentConfig": {
+    "disableDynamicAttrs": true,
+    "layout": "default",
+    "onLoadScript": "(function() { window.__uiState = window.__uiState || {}; window.__uiState.modalClosedByBtn = false; document.getElementById('open-close-btn')?.addEventListener('click', function() { window.__uiState.modalOpened = true; const modal = document.getElementById('close-modal'); if(modal) modal.classList.add('modal-visible'); }, { once: true }); document.querySelectorAll('.close-btn').forEach(btn => btn.addEventListener('click', function() { const modal = this.closest('.modal'); if(modal) { modal.classList.remove('modal-visible'); window.__uiState.modalClosedByBtn = true; const resultEl = document.getElementById('modal-closed-btn-result'); if(resultEl) { resultEl.textContent = 'Модальное окно закрыто по кнопке'; resultEl.style.display = 'block'; } } })); })();",
+    "elements": [
+      {
+        "tag": "div",
+        "className": "modal-close-container",
+        "style": "max-width: 1000px; width: 100%; margin: 60px auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); padding: 60px 50px;",
+        "children": [
+          {
+            "tag": "h1",
+            "text": "Закрытие модального окна",
+            "style": "color: #1a202c; margin-bottom: 15px; font-size: 36px; font-weight: 700; text-align: center;"
+          },
+          {
+            "tag": "p",
+            "text": "Откройте окно, затем закройте его кнопкой «Закрыть»",
+            "style": "color: #718096; margin-bottom: 45px; font-size: 18px; text-align: center; line-height: 1.6;"
+          },
+          {
+            "tag": "button",
+            "id": "open-close-btn",
+            "text": "Открыть окно",
+            "style": "display: block; margin: 0 auto 30px; padding: 18px 50px; background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(229, 62, 62, 0.4); transition: all 0.3s ease;"
+          },
+          {
+            "tag": "div",
+            "id": "close-modal",
+            "className": "modal",
+            "style": "display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;",
+            "children": [
+              {
+                "tag": "div",
+                "style": "background: white; padding: 50px; border-radius: 16px; box-shadow: 0 25px 80px rgba(0,0,0,0.3); max-width: 500px; text-align: center;",
+                "children": [
+                  {"tag": "h3", "text": "Подтверждение", "style": "color: #1a202c; margin-bottom: 20px; font-size: 26px; font-weight: 600;"},
+                  {"tag": "p", "text": "Вы уверены, что хотите закрыть это окно?", "style": "color: #718096; font-size: 17px; line-height: 1.6; margin-bottom: 30px;"},
+                  {"tag": "button", "className": "close-btn", "text": "Закрыть", "style": "padding: 16px 60px; background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 16px; transition: all 0.3s ease;"}
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "id": "modal-closed-btn-result",
+            "text": "Модальное окно закрыто по кнопке",
+            "style": "display: none; margin-top: 30px; padding: 20px 40px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; color: #2d3748; font-size: 18px; font-weight: 600;"
+          }
+        ]
+      }
+    ],
+    "targetSelector": "#open-close-btn"
+  },
+  "initialCode": "import static com.codeborne.selenide.Selenide.*;\nimport static com.codeborne.selenide.Condition.*;\n\npublic class UserScript {\n    public static void run() {\n        // Откройте модальное окно и закройте его кнопкой «Закрыть»\n\n    }\n}",
+  "order": 71,
+  "difficulty": "easy",
+  "validationRules": {
+    "requiredMethods": ["click", "shouldNotBe"],
+    "requiredSelectors": ["#open-close-btn", ".close-btn"],
+    "expectedAction": "close_modal_by_button",
+    "requiredFinder": "$",
+    "errorMessage": "Закройте модальное окно по кнопке"
+  }
+}

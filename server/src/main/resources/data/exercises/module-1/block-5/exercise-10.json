@@ -1,0 +1,80 @@
+{
+  "id" : "module-1-block-5-task-10",
+  "title" : "Невидимый элемент (visibility: hidden)",
+  "description" : "Найдите элемент <input>, который не виден на странице (visibility: hidden), используя XPath или CSS для проверки стиля.",
+  "hint" : "Проверяйте атрибут style для поиска скрытых элементов",
+  "trainingComponent" : "PageTrainer",
+  "componentConfig" : {
+    "pageTitle" : "Скрытые поля формы",
+    "layout" : "default",
+    "elements" : [ {
+      "tag" : "div",
+      "className" : "form-wrapper",
+      "children" : [ {
+        "tag" : "div",
+        "className" : "form-header",
+        "children" : [ {
+          "tag" : "h3",
+          "text" : "Тестовая форма"
+        }, {
+          "tag" : "p",
+          "text" : "Некоторые поля скрыты для тестирования"
+        } ]
+      }, {
+        "tag" : "form",
+        "className" : "test-form",
+        "children" : [ {
+          "tag" : "div",
+          "className" : "form-field",
+          "children" : [ {
+            "tag" : "label",
+            "text" : "Почта"
+          }, {
+            "tag" : "input",
+            "type" : "text",
+            "id" : "visible-field",
+            "placeholder" : "Введите текст"
+          } ]
+        }, {
+          "tag" : "input",
+          "type" : "hidden",
+          "id" : "hidden-token",
+          "value" : "abc123"
+        }, {
+          "tag" : "input",
+          "type" : "text",
+          "id" : "invisible-field",
+          "style" : "visibility: hidden;",
+          "data-target" : "true",
+          "placeholder" : "Невидимое поле"
+        }, {
+          "tag" : "div",
+          "className" : "form-field",
+          "children" : [ {
+            "tag" : "label",
+            "text" : "Пароль"
+          }, {
+            "tag" : "input",
+            "type" : "password",
+            "id" : "password-field",
+            "placeholder" : "Введите пароль"
+          } ]
+        }, {
+          "tag" : "button",
+          "type" : "submit",
+          "className" : "submit-btn",
+          "text" : "Отправить"
+        } ]
+      } ]
+    } ],
+    "targetSelector" : "//input[contains(@style, 'visibility: hidden')]"
+  },
+  "initialCode" : "// Введите XPath для поиска input с visibility: hidden",
+  "order" : 10,
+  "difficulty" : "easy",
+  "expectedSyntax" : {
+    "requiredPatterns" : [ "contains(", "@style", "visibility: hidden" ],
+    "forbiddenPatterns" : [ "[1]", "[2]" ],
+    "maxComplexity" : 1
+  }
+}

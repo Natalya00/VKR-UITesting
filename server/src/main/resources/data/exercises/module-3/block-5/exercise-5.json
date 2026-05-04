@@ -1,0 +1,79 @@
+{
+  "id": "module-3-block-5-exercise-5",
+  "title": "Написание первого позитивного теста",
+  "description": "Создайте тест-класс LoginTest. Напишите тест, который через AuthService выполняет вход и проверяет успешную загрузку главной страницы, вызывая метод checkPageLoaded() у объекта HomePage.",
+  "hint": "Создайте тест с @Test, который авторизуется через AuthService и проверяет загрузку страницы через checkPageLoaded(). HomePage должен проверять видимость базового элемента.",
+  "trainingComponent": "CodeTrainer",
+  "componentConfig": {
+    "language": "java",
+    "scaffoldClasses": ["BaseTest", "BasePage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "LoginPage", "ProfilePage", "AuthService", "User"]
+  },
+  "initialCode": "package com.example.runner.tests;\n\nimport com.example.runner.services.AuthService;\nimport com.example.runner.pom.pages.HomePage;\nimport com.example.runner.tests.User;\nimport com.example.runner.tests.BaseTest;\nimport org.junit.jupiter.api.Test;\n\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\n/**\n * Тесты для страницы входа.\n */\npublic class LoginTest extends BaseTest {\n    \n    private AuthService authService = new AuthService();\n    \n    // Напишите тест loginSuccessful() с аннотацией @Test\n    // Создайте User, вызовите authService.login(), проверьте загрузку HomePage\n    \n}\n\n---\n\npackage com.example.runner.pom.pages;\n\nimport com.codeborne.selenide.SelenideElement;\n\n/**\n * Главная страница.\n */\npublic class HomePage extends BasePage {\n    \n    public HomePage() {\n        super(\"//div[@id='home-page']\");\n    }\n    \n    // Реализуйте метод checkPageLoaded() → boolean\n    \n}\n",
+  "order": 148,
+  "difficulty": "medium",
+  "validationRules": {
+    "astRules": {
+      "classRules": [
+        {
+          "className": "LoginTest",
+          "extendsClass": "BaseTest",
+          "required": true,
+          "errorMessage": "Класс LoginTest должен наследоваться от BaseTest"
+        }
+      ],
+      "methodRules": [
+        {
+          "className": "LoginTest",
+          "methodName": "loginSuccessful",
+          "annotations": ["Test"],
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод loginSuccessful() с аннотацией @Test не найден"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "checkPageLoaded",
+          "modifiers": ["public"],
+          "required": true,
+          "errorMessage": "Метод checkPageLoaded() не найден в классе HomePage"
+        }
+      ],
+      "methodBodyRules": [
+        {
+          "className": "LoginTest",
+          "methodName": "loginSuccessful",
+          "requiredMethodCalls": ["authService.login", "checkPageLoaded"],
+          "errorMessage": "Тест должен использовать authService.login() и homePage.checkPageLoaded()"
+        },
+        {
+          "className": "HomePage",
+          "methodName": "checkPageLoaded",
+          "requiredMethodCalls": ["isDisplayed"],
+          "requiredStatements": ["return"],
+          "errorMessage": "Метод checkPageLoaded() должен проверять видимость элементов страницы"
+        }
+      ],
+      "annotationRules": [
+        {
+          "targetType": "method",
+          "className": "LoginTest",
+          "methodName": "loginSuccessful",
+          "requiredAnnotations": ["Test"],
+          "errorMessage": "Тест должен иметь аннотацию @Test"
+        }
+      ]
+    },
+    "reflectionRules": {
+      "requiredClasses": ["LoginTest", "HomePage"],
+      "extendsRules": ["LoginTest:BaseTest"]
+    },
+    "harnessRules": {
+      "scaffoldClasses": ["BaseTest", "BasePage", "BaseElement", "Clickable", "AbstractClickableElement", "Input", "Button", "LoginPage", "ProfilePage", "AuthService", "User", "Header", "Footer"],
+      "compileOnly": false,
+      "jUnitTest": true,
+      "testClass": "com.example.runner.harness.module3.block5.LoginTestHarnessTest",
+      "testMethods": ["testLoginReturnsHomePage", "testLoginFillsForm", "testCheckPageLoaded", "testCheckPageLoadedRealBehavior"]
+    },
+    "errorMessage": "LoginTest должен содержать тест loginSuccessful() с @Test. HomePage должен содержать метод checkPageLoaded()"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "blockId" : "block-2",
+  "title" : "Текст и частичное совпадение",
+  "difficulty" : "medium",
+  "description" : "Работа с текстом: text(), contains(), normalize-space(), starts-with()",
+  "exerciseCount" : 10
+}
