@@ -9,8 +9,8 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends wget unzip gnupg2 ca-certificates curl jq xvfb && \
-    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
+    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-chrome.gpg && \
+    echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends google-chrome-stable && \
     CHROME_VERSION=$(google-chrome --version | awk '{ print $3 }' | awk -F'.' '{ print $1 }') && \
@@ -39,4 +39,3 @@ RUN mkdir -p /app/lib && \
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
-

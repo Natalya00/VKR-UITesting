@@ -2,34 +2,64 @@ import React, { useState } from 'react';
 import './NavigationTrainer.css';
 import { generateId, generateClass } from '../../utils/attributeGenerator';
 
+/** Элемент навигации в тренажере */
 interface NavItem {
+  /** Текст ссылки */
   text: string;
+  /** URL ссылки */
   href: string;
+  /** Уникальный идентификатор */
   id?: string;
+  /** CSS классы */
   className?: string;
+  /** Data-атрибут для страницы */
   dataPage?: string;
+  /** Data-атрибут для роли */
   dataRole?: string;
+  /** Есть ли подменю */
   hasSubmenu?: boolean;
+  /** Элементы подменю */
   submenu?: NavItem[];
+  /** Дочерние элементы */
   children?: NavItem[];
+  /** Является ли целевым элементом (строка) */
   dataTarget?: string | boolean;
+  /** Является ли целевым элементом (data-target) */
   'data-target'?: string | boolean;
 }
 
+/** Конфигурация тренажера навигации */
 interface NavigationTrainerConfig {
+  /** Заголовок страницы */
   pageTitle: string;
+  /** ID элемента меню */
   menuId?: string;
+  /** Элементы навигации */
   items: NavItem[];
+  /** Селектор целевого элемента */
   targetSelector: string;
+  /** Тип макета навигации */
   layout?: 'horizontal' | 'vertical' | 'sidebar';
+  /** Отключить динамические атрибуты */
   disableDynamicAttrs?: boolean;
+  /** ID упражнения */
   exerciseId?: string;
 }
 
+/** Пропсы компонента NavigationTrainer */
 interface NavigationTrainerProps {
+  /** Конфигурация тренажера */
   config: NavigationTrainerConfig;
 }
 
+/**
+ * Компонент тренажера навигации
+ * Создает интерактивное меню навигации с поддержкой подменю и различных макетов
+ * Используется для отработки навыков поиска и взаимодействия с элементами навигации
+ * 
+ * @param props - Пропсы компонента
+ * @returns JSX элемент тренажера навигации
+ */
 const NavigationTrainer: React.FC<NavigationTrainerProps> = ({ config }) => {
   const { pageTitle, menuId, items, layout = 'default', disableDynamicAttrs = false } = config;
 
@@ -66,6 +96,13 @@ const NavigationTrainer: React.FC<NavigationTrainerProps> = ({ config }) => {
     return attrs;
   });
 
+  /**
+   * Рендерит элементы навигации рекурсивно
+   * Обрабатывает многоуровневую структуру меню с подменю
+   * @param navItems - Массив элементов навигации для рендеринга
+   * @param level - Уровень вложенности (0 для корневого уровня)
+   * @returns JSX элемент со списком навигации
+   */
   const renderNavItems = (navItems: NavItem[], level: number = 0): JSX.Element => {
     return (
       <ul className={level === 0 ? `nav-level-1 nav-${layout}` : `nav-level-${level + 1} submenu`}>

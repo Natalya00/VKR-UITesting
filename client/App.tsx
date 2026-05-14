@@ -21,6 +21,12 @@ import {
   HarnessCatCharacterPage,
 } from './pages/HarnessPages/HarnessPages';
 
+/**
+ * Компонент сообщения о необходимости авторизации
+ * Отображается неавторизованным пользователям при попытке доступа к защищенным страницам
+ * Предоставляет ссылку для перехода на страницу входа
+ * @returns JSX элемент с сообщением и кнопкой входа
+ */
 const UnauthorizedMessage: React.FC = () => {
   return (
     <div style={{ 
@@ -68,7 +74,19 @@ const UnauthorizedMessage: React.FC = () => {
   );
 };
 
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+/** Пропсы для компонента ProtectedRoute */
+interface ProtectedRouteProps {
+  /** Дочерние компоненты для рендеринга при успешной авторизации */
+  children: React.ReactNode;
+}
+
+/**
+ * Компонент защищенного маршрута
+ * Проверяет авторизацию пользователя и отображает контент только авторизованным пользователям
+ * @param props - Пропсы компонента
+ * @returns JSX элемент с защищенным контентом или сообщением об авторизации
+ */
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { isAuthenticated, isLoading } = useAuth();
   const [searchParams] = useSearchParams();
   const hasExerciseParam = searchParams.has('exercise');
@@ -92,6 +110,11 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   return <>{children}</>;
 };
 
+/**
+ * Главный компонент приложения
+ * Настраивает маршрутизацию, провайдер авторизации и защищенные маршруты
+ * @returns JSX элемент корневого компонента приложения
+ */
 function App() {
   return (
     <AuthProvider>

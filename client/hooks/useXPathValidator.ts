@@ -1,11 +1,26 @@
 import { useCallback } from 'react';
 
+/**
+ * Результат валидации синтаксиса XPath
+ */
 export interface SyntaxValidationResult {
+  /** Флаг валидности выражения */
   isValid: boolean;
+  /** Сообщение об ошибке (пустое, если валидно) */
   error: string;
 }
 
+/**
+ * Хук для валидации XPath выражений
+ * Проверяет синтаксическую корректность XPath запросов
+ * @returns Объект с методом validateSyntax
+ */
 export const useXPathValidator = () => {
+  /**
+   * Валидирует синтаксис XPath выражения
+   * @param xpath - XPath выражение для проверки
+   * @returns Результат валидации с флагом и сообщением об ошибке
+   */
   const validateSyntax = useCallback((xpath: string): SyntaxValidationResult => {
     if (!xpath.trim()) {
       return { isValid: false, error: 'Введите XPath запрос' };

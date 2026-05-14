@@ -1,27 +1,59 @@
 import { useCallback } from 'react';
 
+/**
+ * Правила валидации для Java/Selenide кода
+ */
 export interface ValidationRules {
+  /** Обязательные методы, которые должны присутствовать в коде */
   requiredMethods?: string[];
+  /** Запрещенные методы, которые не должны использоваться */
   forbiddenMethods?: string[];
+  /** Обязательные селекторы */
   requiredSelectors?: string[];
+  /** Запрещенные селекторы */
   forbiddenSelectors?: string[];
+  /** Обязательные условия проверки */
   requiredConditions?: string[];
+  /** Регулярные выражения для дополнительной валидации */
   regexPatterns?: Record<string, string>;
+  /** Кастомное сообщение об ошибке */
   errorMessage?: string;
+  /** Максимальная длина кода */
   maxCodeLength?: number;
+  /** Минимальная длина кода */
   minCodeLength?: number;
+  /** Обязательные импорты */
   requiredImports?: string[];
+  /** Ожидаемое действие */
   expectedAction?: string;
+  /** Ожидаемый тип элемента */
   expectedElementType?: string;
+  /** Обязательный метод поиска элемента */
   requiredFinder?: string;
 }
 
+/**
+ * Результат валидации кода
+ */
 export interface CodeValidationResult {
+  /** Флаг валидности кода */
   isValid: boolean;
+  /** Сообщение об ошибке (пустое, если валидно) */
   error: string;
 }
 
+/**
+ * Хук для валидации Java/Selenide кода
+ * Проверяет синтаксис, соответствие правилам и корректность использования Selenide API
+ * @returns Объект с методами валидации
+ */
 export const useCodeValidator = () => {
+  /**
+   * Валидирует код по заданным правилам
+   * @param code - Java/Selenide код для проверки
+   * @param rules - Правила валидации
+   * @returns Результат валидации с флагом и сообщением об ошибке
+   */
   const validateCode = useCallback((code: string, rules?: ValidationRules): CodeValidationResult => {
     if (!rules) {
       return { isValid: true, error: '' };
@@ -116,6 +148,11 @@ export const useCodeValidator = () => {
     return { isValid: true, error: '' };
   }, []);
 
+  /**
+   * Проверяет базовый синтаксис кода (скобки, кавычки, наличие Selenide вызовов)
+   * @param code - Код для синтаксической проверки
+   * @returns Результат проверки синтаксиса
+   */
   const validateSyntax = useCallback((code: string): CodeValidationResult => {
     if (!code.trim()) {
       return { isValid: false, error: 'Введите код' };
@@ -141,6 +178,12 @@ export const useCodeValidator = () => {
     return { isValid: true, error: '' };
   }, []);
 
+  /**
+   * Выполняет полную валидацию: сначала синтаксис, затем правила
+   * @param code - Код для полной проверки
+   * @param rules - Правила валидации
+   * @returns Результат полной валидации
+   */
   const validateFull = useCallback((code: string, rules?: ValidationRules): CodeValidationResult => {
     const syntaxResult = validateSyntax(code);
     if (!syntaxResult.isValid) {

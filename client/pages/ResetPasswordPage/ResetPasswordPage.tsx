@@ -4,6 +4,11 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 import { authService } from '../../services/authService';
 import './ResetPasswordPage.css';
 
+/**
+ * Компонент страницы сброса пароля
+ * Позволяет пользователю установить новый пароль по токену сброса, полученному на этапе восстановления пароля
+ * @returns JSX элемент страницы сброса пароля
+ */
 const ResetPasswordPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -24,6 +29,12 @@ const ResetPasswordPage: React.FC = () => {
     setToken(tokenParam);
   }, [tokenParam]);
 
+  /**
+   * Обрабатывает отправку формы сброса пароля
+   * Выполняет валидацию паролей, отправляет запрос на сервер
+   * и перенаправляет на страницу входа при успехе
+   * @param e - Событие отправки формы
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     

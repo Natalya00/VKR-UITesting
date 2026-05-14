@@ -18,37 +18,64 @@ import { useExerciseValidator, ExerciseSyntaxRules } from '../../hooks/useExerci
 import { useXPathExecution } from '../../hooks/useXPathExecution';
 import { evaluateStability } from '../../utils/xpathStability';
 
+/** Упражнение модуля XPath */
 interface Exercise {
+  /** ID упражнения */
   id: string;
+  /** Название упражнения */
   title: string;
+  /** Описание упражнения */
   description: string;
+  /** Подсказка к упражнению */
   hint: string;
+  /** Название компонента тренажера */
   trainingComponent: string;
+  /** Конфигурация компонента тренажера */
   componentConfig: Record<string, unknown>;
+  /** Начальный код упражнения */
   initialCode: string;
+  /** Порядковый номер упражнения */
   order: number;
+  /** Сложность упражнения */
   difficulty: 'easy' | 'medium' | 'hard';
+  /** Селектор целевого элемента */
   targetSelector: string;
+  /** Ожидаемые синтаксические правила */
   expectedSyntax?: ExerciseSyntaxRules;
 }
 
+/** Блок упражнений */
 interface Block {
+  /** ID блока */
   blockId: string;
+  /** Название блока */
   title: string;
+  /** Описание блока */
   description: string;
+  /** Сложность блока */
   difficulty: string;
+  /** Количество упражнений в блоке */
   exerciseCount?: number;
+  /** Массив упражнений */
   exercises: Exercise[];
 }
 
+/** Данные модуля */
 interface ModuleData {
+  /** ID модуля */
   moduleId: string;
+  /** Название модуля */
   title: string;
+  /** Массив блоков упражнений */
   blocks: Block[];
 }
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
 
+/**
+ * Страница симулятора XPath
+ * @returns JSX элемент страницы
+ */
 const XPathSimulatorPage: React.FC = () => {
   const [moduleData, setModuleData] = useState<ModuleData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -84,6 +111,9 @@ const XPathSimulatorPage: React.FC = () => {
   const module1 = progress?.modules.find(m => m.moduleId === 'module-1');
   const completedCount = module1?.completedExercises || 0;
 
+  /**
+   * Загрузка данных модуля
+   */
   useEffect(() => {
     setLoading(true);
     fetchWithAuth(`${API_BASE_URL}/api/exercises/module-1`)
@@ -120,6 +150,10 @@ const XPathSimulatorPage: React.FC = () => {
     ? blocksCache[currentBlockMeta.blockId] || currentBlockMeta
     : undefined;
 
+  /**
+   * Фильтрация блоков по выбранной сложности
+   * @returns Отфильтрованный массив блоков
+   */
   const filteredBlocks = useMemo(() => {
     if (!moduleData?.blocks) return [];
     if (!selectedDifficulty) return moduleData.blocks;
@@ -130,6 +164,10 @@ const XPathSimulatorPage: React.FC = () => {
     });
   }, [moduleData?.blocks, selectedDifficulty, blocksCache]);
 
+  /**
+   * Фильтрация упражнений текущего блока по сложности
+   * @returns Отфильтрованный массив упражнений
+   */
   const filteredExercises = useMemo(() => {
     if (!currentBlock?.exercises) return [];
     if (!selectedDifficulty) return currentBlock.exercises;
@@ -138,6 +176,10 @@ const XPathSimulatorPage: React.FC = () => {
 
   const currentExercise = filteredExercises[currentExerciseIndex];
 
+  /**
+   * Глобальный индекс текущего упражнения (учитывает фильтрацию)
+   * @returns Номер упражнения от 1 до общего количества
+   */
   const globalExerciseIndex = selectedDifficulty
     ? (filteredBlocks
         .slice(0, filteredBlocks.findIndex(b => b.blockId === currentBlockMeta?.blockId))
@@ -153,12 +195,19 @@ const XPathSimulatorPage: React.FC = () => {
       currentExerciseIndex +
       1;
 
+  /**
+   * Проверка, выполнено ли текущее упражнение
+   * @returns true если упражнение выполнено
+   */
   const isCurrentExerciseCompleted = currentExercise
     ? progress?.modules
         .find(m => m.moduleId === 'module-1')?.exercises
         .some(ex => ex.exerciseId === currentExercise.id && ex.isCompleted) || false
     : false;
 
+  /**
+   * Сброс состояния при смене упражнения
+   */
   useEffect(() => {
     if (!currentExercise) return;
 
@@ -172,6 +221,11 @@ const XPathSimulatorPage: React.FC = () => {
     setStabilityText('');
   }, [currentBlockIndex, currentExerciseIndex, currentExercise, clearHighlight, setElementsFound]);
 
+  /**
+   * Обработчик изменения XPath запроса
+   * Валидирует синтаксис и подсвечивает найденные элементы 
+   * @param xpath - XPath выражение
+   */
   const handleXPathChange = (xpath: string) => {
     setXpathQuery(xpath);
     clearHighlight();
@@ -193,6 +247,10 @@ const XPathSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик проверки решения
+   * Выполняет валидацию XPath запроса и проверяет соответствие целевым элементам
+   */
   const handleCheckSolution = async () => {
     if (!xpathQuery.trim() || !currentExercise) {
       setResult('Введите XPath запрос');
@@ -331,6 +389,9 @@ const XPathSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Сохранение прогресса выполнения упражнения
+   */
   const saveProgress = async () => {
     if (!currentExercise) return;
 
@@ -345,6 +406,10 @@ const XPathSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик смены блока
+   * @param filteredIndex - Индекс блока в отфильтрованном списке
+   */
   const handleBlockChange = (filteredIndex: number) => {
     if (!moduleData || !filteredBlocks[filteredIndex]) return;
 
@@ -383,6 +448,9 @@ const XPathSimulatorPage: React.FC = () => {
       });
   };
 
+  /**
+   * Обработчик перехода к предыдущему упражнению
+   */
   const handlePreviousExercise = () => {
     if (currentExerciseIndex > 0) {
       setCurrentExerciseIndex(currentExerciseIndex - 1);
@@ -405,6 +473,9 @@ const XPathSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик перехода к следующему упражнению
+   */
   const handleNextExercise = () => {
     if (filteredExercises && currentExerciseIndex < filteredExercises.length - 1) {
       setCurrentExerciseIndex(currentExerciseIndex + 1);
@@ -422,6 +493,10 @@ const XPathSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик изменения фильтра по сложности
+   * @param difficulty - Выбранная сложность или null для сброса
+   */
   const handleDifficultyChange = async (difficulty: 'easy' | 'medium' | 'hard' | null) => {
     setSelectedDifficulty(difficulty);
     setCurrentExerciseIndex(0);
@@ -458,6 +533,9 @@ const XPathSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик показа подсказки
+   */
   const handleShowHint = () => {
     if (!showHint && currentExercise) {
       setShowHint(true);
@@ -469,10 +547,17 @@ const XPathSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик открытия справочного окна
+   */
   const handleShowReference = () => {
     setShowReference(!showReference);
   };
 
+  /**
+   * Рендеринг компонента тренажера
+   * @returns JSX элемент тренажера
+   */
   const renderTrainer = useMemo(() => {
     if (!currentExercise) return null;
 
@@ -494,12 +579,20 @@ const XPathSimulatorPage: React.FC = () => {
     }
   }, [currentExercise, currentBlockIndex, currentExerciseIndex]);
 
+  /**
+   * Информационный бейдж для ResultCard
+   * @returns Текст информационного сообщения
+   */
   const infoBadge = useMemo(() => {
     if (showReference) return 'Показана справочная информация.';
     if (showHint) return 'Активна подсказка по заданию.';
     return '';
   }, [showReference, showHint]);
 
+  /**
+   * Общее количество упражнений в модуле (с учетом фильтрации)
+   * @returns Количество упражнений
+   */
   const totalExercises = selectedDifficulty
     ? filteredBlocks.reduce(
         (sum, block) => {

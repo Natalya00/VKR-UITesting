@@ -4,6 +4,12 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 import { authService } from '../../services/authService';
 import './ForgotPasswordPage.css';
 
+/**
+ * Компонент страницы восстановления пароля
+ * Предоставляет интерфейс для восстановления доступа к аккаунту
+ * через проверку email адреса
+ * @returns JSX элемент страницы восстановления пароля
+ */
 const ForgotPasswordPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -12,6 +18,11 @@ const ForgotPasswordPage: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  /**
+   * Обрабатывает отправку формы восстановления пароля
+   * Проверяет email и отправляет запрос на сервер для получения токена сброса
+   * @param e - Событие отправки формы
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -39,6 +50,9 @@ const ForgotPasswordPage: React.FC = () => {
     }
   };
 
+  /**
+   * Перенаправляет на страницу сброса пароля с полученным токеном
+   */
   const handleGoToReset = () => {
     if (token) {
       navigate(`/reset-password?token=${token}`);

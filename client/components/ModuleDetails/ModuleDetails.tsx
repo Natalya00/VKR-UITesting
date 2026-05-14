@@ -4,11 +4,27 @@ import { progressService } from '../../services/progressService';
 import './ModuleDetails.css';
 import { getExerciseNumber } from '../../utils/getExerciseNumber';
 
+/**
+ * Пропсы компонента ModuleDetails
+ */
 interface ModuleDetailsProps {
+  /** ID модуля для отображения деталей */
   moduleId: string;
+  /** Обработчик закрытия модального окна */
   onClose: () => void;
 }
 
+/**
+ * Компонент детальной информации о модуле
+ * Отображает модальное окно с подробной статистикой по модулю:
+ * - Общая статистика (прогресс, количество попыток)
+ * - Список всех упражнений с статусом
+ * - Историю попыток для каждого упражнения
+ * - Снимки кода и ошибки
+ * 
+ * @param props - Пропсы компонента
+ * @returns JSX элемент модального окна с деталями модуля
+ */
 const ModuleDetails: React.FC<ModuleDetailsProps> = ({ moduleId, onClose }) => {
   const [moduleData, setModuleData] = useState<ModuleAttempts | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,11 +48,15 @@ const ModuleDetails: React.FC<ModuleDetailsProps> = ({ moduleId, onClose }) => {
     loadModuleDetails();
   }, [moduleId]);
 
+  /**
+   * Форматирует дату в московском времени
+   * @param dateString - Строка с датой в UTC или null
+   * @returns Отформатированная строка с датой и временем
+   */
   const formatDate = (dateString: string | null) => {
     if (!dateString) return 'Не выполнено';
     
     const utcDate = new Date(dateString);
-    
     const moscowDate = new Date(utcDate.getTime() + (3 * 60 * 60 * 1000));
     
     return moscowDate.toLocaleString('ru-RU', {
@@ -48,18 +68,33 @@ const ModuleDetails: React.FC<ModuleDetailsProps> = ({ moduleId, onClose }) => {
     }) + ' MSK';
   };
 
+  /**
+   * Возвращает иконку статуса упражнения
+   * @param isCompleted - Флаг выполнения
+   * @returns Символ статуса
+   */
   const getStatusIcon = (isCompleted: boolean) => {
     return isCompleted ? '✓' : '•';
   };
 
+  /**
+   * Возвращает иконку результата попытки
+   * @param isSuccess - Флаг успешности попытки
+   * @returns Символ результата
+   */
   const getAttemptStatusIcon = (isSuccess: boolean) => {
     return isSuccess ? '✓' : '✗';
   };
 
+  /**
+   * Переключает развернутое состояние упражнения
+   * @param exerciseId - ID упражнения
+   */
   const toggleExerciseExpansion = (exerciseId: string) => {
     setExpandedExercise(expandedExercise === exerciseId ? null : exerciseId);
   };
 
+  // Отображение состояния загрузки
   if (isLoading) {
     return (
       <div className="module-details-overlay">
@@ -70,6 +105,7 @@ const ModuleDetails: React.FC<ModuleDetailsProps> = ({ moduleId, onClose }) => {
     );
   }
 
+  // Отображение ошибки
   if (error || !moduleData) {
     return (
       <div className="module-details-overlay">
@@ -84,11 +120,13 @@ const ModuleDetails: React.FC<ModuleDetailsProps> = ({ moduleId, onClose }) => {
   return (
     <div className="module-details-overlay" onClick={onClose}>
       <div className="module-details-modal" onClick={(e) => e.stopPropagation()}>
+        {/* Заголовок модального окна */}
         <div className="module-details-header">
           <h2>{moduleData.moduleTitle}</h2>
           <button className="close-button" onClick={onClose}>×</button>
         </div>
 
+        {/* Общая статистика модуля */}
         <div className="module-summary">
           <div className="summary-stats">
             <div className="stat-item">

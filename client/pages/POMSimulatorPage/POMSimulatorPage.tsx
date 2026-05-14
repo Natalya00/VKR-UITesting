@@ -9,26 +9,42 @@ import IDE from '../../components/IDE/IDE';
 import { useProgress } from '../../hooks/useProgress';
 import { fetchWithAuth } from '../../services/fetchWithAuth';
 
+/** Упражнение модуля POM */
 interface Exercise {
+  /** ID упражнения */
   id: string;
+  /** Порядковый номер упражнения */
   order: number;
+  /** Название упражнения */
   title: string;
+  /** Описание упражнения */
   description: string;
+  /** Подсказка к упражнению */
   hint: string;
+  /** Начальный код для упражнения */
   initialCode: string;
+  /** Тип страницы для отображения в iframe */
   harnessPageType: 'elements' | 'items' | 'login' | 'home' | 'products' | 'profile' | 'components' | 'cat-characters';
+  /** ID блока упражнения */
   blockId: string;
+  /** Только компиляция без динамической проверки */
   compileOnly?: boolean;
+  /** Сложность упражнения */
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
+/** Блок упражнений */
 interface Block {
+  /** ID блока */
   blockId: string;
+  /** Название блока */
   title: string;
 }
 
+/** Режим отображения информации */
 type InfoMode = 'none' | 'reference' | 'hint';
 
+/** Массив блоков упражнений */
 const BLOCKS: Block[] = [
   { blockId: 'block-1', title: 'Блок 1. Page Elements' },
   { blockId: 'block-2', title: 'Блок 2. Page Methods' },
@@ -37,6 +53,12 @@ const BLOCKS: Block[] = [
   { blockId: 'block-5', title: 'Блок 5. Base Test и тесты' },
 ];
 
+/**
+ * Парсит начальный код на отдельные файлы
+ * Разделяет код по маркеру "---" и извлекает имена классов
+ * @param initialCode - Начальный код упражнения
+ * @returns Объект с ключами-именами файлов и значениями-кодом
+ */
 const parseInitialCode = (initialCode: string | undefined): Record<string, string> => {
   if (!initialCode || initialCode.trim() === '') return { 'UserScript.java': '' };
 
@@ -58,10 +80,21 @@ const parseInitialCode = (initialCode: string | undefined): Record<string, strin
   return result;
 };
 
+/**
+ * Объединяет несколько файлов в одну строку для отправки на сервер
+ * @param files - Объект с файлами
+ * @returns Строка, содержащая все файлы, разделенные двумя переносами строк
+ */
 const combineFilesForServer = (files: Record<string, string>): string => {
   return Object.keys(files).map(key => files[key]).join('\n\n');
 };
 
+/**
+ * Страница симулятора POM
+ * @param props - Пропсы компонента
+ * @param props.initialExerciseOrder - Начальный номер упражнения
+ * @returns JSX элемент страницы
+ */
 const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initialExerciseOrder }) => {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -83,6 +116,10 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
   const module3 = progress?.modules.find(m => m.moduleId === 'module-3');
   const completedCount = module3?.completedExercises || 0;
 
+  /**
+   * Фильтрация блоков по выбранной сложности
+   * @returns Отфильтрованный массив блоков
+   */
   const filteredBlocks = useMemo(() => {
     if (!selectedDifficulty) return BLOCKS;
     
@@ -91,11 +128,19 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     });
   }, [selectedDifficulty, exercises]);
 
+  /**
+   * Фильтрация упражнений по выбранной сложности
+   * @returns Отфильтрованный массив упражнений
+   */
   const filteredExercises = useMemo(() => {
     if (!selectedDifficulty) return exercises;
     return exercises.filter(ex => ex.difficulty === selectedDifficulty);
   }, [exercises, selectedDifficulty]);
 
+  /**
+   * Получение текущего упражнения
+   * @returns Текущее упражнение или null
+   */
   const getCurrentExercise = (): Exercise | null =>
     filteredExercises[currentExerciseIndex] ?? null;
 
@@ -114,10 +159,19 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     ? currentExerciseIndex + 1
     : currentExerciseObj ? currentExerciseObj.order - 100 : 1;
 
+  /**
+   * Загрузка упражнений
+   */
   useEffect(() => {
     loadExercises(BLOCKS[0].blockId, initialExerciseOrder);
   }, [initialExerciseOrder]);
 
+  /**
+   * Загрузка упражнений для указанного блока
+   * @param blockId - ID блока
+   * @param targetExerciseOrder - Целевой номер упражнения
+   * @param autoSelectIndex - Индекс для автоматического выбора упражнения
+   */
   const loadExercises = async (blockId: string, targetExerciseOrder?: number, autoSelectIndex?: number) => {
     setIsLoading(true);
     try {
@@ -191,6 +245,10 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     }
   };
 
+  /**
+   * Применяет выбранное упражнение: устанавливает файлы и сбрасывает состояние
+   * @param exercise - Выбранное упражнение
+   */
   const applyExercise = (exercise: Exercise) => {
     const initialFiles = parseInitialCode(exercise?.initialCode);
     const filesToSet = initialFiles && Object.keys(initialFiles).length > 0
@@ -204,6 +262,10 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     setTerminalOutput('// Код будет отправлен на сервер для проверки');
   };
 
+  /**
+   * Обработчик смены блока
+   * @param filteredIndex - Индекс блока в отфильтрованном списке
+   */
   const handleBlockChange = (filteredIndex: number) => {
     if (!filteredBlocks[filteredIndex]) return;
     
@@ -227,6 +289,10 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     }
   };
 
+  /**
+   * Обработчик изменения фильтра по сложности 
+   * @param difficulty - Выбранная сложность или null для сброса
+   */
   const handleDifficultyChange = async (difficulty: 'easy' | 'medium' | 'hard' | null) => {
     setSelectedDifficulty(difficulty);
     setCurrentExerciseIndex(0);
@@ -284,6 +350,13 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     }
   };
 
+  /**
+   * Определяет тип страницы для отображения в iframe на основе номера упражнения и блока
+   * @param order - Номер упражнения
+   * @param blockId - ID блока
+   * @returns Тип страницы для отображения
+   */
+
   const getHarnessPageType = (
     order: number,
     blockId: string
@@ -308,6 +381,9 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     return 'elements';
   };
 
+  /**
+   * Обработчик перехода к предыдущему упражнению
+   */
   const handlePrevious = () => {
     if (currentExerciseIndex > 0) {
       const newIndex = currentExerciseIndex - 1;
@@ -327,6 +403,9 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     }
   };
 
+  /**
+   * Обработчик перехода к следующему упражнению
+   */
   const handleNext = () => {
     if (currentExerciseIndex < filteredExercises.length - 1) {
       const newIndex = currentExerciseIndex + 1;
@@ -346,12 +425,18 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     }
   };
 
+  /**
+   * Обработчик открытия справочного окна
+   */
   const handleShowReference = () => {
     setShowReference(true);
     setInfoMode('reference');
     setResultText('Справочная информация открыта.');
   };
 
+  /**
+   * Обработчик показа подсказки
+   */
   const handleShowHint = () => {
     if (!showHint && getCurrentExercise()) {
       setShowHint(true);
@@ -361,6 +446,10 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     }
   };
 
+  /**
+   * Обработчик выполнения кода
+   * Отправляет код на сервер для валидации и обновляет прогресс
+   */
   const handleRunCode = async () => {
     setIsRunning(true);
     setInfoMode('none');
@@ -488,16 +577,29 @@ const POMSimulatorPage: React.FC<{ initialExerciseOrder?: number }> = ({ initial
     }
   };
 
+  /**
+   * Информационный бейдж для ResultCard
+   * @returns Текст информационного сообщения
+   */
   const infoBadge = useMemo(() => {
     if (infoMode === 'reference') return 'Показана справочная информация.';
     if (showHint) return 'Активна подсказка по заданию.';
     return '';
   }, [infoMode, showHint]);
 
+  /**
+   * Получение заголовка текущего блока
+   * @returns Заголовок блока
+   */
   const getBlockTitle = () => BLOCKS[currentBlockIndex]?.title ?? `Блок ${currentBlockIndex + 1}`;
 
   const currentPageType = getCurrentExercise()?.harnessPageType ?? 'elements';
 
+  /**
+   * Получение URL тестовой страницы для отображения в iframe 
+   * @param pageType - Тип страницы
+   * @returns URL страницы
+   */
   const getTestPageUrl = (pageType: string): string => {
     const base = 'http://localhost:5173/test-harness/module3';
     switch (pageType) {

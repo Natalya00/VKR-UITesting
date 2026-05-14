@@ -1,27 +1,53 @@
 import React, { useState } from 'react';
 import './IDE.css';
 
+/**
+ * Пропсы для многофайловой версии IDE
+ */
 interface IDEProps {
+  /** Объект с файлами (имя файла -> содержимое) */
   files?: Record<string, string>;
+  /** Вывод терминала */
   terminalOutput: string;
+  /** Флаг выполнения кода */
   isRunning: boolean;
+  /** Имя активного файла */
   activeFile?: string;
+  /** Обработчик изменения файлов */
   onFilesChange: (files: Record<string, string>) => void;
+  /** Обработчик смены активного файла */
   onActiveFileChange: (fileName: string) => void;
+  /** Обработчик запуска кода */
   onRunCode: () => void;
 }
 
+/**
+ * Пропсы для однофайловой версии IDE
+ */
 interface LegacyIDEProps {
+  /** Содержимое кода */
   codeValue?: string;
+  /** Вывод терминала */
   terminalOutput: string;
+  /** Флаг выполнения кода */
   isRunning: boolean;
+  /** Обработчик изменения кода */
   onCodeChange: (code: string) => void;
+  /** Обработчик запуска кода */
   onRunCode: () => void;
+  /** Имя файла */
   fileName?: string;
 }
 
+/** Объединенные пропсы для обратной совместимости */
 type IDECombinedProps = IDEProps | LegacyIDEProps;
 
+/**
+ * Компонент среды разработки (IDE)
+ * 
+ * @param props - Пропсы компонента (однофайловые или многофайловые)
+ * @returns JSX элемент IDE
+ */
 const IDE: React.FC<IDECombinedProps> = (props) => {
   const isLegacy = 'codeValue' in props && 'onCodeChange' in props;
 
@@ -34,6 +60,13 @@ const IDE: React.FC<IDECombinedProps> = (props) => {
 
 const INDENT = '    ';
 
+/**
+ * Обработчик клавиатурных событий в редакторе кода
+ * Обеспечивает автоматические отступы, обработку Tab и Enter
+ * @param e - Событие клавиатуры
+ * @param currentValue - Текущее значение в редакторе
+ * @param onValueChange - Колбэк для изменения значения
+ */
 const handleEditorKeyDown = (
   e: React.KeyboardEvent<HTMLTextAreaElement>,
   currentValue: string,

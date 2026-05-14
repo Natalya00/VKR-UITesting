@@ -6,11 +6,17 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 import ModuleDetails from '../../components/ModuleDetails/ModuleDetails';
 import './ProgressPage.css';
 
+/**
+ * Компонент страницы прогресса пользователя
+ * Отображает общую статистику прогресса и детальную информацию по каждому модулю 
+ * @returns JSX элемент страницы прогресса
+ */
 const ProgressPage: React.FC = () => {
   const navigate = useNavigate();
   const { progress, isLoading, error } = useProgress();
   const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
 
+  /** Данные для круговой диаграммы */
   const pieData = progress
     ? [
         { name: 'Выполнено', value: progress.totalCompleted, color: '#4CAF50' },

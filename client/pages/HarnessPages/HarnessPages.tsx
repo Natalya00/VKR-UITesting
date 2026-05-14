@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import './HarnessPages.css';
 
+/**
+ * Страница с элементами форм
+ * Содержит форму регистрации с полями ввода, выпадающими списками и кнопками
+ * @returns JSX элемент страницы элементов форм
+ */
 export const HarnessElementsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState(1);
 
@@ -107,6 +112,11 @@ export const HarnessElementsPage: React.FC = () => {
   );
 };
 
+/**
+ * Страница с товарами
+ * Отображает карточки товаров с возможностью добавления в корзину
+ * @returns JSX элемент страницы товаров
+ */
 export const HarnessItemsPage: React.FC = () => {
   const [cartCount, setCartCount] = useState(0);
 
@@ -147,6 +157,11 @@ export const HarnessItemsPage: React.FC = () => {
   );
 };
 
+/**
+ * Страница входа
+ * Содержит форму авторизации с валидацией пароля
+ * @returns JSX элемент страницы входа
+ */
 export const HarnessLoginPage: React.FC = () => {
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -212,6 +227,11 @@ export const HarnessLoginPage: React.FC = () => {
   );
 };
 
+/**
+ * Главная страница после авторизации
+ * Отображает панель администратора и навигационные элементы
+ * @returns JSX элемент главной страницы
+ */
 export const HarnessHomePage: React.FC = () => {
   return (
     <div id="home-page" data-testid="home-page" className="harness-wrapper home-page">
@@ -275,6 +295,11 @@ export const HarnessHomePage: React.FC = () => {
   );
 };
 
+/**
+ * Страница товаров с фильтрацией и управлением
+ * Позволяет добавлять, удалять товары и фильтровать по категориям
+ * @returns JSX элемент страницы управления товарами
+ */
 export const HarnessProductsPage: React.FC = () => {
   const [products, setProducts] = useState([
     { id: 1, name: 'Ноутбук Pro 15',  category: 'electronics', available: true },
@@ -411,6 +436,11 @@ export const HarnessProductsPage: React.FC = () => {
   );
 };
 
+/**
+ * Страница профиля пользователя для тестирования
+ * Позволяет редактировать имя и загружать фото профиля
+ * @returns JSX элемент страницы профиля
+ */
 export const HarnessProfilePage: React.FC = () => {
   const [draftName, setDraftName] = useState('');
   const [lastSaved, setLastSaved] = useState('Иван Петров');
@@ -471,6 +501,11 @@ export const HarnessProfilePage: React.FC = () => {
   );
 };
 
+/**
+ * Страница с компонентами интерфейса
+ * Содержит различные UI компоненты: таблицы, пагинацию, аккордеоны, тултипы, формы
+ * @returns JSX элемент страницы компонентов
+ */
 export const HarnessComponentsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [searchValue, setSearchValue] = useState('');

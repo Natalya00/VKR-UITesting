@@ -1,15 +1,26 @@
+/** Базовый URL API сервера */
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
 
+/** Флаг процесса обновления токена */
 let isRefreshing = false;
 
+/**
+ * Тип для отложенного запроса в очереди
+ */
 type QueuedRequest = {
   resolve: (value: Response) => void;
   reject: (reason?: unknown) => void;
   url: string;
   init?: RequestInit;
 };
+
+/** Очередь отложенных запросов на время обновления токена */
 let failedQueue: QueuedRequest[] = [];
 
+/**
+ * Обрабатывает очередь отложенных запросов
+ * @param error - Ошибка, если обновление токена не удалось
+ */
 const processQueue = (error: Error | null) => {
   failedQueue.forEach(({ resolve, reject }) => {
     if (error) {
@@ -21,6 +32,10 @@ const processQueue = (error: Error | null) => {
   failedQueue = [];
 };
 
+/**
+ * Обновляет access token через refresh token с помощью fetch API
+ * @throws {Error} Когда обновление не удалось
+ */
 const refreshAccessToken = async (): Promise<void> => {
   const response = await fetch(`${API_BASE_URL}/api/auth/refresh`, {
     method: 'POST',
@@ -35,6 +50,13 @@ const refreshAccessToken = async (): Promise<void> => {
   }
 };
 
+/**
+ * Выполняет HTTP-запрос с автоматическим обновлением токенов
+ * @param url - URL для запроса
+ * @param init - Настройки запроса (RequestInit)
+ * @returns Promise с Response объектом
+ * @throws {Error} При ошибках авторизации или обновления токена
+ */
 export const fetchWithAuth = async (
   url: string,
   init?: RequestInit

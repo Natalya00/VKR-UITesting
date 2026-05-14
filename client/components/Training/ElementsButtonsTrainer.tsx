@@ -1,32 +1,59 @@
 import React from 'react';
 import './Training.css';
 
+/** Элемент тренажера для отработки взаимодействия */
 export interface TrainerElement {
+  /** Тип HTML элемента */
   tag: 'button' | 'a' | 'div' | 'input';
+  /** Уникальный идентификатор элемента */
   id?: string;
+  /** CSS классы элемента */
   class?: string;
+  /** Тип элемента (для input) */
   type?: string;
+  /** Ссылка (для a) */
   href?: string;
+  /** Текстовое содержимое элемента */
   text?: string;
+  /** Data-атрибут для страницы */
   'data-page'?: string;
+  /** Флаг отключенного состояния */
   disabled?: boolean;
+  /** Флаг скрытого состояния */
   hidden?: boolean;
 }
 
+/** Конфигурация тренажера кнопок и элементов */
 export interface ElementsButtonsTrainerConfig {
+  /** Селектор целевого элемента для взаимодействия */
   targetSelector?: string;
+  /** Ожидаемое действие (click, hover, etc.) */
   expectedAction?: string;
+  /** Требуется ли проверка условия */
   requireCondition?: boolean;
+  /** Заголовок формы */
   formTitle?: string;
+  /** Массив элементов для отображения */
   elements?: TrainerElement[];
+  /** ID упражнения */
   exerciseId?: string;
 }
 
+/** Пропсы компонента ElementsButtonsTrainer */
 interface ElementsButtonsTrainerProps {
+  /** Конфигурация тренажера */
   config?: ElementsButtonsTrainerConfig;
+  /** ID упражнения */
   exerciseId?: string;
 }
 
+/**
+ * Рендерит HTML элемент на основе конфигурации TrainerElement
+ * @param el - Конфигурация элемента
+ * @param index - Индекс элемента в массиве
+ * @param isTarget - Является ли элемент целевым для взаимодействия
+ * @returns JSX элемент или null
+ */
 const renderElement = (el: TrainerElement, index: number, isTarget: boolean) => {
   const props: Record<string, unknown> = {
     key: index,
@@ -76,6 +103,7 @@ const renderElement = (el: TrainerElement, index: number, isTarget: boolean) => 
   }
 };
 
+/** Элементы по умолчанию для демонстрации различных типов взаимодействия */
 const DEFAULT_ELEMENTS: TrainerElement[] = [
   { tag: 'button', class: 'nav-item', 'data-page': 'home', text: 'Главная' },
   { tag: 'a', href: '#about', class: 'nav-link', text: 'О проекте' },
@@ -86,6 +114,12 @@ const DEFAULT_ELEMENTS: TrainerElement[] = [
   { tag: 'div', id: 'submenu', class: 'submenu', text: 'Подменю' },
 ];
 
+/**
+ * Компонент тренажера для отработки взаимодействия с кнопками и элементами
+ * 
+ * @param props - Пропсы компонента
+ * @returns JSX элемент тренажера
+ */
 const ElementsButtonsTrainer: React.FC<ElementsButtonsTrainerProps> = ({ config, exerciseId }) => {
   const elements = config?.elements || DEFAULT_ELEMENTS;
   const formTitle = config?.formTitle || 'Интерактивный макет страницы';

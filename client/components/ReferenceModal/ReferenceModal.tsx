@@ -15,14 +15,32 @@ import {
   POMTips
 } from '../Reference';
 
+/**
+ * Пропсы компонента ReferenceModal
+ */
 interface ReferenceModalProps {
+  /** Флаг открытости модального окна */
   isOpen: boolean;
+  /** Обработчик закрытия модального окна */
   onClose: () => void;
+  /** Тип модуля для отображения соответствующей справки */
   module?: 'xpath' | 'elements' | 'pom';
 }
 
+/** Типы вкладок справочной информации */
 type TabType = 'basics' | 'examples' | 'errors' | 'tips';
 
+/**
+ * Компонент модального окна со справочной информацией
+ * Отображает справочные материалы для различных модулей с вкладками:
+ * - Основы - базовая информация
+ * - Примеры - практические примеры
+ * - Частые ошибки - распространенные ошибки
+ * - Советы - полезные рекомендации
+ * 
+ * @param props - Пропсы компонента
+ * @returns JSX элемент модального окна или null
+ */
 const ReferenceModal: React.FC<ReferenceModalProps> = ({
   isOpen,
   onClose,
@@ -32,6 +50,10 @@ const ReferenceModal: React.FC<ReferenceModalProps> = ({
 
   if (!isOpen) return null;
 
+  /**
+   * Отображает содержимое активной вкладки в зависимости от модуля
+   * @returns JSX элемент с содержимым вкладки
+   */
   const renderContent = () => {
     switch (module) {
       case 'xpath':
@@ -67,11 +89,13 @@ const ReferenceModal: React.FC<ReferenceModalProps> = ({
     <div className="reference-modal-overlay">
       <div className="reference-modal">
         <div className="reference-content">
+          {/* Заголовок модального окна */}
           <div className="reference-header">
             <h2>Справочная информация</h2>
             <button className="close-button" onClick={onClose}>✕</button>
           </div>
 
+          {/* Вкладки справочной информации */}
           <div className="reference-tabs">
             <button
               className={`tab-button ${activeTab === 'basics' ? 'active' : ''}`}
@@ -99,6 +123,7 @@ const ReferenceModal: React.FC<ReferenceModalProps> = ({
             </button>
           </div>
 
+          {/* Основное содержимое справки */}
           <div className="reference-body">
             <div className="tab-content">
               {renderContent()}

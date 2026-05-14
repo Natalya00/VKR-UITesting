@@ -24,13 +24,42 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * REST контроллер для управления аутентификацией и авторизацией пользователей
+ * 
+ * Предоставляет эндпоинты для:
+ * - Регистрации новых пользователей
+ * - Входа в систему с выдачей JWT токенов
+ * - Выхода из системы с отзывом токенов
+ * - Обновления access токенов через refresh токены
+ * - Восстановления и сброса паролей
+ * - Получения информации о текущем пользователе
+ * 
+ * Особенности:
+ * - Использует HTTP-only cookies для хранения токенов
+ * - Поддерживает два способа обновления токенов (через cookies и body)
+ * - Включает обработку ошибок валидации и исключений
+ * - Реализует безопасный механизм сброса паролей
+ * 
+ * @author UI Testing Trainer Team
+ * @version 1.0
+ * @since 2024
+ */
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
+    /** Сервис для работы с аутентификацией */
     private final AuthService authService;
 
+    /**
+     * Регистрирует нового пользователя в системе
+     * 
+     * @param request данные для регистрации (email, password)
+     * @param response HTTP ответ для установки cookies с токенами
+     * @return информация о пользователе и токены доступа
+     */
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(
             @Valid @RequestBody RegisterRequest request,
@@ -40,6 +69,13 @@ public class AuthController {
         return ResponseEntity.ok(authResponse);
     }
 
+    /**
+     * Выполняет вход пользователя в систему
+     * 
+     * @param request данные для входа (email, password)
+     * @param response HTTP ответ для установки cookies с токенами
+     * @return информация о пользователе и токены доступа
+     */
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(
             @Valid @RequestBody LoginRequest request,
@@ -49,6 +85,14 @@ public class AuthController {
         return ResponseEntity.ok(authResponse);
     }
 
+    /**
+     * Выполняет выход пользователя из системы
+     * Отзывает токены и очищает cookies
+     * 
+     * @param request HTTP запрос для получения токенов из cookies
+     * @param response HTTP ответ для очистки cookies
+     * @return пустой ответ со статусом 200
+     */
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(
             HttpServletRequest request,
@@ -61,6 +105,14 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Обновляет access токен используя refresh токен из cookies
+     * 
+     * @param request HTTP запрос для получения refresh токена из cookies
+     * @param response HTTP ответ для установки новых cookies с токенами
+     * @return новые токены доступа
+     * @throws IllegalArgumentException если refresh токен не найден
+     */
     @PostMapping("/refresh")
     public ResponseEntity<AuthResponse> refresh(
             HttpServletRequest request,

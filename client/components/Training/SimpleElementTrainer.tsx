@@ -2,32 +2,59 @@ import React, { useState, useEffect, useMemo } from 'react';
 import './Training.css';
 import { generateId, generateName, generateClass } from '../../utils/attributeGenerator';
 
+/** Простой элемент формы (поле ввода или кнопка) */
 interface SimpleElement {
+  /** Тип HTML элемента: input или button */
   tag: 'input' | 'button';
+  /** Уникальный идентификатор элемента */
   id?: string;
+  /** Атрибут name элемента */
   name?: string;
+  /** CSS класс элемента */
   className?: string;
+  /** Тип input элемента (text, email, password и т.д.) */
   type?: string;
+  /** Плейсхолдер для input */
   placeholder?: string;
+  /** Значение элемента */
   value?: string;
+  /** Текст кнопки (для button) */
   text?: string;
 }
 
+/** Конфигурация тренажера для простого элемента формы */
 interface SimpleElementTrainerConfig {
+  /** Основной элемент для отработки взаимодействия */
   element: SimpleElement;
+  /** Селектор целевого элемента для взаимодействия */
   targetSelector: string;
+  /** Стили страницы тренажера */
   pageStyle?: {
+    /** Цвет фона страницы */
     backgroundColor?: string;
   };
+  /** Заголовок формы */
   formTitle?: string;
+  /** Дополнительные поля для отображения в форме */
   additionalFields?: SimpleElement[];
+  /** ID упражнения */
   exerciseId?: string;
 }
 
+/** Пропсы компонента SimpleElementTrainer */
 interface SimpleElementTrainerProps {
+  /** Конфигурация тренажера */
   config: SimpleElementTrainerConfig;
 }
 
+/**
+ * Компонент тренажера для отработки взаимодействия с простыми элементами формы
+ * Создает форму с основным элементом (input/button) и дополнительными полями
+ * 
+ * @param props - Пропсы компонента
+ * @param props.config - Объект конфигурации тренажера
+ * @returns JSX элемент тренажера с формой и элементами управления
+ */
 const SimpleElementTrainer: React.FC<SimpleElementTrainerProps> = ({ config }) => {
   const { element, pageStyle, formTitle = 'Форма', additionalFields = [] } = config;
 
@@ -49,6 +76,15 @@ const SimpleElementTrainer: React.FC<SimpleElementTrainerProps> = ({ config }) =
     setGeneratedAttrs(attrs);
   }, [config.element.id, config.element.name, config.element.className]);
 
+  /**
+   * Рендерит отдельный элемент формы на основе конфигурации
+   * Применяет сгенерированные уникальные атрибуты к целевому элементу
+   * 
+   * @param el - Конфигурация элемента для рендеринга
+   * @param index - Индекс элемента в массиве дополнительных полей
+   * @param isTarget - Является ли элемент целевым для взаимодействия
+   * @returns JSX элемент (input или button) или null
+   */
   const renderElement = (el: SimpleElement, index?: number, isTarget = false) => {
     const { tag, text, id, name, className, ...props } = el;
 

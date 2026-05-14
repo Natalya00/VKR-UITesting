@@ -3,9 +3,20 @@ import { useProgress } from '../../hooks/useProgress';
 import './ProgressDashboard.css';
 import { getExerciseNumber } from '../../utils/getExerciseNumber';
 
+/**
+ * Компонент панели прогресса пользователя
+ * Отображает общую статистику прогресса и детальную информацию по каждому модулю:
+ * - Общий процент выполнения
+ * - Количество выполненных упражнений
+ * - Прогресс-бары по модулям
+ * - Список упражнений с статусом
+ * 
+ * @returns JSX элемент панели прогресса
+ */
 const ProgressDashboard: React.FC = () => {
   const { progress, isLoading, error } = useProgress();
 
+  // Отображение состояния загрузки
   if (isLoading) {
     return (
       <div className="progress-dashboard">
@@ -14,6 +25,7 @@ const ProgressDashboard: React.FC = () => {
     );
   }
 
+  // Отображение ошибки
   if (error) {
     return (
       <div className="progress-dashboard">
@@ -22,6 +34,7 @@ const ProgressDashboard: React.FC = () => {
     );
   }
 
+  // Отображение пустого состояния
   if (!progress || progress.modules.length === 0) {
     return (
       <div className="progress-dashboard">
@@ -37,6 +50,7 @@ const ProgressDashboard: React.FC = () => {
     <div className="progress-dashboard">
       <h3 className="progress-title">Ваш прогресс</h3>
 
+      {/* Общая статистика */}
       <div className="progress-summary">
         <div className="progress-stat">
           <span className="progress-stat-value">{progress.totalCompleted}</span>
@@ -48,9 +62,11 @@ const ProgressDashboard: React.FC = () => {
         </div>
       </div>
 
+      {/* Карточки модулей */}
       <div className="progress-modules">
         {progress.modules.map((module) => (
           <div key={module.moduleId} className="progress-module-card">
+            {/* Заголовок модуля */}
             <div className="progress-module-header">
               <h4 className="progress-module-title">{module.moduleTitle}</h4>
               <span className="progress-module-percentage">
@@ -58,6 +74,7 @@ const ProgressDashboard: React.FC = () => {
               </span>
             </div>
 
+            {/* Прогресс-бар */}
             <div className="progress-bar-container">
               <div
                 className="progress-bar"
@@ -65,12 +82,14 @@ const ProgressDashboard: React.FC = () => {
               />
             </div>
 
+            {/* Статистика модуля */}
             <div className="progress-module-stats">
               <span className="progress-stat-text">
                 {module.completedExercises} из {module.totalExercises} упражнений
               </span>
             </div>
 
+            {/* Разворачиваемый список упражнений */}
             {module.exercises && module.exercises.length > 0 && (
               <details className="progress-exercises-details">
                 <summary className="progress-exercises-summary">

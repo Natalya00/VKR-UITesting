@@ -1,5 +1,6 @@
 import React from 'react';
 
+/** Стили для оформления справочных материалов */
 const preStyle: React.CSSProperties = {
   background: '#f5f5f5',
   color: '#333',
@@ -31,6 +32,11 @@ const warningStyle: React.CSSProperties = {
   margin: '15px 0'
 };
 
+/**
+ * Компонент с основами Page Object Model
+ * Отображает базовую информацию о шаблоне проектирования POM
+ * @returns JSX элемент с основами POM
+ */
 export const POMBasics: React.FC = () => {
   return (
     <div className="reference-section">
@@ -198,6 +204,11 @@ export const POMBasics: React.FC = () => {
   );
 };
 
+/**
+ * Компонент с примерами Page Object Model
+ * Отображает практические примеры реализации POM
+ * @returns JSX элемент с примерами POM
+ */
 export const POMExamples: React.FC = () => {
   return (
     <div className="reference-section">
@@ -276,6 +287,11 @@ public void testLogin() {
   );
 };
 
+/**
+ * Компонент с частыми ошибками при работе с POM
+ * Отображает распространенные ошибки и способы их исправления
+ * @returns JSX элемент с ошибками POM
+ */
 export const POMErrors: React.FC = () => {
   return (
     <div className="reference-section">
@@ -397,6 +413,11 @@ public void testAddProduct() {
   );
 };
 
+/**
+ * Компонент с советами по работе с POM
+ * Отображает полезные рекомендации и лучшие практики
+ * @returns JSX элемент с советами по POM
+ */
 export const POMTips: React.FC = () => {
   return (
     <div className="reference-section">

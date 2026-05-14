@@ -3,14 +3,29 @@ import './PageHeader.css';
 import { Link } from 'react-router-dom';
 import UserMenu from '../UserMenu/UserMenu';
 
+/**
+ * Пропсы компонента PageHeader
+ */
 interface PageHeaderProps {
+  /** Имя пользователя */
   userName?: string;
+  /** Показывать ли прогресс */
   showProgress?: boolean;
+  /** Показывать ли кнопку выхода */
   showLogout?: boolean;
+  /** Активная вкладка навигации */
   activeNav?: 'xpath' | 'element' | 'pom' | 'tests' | 'none';
+  /** Дополнительные ссылки в заголовке */
   headerLinks?: Array<{ label: string; href: string; active?: boolean }>;
 }
 
+/**
+ * Компонент заголовка страницы с основной навигацией
+ * Отображает навигационное меню с ссылками на основные модули и меню пользователя
+ * 
+ * @param props - Пропсы компонента
+ * @returns JSX элемент заголовка страницы
+ */
 const PageHeader: React.FC<PageHeaderProps> = ({
   userName = '',
   showProgress = true,
@@ -21,8 +36,10 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   return (
     <header className="page-header">
       <nav className="main-navigation">
+        {/* Левая часть навигации */}
         <div className="nav-left"></div>
         
+        {/* Центральная часть с основными ссылками */}
         <div className="nav-center">
           <Link
             to="/xpath-simulator"
@@ -44,6 +61,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
           </Link>
         </div>
         
+        {/* Правая часть с меню пользователя */}
         <div className="nav-right">
           <UserMenu />
         </div>

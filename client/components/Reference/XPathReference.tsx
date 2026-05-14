@@ -1,5 +1,6 @@
 import React from 'react';
 
+/** Стили для оформления справочных материалов */
 const codeStyle: React.CSSProperties = {
   background: '#e8f0f8',
   padding: '2px 6px',
@@ -31,6 +32,11 @@ const warningStyle: React.CSSProperties = {
   margin: '15px 0'
 };
 
+/**
+ * Компонент с основами XPath
+ * Отображает базовую информацию о XPath и CSS-селекторах
+ * @returns JSX элемент с основами XPath
+ */
 export const XPathBasics: React.FC = () => {
   return (
     <div className="reference-section">
@@ -216,6 +222,11 @@ id="input-abc-456xyz"`}</pre>
 };
 
 
+/**
+ * Компонент с примерами XPath
+ * Отображает практические примеры использования XPath и CSS-селекторов
+ * @returns JSX элемент с примерами XPath
+ */
 export const XPathExamples: React.FC = () => {
   return (
     <div className="reference-section">
@@ -321,6 +332,11 @@ export const XPathExamples: React.FC = () => {
   );
 };
 
+/**
+ * Компонент с частыми ошибками при работе с XPath
+ * Отображает распространенные ошибки и способы их исправления
+ * @returns JSX элемент с ошибками XPath
+ */
 export const XPathErrors: React.FC = () => {
   return (
     <div className="reference-section">
@@ -388,6 +404,11 @@ export const XPathErrors: React.FC = () => {
   );
 };
 
+/**
+ * Компонент с советами по работе с XPath
+ * Отображает полезные рекомендации и лучшие практики
+ * @returns JSX элемент с советами по XPath
+ */
 export const XPathTips: React.FC = () => {
   return (
     <div className="reference-section">

@@ -1,26 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import './QuizTrainer.css';
 
+/** Вариант ответа в викторине */
 interface QuizOption {
+  /** Метка варианта */
   label: string;
+  /** Текст варианта ответа */
   text: string;
 }
 
+/** Конфигурация тренажера-викторины */
 interface QuizTrainerConfig {
+  /** Текст вопроса */
   question: string;
+  /** Массив вариантов ответов */
   options: QuizOption[];
+  /** Правильный ответ (буква A, B, C, D) */
   correctAnswer: string;
+  /** Заголовок страницы */
   pageTitle?: string;
+  /** Тип макета */
   layout?: string;
+  /** Отключить IDE */
   disableIDE?: boolean;
 }
 
+/** Пропсы компонента QuizTrainer */
 interface QuizTrainerProps {
+  /** Конфигурация викторины */
   config: QuizTrainerConfig;
+  /** ID упражнения */
   exerciseId?: string;
+  /** Колбэк для обработки ответа */
   onAnswer?: (answer: string) => void;
 }
 
+/**
+ * Компонент тренажера-викторины
+ * Отображает вопрос с множественными вариантами ответов
+ * 
+ * @param props - Пропсы компонента
+ * @returns JSX элемент викторины
+ */
 const QuizTrainer: React.FC<QuizTrainerProps> = ({ config, exerciseId, onAnswer }) => {
   const {
     question,
@@ -33,6 +54,11 @@ const QuizTrainer: React.FC<QuizTrainerProps> = ({ config, exerciseId, onAnswer 
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [feedback, setFeedback] = useState('');
 
+  /**
+   * Обрабатывает выбор ответа пользователем
+   * Проверяет правильность и обновляет состояние компонента
+   * @param answer - Выбранный ответ (буква A, B, C, D)
+   */
   const handleAnswerChange = (answer: string) => {
     setSelectedAnswer(answer);
     const correct = answer === correctAnswer;

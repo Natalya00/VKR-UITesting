@@ -4,6 +4,11 @@ import { useAuth } from '../../context/AuthContext';
 import './LoginPage.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 
+/**
+ * Компонент страницы авторизации
+ * Обеспечивает вход пользователя в систему с валидацией данных и обработкой ошибок
+ * @returns JSX элемент страницы входа
+ */
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,6 +23,12 @@ const LoginPage: React.FC = () => {
     }
   }, [isAuthenticated, navigate]);
 
+  /**
+   * Обрабатывает отправку формы авторизации
+   * Выполняет клиентскую валидацию, отправляет запрос на сервер
+   * и обрабатывает результат (успех или ошибка)
+   * @param e - Событие отправки формы
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     

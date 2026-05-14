@@ -1,7 +1,12 @@
 import axios, { AxiosInstance, AxiosError, InternalAxiosRequestConfig } from 'axios';
 
+/** Базовый URL API сервера */
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
 
+/**
+ * Настроенный экземпляр Axios с автоматическим обновлением токенов
+ * Обрабатывает 401 ошибки и автоматически обновляет access token
+ */
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   withCredentials: true,
@@ -10,13 +15,22 @@ const api: AxiosInstance = axios.create({
   },
 });
 
+/** Флаг процесса обновления токена */
 let isRefreshing = false;
+
+/** Тип для отложенных запросов */
 type FailedRequest = {
   resolve: (value: unknown) => void;
   reject: (reason?: unknown) => void;
 };
+
+/** Очередь отложенных запросов на время обновления токена */
 let failedQueue: FailedRequest[] = [];
 
+/**
+ * Обрабатывает очередь отложенных запросов
+ * @param error - Ошибка, если обновление токена не удалось
+ */
 const processQueue = (error: AxiosError | null) => {
   failedQueue.forEach(({ resolve, reject }) => {
     if (error) {
@@ -28,6 +42,10 @@ const processQueue = (error: AxiosError | null) => {
   failedQueue = [];
 };
 
+/**
+ * Обновляет access token через refresh token
+ * @throws {Error} Когда обновление не удалось
+ */
 const refreshAccessToken = async (): Promise<void> => {
   const response = await api.post(
     '/api/auth/refresh',
@@ -42,6 +60,7 @@ const refreshAccessToken = async (): Promise<void> => {
   }
 };
 
+// Настройка интерцептора для автоматического обновления токенов
 api.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {

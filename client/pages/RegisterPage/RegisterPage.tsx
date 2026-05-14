@@ -4,6 +4,11 @@ import { useAuth } from '../../context/AuthContext';
 import './RegisterPage.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 
+/**
+ * Компонент страницы регистрации
+ * Обеспечивает регистрацию новых пользователей с полной валидацией данных и обработкой ошибок
+ * @returns JSX элемент страницы регистрации
+ */
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,6 +19,11 @@ const RegisterPage: React.FC = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
 
+  /**
+   * Валидирует данные формы регистрации
+   * Проверяет заполненность полей, корректность email, длину пароля и совпадение паролей
+   * @returns true если все данные валидны, false в противном случае
+   */
   const validateForm = () => {
     if (!email || !password || !confirmPassword) {
       setError('Пожалуйста, заполните все поля');
@@ -39,6 +49,12 @@ const RegisterPage: React.FC = () => {
     return true;
   };
 
+  /**
+   * Обрабатывает отправку формы регистрации
+   * Выполняет валидацию, отправляет запрос на сервер и обрабатывает результат
+   * При успешной регистрации перенаправляет на страницу входа
+   * @param e - Событие отправки формы
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     

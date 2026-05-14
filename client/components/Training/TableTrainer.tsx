@@ -2,29 +2,50 @@ import React, { useState } from 'react';
 import './TableTrainer.css';
 import { generateClass } from '../../utils/attributeGenerator';
 
+/** Ячейка таблицы */
 interface TableCell {
+  /** Текстовое содержимое ячейки */
   text: string;
+  /** CSS класс ячейки */
   className?: string;
 }
 
+/** Строка таблицы */
 interface TableRow {
+  /** Массив ячеек в строке */
   cells: TableCell[];
+  /** Наличие чекбокса в строке */
   checkbox?: boolean;
+  /** CSS класс строки */
   className?: string;
 }
 
+/** Конфигурация тренажера таблицы */
 interface TableTrainerConfig {
+  /** Заголовок страницы */
   pageTitle: string;
+  /** Названия колонок таблицы */
   columns: string[];
+  /** Массив строк таблицы */
   rows: TableRow[];
+  /** Селектор целевого элемента */
   targetSelector: string;
+  /** ID упражнения */
   exerciseId?: string;
 }
 
+/** Пропсы компонента TableTrainer */
 interface TableTrainerProps {
+  /** Конфигурация тренажера */
   config: TableTrainerConfig;
 }
 
+/**
+ * Компонент тренажера для отработки взаимодействия с таблицей
+ * @param props - Пропсы компонента
+ * @param props.config - Конфигурация тренажера
+ * @returns JSX элемент таблицы
+ */
 const TableTrainer: React.FC<TableTrainerProps> = ({ config }) => {
   const { pageTitle, columns, rows } = config;
 

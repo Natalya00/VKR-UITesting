@@ -6,31 +6,63 @@ import TaskDescription from '../TaskDescription/TaskDescription';
 import BlockTabs from '../BlockTabs/BlockTabs';
 import DifficultyFilter from '../DifficultyFilter/DifficultyFilter';
 
+/**
+ * Интерфейс блока упражнений
+ */
 interface Block {
+  /** Уникальный идентификатор блока */
   blockId: string;
+  /** Название блока */
   title: string;
 }
 
+/**
+ * Пропсы компонента ExerciseHeader
+ */
 interface ExerciseHeaderProps {
+  /** Номер текущего упражнения */
   currentExercise: number;
+  /** Общее количество упражнений */
   totalExercises: number;
+  /** Количество выполненных упражнений */
   completedExercises: number;
+  /** Название текущего блока */
   blockTitle: string;
+  /** Название задания */
   taskTitle: string;
+  /** Описание задания */
   taskDescription: string;
+  /** Обработчик перехода к предыдущему упражнению */
   onPrevious: () => void;
+  /** Обработчик перехода к следующему упражнению */
   onNext: () => void;
+  /** Обработчик открытия справочных материалов */
   onShowReference: () => void;
+  /** Обработчик открытия подсказки */
   onShowHint: () => void;
+  /** Массив блоков для отображения вкладок */
   blocks?: Block[];
+  /** Индекс текущего блока */
   currentBlockIndex?: number;
+  /** Обработчик смены блока */
   onBlockChange?: (index: number) => void;
+  /** Флаг выполнения текущего упражнения */
   isCurrentExerciseCompleted?: boolean;
+  /** Выбранная сложность фильтра */
   selectedDifficulty?: 'easy' | 'medium' | 'hard' | null;
+  /** Обработчик смены фильтра сложности */
   onDifficultyChange?: (difficulty: 'easy' | 'medium' | 'hard' | null) => void;
+  /** Оригинальные блоки до фильтрации */
   originalBlocks?: Block[];
 }
 
+/**
+ * Компонент заголовка упражнения
+ * Объединяет навигацию, описание задания, кнопки действий и фильтры
+ * 
+ * @param props - Пропсы компонента
+ * @returns JSX элемент заголовка упражнения
+ */
 const ExerciseHeader: React.FC<ExerciseHeaderProps> = ({
   currentExercise,
   totalExercises,
@@ -52,8 +84,10 @@ const ExerciseHeader: React.FC<ExerciseHeaderProps> = ({
 }) => {
   return (
     <section className="top-section">
+      {/* Левая колонка: навигация, фильтры и вкладки */}
       <div className="left-column">
         <div className="block-title">{blockTitle}</div>
+        {/* Навигация по упражнениям */}
         <ExerciseNavigation
           currentExercise={currentExercise}
           totalExercises={totalExercises}
@@ -63,12 +97,14 @@ const ExerciseHeader: React.FC<ExerciseHeaderProps> = ({
           onNext={onNext}
           isCompleted={isCurrentExerciseCompleted}
         />
+        {/* Фильтр по сложности */}
         {selectedDifficulty !== undefined && onDifficultyChange && (
           <DifficultyFilter
             selectedDifficulty={selectedDifficulty}
             onDifficultyChange={onDifficultyChange}
           />
         )}
+        {/* Вкладки блоков */}
         {blocks && currentBlockIndex !== undefined && onBlockChange && (
           <div className="block-tabs-wrapper">
             <BlockTabs
@@ -81,6 +117,7 @@ const ExerciseHeader: React.FC<ExerciseHeaderProps> = ({
         )}
       </div>
 
+      {/* Правая колонка: кнопки действий и описание */}
       <div className="right-column">
         <ActionButtons
           onShowReference={onShowReference}

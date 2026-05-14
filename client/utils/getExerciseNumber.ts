@@ -1,3 +1,12 @@
+/**
+ * Получает порядковый номер упражнения в модуле
+ * Обрабатывает различные форматы ID упражнений и вычисляет общий номер
+ * с учетом количества упражнений в предыдущих блоках
+ * 
+ * @param exerciseId - Идентификатор упражнения (например, "module-1-block-2-task-5")
+ * @param moduleId - Идентификатор модуля ("module-1", "module-2", "module-3")
+ * @returns Порядковый номер упражнения в модуле (начиная с 1)
+ */
 export const getExerciseNumber = (exerciseId: string, moduleId: string): number => {
     if (moduleId === 'module-1') {
         const match = exerciseId.match(/module-1-block-(\d+)-task-(\d+)/);

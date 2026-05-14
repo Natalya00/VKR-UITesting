@@ -2,46 +2,85 @@ import React, { useState, useEffect } from 'react';
 import './Training.css';
 import { generateId, generateName, generateClass, generateDataId } from '../../utils/attributeGenerator';
 
+/** Элемент страницы в тренажере */
 interface PageElement {
+  /** Тип HTML элемента */
   tag: string;
+  /** Уникальный идентификатор */
   id?: string;
+  /** CSS классы */
   className?: string;
+  /** Ссылка (для a, iframe) */
   href?: string;
+  /** Текстовое содержимое */
   text?: string;
+  /** Тип элемента (для input, button) */
   type?: string;
+  /** Data-атрибут ID */
   'data-id'?: string;
+  /** Data-атрибут роли */
   'data-role'?: string;
+  /** Источник изображения или iframe */
   src?: string;
+  /** HTML контент для iframe */
   srcDoc?: string;
+  /** Значение элемента */
   value?: string;
+  /** Плейсхолдер для input */
   placeholder?: string;
+  /** Имя элемента формы */
   inputName?: string;
+  /** Инлайновые стили */
   style?: string;
+  /** Флаг отмеченности (checkbox, radio) */
   checked?: boolean;
+  /** Флаг выбранности (option) */
   selected?: boolean;
+  /** Флаг множественного выбора (select) */
   multiple?: boolean;
+  /** Флаг отключенности */
   disabled?: boolean;
+  /** Дочерние элементы */
   children?: PageElement[];
+  /** Дополнительные атрибуты */
   [key: string]: string | PageElement[] | boolean | undefined;
 }
 
+/** Конфигурация тренажера страниц */
 interface PageTrainerConfig {
+  /** Массив элементов для отображения */
   elements: PageElement[];
+  /** Селектор целевого элемента */
   targetSelector: string;
+  /** Стили страницы */
   pageStyle?: {
     backgroundColor?: string;
   };
+  /** Заголовок страницы */
   pageTitle?: string;
+  /** Тип макета */
   layout?: 'default' | 'cards' | 'table' | 'navigation';
+  /** Отключить динамические атрибуты */
   disableDynamicAttrs?: boolean;
+  /** JavaScript код для выполнения при загрузке */
   onLoadScript?: string;
+  /** ID упражнения */
   exerciseId?: string;
 }
 
+/** Пропсы компонента PageTrainer */
 interface PageTrainerProps {
+  /** Конфигурация тренажера */
   config: PageTrainerConfig;
 }
 
+/**
+ * Компонент тренажера страниц
+ * Создает динамические HTML-страницы на основе конфигурации
+ * 
+ * @param props - Пропсы компонента
+ * @returns JSX элемент тренажера страниц
+ */
 const PageTrainer: React.FC<PageTrainerProps> = ({ config }) => {
   const { elements, pageStyle, pageTitle = '', layout = 'default', disableDynamicAttrs = false, onLoadScript } = config;
 

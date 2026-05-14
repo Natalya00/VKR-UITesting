@@ -20,41 +20,77 @@ import QuizTrainer from '../../components/Training/QuizTrainer';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
 
+/** Упражнение модуля */
 interface Exercise {
+  /** ID упражнения */
   id: string;
+  /** Название упражнения */
   title: string;
+  /** Описание упражнения */
   description: string;
+  /** Подсказка к упражнению */
   hint: string;
+  /** Название компонента тренажера */
   trainingComponent: string;
+  /** Конфигурация компонента тренажера */
   componentConfig?: Record<string, any>;
+  /** Начальный код для упражнения */
   initialCode: string;
+  /** Порядковый номер упражнения */
   order: number;
+  /** Сложность упражнения */
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
+/** Данные блока упражнений */
 interface BlockData {
+  /** ID блока */
   blockId: string;
+  /** Название блока */
   title: string;
+  /** Описание блока */
   description: string;
+  /** Сложность блока */
   difficulty: string;
+  /** Количество упражнений в блоке */
   exerciseCount?: number;
+  /** Массив упражнений */
   exercises: Exercise[];
 }
 
+/** Данные модуля */
 interface ModuleData {
+  /** ID модуля */
   moduleId: string;
+  /** Название модуля */
   title: string;
+  /** Массив блоков упражнений */
   blocks: BlockData[];
 }
 
+/** Ответ от сервера при выполнении кода */
 interface RunResponse {
+  /** Успешность выполнения */
   success: boolean;
+  /** Режим UI */
   uiMode: boolean;
+  /** Вывод stdout */
   stdout: string;
+  /** Вывод stderr */
   stderr: string;
+  /** Сообщение о результате */
   message: string;
 }
 
+/**
+ * Рендерит компонент тренажера на основе его названия и конфигурации
+ * 
+ * @param trainingComponent - Название компонента тренажера
+ * @param config - Конфигурация для компонента
+ * @param exerciseId - ID упражнения
+ * @param onQuizAnswer - Колбэк для ответа в викторине
+ * @returns JSX элемент тренажера
+ */
 const renderTrainingComponent = (trainingComponent: string, config?: Record<string, any>, exerciseId?: string, onQuizAnswer?: (answer: string) => void) => {
   const configWithExerciseId = exerciseId && config ? { ...config, exerciseId } : config;
 
@@ -106,6 +142,10 @@ const ElementSimulatorPage: React.FC = () => {
     ? blocksCache[currentBlockMeta.blockId] || currentBlockMeta
     : undefined;
 
+  /**
+   * Фильтрация блоков по выбранной сложности
+   * @returns Отфильтрованный массив блоков
+   */
   const filteredBlocks = useMemo(() => {
     if (!moduleData?.blocks) return [];
     if (!selectedDifficulty) return moduleData.blocks;
@@ -116,6 +156,10 @@ const ElementSimulatorPage: React.FC = () => {
     });
   }, [moduleData?.blocks, selectedDifficulty, blocksCache]);
 
+  /**
+   * Фильтрация упражнений текущего блока по сложности
+   * @returns Отфильтрованный массив упражнений
+   */
   const filteredExercises = useMemo(() => {
     if (!currentBlock?.exercises) return [];
     if (!selectedDifficulty) return currentBlock.exercises;
@@ -125,6 +169,10 @@ const ElementSimulatorPage: React.FC = () => {
 
   const currentExercise = filteredExercises[currentExerciseIndex] || null;
 
+  /**
+   * Глобальный индекс текущего упражнения (учитывает фильтрацию)
+   * @returns Номер упражнения от 1 до общего количества
+   */
   const globalExerciseIndex = useMemo(() => {
     if (!moduleData) return 1;
     
@@ -149,6 +197,9 @@ const ElementSimulatorPage: React.FC = () => {
     }
   }, [moduleData, selectedDifficulty, filteredBlocks, currentBlockMeta, blocksCache, currentBlockIndex, currentExerciseIndex]);
 
+  /**
+   * Загрузка данных модуля
+   */
   useEffect(() => {
     setLoading(true);
     setBlocksCache({});
@@ -206,6 +257,9 @@ const ElementSimulatorPage: React.FC = () => {
       });
   }, [exerciseFromUrl]);
 
+  /**
+   * Загрузка данных текущего блока при смене блока
+   */
   useEffect(() => {
     if (!moduleData || !moduleData.blocks[currentBlockIndex]) {
       return;
@@ -234,6 +288,10 @@ const ElementSimulatorPage: React.FC = () => {
       });
   }, [currentBlockIndex, moduleData, exerciseFromUrl]);
 
+  /**
+   * Обработчик смены блока
+   * @param filteredIndex - Индекс блока в отфильтрованном списке
+   */
   const handleBlockChange = (filteredIndex: number) => {
     if (!moduleData || !filteredBlocks[filteredIndex]) return;
 
@@ -272,6 +330,10 @@ const ElementSimulatorPage: React.FC = () => {
       });
   };
 
+  /**
+   * Обработчик изменения фильтра по сложности
+   * @param difficulty - Выбранная сложность или null для сброса
+   */
   const handleDifficultyChange = async (difficulty: 'easy' | 'medium' | 'hard' | null) => {
     setSelectedDifficulty(difficulty);
     setCurrentExerciseIndex(0);
@@ -311,11 +373,17 @@ const ElementSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик открытия справочного окна
+   */
   const handleShowReference = () => {
     setShowReference(true);
     setResultText('Справка открыта. Нажмите на вкладки для просмотра.');
   };
 
+  /**
+   * Обработчик показа подсказки
+   */
   const handleShowHint = () => {
     if (!showHint && currentExercise) {
       setShowHint(true);
@@ -344,6 +412,10 @@ const ElementSimulatorPage: React.FC = () => {
     }
   }, [currentBlockIndex, currentExerciseIndex, currentExercise, globalExerciseIndex]);
 
+  /**
+   * Обработчик выполнения кода
+   * Отправляет код на сервер для валидации и обновляет прогресс
+   */
   const handleRunCode = async () => {
     const trimmed = codeValue.trim();
     if (!trimmed) {
@@ -458,6 +530,9 @@ const ElementSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик перехода к предыдущему упражнению
+   */
   const handlePrevious = () => {
     if (currentExerciseIndex > 0) {
       setCurrentExerciseIndex(currentExerciseIndex - 1);
@@ -480,6 +555,9 @@ const ElementSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик перехода к следующему упражнению
+   */
   const handleNext = () => {
     if (filteredExercises && currentExerciseIndex < filteredExercises.length - 1) {
       setCurrentExerciseIndex(currentExerciseIndex + 1);
@@ -497,6 +575,10 @@ const ElementSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Обработчик ответа в викторине
+   * @param answer - Выбранный ответ
+   */
   const handleQuizAnswer = async (answer: string) => {
     if (!currentExercise) return;
     
@@ -531,12 +613,20 @@ const ElementSimulatorPage: React.FC = () => {
     }
   };
 
+  /**
+   * Информационный бейдж для ResultCard
+   * @returns Текст информационного сообщения
+   */
   const infoBadge = useMemo(() => {
     if (showReference) return 'Показана справочная информация.';
     if (showHint) return 'Активна подсказка по заданию.';
     return '';
   }, [showReference, showHint]);
 
+  /**
+   * Общее количество упражнений в модуле (с учетом фильтрации)
+   * @returns Количество упражнений
+   */
   const totalExercisesInModule = selectedDifficulty
     ? filteredBlocks.reduce(
         (sum, block) => {

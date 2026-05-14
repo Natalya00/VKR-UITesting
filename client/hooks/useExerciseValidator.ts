@@ -1,25 +1,54 @@
 import { useCallback } from 'react';
 
+/**
+ * Правила валидации для упражнений по XPath
+ */
 export interface ExerciseSyntaxRules {
+  /** Обязательные паттерны, которые должны присутствовать */
   requiredPatterns?: string[];
+  /** Запрещенные паттерны */
   forbiddenPatterns?: string[];
+  /** Разрешенные оси XPath */
   allowedAxes?: string[];
+  /** Максимальная сложность (количество предикатов) */
   maxComplexity?: number;
+  /** Требовать нахождение всех целевых элементов */
   requireAllTargets?: boolean;
+  /** Точные ограничения на используемые элементы */
   exactOnly?: {
+    /** Разрешенные атрибуты */
     attributes?: string[];
+    /** Разрешенные функции */
     functions?: string[];
+    /** Разрешенные оси */
     axes?: string[];
   };
+  /** Требования к значениям атрибутов */
   requireAttrValue?: { [attr: string]: string };
 }
 
+/**
+ * Результат валидации упражнения
+ */
 export interface ExerciseValidationResult {
+  /** Флаг валидности */
   isValid: boolean;
+  /** Сообщение об ошибке */
   error: string;
 }
 
+/**
+ * Хук для валидации упражнений по XPath
+ * Проверяет соответствие XPath выражений специфическим правилам упражнений
+ * @returns Объект с методом validateExerciseSyntax
+ */
 export const useExerciseValidator = () => {
+  /**
+   * Валидирует XPath выражение по правилам упражнения
+   * @param xpath - XPath выражение для проверки
+   * @param rules - Правила валидации упражнения
+   * @returns Результат валидации с флагом и сообщением об ошибке
+   */
   const validateExerciseSyntax = useCallback(
     (xpath: string, rules?: ExerciseSyntaxRules): ExerciseValidationResult => {
       if (!rules) return { isValid: true, error: '' };

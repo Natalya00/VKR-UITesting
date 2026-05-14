@@ -1,5 +1,6 @@
 import React from 'react';
 
+/** Стили для оформления справочных материалов */
 const codeStyle: React.CSSProperties = {
   background: '#e8f0f8',
   padding: '2px 6px',
@@ -31,6 +32,11 @@ const warningStyle: React.CSSProperties = {
   margin: '15px 0'
 };
 
+/**
+ * Компонент с основами работы с элементами в Selenide
+ * Отображает базовую информацию о Selenium WebDriver и Selenide
+ * @returns JSX элемент с основами Selenide
+ */
 export const ElementsBasics: React.FC = () => {
   return (
     <div className="reference-section">
@@ -410,6 +416,11 @@ closeWebDriver();`}</code>
   );
 };
 
+/**
+ * Компонент с примерами работы с элементами в Selenide
+ * Отображает практические примеры использования Selenide API
+ * @returns JSX элемент с примерами Selenide
+ */
 export const ElementsExamples: React.FC = () => {
   return (
     <div className="reference-section">
@@ -545,6 +556,11 @@ $("#content").shouldBe(visible); // Проверяем, что основной 
   );
 };
 
+/**
+ * Компонент с частыми ошибками при работе с Selenide
+ * Отображает распространенные ошибки и способы их исправления
+ * @returns JSX элемент с ошибками Selenide
+ */
 export const ElementsErrors: React.FC = () => {
   return (
     <div className="reference-section">
@@ -652,6 +668,11 @@ switchTo().alert().accept();`}</code></pre>
   );
 };
 
+/**
+ * Компонент с советами по работе с Selenide
+ * Отображает полезные рекомендации и лучшие практики
+ * @returns JSX элемент с советами по Selenide
+ */
 export const ElementsTips: React.FC = () => {
   return (
     <div className="reference-section">
