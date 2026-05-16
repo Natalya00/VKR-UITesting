@@ -11,8 +11,16 @@ import com.github.javaparser.ast.expr.AnnotationExpr;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Проверяет объявление метода в исходном коде
+ */
 public class MethodRuleChecker {
 
+    /**
+     * @param code исходный Java-код
+     * @param rule правило проверки метода
+     * @return результат проверки
+     */
     public AstValidationResult check(String code, MethodRule rule) {
         AstValidationResult result = new AstValidationResult();
 

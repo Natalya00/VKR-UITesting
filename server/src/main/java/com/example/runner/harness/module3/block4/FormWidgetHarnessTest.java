@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Condition.text;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты виджета формы */
 public class FormWidgetHarnessTest extends AbstractHarnessTest {
 
     @Override

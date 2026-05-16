@@ -2,7 +2,7 @@ package com.example.runner.pom.pages;
 
 import com.example.runner.pom.elements.Button;
 
-
+/** Базовая страница админ-панели с общими элементами управления */
 public class AdminBasePage extends BasePage {
     
     protected Button adminMenu;

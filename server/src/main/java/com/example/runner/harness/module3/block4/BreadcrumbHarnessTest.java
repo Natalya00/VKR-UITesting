@@ -9,6 +9,7 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.$;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты хлебных крошек */
 public class BreadcrumbHarnessTest extends AbstractHarnessTest {
 
     @Override

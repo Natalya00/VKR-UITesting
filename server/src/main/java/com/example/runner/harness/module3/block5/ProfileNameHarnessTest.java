@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тест имени в профиле */
 public class ProfileNameHarnessTest extends AbstractHarnessTest {
 
     @Override

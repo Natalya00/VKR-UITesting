@@ -9,6 +9,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/** Harness-тесты страницы ProductPage */
 public class ProductPageHarnessTest extends AbstractHarnessTest {
 
     @Override

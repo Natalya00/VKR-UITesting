@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Condition.exist;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты модального окна (блок 5) */
 public class ModalHarnessTest extends AbstractHarnessTest {
 
     @Override

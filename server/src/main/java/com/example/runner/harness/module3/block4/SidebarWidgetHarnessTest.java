@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Condition.text;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты виджета боковой панели */
 public class SidebarWidgetHarnessTest extends AbstractHarnessTest {
 
     @Override

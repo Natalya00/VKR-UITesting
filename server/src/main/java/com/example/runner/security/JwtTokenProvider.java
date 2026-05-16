@@ -16,30 +16,52 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Провайдер для работы с JWT токенами
+ * 
+ * Предоставляет функциональность для:
+ * - Генерации access, refresh и reset токенов
+ * - Валидации токенов с обработкой ошибок
+ * - Извлечения данных из токенов (userId, email, тип)
+ * - Хеширования токенов для безопасного хранения
+ */
 @Component
 public class JwtTokenProvider {
 
+    /** Логгер для отслеживания операций с токенами */
     private static final Logger log = LoggerFactory.getLogger(JwtTokenProvider.class);
 
+    /** Секретный ключ для подписи токенов */
     @Value("${jwt.secret}")
     private String secretKey;
 
+    /** Время жизни access токена в минутах */
     @Value("${jwt.access-token-expiration-minutes:15}")
     private long accessTokenExpirationMinutes;
 
-@Value("${jwt.refresh-token-expiration-days:7}")
+    /** Время жизни refresh токена в днях */
+    @Value("${jwt.refresh-token-expiration-days:7}")
     private long refreshTokenExpirationDays;
 
+    /** Время жизни reset токена в минутах */
     @Value("${jwt.reset-token-expiration-minutes:5}")
     private long resetTokenExpirationMinutes;
 
+    /** Ключ для подписи токенов */
     private SecretKey key;
 
+    /** Инициализирует ключ подписи на основе секретной строки */
     @PostConstruct
     public void init() {
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * Генерирует access токен для авторизации
+     * @param userId идентификатор пользователя
+     * @param email email пользователя
+     * @return подписанный JWT токен
+     */
     public String generateAccessToken(Long userId, String email) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("type", "access");
@@ -57,6 +79,12 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+    /**
+     * Генерирует refresh токен для обновления access токенов
+     * @param userId идентификатор пользователя
+     * @param email email пользователя
+     * @return подписанный JWT токен с уникальным JTI
+     */
     public String generateRefreshToken(Long userId, String email) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("type", "refresh");
@@ -75,6 +103,12 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+    /**
+     * Генерирует одноразовый токен для сброса пароля
+     * @param userId идентификатор пользователя
+     * @param email email пользователя
+     * @return короткоживущий JWT токен
+     */
     public String generateResetToken(Long userId, String email) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("type", "reset");
@@ -92,6 +126,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+    /** Извлекает ID пользователя из токена */
     public Long getUserIdFromToken(String token) {
         Claims claims = Jwts.parser()
                 .verifyWith(key)
@@ -102,6 +137,7 @@ public class JwtTokenProvider {
         return Long.parseLong(claims.getSubject());
     }
 
+    /** Извлекает email пользователя из токена */
     public String getEmailFromToken(String token) {
         Claims claims = Jwts.parser()
                 .verifyWith(key)
@@ -112,6 +148,11 @@ public class JwtTokenProvider {
         return claims.get("email", String.class);
     }
 
+    /**
+     * Валидирует JWT токен
+     * @param token JWT токен для проверки
+     * @return true если токен действителен
+     */
     public boolean validateToken(String token) {
         try {
             Jwts.parser()
@@ -135,6 +176,7 @@ public class JwtTokenProvider {
         return false;
     }
 
+    /** Проверяет, является ли токен access токеном */
     public boolean isAccessToken(String token) {
         try {
             Claims claims = Jwts.parser()
@@ -148,6 +190,7 @@ public class JwtTokenProvider {
         }
     }
 
+    /** Проверяет, является ли токен refresh токеном */
     public boolean isRefreshToken(String token) {
         try {
             Claims claims = Jwts.parser()
@@ -161,6 +204,7 @@ public class JwtTokenProvider {
         }
     }
 
+    /** Извлекает дату истечения токена */
     public LocalDateTime getExpiryDateFromToken(String token) {
         Claims claims = Jwts.parser()
                 .verifyWith(key)
@@ -174,6 +218,12 @@ public class JwtTokenProvider {
                 .toLocalDateTime();
     }
 
+    /**
+     * Создает хеш токена для безопасного хранения
+     * @param token JWT токен для хеширования
+     * @return хеш токена
+     * @throws IllegalArgumentException если токен null или пустой
+     */
     public String hashToken(String token) {
         if (token == null || token.isEmpty()) {
             throw new IllegalArgumentException("Token cannot be null or empty");

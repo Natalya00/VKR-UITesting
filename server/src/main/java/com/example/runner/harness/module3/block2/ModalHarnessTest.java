@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/** Harness-тесты модального окна (блок 2) */
 public class ModalHarnessTest extends AbstractHarnessTest {
 
     @Override

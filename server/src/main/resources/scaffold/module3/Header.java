@@ -1,6 +1,7 @@
 package com.example.runner.pom.components;
 import com.codeborne.selenide.SelenideElement;
 
+/** Компонент заголовка страницы с навигацией */
 public class Header {
 
     protected SelenideElement baseElement;

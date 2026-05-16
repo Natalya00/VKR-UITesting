@@ -4,6 +4,7 @@ import com.example.runner.tests.User;
 import com.example.runner.pom.pages.LoginPage;
 import com.example.runner.pom.pages.HomePage;
 
+/** Сервис для выполнения операций аутентификации */
 public class AuthService {
 
     public HomePage login(User user) {

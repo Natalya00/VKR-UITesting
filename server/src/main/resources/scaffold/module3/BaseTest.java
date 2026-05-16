@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
 import static com.codeborne.selenide.Selenide.open;
 
-
+/** Базовый класс для всех тестов с настройкой Selenide */
 public abstract class BaseTest {
 
     @BeforeAll

@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Condition.visible;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тест добавления товара на ProductPage */
 public class AddItemHarnessTest extends AbstractHarnessTest {
 
     @Override

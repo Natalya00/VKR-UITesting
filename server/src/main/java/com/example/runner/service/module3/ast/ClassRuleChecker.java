@@ -8,8 +8,17 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 
 import java.util.Optional;
 
+/**
+ * Проверяет объявление класса в исходном коде по {@link ClassRule}
+ * Использует JavaParser для анализа наследования, интерфейсов и модификаторов.
+ */
 public class ClassRuleChecker {
 
+    /**
+     * @param code исходный Java-код
+     * @param rule правило проверки класса
+     * @return результат проверки
+     */
     public AstValidationResult check(String code, ClassRule rule) {
         AstValidationResult result = new AstValidationResult();
 

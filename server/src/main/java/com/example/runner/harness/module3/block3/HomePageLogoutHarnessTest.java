@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тест выхода через HomePage */
 public class HomePageLogoutHarnessTest extends AbstractHarnessTest {
 
     @Override

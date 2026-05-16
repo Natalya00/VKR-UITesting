@@ -11,11 +11,19 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-
+/**
+ * Утилита для разбиения JSON-файла модуля на отдельные файлы.
+ */
 public class Module1Splitter {
 
+    /** Идентификатор модуля для обработки */
     private static final String MODULE_ID = "module-1";
 
+    /**
+     * Основной метод для запуска процесса разбиения модуля.
+     * @param args аргументы командной строки
+     * @throws IOException при ошибках работы с файловой системой
+     */
     public static void main(String[] args) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
@@ -115,6 +123,13 @@ public class Module1Splitter {
         System.out.println("Метафайлы и упражнения записаны в " + moduleDir.toAbsolutePath());
     }
 
+    /**
+     * Записывает JSON-узел в файл с форматированием.
+     * @param writer объект для записи JSON с форматированием
+     * @param path путь к файлу для записи
+     * @param node JSON-узел для записи
+     * @throws IOException при ошибках записи файла
+     */
     private static void writeJson(ObjectWriter writer, Path path, JsonNode node) throws IOException {
         File file = path.toFile();
         if (!file.getParentFile().exists()) {

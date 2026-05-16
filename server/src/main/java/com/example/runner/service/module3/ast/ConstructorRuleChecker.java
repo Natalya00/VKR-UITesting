@@ -12,8 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Проверяет объявление и тело конструктора
+ */
 public class ConstructorRuleChecker {
 
+    /**
+     * @param code исходный Java-код
+     * @param rule правило проверки конструктора
+     * @return результат проверки
+     */
     public AstValidationResult check(String code, ConstructorRule rule) {
         AstValidationResult result = new AstValidationResult();
 

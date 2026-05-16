@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/** Harness-тесты элемента Button */
 public class ButtonHarnessTest extends AbstractHarnessTest {
 
     @Override

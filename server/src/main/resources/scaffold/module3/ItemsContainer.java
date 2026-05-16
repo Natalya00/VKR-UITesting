@@ -7,7 +7,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Condition.exist;
 
-
+/** Контейнер для работы с коллекцией элементов */
 public class ItemsContainer extends BaseElement {
     public ItemsContainer(String xpath, String attributeValue) {
         super(xpath, attributeValue);

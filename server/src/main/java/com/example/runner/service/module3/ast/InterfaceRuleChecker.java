@@ -7,8 +7,16 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 
 import java.util.Optional;
 
+/**
+ * Проверяет объявление интерфейса и его методов
+ */
 public class InterfaceRuleChecker {
 
+    /**
+     * @param code исходный Java-код
+     * @param rule правило проверки интерфейса
+     * @return результат проверки
+     */
     public AstValidationResult check(String code, InterfaceRule rule) {
         AstValidationResult result = new AstValidationResult();
 

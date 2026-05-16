@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты аккордеона */
 public class AccordionHarnessTest extends AbstractHarnessTest {
 
     @Override

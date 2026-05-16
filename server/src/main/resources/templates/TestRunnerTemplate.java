@@ -17,7 +17,15 @@ import java.util.logging.Logger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * Шаблон Selenide-раннера для динамической проверки упражнений модуля 2
+ */
 public class TestRunnerTemplate {
+
+    /**
+     * Точка входа: настройка Chrome, открытие страницы упражнения, инъекция скрипта и валидация
+     * @param args {@code [baseUrl]} или {@code [baseUrl, exerciseNum]}
+     */
     public static void main(String[] args) throws Exception {
         Selenide.closeWebDriver();
 
@@ -111,6 +119,7 @@ public class TestRunnerTemplate {
         System.exit(success ? 0 : 1);
     }
 
+    /** @param exerciseNum номер упражнения; @return CSS-селектор ожидаемого элемента или null */
     private static String getLoadSelector(int exerciseNum) {
         return switch (exerciseNum) {
             case 1, 16 -> "#submit-btn";
@@ -200,6 +209,7 @@ public class TestRunnerTemplate {
         };
     }
 
+    /** Ожидает появления элемента на странице с таймаутом */
     private static void waitForElement(String selector, long timeoutSec) throws InterruptedException {
         long start = System.currentTimeMillis();
         while (System.currentTimeMillis() - start < timeoutSec * 1000) {
@@ -223,6 +233,7 @@ public class TestRunnerTemplate {
         throw new RuntimeException("Element not found or not visible after " + timeoutSec + "s: " + selector);
     }
 
+    /** Внедряет в страницу JS-трекеры событий UI */
     private static void injectUiTrackers() {
         executeJavaScript(
             "window.__uiState = { " +
@@ -355,6 +366,7 @@ public class TestRunnerTemplate {
         );
     }
 
+    /** Сохраняет начальное состояние полей и элементов для последующего сравнения */
     private static void saveInitialState() {
         executeJavaScript(
             "window.__initialState = {values:{}, texts:{}, visible:{}, disabled:{}, classes:{}, checked:{}}; " +
@@ -376,6 +388,11 @@ public class TestRunnerTemplate {
         );
     }
 
+    /**
+     * Проверяет результат выполнения скрипта для заданного упражнения
+     * @param exerciseNum номер упражнения (1–N)
+     * @return true, если проверки пройдены
+     */
     private static boolean validateExercise(int exerciseNum) {
         System.out.println("[TestRunner] Начало валидации упражнения " + exerciseNum);
         
@@ -607,12 +624,14 @@ public class TestRunnerTemplate {
         return result;
     }
 
+    /** @param key ключ в {@code window.__uiState}; @return true, если флаг установлен */
     private static boolean isTrue(String key) {
         Object result = executeJavaScript("return window.__uiState?.['" + key + "'] || false;");
         System.out.println("[Validator] " + key + ": " + result);
         return Boolean.TRUE.equals(result);
     }
 
+    /** Проверяет наличие значения в массиве {@code window.__uiState[key]} */
     private static boolean arrayContains(String key, String value) {
         Long count = (Long) executeJavaScript(
             "return (window.__uiState?.['" + key + "'] || []).filter(x => x?.includes('" + value + "')).length;"
@@ -622,6 +641,7 @@ public class TestRunnerTemplate {
         return result;
     }
 
+    /** Проверяет клик по кнопке Cancel с учётом видимости и доступности */
     private static boolean validateCancelBtn() {
         boolean clicked = isTrue("cancelClicked");
         Object visibleObj = executeJavaScript("return window.__uiState?.cancelVisibleAtClick || false;");
@@ -633,6 +653,11 @@ public class TestRunnerTemplate {
         return result;
     }
 
+    /**
+     * Универсальная DOM-проверка по типу (value, text, visible, attribute и т.д.)
+     * @param type тип проверки
+     * @param expected ожидаемое значение
+     */
     private static boolean domCheck(String selector, String type, String expected) {
         try {
             SelenideElement el = $(selector);
@@ -733,7 +758,7 @@ public class TestRunnerTemplate {
         }
     }
 
-    // Блок 4.2: Dropdown
+    /** Проверяет текст выбранной опции выпадающего списка */
     private static boolean validateDropdownSelectedText(String selector, String expectedText) {
         try {
             String actualText = $(selector).getSelectedOption().getText().trim();
@@ -746,6 +771,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет value выбранной опции */
     private static boolean validateDropdownSelectedValue(String selector, String expectedValue) {
         try {
             String actualValue = $(selector).getSelectedOption().getAttribute("value");
@@ -758,6 +784,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет индекс выбранной опции */
     private static boolean validateDropdownSelectedIndex(String selector, int expectedIndex) {
         try {
             Object result = executeJavaScript(
@@ -773,6 +800,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет тексты всех выбранных опций (multiselect) */
     private static boolean validateDropdownSelectedTexts(String selector, List<String> expectedTexts) {
         try {
             ElementsCollection selectedOptions = $(selector).getSelectedOptions();
@@ -789,6 +817,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет, что текст выбранной опции содержит подстроку */
     private static boolean validateDropdownSelectedTextContains(String selector, String expectedText) {
         try {
             String actualText = $(selector).getSelectedOption().getText().trim();
@@ -801,7 +830,7 @@ public class TestRunnerTemplate {
         }
     }
 
-    // Блок 5: Чекбоксы и радиокнопки
+    /** Проверяет, что чекбокс отмечен */
     private static boolean validateCheckboxChecked(String selector) {
         try {
             boolean isChecked = $(selector).isSelected();
@@ -813,6 +842,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет, что чекбокс не отмечен */
     private static boolean validateCheckboxNotChecked(String selector) {
         try {
             boolean isChecked = $(selector).isSelected();
@@ -824,6 +854,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет, что радиокнопка выбрана */
     private static boolean validateRadioSelected(String selector) {
         try {
             boolean isSelected = $(selector).isSelected();
@@ -835,6 +866,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет, что все чекбоксы по селектору отмечены */
     private static boolean validateAllCheckboxesChecked(String selector) {
         try {
             ElementsCollection elements = $$(selector);
@@ -852,6 +884,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет, что отмечен хотя бы один чекбокс из группы */
     private static boolean validateAtLeastOneChecked(String selector) {
         try {
             ElementsCollection elements = $$(selector);
@@ -869,7 +902,7 @@ public class TestRunnerTemplate {
         }
     }
 
-    // Блок 6: Сложные действия 
+    /** Проверяет значение HTML-атрибута элемента */
     private static boolean validateAttributeValue(String selector, String attribute, String expectedValue) {
         try {
             String actualValue = $(selector).getAttribute(attribute);
@@ -882,6 +915,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет наличие CSS-класса и значения атрибута одновременно */
     private static boolean validateClassAndAttribute(String selector, String expectedClass,
                                                       String attribute, String expectedValue) {
         try {
@@ -900,6 +934,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет, что ползунок сдвинут (атрибут data-position) */
     private static boolean validateSliderMoved(String selector) {
         try {
             String positionStr = $(selector).getAttribute("data-position");
@@ -918,6 +953,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет изменение размера элемента (data-height-before/after) */
     private static boolean validateResized(String selector) {
         try {
             SelenideElement el = $(selector);
@@ -940,7 +976,7 @@ public class TestRunnerTemplate {
         }
     }
 
-    // Блок 7: Валидация по тексту в DOM 
+    /** Проверяет точное совпадение текста элемента */
     private static boolean validateDomText(String selector, String expectedText) {
         try {
             var el = $(selector);
@@ -954,6 +990,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Проверяет, что текст элемента содержит подстроку */
     private static boolean validateDomContains(String selector, String expectedSubstring) {
         try {
             var el = $(selector);
@@ -967,6 +1004,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** Определяет baseUrl: WSL2, Docker, переменные окружения или localhost */
     private static String resolveBaseUrl() {
         if (isWsl2()) {
             String wslIp = getWsl2HostIp();
@@ -996,6 +1034,7 @@ public class TestRunnerTemplate {
         return "http://localhost:5173";
     }
 
+    /** @return true, если раннер запущен в WSL2 */
     private static boolean isWsl2() {
         try {
             java.nio.file.Path osReleasePath = java.nio.file.Path.of("/proc/sys/kernel/osrelease");
@@ -1010,6 +1049,7 @@ public class TestRunnerTemplate {
         }
     }
 
+    /** @return IP хоста Windows для доступа к frontend из WSL2 */
     private static String getWsl2HostIp() {
         try {
             java.nio.file.Path resolvPath = java.nio.file.Path.of("/etc/resolv.conf");
@@ -1049,6 +1089,7 @@ public class TestRunnerTemplate {
         return null;
     }
 
+    /** Проверяет клик по элементу (атрибут data-clicked=true) */
     private static boolean validateElementClicked(String selector) {
         try {
             String dataClicked = $(selector).getAttribute("data-clicked");

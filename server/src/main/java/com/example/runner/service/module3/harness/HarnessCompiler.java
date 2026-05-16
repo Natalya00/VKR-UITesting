@@ -18,13 +18,26 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * Компилятор POM-кода вместе со scaffold-классами
+ *
+ * Создаёт временную директорию, копирует scaffold из classpath,
+ * записывает код с учётом package и компилирует через {@link JavaCompiler}.
+ */
 public class HarnessCompiler {
 
+    /** Путь к scaffold-файлам в resources */
     private static final String SCAFFOLD_PATH = "scaffold/module3/";
+    /** Регулярное выражение для извлечения package из исходника */
     private static final Pattern PACKAGE_PATTERN =
             Pattern.compile("^\\s*package\\s+([\\w.]+)\\s*;", Pattern.MULTILINE);
 
+    /**
+     * Компилирует код со scaffold-классами
+     * @param studentInput        строка с кодом или {@code Map<имя файла, содержимое>}
+     * @param scaffoldClassNames  имена scaffold-классов без расширения .java
+     * @return результат с путём к .class или текстом ошибки
+     */
     public CompilationResult compile(Object studentInput, List<String> scaffoldClassNames) {
         Path tempDir = null;
         try {
@@ -229,6 +242,9 @@ public class HarnessCompiler {
         } catch (IOException ignored) {}
     }
 
+    /**
+     * Результат компиляции harness
+     */
     public static class CompilationResult {
         private final boolean success;
         private final String  error;
@@ -245,24 +261,35 @@ public class HarnessCompiler {
             this.allClasses = allClasses != null ? allClasses : List.of();
         }
 
+        /**
+         * @param classesDir каталог с скомпилированными .class
+         * @param tempDir    корневая временная директория
+         * @param allClasses список FQCN всех классов
+         */
         public static CompilationResult success(Path classesDir, Path tempDir, List<String> allClasses) {
             return new CompilationResult(true, null, classesDir, tempDir, allClasses);
         }
 
+        /** @param classesDir каталог с .class; @param tempDir временная директория */
         public static CompilationResult success(Path classesDir, Path tempDir) {
             return new CompilationResult(true, null, classesDir, tempDir, List.of());
         }
 
+        /** @param error текст ошибки компиляции */
         public static CompilationResult failure(String error) {
             return new CompilationResult(false, error, null, null, List.of());
         }
 
+        /** @return true при успешной компиляции */
         public boolean      isSuccess()      { return success; }
+        /** @return сообщение об ошибке или null */
         public String       getError()       { return error; }
+        /** @return каталог с байткодом */
         public Path         getClassesDir()  { return classesDir; }
+        /** @return FQCN всех скомпилированных классов */
         public List<String> getAllClasses()  { return allClasses; }
 
-
+        /** Удаляет временную директорию компиляции */
         public void cleanup() {
             if (tempDir != null && Files.exists(tempDir)) {
                 try {

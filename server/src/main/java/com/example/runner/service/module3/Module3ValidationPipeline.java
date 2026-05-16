@@ -18,15 +18,24 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Валидация POM-кода модуля 3
+ *
+ * Последовательно выполняет этапы: AST-проверка исходников, компиляция
+ * с scaffold-классами, рефлексивная проверка байткода и запуск harness-тестов.
+ */
 public class Module3ValidationPipeline {
 
     private static final Logger log = LoggerFactory.getLogger(Module3ValidationPipeline.class);
 
+    /** Валидатор структуры исходного кода через JavaParser */
     private final AstValidator    astValidator;
+    /** Компилятор студенческого кода вместе со scaffold */
     private final HarnessCompiler harnessCompiler;
+    /** Запускает harness-тесты после компиляции */
     private final HarnessRunner   harnessRunner;
 
+    /** Создаёт конвейер с компонентами по умолчанию */
     public Module3ValidationPipeline() {
         this.astValidator    = new AstValidator();
         this.harnessCompiler = new HarnessCompiler();
@@ -34,25 +43,44 @@ public class Module3ValidationPipeline {
     }
 
 
+    /**
+     * Результат прохождения конвейера валидации
+     */
     public static class PipelineResult {
         private final boolean      success;
         private final List<String> errors;
         private final List<String> warnings;
 
+        /**
+         * @param success  признак успешной валидации
+         * @param errors   список ошибок
+         * @param warnings список предупреждений
+         */
         public PipelineResult(boolean success, List<String> errors, List<String> warnings) {
             this.success  = success;
             this.errors   = errors   != null ? errors   : List.of();
             this.warnings = warnings != null ? warnings : List.of();
         }
 
+        /** @return true, если все этапы валидации пройдены */
         public boolean      isSuccess()         { return success; }
+        /** @return список сообщений об ошибках */
         public List<String> getErrors()         { return errors; }
+        /** @return список предупреждений */
         public List<String> getWarnings()       { return warnings; }
+        /** @return первое сообщение об ошибке или null */
         public String       getFirstError()     { return errors.isEmpty() ? null : errors.get(0); }
+        /** @return все ошибки, объединённые переводом строки */
         public String       getErrorsAsString() { return String.join("\n", errors); }
     }
 
-
+    /**
+     * Выполняет валидацию решения
+     * @param studentInput код: строка или {@code Map<имя файла, содержимое>}
+     * @param rules        правила валидации из конфигурации упражнения
+     * @param baseUrl      базовый URL фронтенда для Selenide/JUnit-тестов
+     * @return результат с ошибками, предупреждениями и признаком успеха
+     */
     public PipelineResult validate(Object studentInput, Module3ValidationRules rules, String baseUrl) {
         log.info("[Module3ValidationPipeline] Начало валидации...");
         
@@ -197,6 +225,11 @@ public class Module3ValidationPipeline {
     }
 
 
+    /**
+     * Извлекает короткое имя класса из полного (FQCN)
+     * @param name полное или короткое имя класса
+     * @return имя без пакета
+     */
     private String simpleName(String name) {
         if (name == null) return "";
         int dot = name.lastIndexOf('.');
@@ -204,6 +237,11 @@ public class Module3ValidationPipeline {
     }
 
 
+    /**
+     * Извлекает коллекцию исходных файлов из входных данных студента
+     * @param studentInput строка с кодом или карта файлов
+     * @return коллекция содержимого файлов; пустая, если формат не поддерживается
+     */
     @SuppressWarnings("unchecked")
     private Collection<String> extractCodeFiles(Object studentInput) {
         if (studentInput instanceof String code) {
@@ -215,21 +253,44 @@ public class Module3ValidationPipeline {
         return List.of();
     }
 
+    /**
+     * Возвращает список имён scaffold-классов из правил harness
+     * @param harnessRules правила запуска harness
+     * @return список имён классов или пустой список
+     */
     private List<String> resolveScaffoldClasses(HarnessRules harnessRules) {
         if (harnessRules.getScaffoldClasses() == null) return List.of();
         return Arrays.asList(harnessRules.getScaffoldClasses());
     }
 
 
+    /**
+     * Выполняет полный конвейер с базовым URL по умолчанию
+     * @param studentInput код
+     * @param rules        правила валидации
+     * @return результат валидации
+     */
     public PipelineResult validate(Object studentInput, Module3ValidationRules rules) {
         return validate(studentInput, rules, "http://localhost:5173");
     }
 
+    /**
+     * Выполняет только AST-валидацию без компиляции и harness
+     * @param studentCode исходный код
+     * @param astRules    правила AST-проверки
+     * @return результат валидации
+     */
     public PipelineResult validateAstOnly(String studentCode, AstRules astRules) {
         AstValidationResult result = astValidator.validate(studentCode, astRules);
         return new PipelineResult(result.isSuccess(), result.getErrors(), result.getWarnings());
     }
 
+    /**
+     * Проверяет только компиляцию кода со scaffold-классами
+     * @param studentCode      исходный код
+     * @param scaffoldClasses  имена scaffold-классов для подключения
+     * @return результат с сообщением об успехе или ошибке компиляции
+     */
     public PipelineResult validateCompileOnly(String studentCode, List<String> scaffoldClasses) {
         HarnessCompiler.CompilationResult result =
                 harnessCompiler.compile(studentCode, scaffoldClasses);

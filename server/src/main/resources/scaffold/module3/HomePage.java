@@ -1,6 +1,7 @@
 package com.example.runner.pom.pages;
 import static com.codeborne.selenide.Selenide.$x;
 
+/** Главная страница приложения */
 public class HomePage extends BasePage {
 
     public HomePage() {

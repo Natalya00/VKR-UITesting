@@ -19,6 +19,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
+/**
+ * Базовый класс harness-тестов модуля 3: Selenide, URL, загрузка классов студента через рефлексию
+ */
 public abstract class AbstractHarnessTest {
 
     protected static final Logger log = LoggerFactory.getLogger(AbstractHarnessTest.class);

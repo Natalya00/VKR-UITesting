@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты компонента Footer */
 public class FooterHarnessTest extends AbstractHarnessTest {
 
     @Override

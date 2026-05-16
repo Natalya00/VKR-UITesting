@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.refresh;
 import static com.codeborne.selenide.Selenide.page;
 
+/** Базовый класс для всех страниц с общими элементами */
 public class BasePage {
 
     protected SelenideElement basePage;

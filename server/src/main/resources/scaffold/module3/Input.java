@@ -1,5 +1,6 @@
 package com.example.runner.pom.elements;
 
+/** Элемент поля ввода с методами заполнения и поиска */
 public class Input extends BaseElement {
     private static final String ID_XPATH = "//*[@id='%s']";
     private static final String NAME_XPATH = "//*[@name='%s']";

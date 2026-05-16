@@ -11,8 +11,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Проверяет наличие и отсутствие аннотаций на классах и методах
+ */
 public class AnnotationChecker {
 
+    /**
+     * @param code исходный Java-код
+     * @param rule правило проверки аннотаций
+     * @return результат проверки
+     */
     public AstValidationResult check(String code, AnnotationRule rule) {
         AstValidationResult result = new AstValidationResult();
 

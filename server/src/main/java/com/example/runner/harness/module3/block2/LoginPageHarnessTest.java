@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/** Harness-тесты страницы LoginPage */
 public class LoginPageHarnessTest extends AbstractHarnessTest {
 
     @Override

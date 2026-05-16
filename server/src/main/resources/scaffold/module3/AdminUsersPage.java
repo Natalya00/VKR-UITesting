@@ -1,5 +1,6 @@
 package com.example.runner.pom.pages;
 
+/** Страница управления пользователями в админ-панели */
 public class AdminUsersPage extends AdminBasePage {
     
     public AdminUsersPage() {

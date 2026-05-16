@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Condition.visible;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты состояний элементов на странице */
 public class ElementsStateHarnessTest extends AbstractHarnessTest {
 
     @Override

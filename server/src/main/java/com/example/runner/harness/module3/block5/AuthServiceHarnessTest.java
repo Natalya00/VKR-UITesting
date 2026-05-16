@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты сервиса AuthService */
 public class AuthServiceHarnessTest extends AbstractHarnessTest {
 
     private static final String VALID_LOGIN    = "testuser";

@@ -10,8 +10,16 @@ import com.github.javaparser.ast.body.VariableDeclarator;
 
 import java.util.Optional;
 
+/**
+ * Проверяет объявление поля в исходном коде
+ */
 public class FieldRuleChecker {
 
+    /**
+     * @param code исходный Java-код
+     * @param rule правило проверки поля
+     * @return результат проверки
+     */
     public AstValidationResult check(String code, FieldRule rule) {
         AstValidationResult result = new AstValidationResult();
 

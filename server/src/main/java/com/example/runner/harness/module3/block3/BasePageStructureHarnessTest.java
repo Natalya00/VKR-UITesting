@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Проверка структуры BasePage (header, footer) */
 public class BasePageStructureHarnessTest extends AbstractHarnessTest {
 
     @Override

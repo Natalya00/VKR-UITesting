@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Condition.clickable;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты страниц админ-панели */
 public class AdminPageHarnessTest extends AbstractHarnessTest {
 
     @Override

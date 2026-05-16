@@ -2,6 +2,7 @@ package com.example.runner.pom.components;
 
 import com.codeborne.selenide.SelenideElement;
 
+/** Компонент футера страницы с социальными ссылками */
 public class Footer {
 
     protected SelenideElement baseElement;

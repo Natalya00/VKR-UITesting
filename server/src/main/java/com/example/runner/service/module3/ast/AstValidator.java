@@ -9,6 +9,10 @@ import com.example.runner.dto.module3.InterfaceRule;
 import com.example.runner.dto.module3.MethodBodyRule;
 import com.example.runner.dto.module3.MethodRule;
 
+/**
+ * Координатор AST-валидации исходного Java-кода
+ * Делегирует проверку специализированным checker-классам
+ */
 public class AstValidator {
 
     private final ClassRuleChecker       classRuleChecker;
@@ -19,6 +23,7 @@ public class AstValidator {
     private final MethodBodyChecker      methodBodyChecker;
     private final AnnotationChecker      annotationChecker;
 
+    /** Создаёт валидатор со всеми checker-компонентами */
     public AstValidator() {
         this.classRuleChecker       = new ClassRuleChecker();
         this.methodRuleChecker      = new MethodRuleChecker();
@@ -29,6 +34,12 @@ public class AstValidator {
         this.annotationChecker      = new AnnotationChecker();
     }
 
+    /**
+     * Проверяет код по всем правилам из {@link AstRules}
+     * @param code  исходный Java-код
+     * @param rules набор AST-правил; при null возвращается успешный результат
+     * @return результат проверки
+     */
     public AstValidationResult validate(String code, AstRules rules) {
         AstValidationResult result = new AstValidationResult();
 
@@ -84,6 +95,13 @@ public class AstValidator {
         return result;
     }
 
+    /**
+     * Проверяет код только по правилам указанного класса
+     * @param code      исходный Java-код
+     * @param className имя класса для фильтрации правил
+     * @param rules     набор AST-правил
+     * @return результат проверки правил класса
+     */
     public AstValidationResult validateClass(String code, String className, AstRules rules) {
         AstValidationResult result = new AstValidationResult();
         if (rules == null || rules.getClassRules() == null) return result;

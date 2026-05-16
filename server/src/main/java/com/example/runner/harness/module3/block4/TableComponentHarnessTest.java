@@ -9,6 +9,7 @@ import java.util.Optional;
 import static com.codeborne.selenide.Selenide.$;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты табличного компонента */
 public class TableComponentHarnessTest extends AbstractHarnessTest {
 
     @Override

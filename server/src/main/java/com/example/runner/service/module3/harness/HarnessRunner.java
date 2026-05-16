@@ -28,12 +28,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * Запускает harness-тесты для скомпилированного POM-кода
+ *
+ * Поддерживает три режима: JUnit Platform, вызов через рефлексию
+ * и отдельный JVM-процесс (Selenide).
+ */
 public class HarnessRunner {
 
     private static final Logger log = LoggerFactory.getLogger(HarnessRunner.class);
+    /** Таймаут по умолчанию для процессного режима, секунды */
     private static final long DEFAULT_TIMEOUT_SECONDS = 120;
 
+    /**
+     * Результат выполнения harness
+     */
     public static class HarnessResult {
         private final boolean success;
         private final String  error;
@@ -45,14 +54,26 @@ public class HarnessRunner {
             this.output  = output;
         }
 
+        /** @param output вывод успешного выполнения */
         public static HarnessResult success(String output) { return new HarnessResult(true, null, output); }
+        /** @param error сообщение об ошибке */
         public static HarnessResult failure(String error)  { return new HarnessResult(false, error, null); }
 
+        /** @return true, если harness выполнен успешно */
         public boolean isSuccess() { return success; }
+        /** @return текст ошибки или null */
         public String  getError()  { return error; }
+        /** @return stdout или итоговое сообщение */
         public String  getOutput() { return output; }
     }
 
+    /**
+     * Запускает harness в режиме, заданном в {@link HarnessRules}
+     * @param classesDir каталог со скомпилированными классами
+     * @param rules      правила запуска harness
+     * @param baseUrl    базовый URL приложения для UI-тестов
+     * @return результат выполнения
+     */
     public HarnessResult run(Path classesDir, HarnessRules rules, String baseUrl) {
         if (rules.isCompileOnly()) {
             return HarnessResult.success("Компиляция успешна");
@@ -66,6 +87,7 @@ public class HarnessRunner {
         return runViaReflection(classesDir, rules);
     }
 
+    /** Запускает JUnit тестов через Platform Launcher */
     private HarnessResult runJUnitTests(Path classesDir, HarnessRules rules, String baseUrl) {
         log.info("[HarnessRunner] Запуск JUnit-тестов для упражнения...");
         log.info("[HarnessRunner] classesDir: {}", classesDir.toAbsolutePath());
@@ -198,6 +220,7 @@ public class HarnessRunner {
         }
     }
 
+    /** Вызывает точку входа (main/run) через рефлексию в том же JVM */
     private HarnessResult runViaReflection(Path classesDir, HarnessRules rules) {
         try (URLClassLoader classLoader = new URLClassLoader(
                 new URL[]{classesDir.toFile().toURI().toURL()},
@@ -257,6 +280,7 @@ public class HarnessRunner {
                 "Методы с параметрами не поддерживаются в Reflection-режиме");
     }
 
+    /** Запускает отдельный java-процесс с classpath (режим Selenide) */
     private HarnessResult runAsProcess(Path classesDir, HarnessRules rules) {
         try {
             String classpath = buildProcessClasspath(classesDir);

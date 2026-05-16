@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Condition.visible;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тест сценария выхода */
 public class LogoutTestHarnessTest extends AbstractHarnessTest {
 
     @Override

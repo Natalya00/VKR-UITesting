@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Condition.visible;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тесты баннера уведомлений */
 public class AlertBannerHarnessTest extends AbstractHarnessTest {
 
     @Override

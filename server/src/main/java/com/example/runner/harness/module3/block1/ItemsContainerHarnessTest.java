@@ -9,6 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/** Harness-тесты контейнера ItemsContainer */
 public class ItemsContainerHarnessTest extends AbstractHarnessTest {
 
     private static final String CONTAINER_XPATH = "//div[@data-testid='items-container']";

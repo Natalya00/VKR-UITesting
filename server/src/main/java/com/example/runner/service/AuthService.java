@@ -25,20 +25,49 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * Сервис для управления аутентификацией и авторизацией пользователей
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthService {
 
+    /** Логгер для отслеживания операций аутентификации */
     private static final Logger log = LoggerFactory.getLogger(AuthService.class);
 
+    /** Репозиторий для работы с пользователями */
     private final UserRepository userRepository;
+    
+    /** Репозиторий для управления отозванными токенами */
     private final RevokedTokenRepository revokedTokenRepository;
+    
+    /** Провайдер для генерации и валидации JWT токенов */
     private final JwtTokenProvider jwtTokenProvider;
+    
+    /** Энкодер для хеширования паролей */
     private final PasswordEncoder passwordEncoder;
+    
+    /** Менеджер аутентификации Spring Security */
     private final AuthenticationManager authenticationManager;
+    
+    /** Репозиторий для управления токенами сброса пароля */
     private final ResetTokenRepository resetTokenRepository;
 
+    /**
+     * Регистрирует нового пользователя в системе
+     * 
+     * Выполняет следующие операции:
+     * - Проверяет уникальность email адреса
+     * - Хеширует пароль с помощью BCrypt
+     * - Создает нового пользователя в базе данных
+     * - Генерирует JWT токены для автоматического входа
+     * - Устанавливает HTTP-only cookies с токенами
+     * 
+     * @param request данные для регистрации (email, password)
+     * @param response HTTP ответ для установки cookies
+     * @return информация о пользователе и токены доступа
+     * @throws IllegalArgumentException если пользователь с таким email уже существует
+     */
     @Transactional
     public AuthResponse register(RegisterRequest request, HttpServletResponse response) {
         if (userRepository.existsByEmail(request.getEmail())) {
@@ -69,6 +98,20 @@ public class AuthService {
                 .build();
     }
 
+    /**
+     * Выполняет вход пользователя в систему
+     * 
+     * Процесс аутентификации:
+     * - Проверяет учетные данные через AuthenticationManager
+     * - Находит пользователя в базе данных
+     * - Генерирует новые JWT токены
+     * - Устанавливает HTTP-only cookies с токенами
+     * 
+     * @param request данные для входа (email, password)
+     * @param response HTTP ответ для установки cookies
+     * @return информация о пользователе и токены доступа
+     * @throws IllegalArgumentException если учетные данные неверны
+     */
     @Transactional
     public AuthResponse login(LoginRequest request, HttpServletResponse response) {
         try {
@@ -101,6 +144,19 @@ public class AuthService {
                 .build();
     }
 
+    /**
+     * Выполняет выход пользователя из системы
+     * 
+     * Операции при выходе:
+     * - Добавляет действующие токены в черный список (blacklist)
+     * - Сохраняет хеши токенов в базе данных для предотвращения повторного использования
+     * - Очищает HTTP-only cookies с токенами
+     * - Логирует операцию для аудита безопасности
+     * 
+     * @param accessToken текущий access токен пользователя
+     * @param refreshToken текущий refresh токен пользователя
+     * @param response HTTP ответ для очистки cookies
+     */
     @Transactional
     public void logout(String accessToken, String refreshToken, HttpServletResponse response) {
         if (accessToken != null && jwtTokenProvider.validateToken(accessToken)) {
@@ -130,6 +186,21 @@ public class AuthService {
         clearAuthCookies(response);
     }
 
+    /**
+     * Обновляет access токен используя действующий refresh токен
+     * 
+     * Процесс обновления:
+     * - Валидирует refresh токен (подпись, срок действия, тип)
+     * - Проверяет, что токен не находится в черном списке
+     * - Добавляет старый refresh токен в черный список
+     * - Генерирует новую пару токенов (access + refresh)
+     * - Устанавливает новые HTTP-only cookies
+     * 
+     * @param refreshToken действующий refresh токен
+     * @param response HTTP ответ для установки новых cookies
+     * @return новые токены доступа и информация о пользователе
+     * @throws IllegalArgumentException если токен недействителен, отозван или не является refresh токеном
+     */
     @Transactional
     public AuthResponse refreshTokens(String refreshToken, HttpServletResponse response) {
         if (!jwtTokenProvider.validateToken(refreshToken)) {
@@ -172,6 +243,12 @@ public class AuthService {
                 .build();
     }
 
+    /**
+     * Получает информацию о текущем аутентифицированном пользователе
+     * @param userId идентификатор пользователя из JWT токена
+     * @return базовая информация о пользователе (id, email, displayName)
+     * @throws IllegalArgumentException если пользователь не найден
+     */
     @Transactional(readOnly = true)
     public AuthResponse.UserInfo getCurrentUser(Long userId) {
         User user = userRepository.findById(userId)
@@ -184,6 +261,19 @@ public class AuthService {
                 .build();
     }
 
+    /**
+     * Инициирует процесс восстановления пароля
+     * 
+     * Выполняемые операции:
+     * - Проверяет существование пользователя с указанным email
+     * - Очищает просроченные токены сброса пароля
+     * - Генерирует новый одноразовый токен сброса
+     * - Сохраняет токен в базе данных с временем истечения
+     * 
+     * @param request запрос с email адресом пользователя
+     * @return токен для сброса пароля
+     * @throws IllegalArgumentException если пользователь с таким email не найден
+     */
     @Transactional
     public String forgotPassword(ForgotPasswordRequest request) {
         User user = userRepository.findByEmail(request.email())
@@ -207,6 +297,18 @@ public class AuthService {
         return resetToken;
         }
 
+    /**
+     * Выполняет сброс пароля пользователя по токену
+     * 
+     * Процесс сброса:
+     * - Проверяет совпадение нового пароля и его подтверждения
+     * - Валидирует токен сброса (существование, срок действия, использование)
+     * - Хеширует новый пароль и сохраняет в базе данных
+     * - Помечает токен как использованный для предотвращения повторного использования
+     * 
+     * @param request данные для сброса (токен, новый пароль, подтверждение)
+     * @throws IllegalArgumentException если пароли не совпадают или токен недействителен
+     */
     @Transactional
     public void resetPassword(ResetPasswordRequest request) {
         if (!request.passwordsMatch()) {
@@ -228,9 +330,18 @@ public class AuthService {
         log.info("Password reset successful for user: {}", user.getEmail());
     }
 
+    /** Время жизни access токена в секундах (15 минут) */
     private static final long ACCESS_TOKEN_MAX_AGE = 15 * 60;
+    
+    /** Время жизни refresh токена в секундах (7 дней) */
     private static final long REFRESH_TOKEN_MAX_AGE = 7 * 24 * 60 * 60;
 
+    /**
+     * Устанавливает HTTP-only cookies с токенами аутентификации
+     * @param accessToken JWT access токен
+     * @param refreshToken JWT refresh токен
+     * @param response HTTP ответ для установки cookies
+     */
     private void setAuthCookies(String accessToken, String refreshToken, HttpServletResponse response) {
         ResponseCookie accessCookie = ResponseCookie.from("accessToken", accessToken)
                 .httpOnly(true)
@@ -252,6 +363,10 @@ public class AuthService {
         response.addHeader("Set-Cookie", refreshCookie.toString());
     }
 
+    /**
+     * Очищает cookies с токенами аутентификации
+     * @param response HTTP ответ для очистки cookies
+     */
     private void clearAuthCookies(HttpServletResponse response) {
         ResponseCookie clearAccess = ResponseCookie.from("accessToken", "")
                 .httpOnly(true)

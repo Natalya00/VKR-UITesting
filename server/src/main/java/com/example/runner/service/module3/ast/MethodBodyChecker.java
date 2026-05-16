@@ -15,8 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Проверяет тело метода: вызовы, return this, super и обязательные операторы
+ */
 public class MethodBodyChecker {
 
+    /**
+     * @param code исходный Java-код
+     * @param rule правило проверки тела метода
+     * @return результат проверки
+     */
     public AstValidationResult check(String code, MethodBodyRule rule) {
         AstValidationResult result = new AstValidationResult();
 

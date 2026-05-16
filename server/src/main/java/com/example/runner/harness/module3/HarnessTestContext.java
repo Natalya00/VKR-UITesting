@@ -4,6 +4,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Path;
 
+/** ClassLoader для скомпилированного кода студента в harness-тестах */
 public class HarnessTestContext {
 
     private static final ThreadLocal<ClassLoader> LOADER = new ThreadLocal<>();

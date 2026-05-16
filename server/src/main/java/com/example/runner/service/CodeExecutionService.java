@@ -32,6 +32,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ * Сервис для компиляции и выполнения пользовательского Java кода
+ * 
+ * Предоставляет функциональность для:
+ * - Компиляции Java кода в изолированной среде
+ * - Выполнения Selenide/Selenium тестов с WebDriver
+ * - Статической валидации кода по правилам упражнений
+ * - Динамической проверки через запуск тестов в браузере
+ * - Валидации Page Object Model структур (модуль 3)
+ * - Обработки обычного Java кода с main методом
+ */
 @Service
 @RequiredArgsConstructor
 public class CodeExecutionService {

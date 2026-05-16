@@ -9,17 +9,33 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 
-
+/**
+ * Валидатор скомпилированного кода через Java Reflection API
+ *
+ * Проверяет наличие классов, иерархию наследования, модификаторы
+ * методов, полей и конструкторов согласно {@link ReflectionRules}.
+ */
 public class ReflectionValidator {
 
+    /** ClassLoader с загруженными классами студента и scaffold */
     private final ClassLoader classLoader;
+    /** Список FQCN всех скомпилированных классов */
     private final List<String> allClasses;
 
+    /**
+     * @param classLoader загрузчик скомпилированных классов
+     * @param allClasses  полные имена всех классов в артефакте компиляции
+     */
     public ReflectionValidator(ClassLoader classLoader, List<String> allClasses) {
         this.classLoader = classLoader;
         this.allClasses = allClasses != null ? allClasses : List.of();
     }
 
+    /**
+     * Проверяет скомпилированный код по правилам рефлексии
+     * @param rules правила рефлексивной проверки; при null возвращается успех
+     * @return результат с ошибками и предупреждениями
+     */
     public ReflectionValidationResult validate(ReflectionRules rules) {
         ReflectionValidationResult result = new ReflectionValidationResult();
 
@@ -163,6 +179,7 @@ public class ReflectionValidator {
         return result;
     }
     
+    /** Проверяет, что класс наследуется от указанного родителя */
     private void checkExtends(ReflectionValidationResult result, String className, String parentClass) {
         try {
             Class<?> clazz = findClassByName(className);
@@ -175,6 +192,7 @@ public class ReflectionValidator {
         }
     }
 
+    /** Проверяет, что класс реализует указанный интерфейс */
     private void checkImplements(ReflectionValidationResult result, String className, String interfaceName) {
         try {
             Class<?> clazz = findClassByName(className);
@@ -187,6 +205,7 @@ public class ReflectionValidator {
         }
     }
 
+    /** Проверяет модификатор доступа метода */
     private void checkMethodModifier(ReflectionValidationResult result, String className, String methodName, int expectedModifier) {
         try {
             Class<?> clazz = findClassByName(className);
@@ -208,6 +227,7 @@ public class ReflectionValidator {
         }
     }
 
+    /** Проверяет модификатор доступа поля */
     private void checkFieldModifier(ReflectionValidationResult result, String className, String fieldName, int expectedModifier) {
         try {
             Class<?> clazz = findClassByName(className);
@@ -229,6 +249,7 @@ public class ReflectionValidator {
         }
     }
 
+    /** Проверяет модификатор доступа конструктора */
     private void checkConstructorModifier(ReflectionValidationResult result, String className, int expectedModifier) {
         try {
             Class<?> clazz = findClassByName(className);
@@ -250,6 +271,7 @@ public class ReflectionValidator {
         }
     }
     
+    /** Проверяет модификатор класса (abstract, final) */
     private void checkClassModifier(ReflectionValidationResult result, String className, int expectedModifier) {
         try {
             Class<?> clazz = findClassByName(className);
@@ -262,6 +284,12 @@ public class ReflectionValidator {
     }
 
 
+    /**
+     * Загружает класс по полному или короткому имени
+     * @param className FQCN или короткое имя класса
+     * @return загруженный класс
+     * @throws ClassNotFoundException если класс не найден
+     */
     private Class<?> findClassByName(String className) throws ClassNotFoundException {
         if (className.contains(".")) {
             return classLoader.loadClass(className);
@@ -277,10 +305,12 @@ public class ReflectionValidator {
         return classLoader.loadClass(className);
     }
     
+    /** @return true, если битовая маска содержит ожидаемый модификатор */
     private boolean hasModifier(int modifiers, int expectedModifier) {
         return (modifiers & expectedModifier) != 0;
     }
     
+    /** @return текстовое представление модификатора для сообщений об ошибках */
     private String getModifierName(int modifier) {
         if (modifier == Modifier.PUBLIC) return "public";
         if (modifier == Modifier.PROTECTED) return "protected";

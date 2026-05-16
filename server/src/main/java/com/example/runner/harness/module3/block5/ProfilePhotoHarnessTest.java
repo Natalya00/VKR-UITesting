@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Condition.visible;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Harness-тест загрузки фото профиля */
 public class ProfilePhotoHarnessTest extends AbstractHarnessTest {
 
     @Override

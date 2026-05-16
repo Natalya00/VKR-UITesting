@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Condition.visible;
 
+/** Базовый класс для всех элементов страницы */
 public class BaseElement {
 
     protected SelenideElement baseElement;

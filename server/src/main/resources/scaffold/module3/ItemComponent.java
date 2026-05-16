@@ -2,6 +2,7 @@ package com.example.runner.pom.elements;
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.visible;
 
+/** Компонент отдельного элемента в списке */
 public class ItemComponent {
     protected SelenideElement baseElement;
 

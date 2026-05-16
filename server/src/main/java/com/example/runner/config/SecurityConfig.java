@@ -25,16 +25,30 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 import java.util.List;
 
-
+/**
+ * Конфигурация безопасности Spring Security
+ * Настраивает:
+ * - JWT аутентификацию с HTTP-only cookies
+ * - CORS политику для фронтенда
+ * - Правила авторизации для эндпоинтов
+ * - BCrypt хеширование паролей
+ * - Stateless сессии (без состояния)
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    /** Фильтр для обработки JWT токенов */
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    
+    /** Сервис для загрузки данных пользователя */
     private final CustomUserDetailsService userDetailsService;
 
+    /**
+     * Настраивает цепочку фильтров безопасности
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -69,6 +83,9 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Настраивает CORS политику для взаимодействия с фронтендом
+     */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -96,11 +113,13 @@ public class SecurityConfig {
         return source;
     }
 
+    /** Конфигурирует BCrypt энкодер для хеширования паролей */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /** Настраивает провайдер аутентификации с пользовательским сервисом */
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -109,6 +128,7 @@ public class SecurityConfig {
         return authProvider;
     }
 
+    /** Настраивает менеджер аутентификации */
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration authenticationConfiguration) throws Exception {
